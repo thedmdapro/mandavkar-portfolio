@@ -925,51 +925,21 @@
   }
 
   async function fetchCopper() {
-    // Step 1: Yahoo Finance HG=F (copper futures, $/lb) — convert to $/MT (* 2204.62) to match PCOPPUSDM scale
+    // FRED PCOPPUSDM (monthly IMF global copper price, $/MT)
     try {
-      log('Copper [1/2]: trying Yahoo Finance HG=F (monthly, 7y)');
-      var d1 = await fetchYahoo('HG%3DF', 2204.62);
-      if (d1 && d1.length > 0) { log('Copper [1/2] OK: ' + d1.length + ' pts, last=' + d1[d1.length-1].value.toFixed(0) + ' $/MT'); return d1; }
-    } catch (e) { warn('Copper [1/2] Yahoo failed:', e.message); }
-    // Step 2: FRED PCOPPUSDM (monthly IMF series — sometimes returns HTTP 500)
-    try {
-      log('Copper [2/2]: trying FRED PCOPPUSDM');
-      var d2 = await fetchFRED('PCOPPUSDM', null, '2019-01-01');
-      if (d2 && d2.length > 0) { log('Copper [2/2] OK: ' + d2.length + ' pts'); return d2; }
-    } catch (e) { warn('Copper [2/2] FRED failed:', e.message); }
-    throw new Error('All copper fetch attempts failed');
+      log('Copper: fetching FRED PCOPPUSDM');
+      var d = await fetchFRED('PCOPPUSDM', null, '2019-01-01');
+      if (d && d.length > 0) { log('Copper OK: ' + d.length + ' pts'); return d; }
+    } catch (e) { warn('Copper FRED failed:', e.message); }
+    throw new Error('Copper data unavailable');
   }
 
   async function fetchGold() {
-    // Step 1: Yahoo Finance GC=F (gold futures) — primary source, works without ICE license
-    try {
-      log('Gold [1/4]: trying Yahoo Finance GC=F (monthly, 7y)');
-      var d1 = await fetchGoldYahoo();
-      if (d1 && d1.length > 0) { log('Gold [1/4] OK: ' + d1.length + ' pts, first=' + d1[0].date + ', last=' + d1[d1.length-1].date); return d1; }
-      warn('Gold [1/4]: empty array after parse');
-    } catch (e) { warn('Gold [1/4] Yahoo failed:', e.message); }
-    // Step 2: FRED GOLDAMGBD228NLBM (daily AM fix — restricted by ICE, may not work)
-    try {
-      log('Gold [2/4]: trying FRED GOLDAMGBD228NLBM from 2019-01-01');
-      var d2 = await fetchFRED('GOLDAMGBD228NLBM', null, '2019-01-01');
-      if (d2 && d2.length > 0) { log('Gold [2/4] OK: ' + d2.length + ' pts, first=' + d2[0].date); return d2; }
-      warn('Gold [2/4]: empty array');
-    } catch (e) { warn('Gold [2/4] failed:', e.message); }
-    // Step 3: FRED GOLDPMGBD228NLBM (PM fix fallback)
-    try {
-      log('Gold [3/4]: trying FRED GOLDPMGBD228NLBM from 2019-01-01');
-      var d3 = await fetchFRED('GOLDPMGBD228NLBM', null, '2019-01-01');
-      if (d3 && d3.length > 0) { log('Gold [3/4] OK: ' + d3.length + ' pts, first=' + d3[0].date); return d3; }
-      warn('Gold [3/4]: empty array');
-    } catch (e) { warn('Gold [3/4] failed:', e.message); }
-    // Step 4: FRED AM fix with extended date range
-    try {
-      log('Gold [4/4]: trying FRED GOLDAMGBD228NLBM from 2015-01-01 (extended range)');
-      var d4 = await fetchFRED('GOLDAMGBD228NLBM', null, '2015-01-01');
-      if (d4 && d4.length > 0) { log('Gold [4/4] OK: ' + d4.length + ' pts, first=' + d4[0].date); return d4; }
-      warn('Gold [4/4]: empty array');
-    } catch (e) { warn('Gold [4/4] failed:', e.message); }
-    throw new Error('All 4 gold fetch attempts failed — check network and proxy');
+    // FRED gold spot series (GOLDAMGBD228NLBM, GOLDPMGBD228NLBM) were discontinued (ICE licensing).
+    // Yahoo Finance blocks server-side requests from Cloudflare Workers.
+    // Gold data is currently unavailable from free public APIs.
+    warn('Gold: no free data source available (FRED ICE series discontinued, Yahoo blocked)');
+    return null;
   }
 
   async function fetchAllFRED() {
@@ -1003,16 +973,12 @@
       try { fred.realyield = await fetchFRED('DFII10', null, '2019-01-01'); }
       catch(e2) { err('Real yield both series failed:', e2.message); fred.realyield = null; }
     }
-    // DXY: Yahoo Finance DX=F primary (DTWEXBGS returns HTTP 500 intermittently)
+    // DXY: FRED DTWEXBGS (Trade Weighted US Dollar Index: Broad)
     try {
-      fred.dxy = await fetchYahoo('DX%3DF');
-      if (fred.dxy && fred.dxy.length) { log('DXY (Yahoo DX=F) OK: ' + fred.dxy.length + ' pts, last=' + last(fred.dxy).value.toFixed(2)); }
-      else throw new Error('DX=F empty');
-    } catch(e) {
-      warn('DXY Yahoo failed, trying FRED DTWEXBGS:', e.message);
-      try { fred.dxy = await fetchFRED('DTWEXBGS', null, '2022-01-01'); }
-      catch(e2) { err('DXY both sources failed:', e2.message); fred.dxy = null; }
-    }
+      fred.dxy = await fetchFRED('DTWEXBGS', null, '2022-01-01');
+      if (fred.dxy && fred.dxy.length) { log('DXY (DTWEXBGS) OK: ' + fred.dxy.length + ' pts, last=' + last(fred.dxy).value.toFixed(2)); }
+      else { fred.dxy = null; }
+    } catch(e) { err('DXY failed:', e.message); fred.dxy = null; }
     // Gold: Yahoo Finance GC=F primary, FRED ICE series as fallbacks
     try {
       fred.gold = await fetchGold();
