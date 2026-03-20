@@ -744,7 +744,7 @@
         <div class="method-item">
           <span class="method-item-label">DATA SOURCE</span>
           <span class="method-item-title">FRED API + Manual CSVs</span>
-          <span class="method-item-desc">18 series from FRED fetched in parallel via Promise.allSettled. 3 manual CSVs (BDI, AMFI, Drewry) updated weekly and committed to the repo.</span>
+          <span class="method-item-desc">18 series from FRED fetched in parallel via Promise.allSettled. 4 manual CSVs (BDI, AMFI, Drewry, Gold) updated periodically and committed to the repo.</span>
         </div>
         <div class="method-item">
           <span class="method-item-label">REGIME MODEL</span>
@@ -935,10 +935,12 @@
   }
 
   async function fetchGold() {
-    // FRED gold spot series (GOLDAMGBD228NLBM, GOLDPMGBD228NLBM) were discontinued (ICE licensing).
-    // Yahoo Finance blocks server-side requests from Cloudflare Workers.
-    // Gold data is currently unavailable from free public APIs.
-    warn('Gold: no free data source available (FRED ICE series discontinued, Yahoo blocked)');
+    // FRED gold series discontinued (ICE licensing). Yahoo Finance blocked from Cloudflare.
+    // Load from manual CSV (monthly averages, updated periodically).
+    try {
+      var data = await loadCSV('projects/macro-signal-tracker/data/gold_monthly.csv', 'date', 'gold_usd');
+      if (data && data.length > 0) { log('Gold (CSV) OK: ' + data.length + ' pts, last=' + last(data).date + ' $' + last(data).value); return data; }
+    } catch (e) { warn('Gold CSV failed:', e.message); }
     return null;
   }
 
