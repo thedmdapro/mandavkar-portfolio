@@ -739,7 +739,7 @@
     <!-- METHODOLOGY -->
     <div class="signals-method">
       <h3 style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--text);margin-bottom:8px">How this dashboard works</h3>
-      <p style="font-size:13px;color:var(--dim);line-height:1.6;max-width:640px">All FRED data is fetched live from the St. Louis Fed API on every page load via corsproxy.io. Manual datasets (BDI, AMFI, Drewry WCI) are updated weekly. The regime composite scores five signals and updates automatically.</p>
+      <p style="font-size:13px;color:var(--dim);line-height:1.6;max-width:640px">All FRED data is fetched live from the St. Louis Fed API on every page load. Manual datasets (BDI, AMFI, Drewry WCI) are updated weekly. The regime composite scores five signals and updates automatically.</p>
       <div class="method-grid">
         <div class="method-item">
           <span class="method-item-label">DATA SOURCE</span>
@@ -884,19 +884,14 @@
     if (!API_KEY) throw new Error('No API key — add to signals-config.js');
     var params = new URLSearchParams({ series_id: seriesId, api_key: API_KEY, file_type: 'json', observation_start: startDate || '2019-01-01', sort_order: 'asc' });
     if (units) params.set('units', units);
-    var proxied = 'https://corsproxy.io/?' + encodeURIComponent(FRED_BASE + '?' + params.toString());
+    var url = FRED_BASE + '?' + params.toString();
     var parse = function(json) {
       if (json.error_message) throw new Error(json.error_message);
       return json.observations.filter(function(o){ return o.value !== '.' && o.value !== ''; }).map(function(o){ return { date: o.date, value: parseFloat(o.value) }; });
     };
-    // First attempt
-    var res = await fetch(proxied);
-    if (res.ok) return parse(await res.json());
-    // Retry once after 700ms (handles corsproxy transient rate-limiting)
-    await new Promise(function(r){ setTimeout(r, 700); });
-    var res2 = await fetch(proxied);
-    if (!res2.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res2.status + ' (after retry)');
-    return parse(await res2.json());
+    var res = await fetch(url);
+    if (!res.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res.status);
+    return parse(await res.json());
   }
 
   // Parse Yahoo Finance chart API into the same {date, value}[] format as fetchFRED
@@ -920,7 +915,7 @@
 
   async function fetchYahoo(ticker, multiplier) {
     var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1mo&range=7y&includePrePost=false';
-    var res = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+    var res = await fetch(url);
     if (!res.ok) throw new Error('Yahoo Finance ' + ticker + ' HTTP ' + res.status);
     return parseYahooChart(await res.json(), multiplier);
   }
@@ -989,7 +984,7 @@
       ['usdinr','DEXINUS',null,'2022-01-01'], ['india10y','IRSTCB01INM156N',null,'2020-01-01'],
       ['jobless','ICSA',null,'2022-01-01'], ['corepce','PCEPILFE','pc1','2019-01-01'],
     ];
-    // Fetch in chunks of 5 to avoid corsproxy rate-limiting on concurrent requests
+    // Fetch in chunks of 5 to avoid FRED rate-limiting on concurrent requests
     var fred = {};
     var CHUNK = 5;
     for (var ci = 0; ci < specs.length; ci += CHUNK) {
