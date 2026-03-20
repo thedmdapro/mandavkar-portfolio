@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The carry trade always works until it doesn't. — Dhruv Mandavkar</title>
+  <meta name="description" content="Borrowing cheap yen to fund returns in high-yield EM assets looked frictionless for years. Then August 2024 arrived. The mechanics, the history, and what to watch for next time." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The carry trade always works until it doesn't." />
+  <meta property="og:description" content="Borrowing cheap yen to fund returns in high-yield EM assets looked frictionless for years. Then August 2024 happened. The mechanics, the history, what to watch for." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/carry-trade.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">FX · Macro · Risk</span>
+        <h1 class="blog-title">The carry trade always works until it doesn't.</h1>
+        <p class="blog-subtitle">Borrowing cheap yen to buy high-yield EM assets looked frictionless for years. August 2024 compressed the unwind into three weeks. The mechanics, the history, and the signals to watch before the next one.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">March 2026</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">7 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>In early August 2024, the Nikkei 225 fell 12% in a single day — its worst session since Black Monday in 1987. The US S&P 500 dropped 3% in one day with no obvious domestic catalyst. Emerging market currencies weakened sharply across the board. The VIX, which had been sleeping in the mid-teens, exploded above 65 intraday. Markets looked like they were breaking.</p>
+
+        <p>The proximate cause was a 15 basis point rate hike by the Bank of Japan — a move so small it would normally be background noise. The reason a 15bp hike in Japan could temporarily crater global equity markets is a story about the carry trade, and it is a story worth understanding in detail, because the next version of it is almost certainly already being built.</p>
+
+        <h2>What carry trading actually is</h2>
+
+        <p>The core logic of the carry trade is simple: borrow in a low-interest-rate currency and invest in a high-interest-rate currency or asset. The return is the interest rate differential (the "carry") plus or minus any change in the exchange rate between the two currencies.</p>
+
+        <p>For two decades, Japan provided the ideal funding currency for this trade. The Bank of Japan maintained near-zero interest rates from the late 1990s through the mid-2020s — effectively offering free money for institutional investors who could borrow in yen, convert to another currency, and invest in higher-yielding assets. The mechanics worked best when JPY/USD was stable or weakening (a weaker yen made the yen-denominated cost of borrowing fall in dollar terms, adding to returns).</p>
+
+        <div class="blog-data-box">
+          <strong>The classic yen carry structure (pre-2024)</strong>
+          <p>
+            <strong>Borrow:</strong> Yen at ~0.1–0.5% annual interest rate<br><br>
+            <strong>Convert:</strong> Yen to USD (or INR, BRL, MXN, or directly into US Treasuries or EM bonds)<br><br>
+            <strong>Invest:</strong> US Treasuries yielding 5%+, or EM government bonds at 8–12%, or developed market equities<br><br>
+            <strong>Net carry:</strong> 4.5–11.5% annually, before currency effect<br><br>
+            <strong>Currency risk:</strong> If yen strengthens, the cost of repaying the yen borrowing rises in dollar terms — the currency loss eats the carry. If yen weakens, the trade earns both the interest differential and the currency movement.
+          </p>
+        </div>
+
+        <p>For years, the yen was weakening. USDJPY went from around 115 in early 2022 to a peak above 160 in mid-2024. Carry traders made money not just on the interest differential but on the currency movement itself. The trade was working in every dimension simultaneously.</p>
+
+        <h2>Why the carry trade creates systemic fragility</h2>
+
+        <p>The problem with the carry trade is not that it fails on average — it doesn't. The return to carry strategies over long periods is positive. The problem is how it fails when it fails: quickly, violently, and at the worst possible moment for risk assets broadly.</p>
+
+        <p>The mechanism is a self-reinforcing unwind. When yen carry positions are large and concentrated — as they were by mid-2024 — any shock that causes yen appreciation triggers a cascade. Investors who are short yen (have borrowed yen and converted to other currencies) suddenly face a loss on the currency leg of their trade. To cover margin or manage risk, they sell their long positions — the assets they bought with the yen proceeds. Those assets can be US equities, EM bonds, Indian stocks, Brazilian real assets — whatever the particular strategy targeted. Asset prices fall across the board as carry unwinds happen simultaneously.</p>
+
+        <div class="blog-pullquote">
+          <p>The carry trade is not a strategy. It is a crowded position that works until the moment it needs everyone to exit at once — at which point it does not work at all.</p>
+        </div>
+
+        <p>The Bank of Japan's 15bp hike in July 2024 was the trigger, not the cause. The cause was the size and concentration of the carry position that had built up. When USDJPY moved from 160 to 142 in a matter of weeks, carry traders faced losses of 10%+ on the currency leg alone — enough to trigger forced de-risking across portfolios that had nothing else obviously wrong with them.</p>
+
+        <h2>How to identify a carry trade buildup</h2>
+
+        <p>The signals are observable, though they require aggregating data from multiple sources.</p>
+
+        <p><strong>CFTC positioning data on JPY futures.</strong> The Commitments of Traders report published weekly by the CFTC shows net speculative positioning in yen futures. Large net short positions in yen (speculative traders short yen) indicate a large carry trade buildup — these are the hedged representation of yen borrowing. In 2024, net short yen positioning reached its most extreme level since the data series began. That positioning was the kindling.</p>
+
+        <p><strong>Correlation breakdowns between asset classes.</strong> When the carry trade is large, seemingly unrelated assets start moving together — Indian equities, Brazilian real, US tech stocks, and Mexican peso all decline simultaneously when the unwind starts. This correlation surge is visible in real-time and is one of the clearest signals that what is happening is a carry unwind rather than fundamental repricing.</p>
+
+        <p><strong>VIX spikes with no obvious domestic catalyst.</strong> A sharp spike in implied volatility that is not driven by a clear US-specific event (earnings miss, Fed surprise, economic data) is often carry-trade-related. The August 2024 VIX spike happened on a quiet Monday morning before US markets opened — the catalyst was Japanese overnight.</p>
+
+        <p><strong>Yen spot rate moving sharply against the dollar.</strong> The USDJPY rate is the real-time indicator of carry unwind pressure. A move of 5% or more in USDJPY over a week, particularly in the direction of yen strengthening, warrants immediate attention to risk exposure across the portfolio.</p>
+
+        <h2>The current state of the carry</h2>
+
+        <p>After the August 2024 unwind, the yen carry trade rebuilt, partially. USDJPY recovered from its 142 trough back above 150 as the Bank of Japan communicated caution about further rate hikes. Speculative positioning rebuilt — not to the June 2024 peak, but to levels that are again meaningful.</p>
+
+        <p>The Bank of Japan is in a structurally different position now than it was pre-2024. Inflation in Japan has been running above target, real wages have been rising, and the political and institutional pressure to normalise rates has increased. Each incremental hike the BOJ delivers removes a piece of the funding advantage that made the yen carry so attractive for so long.</p>
+
+        <p>This does not mean the carry trade is dead. It means the risk-reward has shifted. The funding cost advantage that was essentially free is now smaller and more uncertain. The expected carry has compressed. The tail risk — yen strengthening sharply if the BOJ accelerates normalisation — remains.</p>
+
+        <h2>What it means for portfolio construction</h2>
+
+        <p>The practical implication is not to avoid EM assets or high-yield because they might be carry-funded. The practical implication is to monitor the conditions that indicate carry-trade buildup — CFTC positioning, USDJPY levels, correlation structure — and to have a framework for how quickly you would reduce risk if the early signals of an unwind appeared.</p>
+
+        <p>The August 2024 unwind gave approximately 10 days of observable warning before the most acute phase. USDJPY had already moved from 160 to 153 before the single-day Nikkei crash. The CFTC data was showing extreme positioning two reports before the move. Not everyone saw it, but it was visible to those who were looking for it.</p>
+
+        <p>The carry trade always works until it doesn't. The question is whether you are looking at the indicators that tell you when "until" might be approaching — or whether you will be surprised, like most of the market was, when what looked like a 15bp BOJ hike turned into a global equity market shock.</p>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

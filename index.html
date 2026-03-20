@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhruv Mandavkar — Finance & FinTech</title>
+  <meta name="description" content="Dhruv Mandavkar — Equity Research & Macro Analysis. Exploring signals most analysts overlook." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dhruv Mandavkar — Finance & FinTech" />
+  <meta property="og:description" content="Equity Research & Macro Analysis. Exploring signals most analysts overlook — shipping rates, commodity flows, policy shifts." />
+  <meta property="og:url" content="https://mandavkar.uk" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <meta property="og:image" content="https://mandavkar.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dhruv Mandavkar — Finance & FinTech" />
+  <meta name="twitter:description" content="Equity Research & Macro Analysis. Exploring signals most analysts overlook." />
+  <meta name="twitter:image" content="https://mandavkar.uk/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>dhruv</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">dhruv</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#currently">Status</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#blog">Writing</a></li>
+        <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#currently">Status</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#blog">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <canvas class="constellation-canvas constellation-hero" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+
+      <!-- Hero photo — left column -->
+      <div class="hero-photo">
+        <img src="assets/images/hero-photo.jpg" alt="Dhruv Mandavkar" loading="eager">
+      </div>
+
+      <div class="hero-left">
+        <div class="hero-content">
+          <span class="eyebrow">Macro · Markets · Signals</span>
+          <h1 class="hero-name">Dhruv<br><em>Mandavkar</em></h1>
+
+          <div class="hero-identity">
+            <span class="hero-role">Equity Research</span>
+            <span class="hero-role hero-role--teal">Macro Analysis</span>
+            <span class="hero-role hero-role--dim">CFA L1 Candidate</span>
+          </div>
+
+          <p class="hero-desc">I study the signals most people overlook — shipping rates, commodity flows, policy shifts — and connect them to financial outcomes.</p>
+
+          <blockquote class="hero-desc" style="font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.50);margin-bottom:32px;padding-left:18px;border-left:1.5px solid rgba(0,95,115,0.35);">"Never trust a thought that occurs to you indoors." <span style="font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;letter-spacing:0.06em;color:rgba(255,255,255,0.32);">— Friedrich Nietzsche</span></blockquote>
+
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">View Work</a>
+            <button class="hero-email" id="heroEmailReveal" aria-label="Reveal email address">jobs@•••••••••• →</button>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">1<sup>st</sup></span>
+            <span class="stat-label">Class Honours</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">CFA</span>
+            <span class="stat-label">L1 · Aug 2026</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">65<small>%</small></span>
+            <span class="stat-label">MWRR — Portfolio</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Scholarships</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- dark → cream -->
+  <div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-text fade-up">
+          <span class="section-label">About</span>
+          <h2 id="about-headline">Macro analyst. I track the signals that can't be managed.</h2>
+          <p>I grew up across Saudi Arabia, South Korea, China, and India. Four completely different relationships with money, risk, saving, and markets. What that taught me — and what no textbook did — is that financial behaviour doesn't generalise across borders. The assumptions embedded in most Western financial models were built for Western financial psychology. The rest of the world doesn't always work that way, and the gaps between those assumptions and reality are where the most interesting signals live.</p>
+          <p>That's the lens I bring to markets. Before I look at a company's earnings, I check what's happening upstream — Baltic Dry, LNG spot, commodity flows, shipping route disruptions. The physical economy moves before the financial one acknowledges it. Disruptions that are happening right now in the Strait of Hormuz, in Red Sea shipping lanes, in rare earth processing — these have consequences that will take years to fully price in. Most market participants are still treating them as temporary noise. I don't think they are.</p>
+          <p>The deeper version of this is pattern recognition at scale. The most actionable signals in macro aren't the obvious ones — they're the coordinated movements of large institutional capital that haven't yet surfaced in public data. Sovereign wealth fund deployment. Central bank reserve reallocation. The quiet accumulation that precedes a thesis becoming consensus. I'm interested in learning to read those patterns early. That's ultimately why I want to be in London, at the intersection of global capital flows, building toward running my own macro strategy.</p>
+          <p>I have a particular focus on maritime trade and shipping economics — the physical infrastructure that most financial models treat as a given. Chinese yards now build more than half the world's ships, operate the world's largest merchant fleet, and have embedded military conversion requirements into civilian vessels by law since 2016. Beidou tracking covers the entire Chinese fishing and merchant fleet in real time while Chinese waters have gone dark to global AIS monitoring since 2021. These are not defence industry stories. They are freight market stories, energy security stories, and capital allocation stories — and they connect directly to the macro signals I track weekly. I am building systematic knowledge of shipping economics, vessel markets, and maritime geopolitics alongside my macro research.</p>
+          <p>Currently an Equity Research Intern at <strong>Omega Portfolio Advisors by MoneyWorks4Me</strong> in Pune, covering equity mutual funds across large-cap, mid-cap, and flexi-cap categories. Before that, <strong>Junior Research Associate</strong> at Sussex Business School — fewer than <strong>0.1% of 5,500+ applicants</strong>. My undergraduate dissertation examined how fraud events, regulatory interventions, and Reddit sentiment affect cryptocurrency volatility versus traditional securities — event study, EGARCH(1,1), Granger causality, Bloomberg Terminal, STATA, Python. First Class. CFA Level 1, August 2026.</p>
+          <div class="about-tags">
+            <span class="tag tag-teal">Macro Research</span>
+            <span class="tag tag-teal">Commodity Markets</span>
+            <span class="tag tag-teal">Geopolitical Analysis</span>
+            <span class="tag tag-teal">Maritime Research</span>
+            <span class="tag tag-teal">Behavioural Finance</span>
+            <span class="tag">Equity Research</span>
+            <span class="tag">Financial Modelling</span>
+            <span class="tag">CFA L1</span>
+            <span class="tag">Mutual Funds</span>
+            <span class="tag tag-teal">Python</span>
+            <span class="tag">FinTech</span>
+          </div>
+        </div>
+
+        <div class="about-credentials fade-up" style="--delay:0.1s">
+          <div class="cred-card">
+            <div class="cred-icon">🎓</div>
+            <div class="cred-body">
+              <div class="cred-label">Education</div>
+              <div class="cred-title">BSc FinTech — First Class Honours</div>
+              <div class="cred-sub">University of Sussex · 2021–2024</div>
+            </div>
+          </div>
+          <div class="cred-card featured">
+            <div class="cred-icon">🏆</div>
+            <div class="cred-body">
+              <div class="cred-label">Recognition</div>
+              <div class="cred-title">Junior Research Associate</div>
+              <div class="cred-sub">Sussex Business School · &lt;0.1% from 5,500+ applicants</div>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">📝</div>
+            <div class="cred-body">
+              <div class="cred-label">Dissertation · First Class</div>
+              <div class="cred-title">Fraud, Regulation &amp; Sentiment Effects on Crypto vs. Traditional Securities Volatility</div>
+              <div class="cred-sub">Event study · EGARCH(1,1) · Granger causality · Bloomberg Terminal · STATA · Python · Reddit NLP</div>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">📊</div>
+            <div class="cred-body">
+              <div class="cred-label">Currently</div>
+              <div class="cred-title">CFA Level 1 Candidate</div>
+              <div class="cred-sub">Exam: August 2026</div>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">✈</div>
+            <div class="cred-body">
+              <div class="cred-label">International</div>
+              <div class="cred-title">Mannheim Business School · WU Vienna</div>
+              <div class="cred-sub">90% scholarship — competitive selection</div>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">🌍</div>
+            <div class="cred-body">
+              <div class="cred-label">Languages</div>
+              <div class="cred-title">English · Hindi · Marathi · Urdu · Mandarin</div>
+              <div class="cred-sub">Native & professional proficiency · Mandarin elementary</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- cream → sand -->
+  <div class="sect-angle sect-angle--cream-sand sect-angle--type-b" aria-hidden="true"></div>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section id="experience" class="section section-sand">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Experience</span>
+        <h2>Where I've worked.</h2>
+      </div>
+
+      <div class="exp-list">
+
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-period">Feb 2026 – Present</div>
+            <div class="exp-location">Pune, India</div>
+          </div>
+          <div class="exp-detail">
+            <div class="exp-role">Equity Research Intern</div>
+            <div class="exp-company">Omega Portfolio Advisors by MoneyWorks4Me</div>
+            <div class="exp-badge">SEBI-Registered RIA Firm · Equity Mutual Fund Coverage</div>
+            <p class="exp-desc">Working at the research and advisory layer of <strong>Third Rock Wealth (TRW)</strong> — the firm's mutual fund distribution initiative. Conducting deep-dive equity mutual fund research across large-cap, mid-cap, and flexi-cap categories, producing client-facing recommendation reports, and building systematic frameworks for fund evaluation and selection.</p>
+            <ul class="exp-bullets">
+              <li>Built systematic fund screening model across 200+ equity mutual funds — scoring on risk-adjusted returns, alpha, consistency, cost, and AUM stability</li>
+              <li>Produced client-facing fund recommendation reports combining quantitative metrics (Sharpe, beta, rolling alpha) with qualitative manager and mandate assessment</li>
+              <li>Conducting coverage of Angel One Ltd (NSE: ANGELONE) — 6-tab institutional valuation model including 3-statement model, DCF, EV/EBITDA comparables, scenario and sensitivity analysis</li>
+              <li>Analysing AUM trends, inflow/outflow dynamics, and category rotation across India's ₹67Lakh Cr mutual fund industry</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-period">2023 – 2024</div>
+            <div class="exp-location">Brighton, UK</div>
+          </div>
+          <div class="exp-detail">
+            <div class="exp-role">Junior Research Associate</div>
+            <div class="exp-company">Sussex Business School</div>
+            <div class="exp-badge">&lt;0.1% acceptance rate · 5,500+ applicants</div>
+            <p class="exp-desc">Selected as one of fewer than 0.1% of applicants accepted into the Junior Research Associate programme at Sussex Business School — a competitive research position embedded within the faculty's active research agenda. Worked alongside academic researchers on empirical financial research using econometric methods.</p>
+            <ul class="exp-bullets">
+              <li>Primary research tool: Bloomberg Terminal — daily price data extraction for BTC, ETH, S&amp;P 500, FTSE 100, Nikkei 225, and crypto indices across a 15-year dataset for undergraduate dissertation research</li>
+              <li>Applied quantitative methods: regression analysis, panel data, time-series modelling</li>
+              <li>Produced research briefs and contributed to peer-review ready outputs in financial economics</li>
+              <li>Developed foundational rigour in hypothesis construction, data sourcing, and academic-standard reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-period">2019 – Present</div>
+            <div class="exp-location">Personal</div>
+          </div>
+          <div class="exp-detail">
+            <div class="exp-role">Discretionary Trading Portfolio</div>
+            <div class="exp-company">Personal — Long/Short Equities</div>
+            <div class="exp-badge">65% MWRR · 45% Annual Profit · Discretionary L/S</div>
+            <p class="exp-desc">Self-managed discretionary portfolio combining macro-informed position selection with bottom-up stock analysis. Strategy is systematically driven by tracking macro signals — BDI, credit spreads, yield curve, commodity flows — to time and size positions in equity markets across India and global sectors.</p>
+            <ul class="exp-bullets">
+              <li>65% Money-Weighted Rate of Return (MWRR) since inception · 45% annual profit on deployed capital</li>
+              <li>Long/short approach across Indian equities, ETFs, and sector rotations</li>
+              <li>Macro-first framework: commodity signal tracking before individual stock selection</li>
+              <li>Position sizing driven by conviction, sector concentration limits, and macro regime assessment</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- sand → cream -->
+  <div class="sect-angle sect-angle--sand-cream sect-angle--type-a" aria-hidden="true"></div>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Skills</span>
+        <h2>What I work with.</h2>
+        <p class="section-sub">Technical tools and domain knowledge — built through research, internship work, and independent projects.</p>
+      </div>
+
+      <div class="skills-grid fade-up">
+
+        <div class="skills-group">
+          <div class="skills-group-label">Financial Modelling</div>
+          <div class="skills-tags">
+            <span class="skill-tag skill-strong">DCF Valuation</span>
+            <span class="skill-tag skill-strong">3-Statement Modelling</span>
+            <span class="skill-tag skill-strong">Comparable Company Analysis</span>
+            <span class="skill-tag">Scenario & Sensitivity Analysis</span>
+            <span class="skill-tag">LBO Mechanics</span>
+            <span class="skill-tag">Equity Research Reports</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-label">Quantitative & Data</div>
+          <div class="skills-tags">
+            <span class="skill-tag skill-strong">Python — pandas, matplotlib, openpyxl</span>
+            <span class="skill-tag skill-strong">Excel — Advanced (formulas, VBA-ready)</span>
+            <span class="skill-tag skill-strong">STATA — Econometrics, Panel Data</span>
+            <span class="skill-tag">R — Statistical Analysis</span>
+            <span class="skill-tag">FRED API · BSE / NSE Data</span>
+            <span class="skill-tag">Python — PRAW · VADER · Pandas</span>
+            <span class="skill-tag">Bloomberg Terminal</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-label">Research Domains</div>
+          <div class="skills-tags">
+            <span class="skill-tag skill-teal">Macro Signal Analysis</span>
+            <span class="skill-tag skill-teal">India Equity Markets</span>
+            <span class="skill-tag skill-teal">Commodity Markets</span>
+            <span class="skill-tag skill-teal">Mutual Fund Research</span>
+            <span class="skill-tag skill-teal">Shipping & Trade Flows</span>
+            <span class="skill-tag skill-teal">Geopolitical Risk Pricing</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-label">Data Sources I Use</div>
+          <div class="skills-tags">
+            <span class="skill-tag">FRED (St. Louis Fed)</span>
+            <span class="skill-tag">AMFI India — Monthly Inflow Data</span>
+            <span class="skill-tag">SEBI Filings & Disclosures</span>
+            <span class="skill-tag">BSE / NSE — Company Filings</span>
+            <span class="skill-tag">Baltic Exchange — BDI Weekly</span>
+            <span class="skill-tag">Screener.in · Tijori Finance</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section id="projects" class="section section-gradient">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Projects</span>
+        <h2>What I'm building.</h2>
+        <p class="section-sub">Independent research and analytical projects. Finance, data, and the tools I wish already existed.</p>
+      </div>
+
+      <div class="bento-grid fade-up">
+
+        <!-- Featured — Angel One -->
+        <div class="bento-card bento-featured">
+          <div class="bento-card-header">
+            <span class="proj-badge active">In Progress</span>
+            <span class="proj-type">Finance · Equity Research</span>
+          </div>
+          <h3>Angel One Ltd (NSE: ANGELONE) — Institutional Equity Valuation</h3>
+          <p>India is digitising its wealth. 100M+ demat accounts and growing. Angel One sits at the centre of that structural shift. I'm building an institutional-grade model to understand whether the market's pricing it correctly — 6 tabs: 3-statement model, DCF, EV/EBITDA comparables, scenario analysis, sensitivity tables, and executive dashboard.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">Excel</span>
+            <span class="stack-tag">DCF</span>
+            <span class="stack-tag">Financial Modelling</span>
+            <span class="stack-tag">Equity Research</span>
+            <span class="stack-tag stack-accent">NSE: ANGELONE</span>
+            <span class="stack-tag stack-accent">India Markets</span>
+          </div>
+        </div>
+
+        <!-- Macro Signal Tracker -->
+        <div class="bento-card">
+          <div class="bento-card-header">
+            <span class="proj-badge active">Live</span>
+            <span class="proj-type">Data · Macro</span>
+          </div>
+          <h3>Macro Signal Tracker</h3>
+          <p>Live browser dashboard tracking 21 macro indicators across rates, credit, FX, commodities, and India flows. Yield curves, credit spreads, BDI, copper-gold ratio, VIX, DXY, and more. FRED API pulls live data on every page load.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Chart.js</span>
+            <span class="stack-tag">FRED API</span>
+            <span class="stack-tag stack-accent">Live Data</span>
+          </div>
+          <a href="signals.html" class="proj-link">View Live Dashboard →</a>
+        </div>
+
+        <!-- Horizon 2040 Research -->
+        <div class="bento-card">
+          <div class="bento-card-header">
+            <span class="proj-badge active">Published</span>
+            <span class="proj-type">Macro · Research</span>
+          </div>
+          <h3>Horizon 2040 — Four Unpriced Structural Risks</h3>
+          <p>Four macro theses the market prices at zero: quantum computing breaking bond settlement cryptography, permanent storage stranding utility demand, humanoid robots blinding central bank instruments, and AI reflexivity degrading price discovery. An interactive research dossier connecting thesis to live data signals.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">Macro Research</span>
+            <span class="stack-tag">Quantum Risk</span>
+            <span class="stack-tag">Labour Automation</span>
+            <span class="stack-tag stack-accent">FRED Live Data</span>
+          </div>
+          <a href="horizon2040.html" class="proj-link">Read the research →</a>
+        </div>
+
+        <!-- Macro Geopolitics Research -->
+        <div class="bento-card">
+          <div class="bento-card-header">
+            <span class="proj-badge active">Published</span>
+            <span class="proj-type">Macro · Geopolitics</span>
+          </div>
+          <h3>Macro Geopolitics — 12 Structural Theses</h3>
+          <p>Four research verticals spanning supply chain chokepoints, energy regime change, demographic divergence, and military conflict transmission. Helium to semiconductors, LNG to shadow fleets, China's demographic cliff to Gulf SWF reallocation. Each thesis includes India angle, contrarian claim, and live signal links.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">Supply Chains</span>
+            <span class="stack-tag">Energy</span>
+            <span class="stack-tag">Demographics</span>
+            <span class="stack-tag">Conflict</span>
+            <span class="stack-tag stack-accent">12 Theses</span>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+            <a href="supply-chains.html" class="proj-link">Supply Chains →</a>
+            <a href="energy.html" class="proj-link">Energy →</a>
+            <a href="demographics.html" class="proj-link">Demographics →</a>
+            <a href="conflict.html" class="proj-link">Conflict →</a>
+          </div>
+        </div>
+
+        <!-- Fund Screener -->
+        <div class="bento-card">
+          <div class="bento-card-header">
+            <span class="proj-badge active">In Progress</span>
+            <span class="proj-type">Finance · Fund Analysis</span>
+          </div>
+          <h3>Equity Fund Screening Model</h3>
+          <p>Systematic mutual fund screening framework in development at Omega covering 200+ equity funds. Criteria-weighted scoring engine across risk-adjusted returns, alpha generation, consistency, cost efficiency, and AUM stability. Being built to power client-facing fund recommendations.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">Excel</span>
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Fund Analysis</span>
+            <span class="stack-tag stack-accent">SEBI / AMFI Data</span>
+          </div>
+        </div>
+
+        <!-- Undergraduate Dissertation -->
+        <div class="bento-card">
+          <div class="bento-card-header">
+            <span class="proj-badge">Research</span>
+            <span class="proj-type">FinTech · Financial Econometrics</span>
+          </div>
+          <h3>The Impact of Fraud, Regulations, and Social Media Sentiment on the Price Volatility of Major Cryptocurrencies (Bitcoin, Ethereum) Compared to Traditional Securities</h3>
+          <p>Empirical study of how fraud events, regulatory interventions, and Reddit sentiment affect the price volatility of cryptocurrencies (Bitcoin, Ethereum, BGCI) versus traditional securities (S&amp;P 500, FTSE 100, Nikkei 225) from July 2010 to March 2025. Multi-method framework: event study analysis, EGARCH(1,1) volatility modelling, and Granger causality across 5,372 daily observations and 30 events. Key findings: the regulatory asymmetry paradox, market maturation hypothesis, and sentiment contagion waves. Supervised by Dr. Malgorzata Sulimierska, Sussex Business School.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">STATA 17</span>
+            <span class="stack-tag">Bloomberg Terminal</span>
+            <span class="stack-tag">Python / VADER / PRAW</span>
+            <span class="stack-tag">EGARCH · Event Study</span>
+            <span class="stack-tag stack-accent">First Class</span>
+          </div>
+          <a href="assets/Mandavkar-Dissertation-CryptoVolatility-2024.pdf" target="_blank" rel="noopener" class="proj-link">Read Dissertation →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- cream/gradient → sand -->
+  <div class="sect-angle sect-angle--cream-sand sect-angle--type-b" aria-hidden="true"></div>
+
+  <!-- ─── RESEARCH ─── -->
+  <section id="research" class="section section-sand">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Published Research</span>
+        <h2>Research.</h2>
+        <p class="section-sub">Long-form analysis, live signals, and strategic dossiers.</p>
+      </div>
+
+      <div class="research-strip fade-up">
+
+        <a href="horizon2040.html" class="research-item">
+          <div class="research-accent"></div>
+          <div class="research-body">
+            <span class="research-tag">Macro Research</span>
+            <h3 class="research-title">Horizon 2040</h3>
+            <p class="research-desc">Long-form macro research. Structural shifts the market prices at zero.</p>
+          </div>
+          <span class="research-arrow">&rarr;</span>
+        </a>
+
+        <a href="signals.html" class="research-item">
+          <div class="research-accent"></div>
+          <div class="research-body">
+            <span class="research-tag">Live Data</span>
+            <h3 class="research-title">Signals</h3>
+            <p class="research-desc">Live macro signal dashboard. 21 instruments across rates, credit, FX, and commodities.</p>
+          </div>
+          <span class="research-arrow">&rarr;</span>
+        </a>
+
+        <a href="shipping.html" class="research-item">
+          <div class="research-accent"></div>
+          <div class="research-body">
+            <span class="research-tag">Maritime &middot; Geopolitics</span>
+            <h3 class="research-title">Shipping &amp; Maritime Power</h3>
+            <p class="research-desc">Chinese shipbuilding dominance, Beidou fleet tracking, and the COSCO port network.</p>
+          </div>
+          <span class="research-arrow">&rarr;</span>
+        </a>
+
+        <a href="chokepoints.html" class="research-item">
+          <div class="research-accent"></div>
+          <div class="research-body">
+            <span class="research-tag">Strategic Dossier</span>
+            <h3 class="research-title">Maritime Chokepoints</h3>
+            <p class="research-desc">The world's 12 critical maritime passages. Geography, volumes, and financial transmission.</p>
+          </div>
+          <span class="research-arrow">&rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- sand → dark -->
+  <div class="sect-angle sect-angle--sand-dark sect-angle--type-a" aria-hidden="true"></div>
+
+  <!-- ─── POSITIONS ─── -->
+  <section id="positions" class="section section-positions">
+    <canvas class="constellation-canvas constellation-ambient" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Where I Stand</span>
+        <h2>Five positions I'll defend.</h2>
+        <p class="section-sub light">Opinions, not predictions. I'm willing to be wrong.</p>
+      </div>
+
+      <div class="theses-editorial">
+
+        <article class="thesis-row fade-up">
+          <div class="thesis-number-col">
+            <span class="thesis-num-large">01</span>
+            <span class="thesis-tag">Commodities</span>
+          </div>
+          <div class="thesis-content-col">
+            <div class="thesis-accent-line"></div>
+            <blockquote class="thesis-claim">"Physical signals are the only macro data that can't be managed."</blockquote>
+            <div class="thesis-evidence">
+              <span class="thesis-evidence-label">The evidence</span>
+              <p>The Baltic Dry Index doesn't have an investor relations team. Corn doesn't have forward guidance. LNG spot prices don't get revised three months later. When physical commodity signals diverge from equity markets or central bank narratives, I trust the ships, the grain, and the gas. One of them is reflecting reality — and it's never the press release.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="thesis-row fade-up">
+          <div class="thesis-number-col">
+            <span class="thesis-num-large">02</span>
+            <span class="thesis-tag">India</span>
+          </div>
+          <div class="thesis-content-col">
+            <div class="thesis-accent-line"></div>
+            <blockquote class="thesis-claim">"India's retail investment boom is structurally underestimated."</blockquote>
+            <div class="thesis-evidence">
+              <span class="thesis-evidence-label">The evidence</span>
+              <p>India went from 40 million to 216 million demat accounts in six years. Global analysts model this as a cyclical trend. It isn't. It's a structural shift driven by smartphones, UPI infrastructure, and a generation that trusts markets over bank deposits. The wealth management industry hasn't priced the scale of what's coming — and the monthly SIP data is the cleanest signal of whether it continues.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="thesis-row fade-up">
+          <div class="thesis-number-col">
+            <span class="thesis-num-large">03</span>
+            <span class="thesis-tag">Dissertation Research</span>
+          </div>
+          <div class="thesis-content-col">
+            <div class="thesis-accent-line"></div>
+            <blockquote class="thesis-claim">"Social media sentiment is a macro signal that most institutional models ignore at their peril."</blockquote>
+            <div class="thesis-evidence">
+              <span class="thesis-evidence-label">The evidence</span>
+              <p>In my dissertation research, Reddit negative sentiment Granger-caused crypto volatility with Chi² statistics above 27 at a single lag — stronger predictive power than most traditional macro variables produce in comparable tests. The mechanism isn't irrational retail noise. It's sentiment contagion: negative narratives spreading through retail networks amplify selling pressure before it registers in price data. Any volatility model that doesn't account for sentiment is working with incomplete information. This applies beyond crypto — the transmission mechanism is the same wherever retail participation is high.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="thesis-row fade-up">
+          <div class="thesis-number-col">
+            <span class="thesis-num-large">04</span>
+            <span class="thesis-tag">Geopolitics</span>
+          </div>
+          <div class="thesis-content-col">
+            <div class="thesis-accent-line"></div>
+            <blockquote class="thesis-claim">"Geopolitical realignment creates pricing dislocations that DCF can't see."</blockquote>
+            <div class="thesis-evidence">
+              <span class="thesis-evidence-label">The evidence</span>
+              <p>The Hormuz closure threatens one-third of global helium supply and 20% of LNG simultaneously. The Russia-Ukraine war rewired European energy infrastructure permanently. Standard valuation models don't price geopolitical risk — they can't, because the inputs don't appear in earnings forecasts or discount rates. Which means every dislocation it creates is, for a brief window, mispriced. That window is where the trade is.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="thesis-row fade-up">
+          <div class="thesis-number-col">
+            <span class="thesis-num-large">05</span>
+            <span class="thesis-tag">Crypto</span>
+          </div>
+          <div class="thesis-content-col">
+            <div class="thesis-accent-line"></div>
+            <blockquote class="thesis-claim">"Crypto regulation creates more volatility than it suppresses — at least in the short run."</blockquote>
+            <div class="thesis-evidence">
+              <span class="thesis-evidence-label">The evidence</span>
+              <p>This isn't a political position. It's an empirical finding. In my research, regulatory events stabilised traditional securities (S&amp;P 500 barely moved) while consistently amplifying crypto volatility — ETH showed Wilcoxon significance at p=0.0284 in the long window. The mechanism is speculative trading: regulatory announcements compress or expand participation expectations, triggering price discovery in a market with no institutional stabiliser equivalent. MiCA may change this over a 5–10 year horizon as the institutional base deepens. But right now, the data says regulation and crypto volatility move together, not against each other.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- dark → sand -->
+  <div class="sect-angle sect-angle--dark-sand sect-angle--type-a" aria-hidden="true"></div>
+
+  <!-- ─── CURRENTLY ─── -->
+  <section id="currently" class="section section-sand">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Now</span>
+        <h2>Currently.</h2>
+        <p class="section-sub">What I'm tracking, reading, and building right now.</p>
+      </div>
+
+      <div class="now-bento fade-up">
+
+        <!-- Reading — bookshelf style -->
+        <div class="now-card now-reading">
+          <span class="now-label">Reading</span>
+          <div class="now-book-list">
+            <a class="now-book" href="https://www.goodreads.com/book/show/369708.The_Alchemy_of_Finance" target="_blank" rel="noopener">
+              <span class="now-book-title">The Alchemy of Finance</span>
+              <span class="now-book-author">George Soros</span>
+              <span class="now-book-note">Reflexivity as a market framework — why equilibrium models miss the point</span>
+              <span class="now-book-type">Book</span>
+            </a>
+            <a class="now-book" href="https://www.goodreads.com/book/show/1042244.The_Volatility_Machine" target="_blank" rel="noopener">
+              <span class="now-book-title">The Volatility Machine</span>
+              <span class="now-book-author">Michael Pettis</span>
+              <span class="now-book-note">How capital flows and balance sheet structures cause EM crises</span>
+              <span class="now-book-type">Book</span>
+            </a>
+            <a class="now-book" href="https://www.bis.org/publ/qtrpdf/r_qt2603.htm" target="_blank" rel="noopener">
+              <span class="now-book-title">BIS Quarterly Review</span>
+              <span class="now-book-author">March 2026</span>
+              <span class="now-book-note">Crypto market structure, DeFi regulation, and cross-border stablecoin flows</span>
+              <span class="now-book-type">Report</span>
+            </a>
+            <a class="now-book" href="https://www.iea.org/reports/world-energy-outlook-2024" target="_blank" rel="noopener">
+              <span class="now-book-title">Energy Transition and the Copper Bottleneck</span>
+              <span class="now-book-author">IEA World Energy Outlook</span>
+              <span class="now-book-note">Why critical mineral supply can't keep pace with decarbonisation demand</span>
+              <span class="now-book-type">Report</span>
+            </a>
+            <a class="now-book" href="https://www.bloomberg.com/opinion/newsletters/money-stuff" target="_blank" rel="noopener">
+              <span class="now-book-title">The Carry Trade Unwind of August 2024</span>
+              <span class="now-book-author">Matt Levine · Bloomberg</span>
+              <span class="now-book-note">Anatomy of the yen carry trade blowup and what it revealed about hidden leverage</span>
+              <span class="now-book-type">Long Read</span>
+            </a>
+            <a class="now-book" href="https://www.brookings.edu/articles/chinas-deflationary-exports/" target="_blank" rel="noopener">
+              <span class="now-book-title">China's Deflationary Export Machine</span>
+              <span class="now-book-author">Robin Brooks · Brookings</span>
+              <span class="now-book-note">How industrial overcapacity is compressing global margins from EVs to steel</span>
+              <span class="now-book-type">Long Read</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tracking — live pulse indicators -->
+        <div class="now-card now-tracking">
+          <span class="now-label">Tracking</span>
+          <ul class="now-signal-list">
+            <li>
+              <span class="now-pulse"></span>
+              <span>US 2s10s yield curve and HY OAS — recession timing</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>USDJPY and VIX regime — carry trade and risk appetite</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>Baltic Dry Index and copper-gold ratio — physical economy</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>India AMFI monthly SIP flows — domestic equity appetite</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>DXY and EURUSD — global capital flow direction</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>Brent crude and USDINR — India current account pressure</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>Fed Funds rate and IG spreads — credit regime</span>
+            </li>
+            <li>
+              <span class="now-pulse"></span>
+              <span>India 10Y yield — RBI monetary policy expectations</span>
+            </li>
+          </ul>
+          <a href="signals.html" class="now-signal-link">View live dashboard →</a>
+        </div>
+
+        <!-- Building — progress indicators -->
+        <div class="now-card now-building">
+          <span class="now-label">Building</span>
+          <div class="now-build-list">
+            <div class="now-build-item">
+              <div class="now-build-header">
+                <span class="now-build-name">Angel One Ltd valuation model</span>
+                <span class="now-build-status">In Progress</span>
+              </div>
+              <span class="now-build-detail">6-tab institutional equity model (NSE: ANGELONE)</span>
+              <div class="now-progress-track">
+                <div class="now-progress-bar" style="--progress: 65%"></div>
+              </div>
+            </div>
+            <div class="now-build-item">
+              <div class="now-build-header">
+                <span class="now-build-name">Macro Signal Tracker</span>
+                <span class="now-build-status now-build-live">Live</span>
+              </div>
+              <span class="now-build-detail">21 indicators across rates, credit, FX, commodities, India</span>
+              <div class="now-progress-track">
+                <div class="now-progress-bar now-progress-complete" style="--progress: 100%"></div>
+              </div>
+            </div>
+            <div class="now-build-item">
+              <div class="now-build-header">
+                <span class="now-build-name">Macro Geopolitics research</span>
+                <span class="now-build-status now-build-live">Published</span>
+              </div>
+              <span class="now-build-detail">12 structural theses — supply chains, energy, demographics, conflict</span>
+              <div class="now-progress-track">
+                <div class="now-progress-bar now-progress-complete" style="--progress: 100%"></div>
+              </div>
+            </div>
+            <div class="now-build-item">
+              <div class="now-build-header">
+                <span class="now-build-name">Horizon 2040</span>
+                <span class="now-build-status now-build-live">Published</span>
+              </div>
+              <span class="now-build-detail">Four unpriced structural risks the market prices at zero</span>
+              <div class="now-progress-track">
+                <div class="now-progress-bar now-progress-complete" style="--progress: 100%"></div>
+              </div>
+            </div>
+            <div class="now-build-item">
+              <div class="now-build-header">
+                <span class="now-build-name">Equity Fund Screening Model</span>
+                <span class="now-build-status">In Progress</span>
+              </div>
+              <span class="now-build-detail">200+ equity funds scored across risk, alpha, consistency, cost</span>
+              <div class="now-progress-track">
+                <div class="now-progress-bar" style="--progress: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thinking About — contemplative, full-width -->
+        <div class="now-card now-thinking">
+          <span class="now-label">Thinking About</span>
+          <div class="now-thoughts">
+            <p class="now-thought"><strong>What happens when the yen carry trade fully unwinds?</strong> BOJ rate normalisation is unwinding the largest carry trade in history. If USDJPY breaks below 140, the forced deleveraging could cascade through every risk asset class simultaneously — and most portfolios have zero hedging for it.</p>
+            <p class="now-thought"><strong>Is India's MSCI EM weight a structural bid or a crowding trap?</strong> India is approaching 20% of the index. Every basis point increase triggers passive inflows that have nothing to do with fundamentals. The structural bid is becoming self-reinforcing — and the crowding risk when it reverses is enormous.</p>
+            <p class="now-thought"><strong>Can the green transition happen at current copper prices?</strong> Copper supply is structurally short. Electrification, grid buildout, and data centre cooling all need it, but mining capex peaked a decade ago. The transition can't happen without a price high enough to justify new mines — and that price is significantly above spot.</p>
+            <p class="now-thought"><strong>Is the yield curve still a recession signal, or a fiscal one?</strong> US Treasury issuance is crowding out private credit. When the government is borrowing $2T+ annually, every other borrower pays more. The fiscal dominance regime means the curve is no longer just signalling recession — it's signalling fiscal sustainability.</p>
+            <p class="now-thought"><strong>Who absorbs the margin compression from Chinese overcapacity?</strong> China is exporting deflation. Industrial overcapacity in EVs, solar, and steel is dumping cheap goods globally. Tariffs slow it but don't stop it. The margin pressure on European and Indian manufacturers is only starting.</p>
+            <p class="now-thought"><strong>Is nuclear the most mispriced energy asset in the world right now?</strong> AI data centre power demand is repricing nuclear energy. Uranium supply is constrained, enrichment capacity is concentrated in Russia, and new reactor builds take a decade. The companies that own operating nuclear capacity today have an asset that's about to be repriced.</p>
+            <p class="now-thought"><strong>What does a $100+ Brent spike do to Indian equity multiples?</strong> India's current account is structurally hostage to crude. Every $10/bbl move costs ~$15B annually. If oil spikes on a supply disruption, the RBI burns reserves, the rupee weakens, and equity multiples compress — all at once. It's the single biggest macro risk to Indian equity positioning.</p>
+            <p class="now-thought"><strong>Is gold at $3,000 expensive, or is it being repriced?</strong> Central banks bought more gold in 2023-2025 than any period since Bretton Woods. The signal isn't inflation hedging — it's de-dollarisation. If the trend holds, gold isn't expensive. It's being repriced structurally as a reserve asset.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BLOG ─── -->
+  <section id="blog" class="section section-sand">
+    <div class="container">
+      <div class="fade-up">
+        <span class="section-label">Writing</span>
+        <h2>Writing.</h2>
+        <p class="section-sub">Thinking out loud about markets, signals, and ideas that keep me up at night. At mandavkar.uk/blog — also coming to Substack.</p>
+      </div>
+
+      <div class="blog-grid fade-up">
+
+        <a href="blog/baltic-dry.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">Macro · Shipping · Signals</div>
+          <h3>Baltic Dry tells you what GDP won't</h3>
+          <p>What shipping data says about where the global economy actually is — versus where governments say it is.</p>
+        </a>
+
+        <a href="blog/india-demat.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">India · Markets · Wealth Management</div>
+          <h3>India's 100M demat account moment</h3>
+          <p>Structural shift or retail mania? Why global analysts are underestimating the most important wealth management story in emerging markets.</p>
+        </a>
+
+        <a href="blog/yield-curve.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">Macro · Fixed Income · Signals</div>
+          <h3>The yield curve uninverts. That's when you should actually worry.</h3>
+          <p>Everyone watches the inversion. Almost nobody watches what happens next — and that's where the real signal is.</p>
+        </a>
+
+        <a href="blog/hormuz.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">Geopolitics · Energy · Scenario Analysis</div>
+          <h3>What happens if the Strait of Hormuz closes — and for how long?</h3>
+          <p>Scenario analysis across 4 time horizons. 20% of global oil transit. Country-by-country impact on crude, inflation, and GDP.</p>
+        </a>
+
+        <a href="blog/red-sea.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">Geopolitics · Shipping · Inflation</div>
+          <h3>The Red Sea rerouting is the most underpriced macro risk of 2026</h3>
+          <p>30–40% longer routes. Container cost spikes. European inflationary tail risks. Why this doesn't show up in equity analyst models.</p>
+        </a>
+
+        <a href="blog/sebi-fo.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">India · Regulation · Equity Research</div>
+          <h3>SEBI won. Now what happens to Indian discount brokers?</h3>
+          <p>F&amp;O restrictions, 90% of retail traders losing money, and a regulator that actually used the data. What it means for Angel One, Zerodha, 5Paisa.</p>
+        </a>
+
+        <a href="blog/copper-signal.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">Commodities · Macro · Signals</div>
+          <h3>Copper is not a commodity. It's a global IQ test.</h3>
+          <p>Dr. Copper as a leading indicator. Why copper-equity divergence tells you more than the Bloomberg headline ever will.</p>
+        </a>
+
+        <a href="blog/sip-machine.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">India · Markets · Retail Flows</div>
+          <h3>India's SIP machine: how systematic investments changed equity market dynamics</h3>
+          <p>₹27,000 Cr a month, every month, regardless of market levels. What this floor effect means for Indian equity drawdowns — and what happens when it reverses.</p>
+        </a>
+
+        <a href="blog/carry-trade.html" class="blog-card blog-card-link">
+          <span class="blog-status blog-status-live">Read →</span>
+          <div class="blog-category">FX · Macro · Risk</div>
+          <h3>The carry trade always works until it doesn't</h3>
+          <p>How the most consistent strategy in FX markets becomes the most dangerous — and what the unwind looks like before it happens.</p>
+        </a>
+
+        <div class="blog-card">
+          <span class="blog-status">Coming Soon</span>
+          <div class="blog-category">Energy · Macro · Signals</div>
+          <h3>What the LNG forward curve is pricing that equity markets aren't</h3>
+          <p>Reading the energy market's forward curve as a macro signal. What the JKM-Henry Hub spread tells you about global demand.</p>
+        </div>
+
+        <div class="blog-card">
+          <span class="blog-status">Coming Soon</span>
+          <div class="blog-category">China · Commodities · Signals</div>
+          <h3>I track coal imports before calling China's industrial recovery</h3>
+          <p>Why watching Chinese coal import data is the most honest read on whether Beijing's stimulus is actually working.</p>
+        </div>
+
+        <div class="blog-card">
+          <span class="blog-status">Coming Soon</span>
+          <div class="blog-category">Equity Research · Valuation · Markets</div>
+          <h3>What building a valuation model actually teaches you</h3>
+          <p>Three months into an institutional equity model for Angel One, and what it's shown me about how markets misprice structural growth stories.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- sand → dark -->
+  <div class="sect-angle sect-angle--sand-dark sect-angle--type-b" aria-hidden="true"></div>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="section section-dark">
+    <canvas class="constellation-canvas constellation-ambient" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="contact-inner fade-up">
+        <span class="section-label light">Contact</span>
+        <h2 class="light">Let's talk markets.</h2>
+        <p class="contact-sub">I'm particularly interested in conversations about macro signals, India's financial infrastructure, commodity markets, and where global capital flows are heading. If you're working on any of that — or hiring for it — I'd like to hear from you.</p>
+        <div class="contact-links">
+          <button class="contact-link contact-email-reveal" id="emailReveal" aria-label="Reveal email address">
+            <span class="contact-icon">✉</span>
+            <span class="email-hidden-text">Click to reveal email</span>
+          </button>
+          <a href="https://linkedin.com/in/dhruv-mandavkar" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-icon">in</span>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://mandavkar.substack.com" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-icon">S</span>
+            <span>Substack</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · <span id="footer-year">2026</span></span>
+    </div>
+  </footer>
+
+  <!-- Noise grain overlay -->
+  <div class="noise-overlay" aria-hidden="true">
+    <svg width="100%" height="100%">
+      <filter id="noise-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise-filter)"/>
+    </svg>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Splitting.js -->
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script src="app.js?v=3"></script>
+  <script>
+    var y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

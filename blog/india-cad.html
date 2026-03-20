@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India's current account deficit: the risk everyone mentions and nobody models. — Dhruv Mandavkar</title>
+  <meta name="description" content="India's CAD is one of the most frequently cited risks in EM research. It is also one of the most poorly modelled. The structure of India's external balance sheet has changed substantially since 2013." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="India's current account deficit: the risk everyone mentions and nobody models." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/india-cad.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">India · Macro · FX</span>
+        <h1 class="blog-title">India's current account deficit: the risk everyone mentions and nobody models.</h1>
+        <p class="blog-subtitle">India's CAD is cited in every EM risk section. It is also one of the most poorly modelled risks in India macro research — because the structure of India's external balance has changed fundamentally since the 2013 taper tantrum.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">Coming soon</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">~7 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>India runs a structural current account deficit. It imports more than it exports, primarily because it imports oil, gold, and increasingly electronic goods and components in volumes that its goods export base cannot fully offset. This is not new, and it is not secret — every major bank's India research deck includes it in the risk section, usually with a chart of the CAD as a percentage of GDP alongside a note about rupee vulnerability.</p>
+
+        <p>What the boilerplate CAD risk section misses is how substantially the financing and buffering capacity for that deficit has changed since the 2013 taper tantrum — the episode that comes up every time someone mentions India's CAD as a concern. In 2013, India had $280 billion in foreign exchange reserves, high oil import dependence with no strategic reserve buffer, and a banking system with significant external funding exposure. The rupee fell nearly 20% against the dollar in a matter of months.</p>
+
+        <p>In 2026, India has over $640 billion in forex reserves — enough to cover more than 11 months of imports. FDI flows have been structurally higher and more stable as global companies diversify supply chains away from China. Remittance inflows from the Indian diaspora have grown to over $100 billion annually. The CAD is still present, but the external financing picture looks meaningfully different from 2013. A mechanical comparison of "CAD as % of GDP" without adjusting for the changed financing structure produces an incomplete picture of the actual risk.</p>
+
+        <div class="blog-data-box coming-soon-notice">
+          <strong>Full article in progress</strong>
+          <p>This piece builds out a proper framework for thinking about India's external balance — financing decomposition, oil price sensitivity analysis, and what the actual CAD risk triggers look like. Check back in May 2026.</p>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

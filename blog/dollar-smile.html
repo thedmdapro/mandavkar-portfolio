@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The dollar smile and why EM portfolios should watch US data first. — Dhruv Mandavkar</title>
+  <meta name="description" content="The dollar strengthens both in US booms and in global risk-off episodes. For EM portfolios, this U-shaped relationship with US data is the most important macro framework to internalise." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The dollar smile and why EM portfolios should watch US data first." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/dollar-smile.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">FX · EM · Macro Framework</span>
+        <h1 class="blog-title">The dollar smile and why EM portfolios should watch US data first.</h1>
+        <p class="blog-subtitle">The dollar strengthens both when the US economy booms and when global risk-off hits. This U-shaped relationship — the dollar smile — is the single most useful macro framework for anyone managing EM exposure.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">Coming soon</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">~6 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>The "dollar smile" is a framework developed by Stephen Jen, former Morgan Stanley strategist, to describe the non-linear relationship between US economic conditions and the USD. The theory: the dollar tends to be strong at both extremes — when the US economy is performing exceptionally well relative to the rest of the world, and when global risk sentiment collapses. The dollar is weakest in the middle, when US growth is moderate and global risk appetite is healthy.</p>
+
+        <p>This creates a U-shaped curve: plot US growth relative to global growth on the x-axis, and USD strength on the y-axis. The curve smiles. The practical implication for EM investors is significant — there are two distinct dollar-strengthening regimes, and they require different EM portfolio responses. A dollar rally driven by US outperformance (right side of the smile) typically allows selective EM countries with strong fundamentals to hold up. A dollar rally driven by global risk-off (left side of the smile) hits everything in EM simultaneously and indiscriminately.</p>
+
+        <p>Knowing which part of the smile you are in determines which EM assets are safe to hold through dollar strength and which ones are not. The signals for distinguishing the two regimes are observable — credit spreads, commodity prices, EM vs DM equity performance, and the velocity of the dollar move all tell you something about the mechanism.</p>
+
+        <div class="blog-data-box coming-soon-notice">
+          <strong>Full article in progress</strong>
+          <p>This piece develops the full framework with practical signal indicators, historical regime examples (2013 taper tantrum, 2022 Fed hiking cycle, 2024 carry unwind), and portfolio implications. Check back in May 2026.</p>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

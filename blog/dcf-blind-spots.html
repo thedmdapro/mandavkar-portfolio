@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What DCF doesn't capture (and what to do about it). — Dhruv Mandavkar</title>
+  <meta name="description" content="DCF is the canonical valuation tool. It is also the most dangerous kind of model: precise, persuasive, and systematically wrong in the same ways every cycle." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What DCF doesn't capture (and what to do about it)." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/dcf-blind-spots.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">Valuation · Financial Modelling · Equity Research</span>
+        <h1 class="blog-title">What DCF doesn't capture (and what to do about it).</h1>
+        <p class="blog-subtitle">DCF is the canonical valuation tool — precise, structured, internally consistent. It is also systematically wrong in the same ways every market cycle. Understanding where the model fails is where the edge actually is.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">Coming soon</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">~8 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>Every CFA curriculum, every investment banking training programme, and every equity research team in the world teaches DCF as the foundational valuation framework. Discount the cash flows. Calculate the terminal value. Arrive at a fair value. Compare to the current price. Act accordingly.</p>
+
+        <p>The framework is internally consistent and theoretically sound. The problem is that its blind spots are structural, not random. DCF systematically overvalues companies during rate-compression cycles (because analysts anchor growth assumptions to recent elevated performance and use low discount rates simultaneously). It systematically undervalues capital-light businesses with strong network effects (because the terminal value understates the compounding capacity of these businesses over 10+ year horizons). And it is nearly useless for valuing companies where the value creation mechanism is non-linear — platform businesses, businesses in early-stage scaling, or companies where regulatory or competitive moat changes are the key variable.</p>
+
+        <p>The practitioners who use DCF well know this. They treat the model not as an answer-generating machine but as a structured way to think about the key assumptions, stress-test them, and understand what the market is implicitly pricing. A DCF backwards-solved from the current stock price — "what does the market believe the terminal growth rate is?" — is often more useful than a forward DCF built from first principles.</p>
+
+        <div class="blog-data-box coming-soon-notice">
+          <strong>Full article in progress</strong>
+          <p>This piece covers five specific structural blind spots in DCF, how to diagnose which one is relevant for a given company type, and what alternative or complementary frameworks close the gap. Check back in May 2026.</p>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

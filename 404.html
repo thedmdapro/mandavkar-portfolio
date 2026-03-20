@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found · Dhruv Mandavkar</title>
+  <meta name="description" content="This page doesn't exist. Head back to the portfolio." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --dark: #141414;
+      --teal: #005F73;
+      --dim: rgba(255,255,255,0.38);
+      --subtle: rgba(255,255,255,0.18);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--dark);
+      color: rgba(255,255,255,0.88);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .error-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .error-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(80px, 18vw, 160px);
+      font-weight: 900;
+      line-height: 0.9;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: -6px;
+      margin-bottom: 32px;
+      user-select: none;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    p {
+      color: var(--dim);
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 44px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 13px 26px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      letter-spacing: 0.1px;
+    }
+    .back-btn:hover {
+      border-color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.03);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--subtle);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <span class="error-label">Error</span>
+  <div class="error-num">404</div>
+  <h1>This page doesn't exist.</h1>
+  <p>You might have followed a broken link, or the page has moved. Head back to the portfolio.</p>
+  <a href="/" class="back-btn">← Back to Portfolio</a>
+
+  <footer>mandavkar.uk · 2026</footer>
+
+</body>
+</html>

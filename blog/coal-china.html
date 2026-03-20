@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I track coal imports before calling China's industrial recovery. — Dhruv Mandavkar</title>
+  <meta name="description" content="China's official PMI data is available but often distrusted. Coal import volumes — specifically thermal coal at key ports — are a harder, faster, less-managed signal of actual industrial activity." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="I track coal imports before calling China's industrial recovery." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/coal-china.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">China · Commodities · Macro Methodology</span>
+        <h1 class="blog-title">I track coal imports before calling China's industrial recovery.</h1>
+        <p class="blog-subtitle">China's official PMI data is available but often distrusted by the market. Coal import volumes at key ports are a harder, faster, and less-managed signal of what is actually happening in Chinese industry.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">Coming soon</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">~6 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>The most common question in global commodity markets over the past three years has been some variant of: "Is China actually recovering?" The question keeps arising because official data — GDP growth, PMI surveys, industrial production figures — has been difficult to reconcile with what is visible in other datasets. Satellite imagery of factory activity, freight volumes, property construction activity, and commodity import data have all at various points diverged from the headline numbers.</p>
+
+        <p>My preferred cross-check is thermal coal import volumes at Qinhuangdao, Caofeidian, and the major southern ports. China is the world's largest producer of coal domestically, but it also imports substantial quantities when domestic supply falls short of demand. The import number is difficult to manage at the level of granularity that GDP or PMI figures can be. It is a physical trade flow that requires actual vessels, actual cargoes, and actual port throughput. It shows up in customs data, shipping intelligence, and port authority releases — multiple independent sources that are hard to coordinate if someone wanted to present a misleading picture.</p>
+
+        <p>The logic is simple: thermal coal powers the steel mills, cement plants, aluminum smelters, and chemical facilities that constitute China's industrial base. When those plants are running at high utilisation, coal demand rises. When coal inventories at ports are falling despite elevated imports, it means consumption is outpacing supply. That is a genuine industrial activity signal.</p>
+
+        <div class="blog-data-box coming-soon-notice">
+          <strong>Full article in progress</strong>
+          <p>This piece is being expanded with a structured methodology section covering data sources, interpretation framework, and recent signal readings. Check back in April 2026.</p>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

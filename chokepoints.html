@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maritime Chokepoints — Strategic Dossier · Mandavkar</title>
+  <meta name="description" content="Physical geography, traffic volumes, financial transmission mechanisms, and current status for the world's 12 most critical maritime chokepoints." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Maritime Chokepoints — Strategic Dossier · Mandavkar" />
+  <meta property="og:description" content="Physical geography, traffic volumes, financial transmission mechanisms, and current status for the world's 12 most critical maritime chokepoints." />
+  <meta property="og:url" content="https://mandavkar.uk/chokepoints.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>dhruv</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="horizon2040.css" />
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   CHOKEPOINTS PAGE — COMPLETE COMPONENT STYLES
+   All cp-* classes. Do not duplicate anything in horizon2040.css.
+═══════════════════════════════════════════════════════ */
+
+/* ── Tier Nav Bar ── */
+.cp-tier-nav {
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  background: var(--dark, #0a0f1e);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.cp-tier-nav::-webkit-scrollbar { display: none; }
+.cp-tier-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+  min-width: max-content;
+}
+.cp-tier-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.cp-tier-group:last-child { border-right: none; }
+.cp-tier-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  padding-right: 8px;
+  white-space: nowrap;
+}
+.cp-tier-link {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  padding: 14px 10px;
+  transition: color 0.15s;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+.cp-tier-link:hover { color: rgba(255,255,255,0.85); }
+.cp-tier-link.active {
+  color: var(--accent, #7c9dff);
+  border-bottom-color: var(--accent, #7c9dff);
+}
+
+/* ── Tier Section Header ── */
+.cp-tier-header {
+  text-align: center;
+  margin-bottom: 64px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.cp-tier-header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  margin: 8px 0 12px;
+  color: rgba(255,255,255,0.92);
+}
+.cp-tier-header p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  margin: 0;
+}
+.hz-thesis-section--cream .cp-tier-header {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+.hz-thesis-section--cream .cp-tier-header h2 { color: var(--text, #1a1a2e); }
+.hz-thesis-section--cream .cp-tier-header p { color: rgba(0,0,0,0.4); }
+.hz-thesis-section--sand .cp-tier-header {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+.hz-thesis-section--sand .cp-tier-header h2 { color: var(--text, #1a1a2e); }
+.hz-thesis-section--sand .cp-tier-header p { color: rgba(0,0,0,0.4); }
+.hz-thesis-section--cream .cp-profile-header h2 { color: var(--text, #1a1a2e); }
+.hz-thesis-section--sand .cp-profile-header h2 { color: var(--text, #1a1a2e); }
+
+/* ── Profile Container ── */
+.cp-profile {
+  margin-bottom: 0;
+  padding: 56px 0 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cp-profile:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.hz-thesis-section--cream .cp-profile,
+.hz-thesis-section--sand .cp-profile {
+  border-bottom-color: rgba(0,0,0,0.07);
+}
+
+/* ── Profile Header ── */
+.cp-profile-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cp-profile-header h2 {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 300;
+  margin: 0;
+  flex: 1 1 auto;
+  color: rgba(255,255,255,0.92);
+}
+
+/* ── One-liner description ── */
+.cp-oneliner {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 32px;
+  font-style: italic;
+  max-width: 680px;
+}
+.hz-thesis-section--cream .cp-oneliner,
+.hz-thesis-section--sand .cp-oneliner {
+  color: rgba(0,0,0,0.45);
+}
+
+/* ── Section sub-label (PHYSICAL FACTS, TRAFFIC etc.) ── */
+.cp-sub-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: block;
+  margin-bottom: 12px;
+  margin-top: 28px;
+}
+.hz-thesis-section--cream .cp-sub-label,
+.hz-thesis-section--sand .cp-sub-label {
+  color: rgba(0,0,0,0.3);
+}
+
+/* ── Tier Badge ── */
+.cp-tier-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.cp-tier-badge--1 { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+.cp-tier-badge--2 { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+.cp-tier-badge--3 { background: rgba(124,157,255,0.12); color: #93c5fd; border: 1px solid rgba(124,157,255,0.2); }
+
+/* ── Status Badge ── */
+.cp-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.cp-status--active-crisis {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,0.4);
+  animation: pulse-border 2s infinite;
+}
+.cp-status--critical {
+  background: rgba(239,68,68,0.15);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,0.3);
+}
+.cp-status--high {
+  background: rgba(251,146,60,0.15);
+  color: #fb923c;
+  border: 1px solid rgba(251,146,60,0.3);
+}
+.cp-status--medium {
+  background: rgba(251,191,36,0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.25);
+}
+.cp-status--low {
+  background: rgba(52,211,153,0.12);
+  color: #34d399;
+  border: 1px solid rgba(52,211,153,0.25);
+}
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(239,68,68,0.4); }
+  50% { border-color: rgba(239,68,68,0.9); }
+}
+
+/* ── Data Grids ── */
+.cp-data-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.hz-thesis-section--cream .cp-data-grid,
+.hz-thesis-section--sand .cp-data-grid {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.08);
+}
+.cp-data-cell {
+  background: rgba(255,255,255,0.02);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hz-thesis-section--cream .cp-data-cell,
+.hz-thesis-section--sand .cp-data-cell {
+  background: rgba(255,255,255,0.6);
+}
+.cp-data-cell-num {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.2;
+}
+.hz-thesis-section--cream .cp-data-cell-num,
+.hz-thesis-section--sand .cp-data-cell-num {
+  color: var(--text, #1a1a2e);
+}
+.cp-data-cell-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.35);
+}
+.hz-thesis-section--cream .cp-data-cell-label,
+.hz-thesis-section--sand .cp-data-cell-label {
+  color: rgba(0,0,0,0.35);
+}
+.cp-data-cell-caveat {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  font-style: italic;
+  line-height: 1.4;
+}
+.hz-thesis-section--cream .cp-data-cell-caveat,
+.hz-thesis-section--sand .cp-data-cell-caveat {
+  color: rgba(0,0,0,0.3);
+}
+
+/* ── Status Block ── */
+.cp-status-block {
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 14px;
+  line-height: 1.7;
+  border-left: 3px solid;
+  color: rgba(255,255,255,0.75);
+}
+.cp-status-block-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cp-status-block--active-crisis {
+  background: rgba(239,68,68,0.08);
+  border-left-color: #ef4444;
+  color: rgba(255,255,255,0.75);
+}
+.cp-status-block--active-crisis .cp-status-block-label { color: #ef4444; }
+.cp-status-block--high {
+  background: rgba(251,146,60,0.07);
+  border-left-color: #fb923c;
+  color: rgba(255,255,255,0.75);
+}
+.cp-status-block--high .cp-status-block-label { color: #fb923c; }
+.cp-status-block--medium {
+  background: rgba(251,191,36,0.07);
+  border-left-color: #fbbf24;
+}
+.cp-status-block--medium .cp-status-block-label { color: #fbbf24; }
+.cp-status-block--low {
+  background: rgba(52,211,153,0.06);
+  border-left-color: #34d399;
+}
+.cp-status-block--low .cp-status-block-label { color: #34d399; }
+.cp-status-block--critical {
+  background: rgba(239,68,68,0.08);
+  border-left-color: #ef4444;
+}
+.cp-status-block--critical .cp-status-block-label { color: #ef4444; }
+.hz-thesis-section--cream .cp-status-block,
+.hz-thesis-section--sand .cp-status-block {
+  color: var(--text, #1a1a2e);
+}
+
+/* ── Alternative Route ── */
+.cp-alt-route {
+  margin: 24px 0;
+}
+.cp-alt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cp-alt-table th {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.4);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cp-alt-table td {
+  padding: 11px 14px;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.cp-alt-table tr:last-child td { border-bottom: none; }
+.hz-thesis-section--cream .cp-alt-table th,
+.hz-thesis-section--sand .cp-alt-table th {
+  background: rgba(0,0,0,0.04);
+  color: rgba(0,0,0,0.4);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.hz-thesis-section--cream .cp-alt-table td,
+.hz-thesis-section--sand .cp-alt-table td {
+  color: rgba(0,0,0,0.65);
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+
+/* ── Financial Transmission ── */
+.cp-financial {
+  margin: 24px 0;
+}
+.cp-financial-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
+.hz-thesis-section--cream .cp-financial-label,
+.hz-thesis-section--sand .cp-financial-label {
+  color: rgba(0,0,0,0.3);
+}
+.cp-financial p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 14px;
+  max-width: 780px;
+}
+.cp-financial p:last-child { margin-bottom: 0; }
+.hz-thesis-section--cream .cp-financial p,
+.hz-thesis-section--sand .cp-financial p {
+  color: rgba(0,0,0,0.65);
+}
+
+/* ── Historical Disruption Callout ── */
+.cp-historical {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.cp-historical-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 10px;
+}
+.cp-historical p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+.hz-thesis-section--cream .cp-historical,
+.hz-thesis-section--sand .cp-historical {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.07);
+}
+.hz-thesis-section--cream .cp-historical-label,
+.hz-thesis-section--sand .cp-historical-label {
+  color: rgba(0,0,0,0.3);
+}
+.hz-thesis-section--cream .cp-historical p,
+.hz-thesis-section--sand .cp-historical p {
+  color: rgba(0,0,0,0.55);
+}
+
+/* ── Signals to Watch ── */
+.cp-signals {
+  margin: 24px 0 0;
+}
+.cp-signals-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 10px;
+}
+.hz-thesis-section--cream .cp-signals-label,
+.hz-thesis-section--sand .cp-signals-label {
+  color: rgba(0,0,0,0.3);
+}
+.cp-signals ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-signals ul li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.cp-signals ul li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: var(--accent, #7c9dff);
+  font-size: 11px;
+}
+.hz-thesis-section--cream .cp-signals ul li,
+.hz-thesis-section--sand .cp-signals ul li {
+  color: rgba(0,0,0,0.5);
+}
+
+/* ── Source Line ── */
+.cp-source {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  margin: 20px 0 0;
+  font-style: italic;
+  line-height: 1.6;
+}
+.hz-thesis-section--cream .cp-source,
+.hz-thesis-section--sand .cp-source {
+  color: rgba(0,0,0,0.25);
+}
+
+/* ── Comparative Analysis Tables ── */
+.cp-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 8px;
+}
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 600px;
+}
+.cp-table thead tr {
+  background: rgba(255,255,255,0.04);
+}
+.cp-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+.cp-table td {
+  padding: 11px 16px;
+  color: rgba(255,255,255,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
+  line-height: 1.4;
+}
+.cp-table tbody tr:last-child td { border-bottom: none; }
+.cp-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.hz-thesis-section--cream .cp-table-wrap,
+.hz-thesis-section--sand .cp-table-wrap {
+  border-color: rgba(0,0,0,0.08);
+}
+.hz-thesis-section--cream .cp-table thead tr,
+.hz-thesis-section--sand .cp-table thead tr {
+  background: rgba(0,0,0,0.03);
+}
+.hz-thesis-section--cream .cp-table th,
+.hz-thesis-section--sand .cp-table th {
+  color: rgba(0,0,0,0.35);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.hz-thesis-section--cream .cp-table td,
+.hz-thesis-section--sand .cp-table td {
+  color: rgba(0,0,0,0.6);
+  border-bottom-color: rgba(0,0,0,0.04);
+}
+
+/* ── Data Notes ── */
+.cp-data-notes {
+  margin-top: 48px;
+  padding: 20px 24px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 8px;
+}
+.cp-data-notes p {
+  font-size: 11px;
+  color: rgba(0,0,0,0.35);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Hero Quote Block ── */
+.hz-hero-quote {
+  max-width: 720px;
+  margin: 32px auto 0;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.04);
+  border-left: 3px solid var(--accent, #7c9dff);
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+}
+.hz-hero-quote p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.65);
+  margin: 0;
+}
+.hz-hero-quote strong {
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .cp-data-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .cp-data-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cp-tier-nav-inner {
+    padding: 0 12px;
+  }
+  .cp-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hz-hero-quote {
+    padding: 18px 20px;
+  }
+}
+@media (max-width: 440px) {
+  .cp-data-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">dhruv</a>
+    <ul class="nav-links">
+      <li><a href="signals.html">Signals</a></li>
+      <li><a href="horizon2040.html">Research</a></li>
+      <li><a href="shipping.html">Shipping</a></li>
+      <li><a href="chokepoints.html" class="nav-active">Chokepoints</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#10005;</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="signals.html">Signals</a></li>
+    <li><a href="horizon2040.html">Research</a></li>
+    <li><a href="shipping.html">Shipping</a></li>
+    <li><a href="chokepoints.html">Chokepoints</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hz-hero">
+  <div class="hz-hero-inner">
+    <span class="hz-eyebrow">RESEARCH LOCKED — MARCH 2026 · MANDAVKAR.UK</span>
+    <h1 class="hz-hero-title">The World's Critical<br><em>Chokepoints</em></h1>
+    <p class="hz-hero-sub">Physical geography, traffic volumes, financial transmission, and current status for every strategically significant maritime passage on earth.</p>
+
+    <div class="hz-impact-stats">
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">35 mb/d</span>
+        <span class="hz-impact-label">Oil Through<br>Disrupted Corridors</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">20%+</span>
+        <span class="hz-impact-label">Global LNG<br>Trade at Risk</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">12</span>
+        <span class="hz-impact-label">Chokepoints<br>Profiled</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">2</span>
+        <span class="hz-impact-label">In Active<br>Crisis Now</span>
+      </div>
+    </div>
+
+    <div class="hz-hero-quote">
+      <p>Two of the world's four systemic chokepoints are simultaneously disrupted for the first time in modern history. As of March 20, 2026, the Strait of Hormuz is effectively closed following US-Israeli strikes on Iran (Operation Epic Fury, February 28, 2026), and Houthi forces have resumed attacks in the Red Sea, reversing a fragile ceasefire. Combined, these corridors carry roughly <strong>35 million barrels per day of oil</strong> and over <strong>20% of global LNG trade</strong>. The IEA has called this "the largest supply disruption in the history of the global oil market." Brent crude crossed <strong>$100/bbl</strong> on March 8 and has traded in a volatile $85&ndash;$126 range since. Global shipping is now funneling through the Cape of Good Hope and a handful of secondary straits, creating cascading congestion, capacity absorption, and freight rate hyperinflation across every major trade lane.</p>
+    </div>
+
+    <a class="hz-hero-cta" onclick="document.getElementById('tier1').scrollIntoView({behavior:'smooth'})">&#8595; Explore all 12 chokepoints</a>
+  </div>
+</section>
+
+<!-- dark → cream (spacer for tier nav) -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     TIER NAVIGATION BAR
+══════════════════════════════════════════════ -->
+<div class="cp-tier-nav" id="cp-tier-nav">
+  <div class="cp-tier-nav-inner">
+    <div class="cp-tier-group">
+      <span class="cp-tier-label">Tier 1</span>
+      <a href="#hormuz" class="cp-tier-link">Hormuz</a>
+      <a href="#malacca" class="cp-tier-link">Malacca</a>
+      <a href="#suez" class="cp-tier-link">Suez</a>
+      <a href="#panama" class="cp-tier-link">Panama</a>
+    </div>
+    <div class="cp-tier-group">
+      <span class="cp-tier-label">Tier 2</span>
+      <a href="#turkish" class="cp-tier-link">Turkish</a>
+      <a href="#gibraltar" class="cp-tier-link">Gibraltar</a>
+      <a href="#taiwan" class="cp-tier-link">Taiwan</a>
+      <a href="#danish" class="cp-tier-link">Danish</a>
+    </div>
+    <div class="cp-tier-group">
+      <span class="cp-tier-label">Tier 3</span>
+      <a href="#cape-good-hope" class="cp-tier-link">Cape of Good Hope</a>
+      <a href="#cape-horn" class="cp-tier-link">Cape Horn</a>
+      <a href="#lombok" class="cp-tier-link">Lombok/Sunda</a>
+      <a href="#arctic" class="cp-tier-link">Arctic NSR</a>
+    </div>
+    <div class="cp-tier-group">
+      <a href="#analysis" class="cp-tier-link">Analysis</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     TIER 1 — SYSTEMIC CHOKEPOINTS
+══════════════════════════════════════════════════════════════ -->
+<section id="tier1" class="hz-thesis-section hz-thesis-section--dark">
+  <div class="hz-container">
+
+    <div class="cp-tier-header">
+      <span class="hz-section-label" style="color:rgba(255,255,255,0.45);">TIER 1</span>
+      <h2>Systemic Chokepoints</h2>
+      <p>If these close, the global economy breaks.</p>
+    </div>
+
+    <!-- ────────────────────────────────────────
+         1. STRAIT OF HORMUZ
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="hormuz">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);min-width:28px;">01</span>
+        <h2>Strait of Hormuz</h2>
+        <span class="cp-tier-badge cp-tier-badge--1">Tier 1</span>
+        <span class="cp-status cp-status--active-crisis">Active Crisis</span>
+      </div>
+      <p class="cp-oneliner">The single maritime exit from the Persian Gulf, now the epicenter of the largest oil supply disruption ever recorded.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">21 nm (39 km)</span>
+          <span class="cp-data-cell-label">Narrowest Point</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~90 nm (167 km)</span>
+          <span class="cp-data-cell-label">Length</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">60&ndash;100 m</span>
+          <span class="cp-data-cell-label">Minimum Depth</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Iran / Oman / UAE</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (1H 2025, EIA/VORTEXA)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~100</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">Pre-crisis cargo vessels</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~20%</span>
+          <span class="cp-data-cell-label">Global Petroleum Liquids</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">20.9 mb/d</span>
+          <span class="cp-data-cell-label">Oil (Crude + Products)</span>
+          <span class="cp-data-cell-caveat">2023 EIA; ~20 mb/d in 2024-1H25</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~10 Bcf/d</span>
+          <span class="cp-data-cell-label">LNG</span>
+          <span class="cp-data-cell-caveat">&#9888; 20&ndash;25% of global LNG; sources conflict</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--active-crisis">
+        <span class="cp-status-block-label">Current Status (March 20, 2026): Active Crisis &mdash; Effective Closure</span>
+        Iran declared the Strait "closed" on March 4 via IRGC VHF transmissions after US-Israeli Operation Epic Fury launched February 28. Iran has conducted 21+ confirmed attacks on merchant vessels, deployed mines, and struck energy infrastructure across the Gulf region (Fujairah, Ras Laffan, Ruwais). QatarEnergy declared force majeure on all LNG March 2. P&amp;I war risk coverage was withdrawn March 5. Traffic is near zero for Western-flagged vessels; China-flagged vessels have received some preferential passage. Over 300 ships are stranded in the Gulf. Gulf OPEC producers have cut output by at least <strong>10 mb/d</strong> as storage fills. The IEA coordinated the largest-ever strategic reserve release (400 million barrels &mdash; roughly 20 days of lost Hormuz flow). Trajectory: <strong>escalatory</strong> &mdash; no ceasefire framework visible.
+      </div>
+
+      <div class="cp-alt-route">
+        <span class="cp-sub-label">ALTERNATIVE ROUTE</span>
+        <table class="cp-alt-table">
+          <thead><tr><th>Route</th><th>Capacity</th><th>Spare</th><th>Exclusions</th></tr></thead>
+          <tbody>
+            <tr><td>UAE Habshan-Fujairah Pipeline (ADCOP)</td><td>1.5 mb/d (1.8 max)</td><td>~440,000 bpd</td><td rowspan="3" style="vertical-align:top;"><strong>All LNG carriers, all Iraqi/Kuwaiti/Bahraini exports have zero bypass option.</strong> Combined pipeline bypass: 3.5&ndash;5.5 mb/d = only <strong>17&ndash;28%</strong> replacement at maximum (IEA estimate).</td></tr>
+            <tr><td>Saudi East-West Pipeline (Petroline)</td><td>5 mb/d (expandable to 7)</td><td>3&ndash;5 mb/d spare</td></tr>
+            <tr><td style="font-style:italic;color:rgba(255,255,255,0.45);">No maritime alternative exists</td><td>&mdash;</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>The Strait of Hormuz is the world's most price-sensitive chokepoint. Brent crude futures respond within <strong>minutes</strong> of a credible threat. In the current crisis, Brent moved from ~$69&ndash;73/bbl (late February) to $80&ndash;82 on March 1, surpassed <strong>$100 on March 8</strong>, and hit a session high of <strong>$119.50</strong> on March 9. Dubai/Oman physical crude crossed <strong>$150/bbl</strong>. European gas (TTF) surged from &euro;30 to &gt;&euro;60/MWh in a single day &mdash; the largest one-day move since Russia's 2022 invasion. LNG tanker daily rates jumped &gt;40% on March 2. VLCC spot rates exceeded <strong>$200,000/day</strong> pre-crisis and have since quadrupled to ~$800,000/day. Goldman Sachs estimated a <strong>$14/bbl risk premium</strong> as of March 3, with persistent disruption implying "substantially more."</p>
+        <p>Historical precedents showed progressively muted responses: the June 2019 tanker attacks moved Brent only ~4% to $62/bbl; the Soleimani assassination (January 3, 2020) spiked Brent 3.6% to $68.60 before reversing within days; the June 2025 Israel-Iran war briefly pushed Brent to the low $80s before retracing below $67 when supply disruption failed to materialize. The 2026 crisis is categorically different &mdash; actual physical supply loss, not merely threatened. Insurance lag: P&amp;I coverage withdrawn within <strong>5 days</strong> of the first attacks. Consumer gasoline prices: US rose from $2.93 to $3.72/gallon within 3 weeks.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: 1984&ndash;1988 Tanker War</span>
+        <p>During the Iran-Iraq War, Iraq launched 283 attacks and Iran 168 attacks on commercial shipping. Over 400 ships were hit; 55 petroleum tankers (23%) were sunk or declared constructive total losses. Insurance rates surged 300% at the war's outset; hull rates peaked at 7.5% for vessels calling at Kharg Island. Lloyd's of London accumulated an estimated <strong>$575 million</strong> in losses. Yet the Strait never fully closed &mdash; oil continued to flow, and global prices actually declined through the 1980s due to oversupply. The critical lesson: even sustained military attacks may not close Hormuz if both belligerents depend on oil revenue. The 2026 situation differs because Iran's explicit objective is closure as strategic leverage.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Tanker AIS signals &mdash; any resumption of commercial transit</li>
+          <li>Mine countermeasure operations &mdash; MCM asset deployment signals intent to reopen</li>
+          <li>Restoration of P&amp;I war risk coverage</li>
+          <li>QatarEnergy force majeure status</li>
+          <li>Saudi Petroline throughput and Houthi activity around Yanbu</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: EIA, IEA, Vortexa, Wikipedia, Encyclopedia Britannica, The Strauss Center, Visual Capitalist, The Arsenal Report, The Times of Israel, CNBC, Congress.gov, Atlantic Council, Goldman Sachs, PBS, CNN, ABC News, Carra Globe, S&amp;P Global, CBS News</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         2. STRAIT OF MALACCA
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="malacca">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);min-width:28px;">02</span>
+        <h2>Strait of Malacca</h2>
+        <span class="cp-tier-badge cp-tier-badge--1">Tier 1</span>
+        <span class="cp-status cp-status--medium">Medium</span>
+      </div>
+      <p class="cp-oneliner">The world's largest oil transit chokepoint by volume and the maritime lifeline of East Asia's industrial economies.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">2.8 km (1.5 nm)</span>
+          <span class="cp-data-cell-label">Narrowest Point</span>
+          <span class="cp-data-cell-caveat">Phillips Channel near Singapore</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~800 km (500 mi)</span>
+          <span class="cp-data-cell-label">Length</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">25 m (82 ft)</span>
+          <span class="cp-data-cell-label">Minimum Depth</span>
+          <span class="cp-data-cell-caveat">Malaccamax: 20.5 m draught, ~300,000 DWT</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Malaysia / Indonesia / Singapore</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (1H 2025, EIA/VORTEXA)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~200+</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">~94,000&ndash;100,000/year; precise figure uncertain</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~24&ndash;25%</span>
+          <span class="cp-data-cell-label">Seaborne Trade by Volume</span>
+          <span class="cp-data-cell-caveat">&#9888; "40% of global trade" claim cannot be verified from any primary source</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">23.2 mb/d</span>
+          <span class="cp-data-cell-label">Oil (1H 2025, EIA)</span>
+          <span class="cp-data-cell-caveat">29.1% of global maritime oil trade</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">9.2 Bcf/d</span>
+          <span class="cp-data-cell-label">LNG (1H 2025, EIA)</span>
+          <span class="cp-data-cell-caveat">17% of global LNG trade</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--medium">
+        <span class="cp-status-block-label">Current Status (March 2026): Elevated Importance &mdash; Normal Operations with Rising Piracy</span>
+        Piracy incidents in the Straits of Malacca and Singapore hit a <strong>19-year high of 108 in 2025</strong> (+74% from 2024), though severity declined &mdash; zero CAT 1 incidents (ReCAAP, February 2026). The Hormuz crisis has heightened Malacca's systemic importance as one of few functioning major oil corridors. Oil flows stable at 23.2 mb/d. Singapore port set records across all metrics in 2024 (3.11 billion GT vessel arrivals, 54.92 million tonnes bunker sales). Red Sea rerouting contributed to mid-2024 congestion at Singapore.
+      </div>
+
+      <div class="cp-alt-route">
+        <span class="cp-sub-label">ALTERNATIVE ROUTE</span>
+        <table class="cp-alt-table">
+          <thead><tr><th>Route</th><th>Add. Distance</th><th>Add. Days</th><th>Add. Cost/Voyage</th><th>Exclusions</th></tr></thead>
+          <tbody>
+            <tr><td>Lombok Strait</td><td>+2,488 nm</td><td>+3&ndash;8 days</td><td>$105,000&ndash;$280,000</td><td>None (depth &ge;250 m)</td></tr>
+            <tr><td>Sunda Strait</td><td>+1,086 nm</td><td>&mdash;</td><td>~$206,000</td><td>Operationally risky; volcanic hazard from Anak Krakatoa</td></tr>
+          </tbody>
+        </table>
+        <p class="cp-source">Neither alternative can absorb Malacca's full volume &mdash; combined they handle &lt;5% of Malacca's traffic.</p>
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>A Malacca disruption would strike Asian energy markets first. Dubai/Oman crude and JKM (Asian LNG spot) would spike immediately. Container rates (SCFI) would surge given Singapore's role as the world's largest transshipment hub and bunkering port. In 2005, Lloyd's of London declared the strait a high war-risk area, adding a <strong>1% of cargo value premium</strong> &mdash; revoked in 2006 after patrol improvements. The "Malacca Dilemma" (coined by Hu Jintao, 2003) drives China's naval modernization, pipeline diversification (China-Myanmar, CPEC), and interest in the Kra Canal. China's strategic petroleum reserve is estimated at ~290 million barrels (Vortexa, 2023) &mdash; roughly 26 days of import cover.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: 2004&ndash;2005 Piracy Peak</span>
+        <p>The Strait has never experienced a closure or &gt;10% traffic reduction in the modern era. The closest analogue was the <strong>2004&ndash;2005 piracy peak</strong> (150+ attacks in 2003; 40% of global piracy), which prompted military patrols but did not reduce traffic. The 2004 Boxing Day Tsunami caused infrastructure damage at the southern entrance. The absence of historical disruption makes Malacca's risk profile uniquely difficult to price.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>PLAN naval deployment patterns in the South China Sea</li>
+          <li>Singapore port congestion metrics (vessel waiting times, berth utilization)</li>
+          <li>Piracy incident trajectory in 2026</li>
+          <li>Kra Canal/Thai Land Bridge developments (bidding expected 2026, $28 billion; Kra Canal itself remains in advocacy stage, not under construction)</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: EIA, The Conversation, CSIS ChinaPower, Statista, AA.com.tr, Visual Capitalist, Wikipedia, Proelium Law LLP, Geographical, Britannica, ScienceDirect, Xindemarinews, MPA Singapore, Marine Insight, Maritime Fairtrade, Emerald, Ballast Markets</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         3. SUEZ CANAL + BAB-EL-MANDEB
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="suez">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);min-width:28px;">03</span>
+        <h2>Suez Canal + Bab-el-Mandeb</h2>
+        <span class="cp-tier-badge cp-tier-badge--1">Tier 1</span>
+        <span class="cp-status cp-status--active-crisis">Active Crisis</span>
+      </div>
+      <p class="cp-oneliner">The connected Red Sea system that carries 12&ndash;15% of global seaborne trade, now in its third year of crisis-level disruption.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">193.30 km</span>
+          <span class="cp-data-cell-label">Suez Canal Length</span>
+          <span class="cp-data-cell-caveat">Channel 200&ndash;225 m wide; depth 24 m; max draft 20.1 m. VLCCs cannot transit. Controlled by Egypt (SCA).</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">26 km (14 nm)</span>
+          <span class="cp-data-cell-label">Bab-el-Mandeb Width</span>
+          <span class="cp-data-cell-caveat">Two channels via Perim Island: eastern 5.37 km, western 20.3 km. Controlled by Yemen, Djibouti, Eritrea.</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">97 ships/day</span>
+          <span class="cp-data-cell-label">Suez Capacity</span>
+          <span class="cp-data-cell-caveat">Post-2015 expansion; doubled from prior capacity</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Constantinople (1888)</span>
+          <span class="cp-data-cell-label">Legal Regime (Suez)</span>
+          <span class="cp-data-cell-caveat">Bab-el-Mandeb: UNCLOS transit passage</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (2023 PRE-CRISIS BASELINE, SCA/EIA)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~72</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">26,434 transits in 2023 &mdash; record</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">12&ndash;15%</span>
+          <span class="cp-data-cell-label">Global Maritime Trade</span>
+          <span class="cp-data-cell-caveat">~22% of global container trade; ~30% worldwide container traffic</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~9.2 mb/d</span>
+          <span class="cp-data-cell-label">Oil (H1 2023, EIA)</span>
+          <span class="cp-data-cell-caveat">Bab-el-Mandeb alone: ~8.6 mb/d</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">4.1 Bcf/d</span>
+          <span class="cp-data-cell-label">LNG (H1 2023, EIA)</span>
+          <span class="cp-data-cell-caveat">~8% of global LNG trade</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--active-crisis">
+        <span class="cp-status-block-label">Current Status (March 2026): Dual Chokepoint Crisis</span>
+        Suez operating at <strong>~48% of 2023 peak</strong>; only 39 transits on March 15 with no major container lines. Bab-el-Mandeb traffic "sharply reduced" (Windward, March 16). Cape of Good Hope handling <strong>82&ndash;89 transits/day</strong>. Drewry's pre-war forecast of normalization by end-2026 is now "highly unlikely." The Houthi campaign that began November 19, 2023 (seizure of Galaxy Leader) has become the longest sustained disruption since the 1967&ndash;1975 closure. Through September 29, 2025, Lloyd's List documented <strong>99 attacks/hijackings</strong>, with <strong>4 ships sunk</strong> (Rubymar, Tutor, Magic Seas, Eternity C) and <strong>at least 9 crew killed</strong>. SCA calendar 2024 revenue fell to <strong>$3.991 billion &mdash; a 61% decline</strong> from $10.25 billion in 2023. Transits fell to <strong>13,213 ships</strong> in 2024 (50% decline). All returns were reversed after February 28, 2026 (Iran strikes triggered Houthi resumption). Every major carrier has re-suspended Suez/Red Sea operations.
+      </div>
+
+      <div class="cp-alt-route">
+        <span class="cp-sub-label">ALTERNATIVE ROUTE</span>
+        <table class="cp-alt-table">
+          <thead><tr><th>Route</th><th>Add. Distance</th><th>Add. Days</th><th>Add. Cost/Voyage</th><th>Constraints</th></tr></thead>
+          <tbody>
+            <tr><td>Cape of Good Hope</td><td>~3,200&ndash;3,500 nm</td><td>10&ndash;14 one-way</td><td>~$1.5&ndash;2 million net</td><td>South African ports congestion; Transnet $306M loss in 2022&ndash;23; chronic equipment shortages</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Container freight rates are the primary transmission channel. The SCFI more than doubled in H1 2024. Asia-Europe rates stabilized 25&ndash;35% above pre-crisis levels. Oil price impact was relatively muted because physical crude is successfully rerouted &mdash; the SUMED pipeline (2.5 mb/d) provides a Suez bypass for oil. The key financial amplifier is <strong>vessel supply absorption</strong>: longer routes remove effective capacity, creating artificial tightness. Shipping equities (Maersk, Hapag-Lloyd, ZIM) initially surged on rate spikes in 2024, then declined as overcapacity fears dominated &mdash; Maersk posted a <strong>$153 million loss</strong> in its Ocean division in Q4 2025.</p>
+        <p>Total annual cost of Cape rerouting: the International Transport Forum estimated <strong>$15&ndash;20 billion per year</strong>, encompassing ~$1 million extra fuel per voyage, ~$1 million additional charter cost for 20 extra days, ~$300,000 container hire, partially offset by ~$300,000&ndash;$600,000 in avoided canal fees. The Cape detour absorbs <strong>~6% of global container fleet capacity</strong> (ING), reducing effective vessel supply. Drewry WCI Shanghai-Rotterdam timeline: ~$1,500&ndash;$1,700/FEU (Oct 2023 pre-crisis) &rarr; peak <strong>$5,937/FEU</strong> (July 18, 2024) &rarr; declined to <strong>$1,669</strong> (October 2, 2025) &rarr; rose to <strong>$2,443</strong> (March 12, 2026, +19% WoW as Red Sea attacks resumed).</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: 1967&ndash;1975 Closure (8 Years)</span>
+        <p>The Six-Day War stranded 14 ships in the Great Bitter Lake for the entire period. The closure permanently changed global shipping: it drove development of VLCCs/supertankers (Cape route economics favored larger ships), established the Cape as a viable permanent alternative, and spurred construction of the SUMED pipeline (1977). When the canal reopened in 1975, only ~two-thirds of pre-closure traffic returned.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Houthi attack frequency and targeting scope post-Iran strikes</li>
+          <li>Major carrier return announcements (CMA CGM, Maersk, MSC)</li>
+          <li>SCA transit counts and revenue data</li>
+          <li>P&amp;I war risk premiums for Red Sea transit</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: SCA, EIA, UNCTAD, Encyclopedia Britannica, SCI.AI, DocShipper, J.P. Morgan, Windward, ING THINK, The Washington Institute, Lloyd's List, Al Jazeera, The Russell Group, IMF, SAFETY4SEA, Drewry, LightNOW, CZ app, gCaptain, MarineLink, Wikipedia, WorldCargo News, SupplyChainBrain, FreshPlaza, Amnautical, MDPI, Coface, Africanews, The Arab Weekly, Asharq Al-Awsat</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         4. PANAMA CANAL
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="panama">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);min-width:28px;">04</span>
+        <h2>Panama Canal</h2>
+        <span class="cp-tier-badge cp-tier-badge--1">Tier 1</span>
+        <span class="cp-status cp-status--medium">Medium</span>
+      </div>
+      <p class="cp-oneliner">The only lock-based systemic chokepoint, uniquely vulnerable to climate-driven water shortages.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~80 km (50 mi)</span>
+          <span class="cp-data-cell-label">Length</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">55 m wide, 18.3 m deep</span>
+          <span class="cp-data-cell-label">Neopanamax Locks</span>
+          <span class="cp-data-cell-caveat">427 m usable length; max draft 15.24 m (50 ft)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">85&ndash;88 ft ASL</span>
+          <span class="cp-data-cell-label">Gatun Lake Level</span>
+          <span class="cp-data-cell-caveat">Each transit consumes ~200 million liters of freshwater</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Panama (ACP)</span>
+          <span class="cp-data-cell-label">Controlling Nation</span>
+          <span class="cp-data-cell-caveat">Torrijos-Carter Treaties (1977); US proviso to defend neutrality</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (FY 2024, ACP)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">36&ndash;38</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">Max capacity ~40; 9,936&ndash;9,944/year (FY2024)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~5&ndash;6%</span>
+          <span class="cp-data-cell-label">Global Maritime Trade</span>
+          <span class="cp-data-cell-caveat">~40% of all US container traffic</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">2.3 mb/d</span>
+          <span class="cp-data-cell-label">Oil (FY2025, EIA)</span>
+          <span class="cp-data-cell-caveat">~3% of global maritime petroleum; predominantly refined products</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~560 Bcf</span>
+          <span class="cp-data-cell-label">LNG (FY2023, EIA)</span>
+          <span class="cp-data-cell-caveat">US Gulf-to-Asia LNG critical: 20 days via Panama vs. 34 via Cape</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--medium">
+        <span class="cp-status-block-label">Current Status (March 2026): Normal Operations &mdash; Water at Record Highs</span>
+        Gatun Lake is at the <strong>highest level in recorded history for March</strong>. February 2026 was "the wettest month in the Canal's more than 132-year history." Daily transits are at <strong>38&ndash;40/day</strong>. However, <strong>LNG and dry bulk have not returned</strong> to pre-drought volumes &mdash; LNG traffic through Panama fell 65% during the drought and has barely recovered; BIMCO reported Panama transits still <strong>10% below 2019&ndash;2022 average</strong> as of January 2025 despite no restrictions. The ACP is monitoring a possible weak-to-moderate El Ni&ntilde;o in H2 2026, with greater concern for 2027. On the geopolitical front, Panama's Supreme Court voided the CK Hutchison port concession on January 29, 2026, following Trump administration pressure over Chinese presence at canal ports.
+      </div>
+
+      <div class="cp-alt-route">
+        <span class="cp-sub-label">ALTERNATIVE ROUTE</span>
+        <table class="cp-alt-table">
+          <thead><tr><th>Route</th><th>Add. Distance</th><th>Add. Days</th><th>Constraints</th></tr></thead>
+          <tbody>
+            <tr><td>Suez Canal (US Gulf to Asia)</td><td>&mdash;</td><td>+10&ndash;11 days</td><td>Currently unavailable (Red Sea crisis)</td></tr>
+            <tr><td>Cape Horn</td><td>+7,800&ndash;8,000 nm</td><td>+20&ndash;35 days</td><td>No fees, no size limits; extreme Southern Ocean weather</td></tr>
+          </tbody>
+        </table>
+        <p class="cp-source">During the drought, <strong>94% of US LNG bound for Asia</strong> took the Cape of Good Hope route in 2024 (SynMax).</p>
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>VLGC rates reached records in 2023 (Houston-Chiba: ~$176/mt, October 13, 2023). The BDI spiked to a 1.5-year peak December 4, 2023, more than doubling from a month earlier, as Panama disruptions extended ton-miles. US grain competitiveness suffered: USDA lowered FY2023&ndash;24 soybean exports to 47.8 million tonnes (&ndash;12% YoY) as Brazil gained market share from lower freight costs. Revenue: <strong>$4.99 billion</strong> total (FY2024, ACP); net income $3.45 billion. US exported <strong>26% of soybeans and 17% of corn</strong> via Panama in 2022, mostly to Asia.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: 2023&ndash;2024 Drought</span>
+        <p>El Ni&ntilde;o reduced 2023 rainfall by ~8%. October 2023 rainfall was <strong>41% below average</strong> &mdash; the most severe operational restrictions in the canal's history. Daily transit slots were cut from 36 to a planned minimum of <strong>18 per day</strong> by February 2024. Neopanamax draft was reduced from 50 ft to <strong>44 ft</strong>. Over <strong>160 vessels</strong> waited at anchor in August 2023. Grain vessel waiting times ballooned to <strong>~20 days</strong>. The all-time auction record was set November 8, 2023, when Japan's Eneos Group paid <strong>$3.975 million</strong> for a single transit slot for an empty gas carrier &mdash; versus typical pre-drought auction prices of $300,000&ndash;$400,000. Full capacity was restored in <strong>August 2024</strong> following La Ni&ntilde;a-driven rainfall recovery. ACP has approved the <strong>$1.6 billion Rio Indio Reservoir</strong> project (construction 2027&ndash;2032) to provide ~1,200 million m&sup3;/year of additional water &mdash; but 90% local opposition creates political risk.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Gatun Lake water levels and ENSO forecasts</li>
+          <li>LNG transit recovery trajectory</li>
+          <li>Resolution of CK Hutchison port concession dispute</li>
+          <li>Rio Indio project milestones</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: EIA, ACP, Seatrade Maritime, Al Jazeera, CNBC, Upstox, CHS Inc., Rabobank, EnergyNow, Bureau of Transportation Statistics, Wikipedia, More Than Shipping, Council on Foreign Relations, FOX Weather, PreventionWeb, Project44, The Western Producer, Maritime Executive, Riviera, OilPrice.com, U.S. News &amp; World Report, SynMax Intelligence, Carbon Brief, Maritime Optima, Newsroom Panama, SupplyChainBrain, GeoQuest, Wionews, Foresmart, Earth-services</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- dark → cream -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     TIER 2 — CRITICAL FOR SPECIFIC FLOWS OR REGIONAL STABILITY
+══════════════════════════════════════════════════════════════ -->
+<section id="tier2" class="hz-thesis-section hz-thesis-section--cream">
+  <div class="hz-container">
+
+    <div class="cp-tier-header">
+      <span class="hz-section-label hz-section-label--light">TIER 2</span>
+      <h2>Critical Chokepoints</h2>
+      <p>Essential for specific commodity flows or regional stability.</p>
+    </div>
+
+    <!-- ────────────────────────────────────────
+         5. TURKISH STRAITS
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="turkish">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">05</span>
+        <h2>Turkish Straits (Bosphorus + Dardanelles)</h2>
+        <span class="cp-tier-badge cp-tier-badge--2">Tier 2</span>
+        <span class="cp-status cp-status--medium">Medium</span>
+      </div>
+      <p class="cp-oneliner">The sole maritime outlet for the Black Sea, governed by the 1936 Montreux Convention and now central to the Russia-Ukraine war's energy dimensions.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~700 m</span>
+          <span class="cp-data-cell-label">Bosphorus Narrowest</span>
+          <span class="cp-data-cell-caveat">12 course changes incl. 45&deg; and 80&deg; turns; length 31 km; depth ~36 m</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~300 km</span>
+          <span class="cp-data-cell-label">Combined Length</span>
+          <span class="cp-data-cell-caveat">Dardanelles: 1,400 m narrowest, 61&ndash;68 km, depth 103&ndash;109 m</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Turkey</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+          <span class="cp-data-cell-caveat">Sole sovereign control</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Montreux (1936)</span>
+          <span class="cp-data-cell-label">Legal Regime</span>
+          <span class="cp-data-cell-caveat">Merchant vessels pass freely; military vessels face strict limits</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (1H 2025, EIA)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~140</span>
+          <span class="cp-data-cell-label">Cargo Vessels/Day</span>
+          <span class="cp-data-cell-caveat">~48,000&ndash;50,000 per year</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">3.7 mb/d</span>
+          <span class="cp-data-cell-label">Oil (1H 2025, EIA)</span>
+          <span class="cp-data-cell-caveat">~5% of global seaborne oil; increased from 3.2 mb/d since 2022</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~20%</span>
+          <span class="cp-data-cell-label">Global Wheat Exports</span>
+          <span class="cp-data-cell-caveat">Ukraine, Russia, Romania wheat transit</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~33M tonnes</span>
+          <span class="cp-data-cell-label">Black Sea Grain Initiative</span>
+          <span class="cp-data-cell-caveat">Moved Jul 2022&ndash;Jul 2023 before Russia withdrew</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--medium">
+        <span class="cp-status-block-label">Current Status (March 2026)</span>
+        Montreux wartime closure <strong>remains in effect</strong>. Commercial shipping continues freely, including Russian oil tankers. Ukraine's self-organized corridor along the western Black Sea coast now handles <strong>85% of Ukrainian grain maritime exports</strong> (USDA, 2024). The Druzhba pipeline was damaged in a January 27, 2026 attack, creating a separate oil logistics crisis in Central Europe. Turkey invoked <strong>Article 19</strong> on February 27, 2022, declaring Russia's invasion a "war" and barring belligerent warship transits. This has <strong>prevented Russian Black Sea Fleet reinforcement</strong>, leaving it vulnerable to Ukrainian drone warfare that sank the flagship Moskva and forced relocation from Sevastopol to Novorossiysk.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>The February 2022 invasion sent US wheat futures up <strong>&gt;80%</strong> (soft red winter wheat, Feb 15&ndash;March 7). Wheat reached <strong>$12+/bushel</strong> &mdash; unprecedented. The July 2023 grain deal collapse moved wheat futures ~9% in two days, though the impact was muted by alternative routing already established via EU Solidarity Lanes and Danube ports. War risk premiums for Ukrainian ports peaked at <strong>1.0&ndash;1.2% of hull value</strong> in 2023; Russian Black Sea port premiums rose to <strong>0.65&ndash;0.80%</strong> by late 2025 &mdash; in some cases exceeding Ukrainian premiums after drone attacks on Russian maritime assets. Black Sea insurance surged <strong>250%</strong> in late 2025.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: Periodic Collision Closures</span>
+        <p>The Bosphorus has experienced periodic collision-related closures lasting hours to days, but no sustained major traffic reduction. The Montreux Convention's military restrictions have been its most consequential feature &mdash; Turkey's 2022 invocation of Article 19 fundamentally shaped the naval dynamics of the Russia-Ukraine war.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Kanal Istanbul ($15&ndash;25 billion proposed alternative canal) status</li>
+          <li>Russian crude rerouting volumes via Black Sea</li>
+          <li>Ukrainian grain corridor sustainability</li>
+          <li>Druzhba pipeline repair timeline</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: EIA, GEOPOL, WorldAtlas, Encyclopedia Britannica, Openwaterpedia, Zeymarine, Wikipedia, Foreign Policy, Just Security, The Conversation, TRENDS Research, U.S. Naval Institute, Bisi, Federal Reserve Bank, Simon-Kucher, CNN, AgroReview, Insurance Journal, Natural News, USDA, Euronews, Daily Sabah, Consilium, Newenergyreport, AA.com.tr</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         6. STRAIT OF GIBRALTAR
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="gibraltar">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">06</span>
+        <h2>Strait of Gibraltar</h2>
+        <span class="cp-tier-badge cp-tier-badge--2">Tier 2</span>
+        <span class="cp-status cp-status--low">Low</span>
+      </div>
+      <p class="cp-oneliner">The only western gateway to the Mediterranean, with no viable bypass &mdash; a "hard chokepoint" that has never been disrupted in modern history.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">13 km (7.7 nm)</span>
+          <span class="cp-data-cell-label">Narrowest Point</span>
+          <span class="cp-data-cell-caveat">Between Point Marroqu&iacute; (Spain) and Point Cires (Morocco)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">58 km</span>
+          <span class="cp-data-cell-label">Length</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">300&ndash;900+ m</span>
+          <span class="cp-data-cell-label">Depth</span>
+          <span class="cp-data-cell-caveat">Camarinal Sill min at 300 m; average ~365 m</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Spain / Morocco / UK</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+          <span class="cp-data-cell-caveat">Overlapping 12 nm territorial seas; no uncontested high-seas corridor</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~300</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">~100,000 vessels/year incl. ferries/military; ~54,000 merchant-only</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~$1.1 trillion</span>
+          <span class="cp-data-cell-label">Annual Trade Value</span>
+          <span class="cp-data-cell-caveat">~10&ndash;15% of global maritime trade by value</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">3.0&ndash;3.5 mb/d</span>
+          <span class="cp-data-cell-label">Oil (Estimated)</span>
+          <span class="cp-data-cell-caveat">&#9888; EIA does not publish a specific Gibraltar figure; derived from market analysis</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">299 transits</span>
+          <span class="cp-data-cell-label">Russian Naval (2025)</span>
+          <span class="cp-data-cell-caveat">Including 43 warships &mdash; highest since 2021</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--low">
+        <span class="cp-status-block-label">Current Status (March 2026)</span>
+        Operationally normal but under unprecedented pressure as the primary western gateway for Mediterranean-bound cargo that can no longer route through Persian Gulf corridors. Post-Brexit Gibraltar treaty (1,018 pages, finalized December 2025) expected to enter provisional force <strong>April 10, 2026</strong>. Gibraltar's sovereignty remains formally disputed between UK and Spain. No alternative exists if blocked &mdash; the Mediterranean becomes landlocked from the west.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Gibraltar has never been disrupted, so there is no historical price transmission data. Its significance is structural: if blocked, the entire Mediterranean basin &mdash; including all Southern European, North African, and Levantine trade &mdash; loses its Atlantic connection. The strait's unique two-layer thermohaline flow (lighter Atlantic water flows east at surface; heavier Mediterranean water flows west at depth) makes it scientifically significant but has no bearing on commercial transit.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: None</span>
+        <p>Gibraltar has never experienced a sustained disruption in modern history. This pristine operational record paradoxically makes its risk profile harder to price &mdash; markets lack historical precedent for calibration.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Post-Brexit Gibraltar treaty implementation (provisional force April 10, 2026)</li>
+          <li>Russian naval transit frequency and composition</li>
+          <li>Mediterranean-bound cargo volumes redirected from Gulf corridors</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: Wikipedia, Gibraltar Port Authority, EIA (no dedicated figure), market analysis cross-referenced with academic literature</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         7. TAIWAN STRAIT
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="taiwan">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">07</span>
+        <h2>Taiwan Strait</h2>
+        <span class="cp-tier-badge cp-tier-badge--2">Tier 2</span>
+        <span class="cp-status cp-status--high">High</span>
+      </div>
+      <p class="cp-oneliner">The semiconductor chokepoint &mdash; where &gt;90% of the world's most advanced chips meet &gt;20% of global maritime trade.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~126 km (68 nm)</span>
+          <span class="cp-data-cell-label">Narrowest Point</span>
+          <span class="cp-data-cell-caveat">Between Fujian Province and Taiwan</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~160 km (100 nm)</span>
+          <span class="cp-data-cell-label">Length</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">&lt;150 m</span>
+          <span class="cp-data-cell-label">Depth</span>
+          <span class="cp-data-cell-caveat">Mostly shallow continental shelf</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">PRC (Fujian) / ROC (Taiwan)</span>
+          <span class="cp-data-cell-label">Adjacent Territory</span>
+          <span class="cp-data-cell-caveat">Legal status: disputed. ~50&ndash;80 nm EEZ corridor with high-seas freedoms.</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (2022, CSIS CHINAPOWER)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~170/day</span>
+          <span class="cp-data-cell-label">Ships per Day</span>
+          <span class="cp-data-cell-caveat">~1,200 per week</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">$2.45 trillion</span>
+          <span class="cp-data-cell-label">Annual Trade Value</span>
+          <span class="cp-data-cell-caveat">&gt;20% of global maritime trade</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">48%</span>
+          <span class="cp-data-cell-label">Global Container Fleet</span>
+          <span class="cp-data-cell-caveat">~5,400 container ships passed through in 2022 (USNI)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">88%</span>
+          <span class="cp-data-cell-label">Largest Ships by Tonnage</span>
+          <span class="cp-data-cell-caveat">&gt;50% of strait voyages are between Chinese ports (domestic)</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--high">
+        <span class="cp-status-block-label">Current Status (March 2026): Elevated &mdash; Rising Trajectory</span>
+        PLA resumed intensive operations March 15 after an unusual 2+ week lull. China's 2026 defense budget rose to <strong>$278 billion</strong> (+7% YoY). Bloomberg Economics: "The risk of conflict is moving only one way: up." International Crisis Group (March 2, 2026): "The status quo in the Taiwan Strait is looking precarious." A Trump-Xi summit is scheduled for March 31; a $14 billion US arms package for Taiwan is pending approval. TSMC commands <strong>67&ndash;71% of the global foundry market</strong> and <strong>~90% market share in the most advanced nodes</strong> (3nm, 5nm). Taiwan's semiconductor industry generated <strong>$165 billion in revenue in 2024</strong> (~20.7% of GDP). TSMC's top 10 customers have a combined market cap of <strong>$14 trillion</strong>.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Bloomberg Economics (February 10, 2026 updated report) modeled a war scenario producing a first-year global GDP impact of <strong>&ndash;9.6% (~$10.6 trillion)</strong>. China: &ndash;11%. US: &ndash;6.6%. South Korea: &ndash;23%. Japan: &ndash;14.7%. EU: &ndash;10.9%. The largest GDP hit comes from missing semiconductors, not trade/shipping disruption. A blockade scenario (less extreme) projects &ndash;5% global GDP. If all chip-using sectors are affected, the blow rises to <strong>14% of global GDP</strong>. Taiwan imports <strong>96% of its energy</strong>. Even a partial blockade targeting LNG terminals could shut down fabs, which require uninterrupted power. Non-Taiwan advanced chip capacity remains &lt;10% of global production despite TSMC Arizona (4nm, operational late 2024) and TSMC Kumamoto (mature nodes, operational February 2024).</p>
+        <p>PLA military exercises have escalated systematically. During <strong>August 2022</strong> (post-Pelosi) exercises, strait traffic dropped from ~250 to <strong>15&ndash;20 ships/day</strong>; TSMC shares fell 2.98%. The <strong>December 2025 "Justice Mission 2025"</strong> exercises &mdash; the largest in 3+ years &mdash; saw missiles land in <strong>Taiwan's contiguous waters</strong> for the first time (12&ndash;24 nm from coast), Coast Guard vessels operated &lt;2 nm from outlying islands, and <strong>941 civilian aviation flights were affected</strong>. Markets have shown brief sell-offs during exercises followed by rapid recovery &mdash; suggesting <strong>risk is structurally underpriced</strong> relative to the tail scenario.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: 1995&ndash;96 Missile Crisis; 2022 Exercises</span>
+        <p>Neither caused &gt;10% sustained traffic reduction. The 2022 post-Pelosi exercises were the most significant, temporarily reducing strait traffic to 15&ndash;20 ships/day from ~250, but normal volumes resumed within days. The absence of sustained disruption makes Taiwan Strait risk uniquely difficult to price &mdash; markets lack calibration data for the tail scenario.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>PLA exercise patterns and contiguous zone incursions</li>
+          <li>TSMC fab utilization outside Taiwan</li>
+          <li>Semiconductor equipment export control changes</li>
+          <li>Post-summit US-China dynamics</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: CSIS ChinaPower, USNI, TrendForce, Bloomberg Economics, International Crisis Group, Wikipedia, TSMC, Nature Communications (Verschuur et al., 2025)</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         8. DANISH STRAITS
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="danish">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">08</span>
+        <h2>Danish Straits (&Oslash;resund / Kattegat / Skagerrak)</h2>
+        <span class="cp-tier-badge cp-tier-badge--2">Tier 2</span>
+        <span class="cp-status cp-status--high">High</span>
+      </div>
+      <p class="cp-oneliner">Europe's shadow fleet crisis corridor &mdash; where nearly 300 sanctioned Russian tankers transited in 2025, with zero war risk premium.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">17 m</span>
+          <span class="cp-data-cell-label">Great Belt Max Depth</span>
+          <span class="cp-data-cell-caveat">Sole deep-water channel; ~10 mi wide. Creates Baltimax class: max draft 15.4 m, ~100,000 DWT</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~4 km</span>
+          <span class="cp-data-cell-label">&Oslash;resund Narrowest</span>
+          <span class="cp-data-cell-caveat">Max 8 m draft &mdash; unusable for large commercial vessels</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">65 m</span>
+          <span class="cp-data-cell-label">Air Draft Limit</span>
+          <span class="cp-data-cell-caveat">Great Belt Bridge constraint</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Denmark / Sweden / Norway</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+          <span class="cp-data-cell-caveat">Copenhagen Treaty (1857) guarantees freedom of passage; Denmark's enforcement powers severely constrained</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (EIA 2016/2017 &mdash; MOST RECENT PUBLISHED DATA)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~70,000</span>
+          <span class="cp-data-cell-label">Ships per Year</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">3.2 mb/d</span>
+          <span class="cp-data-cell-label">Oil (EIA, 2016 data)</span>
+          <span class="cp-data-cell-caveat">&#9888; Most recent EIA figure is 8+ years old; estimated ~3.1 mb/d in 2024</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">12.7M tonnes</span>
+          <span class="cp-data-cell-label">Crude Exported (Jan 2026)</span>
+          <span class="cp-data-cell-caveat">Record; nearly half on sanctioned tankers</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">VLCCs excluded</span>
+          <span class="cp-data-cell-label">Vessel Restrictions</span>
+          <span class="cp-data-cell-caveat">Draft 20+ m vs. 15.4 m Baltimax limit. Russia uses Aframax tankers (~12&ndash;14 m draft).</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--high">
+        <span class="cp-status-block-label">Current Status (March 2026): High Risk</span>
+        NATO launched <strong>Baltic Sentry</strong> operations; Belgium/France seized the shadow vessel "Ethera" in <strong>Operation Blue Intruder</strong> (March 1, 2026). Denmark deployed 32 advanced coastal surveillance radars. Yet traffic continues largely unimpeded due to 1857 Treaty constraints. <strong>292 voyages by EU-sanctioned tankers</strong> through Danish waters in 2025 &mdash; nearly one per day (Danish Maritime Authority, February 2026). Shadow tanker activity surged <strong>277%</strong> versus 2022 (CREA). Ships carry oil worth an estimated <strong>~&euro;103 billion</strong> annually through the straits (ICSE). Average shadow fleet tanker age: <strong>18 years</strong> (vs. 13-year global average); a third are over 20 years old. Most lack proper P&amp;I insurance. Documented incidents include the <strong>Andromeda Star collision</strong> (March 2, 2024) and the <strong>Eagle S cable-cutting incident</strong> (December 25, 2024). With the Hormuz crisis reducing global oil supply, Russian Baltic crude transiting Danish waters represents one of few non-disrupted major crude flows &mdash; <strong>increasing the strategic leverage of these shipments</strong>.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>European natural gas futures, Nordic power markets, and Baltic freight rates show <strong>essentially no premium</strong> for this growing risk. The 1857 Copenhagen Treaty constrains Denmark's enforcement powers, creating a permissive environment where risk accumulates until a catastrophic event forces repricing. With the Hormuz crisis reducing global oil supply, Russian Baltic crude transiting Danish waters is one of few major non-disrupted flows &mdash; amplifying the strategic weight of any disruption. By contrast, Hormuz risk is now fully priced (insurance withdrawn, charter rates at all-time highs). Taiwan Strait risk is partially priced in semiconductor stock valuations but structurally underweighted given Bloomberg's $10.6 trillion tail-risk estimate. The Danish Straits are the sole systemic corridor where risk is <strong>completely unpriced, current, accelerating, and quantifiable</strong>.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Disruption: None</span>
+        <p>The Danish Straits have never experienced a sustained &gt;10% traffic reduction. Three risks compound simultaneously without market recognition. First, an <strong>environmental catastrophe</strong> from aging, uninsured tankers (average age 18+ years) transiting one of Europe's most sensitive waterways; estimated cleanup cost: <strong>&euro;1.4&ndash;2.7 billion</strong> per major spill (CREA). Second, <strong>infrastructure sabotage</strong> &mdash; the Eagle S incident proved shadow fleet vessels are being used to cut undersea cables; five cables and one power interconnector were damaged across the Baltic in 2024&ndash;2025. Third, <strong>military escalation</strong> &mdash; Russia has deployed armed personnel aboard shadow tankers, and Russian warships have aimed weapons at Danish naval assets.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Shadow fleet spill incidents</li>
+          <li>Further subsea cable/pipeline sabotage</li>
+          <li>Danish legislative proposals to restrict passage</li>
+          <li>NATO Baltic Sentry operational scope</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: EIA (2016/2017), Danish Maritime Authority, CREA, ICSE, UNITED24 Media, Wikipedia, Gorrissen Federspiel legal analysis</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- cream → sand -->
+<div class="sect-angle sect-angle--cream-sand sect-angle--type-b" aria-hidden="true"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     TIER 3 — STRATEGIC ALTERNATIVES AND EMERGING RELEVANCE
+══════════════════════════════════════════════════════════════ -->
+<section id="tier3" class="hz-thesis-section hz-thesis-section--sand">
+  <div class="hz-container">
+
+    <div class="cp-tier-header">
+      <span class="hz-section-label hz-section-label--light">TIER 3</span>
+      <h2>Strategic Alternatives</h2>
+      <p>The routes the world falls back on &mdash; and one that is emerging.</p>
+    </div>
+
+    <!-- ────────────────────────────────────────
+         9. CAPE OF GOOD HOPE
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="cape-good-hope">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">09</span>
+        <h2>Cape of Good Hope</h2>
+        <span class="cp-tier-badge cp-tier-badge--3">Tier 3</span>
+        <span class="cp-status cp-status--medium">Medium</span>
+      </div>
+      <p class="cp-oneliner">Not a chokepoint but now the world's most critical maritime corridor &mdash; handling dual Hormuz and Red Sea diversion traffic unprecedented in history.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Open ocean</span>
+          <span class="cp-data-cell-label">Route Type</span>
+          <span class="cp-data-cell-caveat">~34&deg;22'S; no width, depth, or toll constraints</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">"Cape of Storms"</span>
+          <span class="cp-data-cell-label">Conditions</span>
+          <span class="cp-data-cell-caveat">Fierce winds, convergent currents, the Roaring Forties</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">South Africa</span>
+          <span class="cp-data-cell-label">Territory</span>
+          <span class="cp-data-cell-caveat">UNCLOS high-seas regime</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">No constraints</span>
+          <span class="cp-data-cell-label">Vessel Limits</span>
+          <span class="cp-data-cell-caveat">No width, depth, or toll restrictions</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC SURGE</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">82&ndash;89/day</span>
+          <span class="cp-data-cell-label">Transits (Mar 2026)</span>
+          <span class="cp-data-cell-caveat">Windward data; at highest level in modern history</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">9.1 mb/d</span>
+          <span class="cp-data-cell-label">Oil (1H 2025)</span>
+          <span class="cp-data-cell-caveat">Up from 6.2 mb/d in 2023, a 47% increase (EIA/Vortexa)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">260%</span>
+          <span class="cp-data-cell-label">Container Surge</span>
+          <span class="cp-data-cell-caveat">Since Houthi attacks began late 2023; LNG traffic +180%</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">+$1 million</span>
+          <span class="cp-data-cell-label">Extra Fuel/Voyage</span>
+          <span class="cp-data-cell-caveat">Maersk/US DIA estimate per container voyage</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--medium">
+        <span class="cp-status-block-label">Current Status (March 2026): The World's Most Important Shipping Lane</span>
+        Both Middle East maritime corridors are now simultaneously disrupted &mdash; <strong>without precedent</strong>. Maersk rerouted ME11 and MECL services from Suez back to Cape on March 1. All major carriers avoid the Red Sea. Cape traffic at <strong>82&ndash;89 transits/day</strong> as of mid-March (Windward). Container rates rose from ~$1,400/FEU to <strong>$6,300/FEU</strong> (Shanghai-Genoa, January 2024 &mdash; Baker Institute). VLCC tanker day rates from Middle East to Netherlands jumped from $23,000/day to <strong>$73,000/day</strong>.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Shanghai to Rotterdam via Cape: <strong>~13,800 nm</strong> vs. ~10,600 nm via Suez = <strong>+3,200 nm, +8&ndash;14 days</strong>. Singapore to Rotterdam: +3,280 nm. Mumbai to London: +4,600 nm (a <strong>74% increase</strong>). The Cape detour absorbs <strong>~6% of global container fleet capacity</strong>. South African port capacity is the binding constraint: Transnet-operated ports (Durban, Cape Town, Ngqura/Gqeberha) experienced severe congestion in late 2023 (79 vessels at Durban outer anchorage; 60,000+ containers stuck at sea). Transnet recorded a <strong>$306 million loss</strong> in 2022&ndash;23. Recovery is underway but total investment need is estimated at <strong>$9.2 billion</strong>. Competitor ports (Walvis Bay, Port Louis, Maputo) are absorbing overflow.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Context</span>
+        <p>Pre-crisis, the Cape route was secondary. The Suez Canal's 1967&ndash;1975 closure established the Cape as a viable permanent alternative and drove development of VLCCs/supertankers. The current dual crisis (Hormuz + Red Sea) has elevated the Cape to a position of systemic importance it has never held before. Overall maritime trade through the Cape rose <strong>125%</strong> over six months to May 2024 (International Finance).</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>South African port throughput and congestion metrics</li>
+          <li>Transnet investment and equipment delivery timeline</li>
+          <li>VLCC day rates on Middle East-Europe routes</li>
+          <li>Container rate indices (SCFI, WCI) on Asia-Europe lanes</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: Windward, EIA, Vortexa, International Finance, Baker Institute, Maersk/US DIA, Hellenic Shipping News, ING, Transnet, Asiacargonews</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         10. CAPE HORN
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="cape-horn">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">10</span>
+        <h2>Cape Horn</h2>
+        <span class="cp-tier-badge cp-tier-badge--3">Tier 3</span>
+        <span class="cp-status cp-status--low">Low</span>
+      </div>
+      <p class="cp-oneliner">The forgotten alternative to Panama, now quietly carrying 65% of the LNG traffic that the canal lost.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~55&deg;59'S</span>
+          <span class="cp-data-cell-label">Location</span>
+          <span class="cp-data-cell-caveat">Southern tip of Tierra del Fuego, Chile</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~800 km</span>
+          <span class="cp-data-cell-label">Drake Passage</span>
+          <span class="cp-data-cell-caveat">Open ocean to Antarctica's South Shetland Islands</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">No limits</span>
+          <span class="cp-data-cell-label">Size/Fee Restrictions</span>
+          <span class="cp-data-cell-caveat">Critical advantage for post-Panamax vessels</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">International waters</span>
+          <span class="cp-data-cell-label">Legal Regime</span>
+          <span class="cp-data-cell-caveat">Drake Passage is open ocean</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC AND RELEVANCE</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Negligible (normal)</span>
+          <span class="cp-data-cell-label">Baseline Traffic</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">65%</span>
+          <span class="cp-data-cell-label">Panama's Lost LNG</span>
+          <span class="cp-data-cell-caveat">Now routed via Cape Horn (ACP administrator Vazquez)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">94%</span>
+          <span class="cp-data-cell-label">US LNG to Asia (2024)</span>
+          <span class="cp-data-cell-caveat">Took Cape of Good Hope/Cape Horn route (SynMax)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">+7,800 nm</span>
+          <span class="cp-data-cell-label">vs. Panama</span>
+          <span class="cp-data-cell-caveat">NY&ndash;SF: ~13,000 nm via Horn vs. ~5,200 nm via Panama; +20&ndash;35 additional days</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--low">
+        <span class="cp-status-block-label">Current Status (March 2026)</span>
+        Continues primarily for US Gulf LNG carriers routing to Asia. The Hormuz crisis may further increase demand for US LNG (replacing Gulf LNG), potentially increasing Cape Horn traffic. March is late austral summer &mdash; relatively favorable conditions. BIMCO reported that even after drought restrictions lifted, LNG ships have "hardly returned" to Panama.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Cape Horn's financial significance is as a cost amplifier for US LNG and grain exports. New York to San Francisco: ~13,000 nm via Cape Horn vs. ~5,200 nm via Panama = <strong>+7,800 nm, +20&ndash;35 additional days</strong>. Summer (December&ndash;February) offers safer transit windows; winter adds significant delay risk from gales. Extreme weather: Roaring Forties, Furious Fifties; historically killed an estimated 10,000 seamen.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Context</span>
+        <p>Cape Horn was the primary Atlantic-Pacific route before the Panama Canal opened in 1914. Its resurgence as a significant commercial route during the 2023&ndash;2024 Panama drought marks the first time in over a century that it has carried meaningful trade volumes. The route's relevance is entirely driven by Panama Canal constraints.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Panama Canal LNG transit recovery (or continued absence)</li>
+          <li>US Gulf LNG export growth trajectory</li>
+          <li>Austral winter weather severity</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: ACP, SynMax Intelligence, BIMCO, GeoQuest, Wionews, Foresmart</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         11. LOMBOK STRAIT / SUNDA STRAIT
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="lombok">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">11</span>
+        <h2>Lombok Strait / Sunda Strait</h2>
+        <span class="cp-tier-badge cp-tier-badge--3">Tier 3</span>
+        <span class="cp-status cp-status--low">Low</span>
+      </div>
+      <p class="cp-oneliner">Indonesia controls the only alternatives to Malacca &mdash; Lombok is deep enough for any vessel afloat, Sunda is constrained and volcanic.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">20 km (12 nm)</span>
+          <span class="cp-data-cell-label">Lombok Width</span>
+          <span class="cp-data-cell-caveat">Length ~60 km; depth &ge;250 m &mdash; NO draught limitation. VLCCs, ULCCs, Capesize routinely transit. ALKI II.</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">24 km (15 mi)</span>
+          <span class="cp-data-cell-label">Sunda Width</span>
+          <span class="cp-data-cell-caveat">Length ~93 km; min depth 20 m at eastern end (governing ~30 m through central channel). Operationally risky.</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Anak Krakatoa</span>
+          <span class="cp-data-cell-label">Sunda Volcanic Hazard</span>
+          <span class="cp-data-cell-caveat">Level 3 alert, 5 km exclusion zone. Dec 2018 flank collapse caused tsunami, closed strait for 36 hours.</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Indonesia</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+          <span class="cp-data-cell-caveat">Controls all three ASLs (Sunda/ALKI I, Lombok/ALKI II, Ombai-Wetar/ALKI III)</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~3,000/yr</span>
+          <span class="cp-data-cell-label">Lombok Vessels</span>
+          <span class="cp-data-cell-caveat">~8&ndash;9/day</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~2,280/yr</span>
+          <span class="cp-data-cell-label">Sunda Vessels</span>
+          <span class="cp-data-cell-caveat">~6&ndash;7/day</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">&lt;5%</span>
+          <span class="cp-data-cell-label">of Malacca's Volume</span>
+          <span class="cp-data-cell-caveat">Combined; neither could absorb Malacca's full traffic</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">+2,488 nm</span>
+          <span class="cp-data-cell-label">Add. Distance (Lombok)</span>
+          <span class="cp-data-cell-caveat">Ras Tanura&ndash;Yokohama; +3&ndash;8 days</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--low">
+        <span class="cp-status-block-label">Current Status (March 2026)</span>
+        Secondary routes functioning normally. Indonesia controls all three ASLs (Sunda/ALKI I, Lombok/ALKI II, Ombai-Wetar/ALKI III). Malacca projected to exceed capacity by 2030, gradually increasing Lombok/Sunda relevance. Capacity constraints include narrow navigable channels, limited pilotage, and no TSS infrastructure comparable to Malacca.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>Lombok and Sunda's financial significance is as Malacca alternatives. Additional cost per voyage: <strong>$105,000&ndash;$280,000</strong> (Lombok); <strong>~$206,000</strong> (Sunda) (Ballast Markets). Neither can absorb Malacca's full volume. In a Malacca disruption scenario, the inability of these alternatives to handle more than ~5% of Malacca's traffic would create immediate and severe supply constraints across Asian energy and container markets.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Context</span>
+        <p>Neither strait has experienced a sustained commercial disruption. The December 2018 Anak Krakatoa flank collapse caused a tsunami that closed Sunda Strait for 36 hours &mdash; the only modern closure event. These straits have historically functioned as overflow routes during Malacca congestion and will become increasingly relevant as Malacca approaches capacity limits around 2030.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Anak Krakatoa volcanic activity level</li>
+          <li>Indonesia's ASL infrastructure investment plans</li>
+          <li>Malacca congestion and capacity utilization trends</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: Emerald, Wikipedia, Ballast Markets, Indonesian Maritime Authority</p>
+    </div>
+
+
+    <!-- ────────────────────────────────────────
+         12. ARCTIC NORTHERN SEA ROUTE
+    ──────────────────────────────────────── -->
+    <div class="cp-profile" id="arctic">
+      <div class="cp-profile-header">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(0,0,0,0.2);min-width:28px;">12</span>
+        <h2>Arctic Northern Sea Route</h2>
+        <span class="cp-tier-badge cp-tier-badge--3">Tier 3</span>
+        <span class="cp-status cp-status--low">Low</span>
+      </div>
+      <p class="cp-oneliner">A seasonal, Russia-controlled route carrying 3.2 million tonnes of transit cargo &mdash; marginal for global trade but central to the Russia-China energy axis.</p>
+
+      <span class="cp-sub-label">PHYSICAL FACTS</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~5,600 km</span>
+          <span class="cp-data-cell-label">Route Length</span>
+          <span class="cp-data-cell-caveat">Along Russia's northern Siberian coastline, Barents Sea to Bering Strait</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~2,100 nm (~20%)</span>
+          <span class="cp-data-cell-label">Distance Savings</span>
+          <span class="cp-data-cell-caveat">Shanghai&ndash;Rotterdam via NSR ~8,500 nm vs. ~10,600 nm via Suez</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~2 weeks</span>
+          <span class="cp-data-cell-label">Open-Water Window</span>
+          <span class="cp-data-cell-caveat">Late Sep&ndash;early Oct without icebreaker; navigable Jul&ndash;Nov with escort</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Russia (NSRA)</span>
+          <span class="cp-data-cell-label">Controlling Territory</span>
+          <span class="cp-data-cell-caveat">Classified as internal waters; requires prior permission for all transits</span>
+        </div>
+      </div>
+
+      <span class="cp-sub-label">TRAFFIC (2025, CHNL)</span>
+      <div class="cp-data-grid">
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~37.9 Mt</span>
+          <span class="cp-data-cell-label">Total NSR Cargo (2024)</span>
+          <span class="cp-data-cell-caveat">Record; 103 transit voyages in 2025 carrying 3.2 Mt</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">Russia&harr;China</span>
+          <span class="cp-data-cell-label">Primary Traffic</span>
+          <span class="cp-data-cell-caveat">Almost exclusively since 2022; Western companies excluded by sanctions</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">15</span>
+          <span class="cp-data-cell-label">Container Transits (2025)</span>
+          <span class="cp-data-cell-caveat">Record; largest NSR container ship: Chinese ICE 1 (4,843 TEU)</span>
+        </div>
+        <div class="cp-data-cell">
+          <span class="cp-data-cell-num">~$764,000</span>
+          <span class="cp-data-cell-label">Icebreaker Escort Fee</span>
+          <span class="cp-data-cell-caveat">Per escort; up from ~$204,000 (4&times; increase over ~10 years)</span>
+        </div>
+      </div>
+
+      <div class="cp-status-block cp-status-block--low">
+        <span class="cp-status-block-label">Current Status (March 2026)</span>
+        Seasonal. 2025 saw a <strong>shorter</strong> open-water window than recent years despite long-term melting trends. Sanctions severely constrain Arctic LNG 2 but have paradoxically strengthened Russia-China Arctic interdependence. The route remains viable for seasonal Russia&rarr;China energy shipments but is years from functioning as a global Suez alternative. Ice-free September projected <strong>before 2050</strong> under all IPCC scenarios; March 2025 saw the <strong>smallest maximum Arctic sea ice extent</strong> in satellite history. Russia operates <strong>8 active nuclear icebreakers</strong> with plans for 17 total by 2030. Russia-China Working Group targets <strong>50 Mt of cargo to China via NSR by 2030</strong>. Yamal LNG: 16.5 mtpa, operational since 2017. Chinese ownership <strong>~29.9%</strong> (CNPC 20%, Silk Road Fund 9.9%); Chinese financing: $12 billion from ExIm Bank and CDB.
+      </div>
+
+      <div class="cp-financial">
+        <span class="cp-financial-label">Financial Transmission</span>
+        <p>The Arctic NSR's financial transmission is currently limited to Russia-China energy trade. Yamal LNG is the primary revenue generator. Arctic LNG 2 (design: 19.8 mtpa) is <strong>sanctioned by the US since November 2023</strong> &mdash; Train 1 operating intermittently; effective capacity far below design (~1.5 mtpa per Eikland Energy). China's "Polar Silk Road" formalized in its 2018 Arctic White Paper. Icebreaker escort fees have risen from ~$204,000 to <strong>~$764,000 per escort</strong> (4&times; increase over ~10 years, TASS, October 2025). The Leader-class Rossiya (69,700 tonnes, 120 MW, can break 4 m ice) is 15&ndash;20% complete.</p>
+      </div>
+
+      <div class="cp-historical">
+        <span class="cp-historical-label">Key Historical Context</span>
+        <p>The NSR has never functioned as a major global trade route. Its significance is emerging and strategic rather than current and commercial. The route's viability is tied to climate change (longer ice-free windows), Russian infrastructure investment (icebreakers, port facilities), and geopolitical alignment (Russia-China energy interdependence). Container viability is nascent: 15 transits in 2025 represents a record but remains negligible in global terms.</p>
+      </div>
+
+      <div class="cp-signals">
+        <span class="cp-signals-label">Signals to Watch</span>
+        <ul>
+          <li>Arctic sea ice extent and seasonal open-water window duration</li>
+          <li>Arctic LNG 2 production ramp and sanctions enforcement</li>
+          <li>Chinese container shipping trials on NSR</li>
+          <li>Leader-class icebreaker construction milestones</li>
+        </ul>
+      </div>
+
+      <p class="cp-source">Sources: CHNL, TASS, Eikland Energy, NSRA, IPCC, ExIm Bank/CDB, CNPC, Wikipedia</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- sand → dark -->
+<div class="sect-angle sect-angle--sand-dark sect-angle--type-a" aria-hidden="true"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     COMPARATIVE ANALYSIS
+══════════════════════════════════════════════════════════════ -->
+<section id="analysis" class="hz-thesis-section hz-thesis-section--dark">
+  <div class="hz-container">
+
+    <div class="cp-tier-header">
+      <span class="hz-section-label" style="color:rgba(255,255,255,0.3);">SYNTHESIS</span>
+      <h2>Comparative Analysis</h2>
+      <p>All 12 chokepoints ranked, the most underpriced risk, and how disruptions cascade through the system.</p>
+    </div>
+
+    <!-- Sub-section 1: Ranking Table -->
+    <div style="margin-bottom:56px;">
+      <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,0.85);margin:0 0 20px;">Ranking All 12 Chokepoints</h3>
+      <div class="cp-table-wrap">
+        <table class="cp-table">
+          <thead>
+            <tr>
+              <th>Chokepoint</th>
+              <th>Oil (mb/d)</th>
+              <th>Est. Trade Value ($T)</th>
+              <th>Alt. Route Cost Premium</th>
+              <th>Risk Level (Mar 2026)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Strait of Malacca</td><td>23.2</td><td>~2.5</td><td>5&ndash;15%</td><td><span class="cp-status cp-status--medium">Medium</span></td></tr>
+            <tr><td>Strait of Hormuz</td><td>20.9</td><td>~1.0&ndash;1.6</td><td>200&ndash;400%+</td><td><span class="cp-status cp-status--active-crisis">Active Crisis</span></td></tr>
+            <tr><td>Cape of Good Hope</td><td>9.1</td><td>~0.6 (rising)</td><td>N/A (IS the alt.)</td><td><span class="cp-status cp-status--medium">Medium</span></td></tr>
+            <tr><td>Suez/Bab-el-Mandeb</td><td>4.9/4.2</td><td>~1.8</td><td>25&ndash;40%</td><td><span class="cp-status cp-status--active-crisis">Active Crisis</span></td></tr>
+            <tr><td>Danish Straits</td><td>~3.1&ndash;3.7</td><td>~0.6</td><td>5&ndash;10%</td><td><span class="cp-status cp-status--high">High</span></td></tr>
+            <tr><td>Turkish Straits</td><td>3.7</td><td>~0.4</td><td>15&ndash;30%</td><td><span class="cp-status cp-status--medium">Medium</span></td></tr>
+            <tr><td>Strait of Gibraltar</td><td>~3.0&ndash;3.5</td><td>~1.1&ndash;1.8</td><td>80&ndash;150%</td><td><span class="cp-status cp-status--low">Low</span></td></tr>
+            <tr><td>Panama Canal</td><td>2.3</td><td>~0.7</td><td>30&ndash;60%</td><td><span class="cp-status cp-status--medium">Medium</span></td></tr>
+            <tr><td>Taiwan Strait</td><td>~1.5&ndash;2.0</td><td>~2.5</td><td>3&ndash;8% (shipping)</td><td><span class="cp-status cp-status--high">High</span></td></tr>
+            <tr><td>Lombok/Sunda</td><td>~0.5&ndash;1.0</td><td>~0.2</td><td>3&ndash;8%</td><td><span class="cp-status cp-status--low">Low</span></td></tr>
+            <tr><td>Cape Horn</td><td>Negligible</td><td>Negligible</td><td>30&ndash;50%</td><td><span class="cp-status cp-status--low">Low</span></td></tr>
+            <tr><td>Arctic NSR</td><td>~0.1&ndash;0.2</td><td>~0.05</td><td>15&ndash;30%</td><td><span class="cp-status cp-status--low">Low</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cp-source">Sources: EIA (March 3, 2026 update); UNCTAD RMT 2024; Nature Communications (Verschuur et al., 2025); CSIS ChinaPower (October 2024). Trade values overlap because a single shipment may transit multiple chokepoints. Oil figures are 1H 2025 or most recent available.</p>
+    </div>
+
+    <!-- Sub-section 2: Most Underpriced Risk -->
+    <div style="margin-bottom:56px;">
+      <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,0.85);margin:0 0 20px;">The Market's Most Dangerous Blind Spot</h3>
+      <div class="contrarian-claim" style="margin-bottom:20px;">
+        <blockquote>"The Danish Straits represent the most underpriced chokepoint risk in global markets today."</blockquote>
+        <cite>&mdash; MARITIME CHOKEPOINTS DOSSIER &middot; MANDAVKAR</cite>
+      </div>
+      <div class="cp-financial">
+        <p>Despite <strong>292 sanctioned Russian tanker voyages</strong> through Danish waters in 2025 &mdash; nearly one per day &mdash; there is <strong>zero war risk insurance premium</strong> applied to Danish Straits transit. Compare this to the Strait of Malacca, where piracy alone triggered a 300% premium increase to 0.1% of hull value after far fewer incidents.</p>
+        <p>Three risks compound simultaneously without market recognition. First, an <strong>environmental catastrophe</strong> from aging, uninsured tankers (average age 18+ years) transiting one of Europe's most sensitive waterways; estimated cleanup cost: <strong>&euro;1.4&ndash;2.7 billion</strong> per major spill (CREA). Second, <strong>infrastructure sabotage</strong> &mdash; the Eagle S incident proved shadow fleet vessels are being used to cut undersea cables; five cables and one power interconnector were damaged across the Baltic in 2024&ndash;2025. Third, <strong>military escalation</strong> &mdash; Russia has deployed armed personnel aboard shadow tankers, and Russian warships have aimed weapons at Danish naval assets.</p>
+        <p>European natural gas futures, Nordic power markets, and Baltic freight rates show <strong>essentially no premium</strong> for this growing risk. The 1857 Copenhagen Treaty constrains Denmark's enforcement powers, creating a permissive environment where risk accumulates until a catastrophic event forces repricing. By contrast, Hormuz risk is now fully priced (insurance withdrawn, charter rates at all-time highs). Taiwan Strait risk is partially priced in semiconductor stock valuations but structurally underweighted given Bloomberg's $10.6 trillion tail-risk estimate. The Danish Straits are the sole systemic corridor where risk is <strong>completely unpriced, current, accelerating, and quantifiable</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Sub-section 3: Cascade Logic -->
+    <div style="margin-bottom:56px;">
+      <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,0.85);margin:0 0 20px;">How Disruptions Cascade</h3>
+      <div class="cp-financial">
+        <p>The March 2026 crisis provides a live demonstration of cascade mechanics. The central principle: <strong>chokepoints function as either substitutes or complements.</strong> When substitutes are disrupted, traffic shifts to the alternative; when complements are disrupted simultaneously, the system faces exponential stress.</p>
+        <p><strong>Substitute pairs</strong> (disruption at one shifts traffic to the other): Suez &harr; Cape of Good Hope (primary); Panama &harr; Cape Horn (secondary); Panama &harr; Suez (Pacific-Atlantic traffic); Malacca &harr; Lombok/Sunda (within-region). <strong>Complementary pairs</strong> (disruption compounds): Hormuz + Bab-el-Mandeb (both serve Gulf exports &mdash; combined disruption eliminates all maritime Gulf access, <strong>happening now</strong>); Suez + Bab-el-Mandeb (sequential chokepoints &mdash; Bab-el-Mandeb disruption automatically degrades Suez); Taiwan Strait + Malacca (both serve East Asian trade).</p>
+        <p>The live cascade: Hormuz closure &rarr; Saudi East-West Pipeline activation to Yanbu &rarr; Houthi resumption exposes Yanbu bypass &rarr; Cape of Good Hope absorbs dual Hormuz + Red Sea diversions &rarr; South African port congestion &rarr; vessel supply tightening globally (longer voyages absorb fleet capacity) &rarr; freight rate hyperinflation &rarr; container equipment trapped in Gulf ports &rarr; downstream factory disruptions in Europe and Asia. Simultaneously, IEA strategic reserve releases (400 million barrels) provide only ~20 days of cover for Hormuz flows, creating a ticking clock.</p>
+        <p>The <strong>catastrophic combination</strong> now approaching reality &mdash; Hormuz + Red Sea + potential Panama climate vulnerability &mdash; would leave the Cape of Good Hope and Cape Horn as effectively the <strong>only intercontinental maritime routes</strong>. A simultaneous Taiwan Strait disruption layered on top would isolate East Asia from energy and global manufacturing networks. Bloomberg Economics estimated this combined scenario at <strong>&gt;$10 trillion in first-year GDP loss</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Sub-section 4: Historical Frequency Table -->
+    <div>
+      <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,0.85);margin:0 0 20px;">Disruption History Since 1975</h3>
+      <div class="cp-table-wrap">
+        <table class="cp-table">
+          <thead>
+            <tr>
+              <th>Chokepoint</th>
+              <th>Major Disruptions (&gt;10% traffic reduction)</th>
+              <th>Notable Events</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Suez/Bab-el-Mandeb</td><td>5</td><td>1967&ndash;75 closure (8 yr); 2021 Ever Given (6 days); 2023&ndash;26 Houthi crisis (ongoing)</td></tr>
+            <tr><td>Strait of Hormuz</td><td>3&ndash;4</td><td>1984&ndash;88 Tanker War; 2019 tanker attacks; 2026 closure (ongoing)</td></tr>
+            <tr><td>Panama Canal</td><td>2</td><td>2023&ndash;24 drought (~50% reduction, ~12 months); 1989 US invasion (brief)</td></tr>
+            <tr><td>Turkish Straits</td><td>1&ndash;2</td><td>Periodic collision closures (hours to days); no sustained major reduction</td></tr>
+            <tr><td>Taiwan Strait</td><td>0&ndash;1</td><td>1995&ndash;96 missile crisis; 2022 exercises &mdash; neither caused &gt;10% sustained reduction</td></tr>
+            <tr><td>Malacca / Gibraltar / Danish / Cape / Lombok / Arctic</td><td>0</td><td>None experienced sustained &gt;10% traffic reduction in the 50-year window</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cp-financial" style="margin-top:20px;">
+        <p>The pattern is clear: the Suez/Red Sea system and the Strait of Hormuz account for <strong>virtually all major chokepoint disruptions</strong> in the past half-century. The Suez system has the highest disruption frequency and the widest variety of causes (interstate war, militia campaigns, vessel accidents). Hormuz disruptions are exclusively geopolitical and Iran-driven. Panama's vulnerabilities are uniquely climate-linked. Every other chokepoint has a pristine operational record &mdash; which paradoxically makes their risk harder to price, as markets lack historical precedent for calibration.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- dark → cream -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-b" aria-hidden="true"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CLOSING — WHAT THE MARCH 2026 CRISIS REVEALS
+══════════════════════════════════════════════════════════════ -->
+<section class="hz-thesis-section hz-thesis-section--cream">
+  <div class="hz-container">
+
+    <div class="cp-tier-header">
+      <span class="hz-section-label hz-section-label--light">CONCLUSION</span>
+      <h2>What the March 2026 Crisis Reveals</h2>
+    </div>
+
+    <div class="cp-financial">
+      <p>The simultaneous disruption of Hormuz and Bab-el-Mandeb exposes a structural truth that markets have chronically underappreciated: <strong>the global maritime system has almost no redundancy at the top.</strong> Four chokepoints &mdash; Hormuz, Malacca, Suez/Bab-el-Mandeb, and Panama &mdash; carry the majority of seaborne energy and container trade. When two are disrupted concurrently, the remaining system cannot absorb the load without massive economic friction.</p>
+      <p>The Cape of Good Hope, now the world's most important shipping lane by default, is an open-ocean route with no capacity ceiling in theory &mdash; but South African ports, bunkering infrastructure, and the global vessel fleet create binding constraints in practice.</p>
+      <p>The financial architecture is equally fragile. Oil futures repriced within hours of the Hormuz closure; insurance markets withdrew cover within days; but <strong>consumer prices, manufacturing supply chains, and agricultural trade flows</strong> will take weeks to months to fully transmit the disruption. The $14/bbl risk premium Goldman Sachs estimated on March 3 may prove conservative if the closure persists &mdash; Oxford Economics places the <strong>global recession threshold at $140/bbl</strong>, a level that Dubai/Oman benchmark crude has already breached.</p>
+    </div>
+
+    <div class="cp-status-block cp-status-block--critical" style="margin:32px 0;">
+      <span class="cp-status-block-label">Three Signals to Monitor</span>
+      <p style="margin-bottom:8px;"><strong>1. Mine countermeasure operations</strong> &mdash; whether any MCM asset deployment commences in the Strait of Hormuz; their deployment would signal intent to reopen.</p>
+      <p style="margin-bottom:8px;"><strong>2. P&amp;I clubs restore war risk coverage</strong> for Gulf transits &mdash; this is the gateway variable for commercial traffic resumption.</p>
+      <p><strong>3. Houthi resumption in the Red Sea proves sustained</strong> or remains conditional on the Iran conflict's trajectory &mdash; because a return of Suez traffic would immediately relieve the Cape route bottleneck that is amplifying global freight costs.</p>
+    </div>
+
+    <div class="cp-financial">
+      <p>The interaction between these three variables will determine whether the current crisis becomes a multi-month disruption or the defining maritime supply shock of the decade.</p>
+    </div>
+
+    <!-- Data Notes -->
+    <div class="cp-data-notes">
+      <span class="cp-sub-label">DATA FLAGGING NOTES</span>
+      <p>(1) Danish Straits EIA oil transit data (3.2 mb/d) dates to 2016 &mdash; flagged as &gt;2 years old. (2) The "40% of global trade through Malacca" claim could not be verified from any primary source; best-supported figure is ~25%. (3) Gibraltar oil transit volume lacks a dedicated EIA figure; the 3.0&ndash;3.5 mb/d estimate is derived from market analysis. (4) All March 2026 crisis data is rapidly evolving; Brent price figures may reflect different contract months (May vs. spot). (5) EIA chokepoint data was updated March 3, 2026 &mdash; pre-crisis for Hormuz volumes. (6) Taiwan Strait vessel traffic and oil volumes are not separately tracked by EIA; figures rely on CSIS and Nature Communications estimates. (7) The Turkish Straits oil transit figure increased from 3.2 to 3.7 mb/d (2022&ndash;1H25) &mdash; a material change reflecting Russian crude rerouting to Asian buyers post-sanctions.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer class="hz-footer">
+  <div class="hz-footer-inner">
+    <span class="hz-footer-copy">&copy; <span id="footer-year">2026</span> Dhruv Mandavkar &middot; mandavkar.uk</span>
+    <ul class="hz-footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shipping.html">Shipping</a></li>
+      <li><a href="horizon2040.html">Research</a></li>
+      <li><a href="signals.html">Live Signals</a></li>
+      <li><a href="mailto:main@mandavkar.uk">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Reading progress bar */
+  var bar = document.getElementById('reading-progress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? Math.min(100, (window.scrollY / total) * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  /* Footer year */
+  var fy = document.getElementById('footer-year');
+  if (fy) fy.textContent = new Date().getFullYear();
+
+  /* Nav scroll state */
+  var nav = document.getElementById('nav');
+  function updateNav() {
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  /* Mobile menu */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var mobileClose = document.getElementById('mobile-close');
+
+  function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
+
+  /* Smooth scroll for anchor links */
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var id = this.getAttribute('href');
+      if (id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var offset = nav.offsetHeight + 60; /* account for tier nav */
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  /* Tier nav active state tracking */
+  var tierLinks = document.querySelectorAll('.cp-tier-link');
+  var profiles = document.querySelectorAll('.cp-profile[id]');
+  var analysisSection = document.getElementById('analysis');
+  if (profiles.length && tierLinks.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          tierLinks.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
+    profiles.forEach(function (p) { observer.observe(p); });
+    if (analysisSection) observer.observe(analysisSection);
+  }
+
+  /* Fade-up scroll reveal (lightweight, no GSAP dependency) */
+  var fadeEls = document.querySelectorAll('.fade-up');
+  if ('IntersectionObserver' in window && fadeEls.length) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
