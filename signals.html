@@ -792,7 +792,7 @@
   var AMBER = '#B45309';
   var DIM   = '#7A7672';
   var GRID  = 'rgba(222,218,212,0.5)';
-  var FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations';
+  var FRED_BASE = '/api/fred/fred/series/observations';
   var API_KEY = window.FRED_API_KEY || '';
 
   Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
@@ -914,7 +914,7 @@
   }
 
   async function fetchYahoo(ticker, multiplier) {
-    var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1mo&range=7y&includePrePost=false';
+    var url = '/api/yahoo/' + ticker + '?interval=1mo&range=7y&includePrePost=false';
     var res = await fetch(url);
     if (!res.ok) throw new Error('Yahoo Finance ' + ticker + ' HTTP ' + res.status);
     return parseYahooChart(await res.json(), multiplier);
