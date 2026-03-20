@@ -865,7 +865,7 @@
 
   /* ── Config ── */
   var API_KEY  = (typeof window.FRED_API_KEY !== 'undefined') ? window.FRED_API_KEY : '';
-  var FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations';
+  var FRED_BASE = '/api/fred/series/observations';
   var GRID = 'rgba(255,255,255,0.05)';
   var DIM  = 'rgba(255,255,255,0.3)';
   var GRIDK = 'rgba(47,72,88,0.08)';   /* light section grid */
@@ -886,19 +886,16 @@
       sort_order: 'asc'
     });
     if (units) params.set('units', units);
-    var proxied = 'https://corsproxy.io/?' + encodeURIComponent(FRED_BASE + '?' + params.toString());
+    var url = FRED_BASE + '?' + params.toString();
     var parse = function (json) {
       if (json.error_message) throw new Error(json.error_message);
       return json.observations
         .filter(function (o) { return o.value !== '.' && o.value !== ''; })
         .map(function (o) { return { date: o.date, value: parseFloat(o.value) }; });
     };
-    var res = await fetch(proxied);
-    if (res.ok) return parse(await res.json());
-    await new Promise(function (r) { setTimeout(r, 700); });
-    var res2 = await fetch(proxied);
-    if (!res2.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res2.status);
-    return parse(await res2.json());
+    var res = await fetch(url);
+    if (!res.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res.status);
+    return parse(await res.json());
   }
 
   /* ── Chart base options ── */
