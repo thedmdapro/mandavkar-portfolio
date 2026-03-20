@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What the LNG forward curve is pricing that equity markets aren't. — Dhruv Mandavkar</title>
+  <meta name="description" content="LNG forward curves have been signalling tighter energy markets well before equity analyst consensus shifts. How to read this signal and what it implies for European energy stocks and macro." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What the LNG forward curve is pricing that equity markets aren't." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/lng-curve.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">Energy · Commodities · Signals</span>
+        <h1 class="blog-title">What the LNG forward curve is pricing that equity markets aren't.</h1>
+        <p class="blog-subtitle">LNG forward curves signal tighter energy markets months before equity analyst consensus shifts. How to read this signal — and what it currently implies for European energy costs and macro.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">Coming soon</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">~7 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>The LNG (liquefied natural gas) forward curve is one of the most information-dense markets in global energy — and one of the most underused signals in macro investing. Unlike oil, where futures are heavily financialised and subject to speculative flows, LNG forward markets are dominated by actual producers, buyers, and infrastructure operators with real physical exposure. The prices they agree to for forward delivery reflect genuine supply-demand expectations, not sentiment.</p>
+
+        <p>Since Russia's invasion of Ukraine in February 2022, Europe has undergone the largest structural shift in energy sourcing in its modern history. Russian pipeline gas — which previously supplied roughly 40% of European natural gas consumption — was effectively replaced within 18 months through a combination of aggressive LNG import buildout, demand destruction, coal switching, and accelerated renewables deployment. That structural shift is permanent. Europe is now the world's largest LNG importer, and its gas costs are permanently linked to global LNG market dynamics in a way they were not before 2022.</p>
+
+        <p>The full piece — covering LNG forward curve structure, the JKM-TTF-Henry Hub spread dynamics, what current forward prices imply for European industrial competitiveness in 2026-2027, and which equity sectors are pricing in the wrong assumptions — is in development. The signal is cleaner than it looks from the outside. Worth understanding properly before publishing.</p>
+
+        <div class="blog-data-box coming-soon-notice">
+          <strong>Full article in progress</strong>
+          <p>This piece requires careful data work on LNG forward curve structure across major benchmarks (JKM, TTF, HH) and their divergences. Check back in April 2026.</p>
+        </div>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    // Reading progress bar
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>

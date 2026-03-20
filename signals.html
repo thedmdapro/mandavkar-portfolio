@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Macro Signal Tracker — Dhruv Mandavkar</title>
+  <meta name="description" content="Live macro signal dashboard — US yield curve, credit spreads, USDJPY carry, shipping rates, crude, copper-gold, and India equity signals. Updated on every page load." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Macro Signal Tracker — Live Dashboard" />
+  <meta property="og:description" content="21 live macro indicators across US rates, global risk sentiment, physical economy, and India. Regime composite, RAG status matrix, Chart.js." />
+  <meta property="og:url" content="https://mandavkar.uk/signals.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <meta property="og:image" content="https://mandavkar.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Macro Signal Tracker — Live Dashboard" />
+  <meta name="twitter:description" content="21 live macro indicators. US rates, credit, global risk, shipping, India. Regime composite updated on every load." />
+  <meta name="twitter:image" content="https://mandavkar.uk/og-image.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>dhruv</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="signals-config.js"></script>
+  <link rel="stylesheet" href="signals.css" />
+</head>
+<body>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">dhruv</a>
+    <ul class="nav-links">
+      <li><a href="signals.html" class="nav-active">Signals</a></li>
+      <li><a href="horizon2040.html">Research</a></li>
+      <li><a href="shipping.html">Shipping</a></li>
+      <li><a href="chokepoints.html">Chokepoints</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#10005;</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="signals.html">Signals</a></li>
+    <li><a href="horizon2040.html">Research</a></li>
+    <li><a href="shipping.html">Shipping</a></li>
+    <li><a href="chokepoints.html">Chokepoints</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="signals-hero">
+  <div class="signals-hero-inner">
+    <span class="signals-eyebrow">MACRO SIGNAL TRACKER</span>
+    <h1 class="signals-title">Markets are a<br><em>signal detection</em> problem.</h1>
+    <p class="signals-desc">21 indicators across US rates, global risk sentiment, physical economy, and India. All data fetched live from FRED and public sources on every page load.</p>
+
+    <div class="regime-indicator" id="regime-indicator">
+      <span class="regime-dot" id="regime-dot"></span>
+      <div style="flex:1">
+        <span class="regime-label" id="regime-label">Computing macro regime...</span>
+        <span class="regime-score" id="regime-score"></span>
+        <span class="regime-drivers" id="regime-drivers"></span>
+      </div>
+    </div>
+
+    <div class="signals-meta-row">
+      <span class="signals-meta-item">Updated: <span id="last-updated-ts">--</span></span>
+      <span class="signals-meta-item">Sources: <span>FRED · AMFI · Drewry · BDI</span></span>
+      <span class="signals-meta-item">Charts: <span>23</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- dark → cream -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ─── STATUS MATRIX ─── -->
+<div class="signals-container" style="padding-top:40px;padding-bottom:0">
+  <div class="status-matrix">
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Yield Curve 10Y-2Y</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-yc-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-yc-val">--</span>
+      <span class="sc-unit">%</span>
+      <span class="sc-sub" id="sc-yc-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">HY Credit Spread</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-hy-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-hy-val">--</span>
+      <span class="sc-unit">bps OAS</span>
+      <span class="sc-sub" id="sc-hy-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">10Y Real Yield</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-realyield-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-realyield-val">--</span>
+      <span class="sc-unit">%</span>
+      <span class="sc-sub" id="sc-realyield-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Chicago Fed NFCI</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-nfci-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-nfci-val">--</span>
+      <span class="sc-unit">index</span>
+      <span class="sc-sub" id="sc-nfci-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Jobless Claims</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-jobless-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-jobless-val">--</span>
+      <span class="sc-unit">weekly 000s</span>
+      <span class="sc-sub" id="sc-jobless-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Core PCE YoY</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-corepce-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-corepce-val">--</span>
+      <span class="sc-unit">%</span>
+      <span class="sc-sub" id="sc-corepce-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">VIX Fear Index</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-vix-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-vix-val">--</span>
+      <span class="sc-unit">index</span>
+      <span class="sc-sub" id="sc-vix-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">USDJPY 4W Velocity</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-usdjpy-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-usdjpy-val">--</span>
+      <span class="sc-unit">&#165;/$ · 4W%</span>
+      <span class="sc-sub" id="sc-usdjpy-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">DXY Dollar Index</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-dxy-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-dxy-val">--</span>
+      <span class="sc-unit">index</span>
+      <span class="sc-sub" id="sc-dxy-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">EUR/USD Rate</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-eurusd-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-eurusd-val">--</span>
+      <span class="sc-unit">$/&#8364;</span>
+      <span class="sc-sub" id="sc-eurusd-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Baltic Dry Index</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-bdi-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-bdi-val">--</span>
+      <span class="sc-unit">index pts</span>
+      <span class="sc-sub" id="sc-bdi-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Drewry WCI</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-drewry-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-drewry-val">--</span>
+      <span class="sc-unit">$/40ft box</span>
+      <span class="sc-sub" id="sc-drewry-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">WTI Crude Oil</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-wti-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-wti-val">--</span>
+      <span class="sc-unit">$/bbl</span>
+      <span class="sc-sub" id="sc-wti-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">Copper-Gold Ratio</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-cgr-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-cgr-val">--</span>
+      <span class="sc-unit">3M trend</span>
+      <span class="sc-sub" id="sc-cgr-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">AMFI Net Inflows</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-amfi-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-amfi-val">--</span>
+      <span class="sc-unit">&#8377; Cr/mo</span>
+      <span class="sc-sub" id="sc-amfi-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">USD/INR Rate</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-usdinr-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-usdinr-val">--</span>
+      <span class="sc-unit">&#8377;/$</span>
+      <span class="sc-sub" id="sc-usdinr-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">India 10Y Bond Yield</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-india10y-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-india10y-val">--</span>
+      <span class="sc-unit">% p.a.</span>
+      <span class="sc-sub" id="sc-india10y-sub">loading...</span>
+    </div>
+
+    <div class="status-cell">
+      <div class="sc-header">
+        <span class="sc-name">10Y Breakeven Inflation</span>
+        <span class="sc-dot sc-dot--neutral" id="sc-breakeven-dot"></span>
+      </div>
+      <span class="sc-val" id="sc-breakeven-val">--</span>
+      <span class="sc-unit">%</span>
+      <span class="sc-sub" id="sc-breakeven-sub">loading...</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SIGNAL SECTIONS ─── -->
+<main class="signals-main">
+  <div class="signals-container">
+
+    <!-- 01: US RATES & CREDIT -->
+    <section class="signal-section">
+      <div class="signal-section-head" data-num="01">
+        <span class="sig-section-num">01</span>
+        <span class="sig-section-title">US Rates &amp; Credit</span>
+        <p class="sig-section-desc">The yield curve and credit spreads are the two most reliable leading indicators of US recession and risk appetite. The curve inversion or steepening tells you where the Fed sits in its tightening cycle. HY spreads tell you what credit markets think about corporate default risk.</p>
+      </div>
+      <div class="charts-grid">
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">US Yield Curve (10Y &#8722; 2Y)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · T10Y2Y</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-yc">--</span>
+            <span class="chart-reading-unit">%</span>
+            <span class="chart-reading-label">latest spread</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-yc"></canvas></div>
+          <p class="chart-interpretation">When the spread goes negative, the curve is inverted &#8212; short-term rates exceed long-term rates. This happens when the Fed has raised rates faster than growth and inflation expectations can absorb. The mechanism is direct: banks borrow short and lend long, so inversion crushes net interest margins and forces credit tightening across the economy. The 2022&#8211;2024 inversion was the deepest since the early 1980s, reaching &#8722;108bps. Every US recession since 1970 has been preceded by an inversion. The critical and widely misunderstood point: the recession does not come at peak inversion. It comes when the curve steepens back positive &#8212; the "uninversion" &#8212; because that's when the Fed is cutting in response to actual deterioration. The 12 months after the spread crosses back through zero is the highest-risk window for portfolios.<span class="interp-live" id="interp-yc"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Yield Curve (10Y &#8722; 3M)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · T10Y3M</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-yc3m">--</span>
+            <span class="chart-reading-unit">%</span>
+            <span class="chart-reading-label">latest spread</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-yc3m"></canvas></div>
+          <p class="chart-interpretation">The NY Fed uses this spread &#8212; not 10Y&#8722;2Y &#8212; in its official recession probability model, published monthly. Estrella &amp; Mishkin (1996) demonstrated this spread has higher out-of-sample recession predictive accuracy. The practical difference: the 3-month yield tracks the Fed Funds rate much more tightly than the 2-year, making this spread a purer measure of policy restrictiveness vs long-term growth expectations. When both the 10Y&#8722;2Y and 10Y&#8722;3M are simultaneously inverted, the signal is substantially reinforced. When they diverge &#8212; 10Y&#8722;3M positive but 10Y&#8722;2Y negative &#8212; it usually reflects short-end term premium dynamics rather than genuine recession loading.<span class="interp-live" id="interp-yc3m"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Chicago Fed NFCI</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · NFCI</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-nfci">--</span>
+            <span class="chart-reading-unit">index</span>
+            <span class="chart-reading-label">financial conditions</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-nfci"></canvas></div>
+          <p class="chart-interpretation">The Chicago Fed's NFCI is a composite of 105 indicators spanning money markets, debt and equity markets, and the traditional and shadow banking systems. A reading of zero means financial conditions are at their historical average. Negative = looser than average (credit is cheap and accessible, leverage is expanding, risk appetite is high). Positive = tighter than average (credit is expensive or scarce, leverage is contracting, risk appetite is falling). This index leads economic activity by 6&#8211;12 months. The sharp tightening in 2022&#8211;2023 is visible here and preceded the slowdown in credit-sensitive sectors. A rapid move from negative to positive territory &#8212; even a 0.5 point shift over 4 weeks &#8212; has historically been a forward warning of broader economic stress within one to two quarters.<span class="interp-live" id="interp-nfci"></span></p>
+        </div>
+
+        <!-- Jobless Claims -->
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">US Initial Jobless Claims</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · ICSA · Weekly</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-jobless">--</span>
+            <span class="chart-reading-unit">000s</span>
+            <span class="chart-reading-label">weekly filings</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-jobless"></canvas></div>
+          <p class="chart-interpretation">The most timely labour market signal that exists &#8212; published every Thursday, no revision lag. New unemployment insurance claims lead the official unemployment rate by 4&#8211;8 weeks. A sustained move above 280,000 is historically the first hard data signal of labour market deterioration, preceding NBER recession calls. Below 220,000 is historically tight and adds to wage inflation persistence, constraining Fed cuts.<span class="interp-live" id="interp-jobless"></span></p>
+        </div>
+
+        <!-- Core PCE -->
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Core PCE Inflation (YoY)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · PCEPILFE · Monthly · YoY%</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-corepce">--</span>
+            <span class="chart-reading-unit">% YoY</span>
+            <span class="chart-reading-label">Fed's target gauge</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-corepce"></canvas></div>
+          <p class="chart-interpretation">The Federal Reserve's actual inflation target gauge &#8212; not CPI, not headline PCE, but core PCE (Personal Consumption Expenditures excluding food and energy). The Fed targets 2% on this measure. At 2.0&#8211;2.3%: room to cut. At 2.5&#8211;3.0%: stuck in "last mile" disinflation &#8212; Fed on hold. Above 3.0%: every cut risks re-anchoring expectations higher. Unlike CPI, PCE captures substitution behaviour and reweights dynamically &#8212; it typically runs 20&#8211;30bps below CPI.<span class="interp-live" id="interp-corepce"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">10Y Real Yield (TIPS)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DFII10</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-realyield">--</span>
+            <span class="chart-reading-unit">%</span>
+            <span class="chart-reading-label">10Y TIPS yield</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-realyield"></canvas></div>
+          <p class="chart-interpretation">The single most important number for global asset allocation. Real yield = nominal 10Y Treasury yield minus 10Y inflation breakeven. It represents the actual inflation-adjusted return available from the risk-free asset. When real yields are negative, the Fed is effectively penalising cash holders and subsidising borrowing &#8212; the primary mechanism behind the 2020&#8211;2022 bull run in every risky asset class. Rising real yields in 2022 (from &#8722;1.0% to +2.5%) triggered simultaneous drawdowns in tech equities, gold, EM sovereign bonds, and crypto &#8212; because every discounted cash flow model saw its discount rate jump. Watch this number more than the nominal yield. Gold and tech growth stocks are the most inverse-correlated to real yields. EM assets with dollar-denominated debt are also highly sensitive &#8212; rising real yields strengthen the dollar simultaneously.<span class="interp-live" id="interp-realyield"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">10Y Breakeven Inflation</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · T10YIE</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-breakeven">--</span>
+            <span class="chart-reading-unit">%</span>
+            <span class="chart-reading-label">implied inflation</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-breakeven"></canvas></div>
+          <p class="chart-interpretation">The market's implied forecast for average US CPI over the next decade, derived from the difference between nominal 10Y Treasury yields and TIPS yields. This is not a poll or a survey &#8212; it is the price that professional inflation-hedgers are willing to pay, making it the most market-credible inflation signal available in real time. Below 2.0%: the market is pricing disinflation or mild deflation risk &#8212; gives the Fed room to ease aggressively. 2.0&#8211;2.5%: well-anchored around target &#8212; the Fed can operate normally. Above 2.5%: inflation premium building, constrains the rate cut path even if growth slows. Above 3.0%: stagflation risk being priced &#8212; the historically most dangerous combination for a 60/40 portfolio, as bonds and equities can sell off simultaneously.<span class="interp-live" id="interp-breakeven"></span></p>
+        </div>
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Credit Spreads — HY &amp; IG OAS</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · BAMLH0A0HYM2 · BAMLC0A0CM</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-hy">--</span>
+            <span class="chart-reading-unit">bps HY</span>
+            <span class="chart-reading-label" style="margin-left:16px">IG: <span id="reading-ig">--</span> bps</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-credit"></canvas></div>
+          <p class="chart-interpretation">Option-Adjusted Spread (OAS) measures how much more yield investors demand from corporate bonds over equivalent Treasuries. HY (High Yield) covers sub-investment-grade corporates &#8212; the most credit-sensitive part of the market. IG (Investment Grade) covers A-rated and above. When spreads widen, the bond market is pricing rising default risk or increased risk aversion &#8212; money flows out of corporate bonds into Treasuries (flight to quality). The HY/IG ratio tells you where the stress is concentrated: if HY widens sharply while IG holds steady, it's idiosyncratic corporate stress, not systemic. If both widen simultaneously, it's a systemic risk-off signal that tends to precede equity drawdowns by 2&#8211;4 weeks. HY above 500bps has preceded every significant equity market correction since 2000. HY below 280bps is historically ultra-tight &#8212; a sign of complacency, not fundamental strength.<span class="interp-live" id="interp-credit"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02: RISK SENTIMENT -->
+    <section class="signal-section">
+      <div class="signal-section-head" data-num="02">
+        <span class="sig-section-num">02</span>
+        <span class="sig-section-title">Risk Sentiment</span>
+        <p class="sig-section-desc">USDJPY is the single most useful proxy for global carry trade positioning and risk appetite. VIX measures implied equity volatility. DXY and EURUSD tell you where global capital is flowing. The copper-gold ratio is a forward-looking growth vs fear barometer. Fed Funds anchors the rate regime.</p>
+      </div>
+      <div class="charts-grid">
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">USD/JPY &#8212; Carry Trade Barometer</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DEXJPUS</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-usdjpy">--</span>
+            <span class="chart-reading-unit">&#165;/$</span>
+            <span class="chart-reading-label">latest spot</span>
+          </div>
+          <div class="velocity-row">
+            <div class="vel-item">
+              <span class="vel-label">4W VELOCITY</span>
+              <span class="vel-val vel-val--neutral" id="usdjpy-velocity">--</span>
+            </div>
+            <div class="vel-item">
+              <span class="vel-label">CARRY SIGNAL</span>
+              <span class="vel-val vel-val--neutral" id="usdjpy-carry-signal">--</span>
+            </div>
+            <div class="vel-item">
+              <span class="vel-label">BOJ WATCH ZONE</span>
+              <span class="vel-val vel-val--neutral" id="usdjpy-boj-zone">--</span>
+            </div>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-usdjpy"></canvas></div>
+          <p class="chart-interpretation">USDJPY is the carry trade's central nervous system. For two decades, Japan maintained near-zero rates while the rest of the world raised them &#8212; creating a structural "funding currency" for leveraged carry strategies. Investors borrowed cheap yen, converted to USD (or EM currencies), and invested in higher-yielding assets. The profit was the interest rate differential. August 2024 demonstrated the unwinding mechanism: a 15bp BOJ rate hike drove USDJPY from 160 to 142 in weeks, forcing simultaneous deleveraging across US equities, Indian equities, and EM FX &#8212; because they were all funded by the same yen borrowing. The 4-week velocity is more actionable than the spot level: a move of &gt;3% yen strengthening in 4 weeks is the carry unwind early warning signal, not the absolute rate.<span class="interp-live" id="interp-usdjpy"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">VIX &#8212; Equity Volatility</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · VIXCLS</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-vix">--</span>
+            <span class="chart-reading-unit">index</span>
+            <span class="chart-reading-label">implied vol</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-vix"></canvas></div>
+          <p class="chart-interpretation">The VIX measures the market's 30-day implied volatility expectation for the S&amp;P 500, derived from options prices. It is not a directional forecast &#8212; it is a fear gauge. Below 15: extreme complacency, tail risk is underpriced (historically a contrarian warning signal). 15&#8211;20: normal operating range. 20&#8211;25: elevated uncertainty, institutional hedging increasing. Above 25: fear is dominant, defensive positioning warranted. Above 35: crisis conditions &#8212; historically, peak VIX readings have been strong contrarian buy signals because maximum fear often coincides with maximum selling pressure exhaustion. The most important diagnostic: a sharp VIX spike with no obvious US-domestic catalyst typically indicates either carry trade unwinding or a foreign-originated shock &#8212; the August 2024 spike to 65 intraday is the archetypal example.<span class="interp-live" id="interp-vix"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">DXY &#8212; Broad Dollar Index</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DTWEXBGS</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-dxy">--</span>
+            <span class="chart-reading-unit">index</span>
+            <span class="chart-reading-label">broad trade-weighted</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-dxy"></canvas></div>
+          <p class="chart-interpretation">The trade-weighted broad dollar index tracks USD against a basket of currencies weighted by trade flows. Dollar strength has two entirely different causes &#8212; the "dollar smile" framework (Stephen Jen, ex-Morgan Stanley) captures this: the dollar strengthens both at the left side of the smile (global risk-off, safe-haven demand) AND at the right side (US economic outperformance relative to the world). It weakens in the middle when US growth is moderate and global growth is healthy. The practical implication: when DXY rises on strong US data (right side), selective EM countries with strong fundamentals can hold up. When DXY rises on VIX spikes and global risk-off (left side), it hits everything in EM simultaneously. The 3-month rate of change tells you which side of the smile you're on better than the level alone.<span class="interp-live" id="interp-dxy"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">EUR/USD</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DEXUSEU</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-eurusd">--</span>
+            <span class="chart-reading-unit">$/&#8364;</span>
+            <span class="chart-reading-label">latest spot</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-eurusd"></canvas></div>
+          <p class="chart-interpretation">The world's most liquid currency pair &#8212; roughly $1.1 trillion in daily volume &#8212; and effectively the inverse of the dollar for developed market flows. Parity (1.00) is the key psychological level; it was breached in 2022 for the first time since 2002. Falling EUR/USD + rising DXY = broad dollar strength, consistent left-side-of-smile dynamic. Falling EUR/USD while DXY is flat or falling = Euro-specific weakness &#8212; likely driven by European growth concerns, ECB rate path, or energy shock. For the India portfolio: euro weakness often accompanies global growth pessimism, which correlates with EM outflows and rupee pressure. Distinguish the driver &#8212; it determines whether you're seeing a US story or a European story.<span class="interp-live" id="interp-eurusd"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Federal Funds Rate</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DFF</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-fedfunds">--</span>
+            <span class="chart-reading-unit">%</span>
+            <span class="chart-reading-label">effective rate</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-fedfunds"></canvas></div>
+          <p class="chart-interpretation">The overnight rate the Fed targets &#8212; the anchor of all risk-free pricing globally. Every discounted cash flow model, every bond duration calculation, every carry trade funding cost is priced relative to this rate. The 2022&#8211;2023 hiking cycle from 0.25% to 5.50% was the fastest in 40 years. The pace of future moves matters more than the level: gradual cuts = orderly easing cycle. Rapid consecutive cuts = the Fed has seen something alarming (August 2007&#8211;March 2008: 325bps cut in 7 months, followed by the financial crisis). Markets often celebrate rate cuts as bullish, but historically, the fastest cutting cycles have coincided with severe recessions. The Fed moves because of deterioration, not ahead of it.<span class="interp-live" id="interp-fedfunds"></span></p>
+        </div>
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Copper-Gold Ratio &#8212; Growth vs Fear</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · PCOPPUSDM · GOLDAMGBD228NLBM</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-cgr">--</span>
+            <span class="chart-reading-unit">Cu/Au ratio</span>
+            <span class="chart-reading-label">3M trend: <span id="reading-cgr-trend">--</span></span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-cgr"></canvas></div>
+          <p class="chart-interpretation">Copper = industrial metal, driven by construction, manufacturing, power infrastructure, and transportation. Its demand base is so broad &#8212; roughly 40% construction, 25% industry, 20% power grids, 10% transport &#8212; that it effectively tracks the entire physical economy. Gold = monetary metal and safe-haven asset, driven by fear, inflation hedging, and central bank reserve diversification. Their ratio cuts through the noise: when copper outperforms gold (rising ratio), the market is pricing a world that builds things. When gold outperforms copper (falling ratio), the market is pricing a world that hoards things. The ratio fell sharply 3&#8211;5 months ahead of both the 2008 GFC and the 2015 EM correction, while equity indices were still near highs. The structural complication: the EV and electrification buildout creates a demand floor for copper that didn't exist in previous cycles &#8212; which may mean the ratio falls less sharply in downturns than historical precedent suggests.<span class="interp-live" id="interp-cgr"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03: PHYSICAL ECONOMY -->
+    <section class="signal-section">
+      <div class="signal-section-head" data-num="03">
+        <span class="sig-section-num">03</span>
+        <span class="sig-section-title">Physical Economy</span>
+        <p class="sig-section-desc">Shipping rates, crude oil, copper, gold, and industrial production are real-economy signals that are harder to manage or smooth than survey-based data. They tell you what is actually being produced, shipped, and consumed.</p>
+      </div>
+      <div class="charts-grid">
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Baltic Dry Index &#8212; Bulk Shipping</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-manual">MANUAL</span>
+              <span class="chart-panel-source">Baltic Exchange · updated weekly</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-bdi">--</span>
+            <span class="chart-reading-unit">index pts</span>
+            <span class="chart-reading-label">latest reading</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-bdi"></canvas></div>
+          <p class="chart-interpretation">The BDI tracks the daily cost of chartering dry bulk vessels &#8212; Capesize, Panamax, Supramax, Handysize &#8212; on the major global routes carrying iron ore, grain, and coal. It has no central bank, no futures market, and no PR department. When factories in China need iron ore to make steel, ships are booked. When they don't, ships sit idle. The rate is set by the laws of supply and demand, nothing else. Historical range: peak 11,793 (May 2008, pre-GFC commodity supercycle) to trough 663 (December 2008, a 94% collapse in 8 months). The signal: when BDI falls while industrial equities are pricing in earnings growth, one of them is wrong. February 2023: BDI printed 530 &#8212; levels last seen during early COVID &#8212; while sell-side research was declaring the soft landing achieved and equity markets were up 15% from their October 2022 lows. Physical economy was not confirming the narrative.<span class="interp-live" id="interp-bdi"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">WTI Crude Oil</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DCOILWTICO</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-wti">--</span>
+            <span class="chart-reading-unit">$/bbl</span>
+            <span class="chart-reading-label">WTI spot</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-wti"></canvas></div>
+          <p class="chart-interpretation">WTI crude is simultaneously a global demand signal, an inflation input, and a geopolitical risk barometer. As a demand signal: oil demand is highly correlated with industrial activity and transportation, so sustained WTI weakness despite OPEC cuts signals genuine demand softness. As an inflation input: above $90/bbl, oil adds materially to headline CPI in most economies with a 1&#8211;3 month lag through petrol, diesel, and energy-intensive goods. For India specifically: 85% oil import dependency means every $10/bbl move in Brent shifts India's annual import bill by approximately $15bn &#8212; directly impacting the current account deficit, rupee stability, and fiscal deficit via fuel subsidies. WTI above $90 is where Indian policymakers begin facing the subsidy-versus-pass-through dilemma. Above $100 is rupee stress territory.<span class="interp-live" id="interp-wti"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Drewry World Container Index</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-manual">MANUAL</span>
+              <span class="chart-panel-source">Drewry · updated weekly</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-drewry">--</span>
+            <span class="chart-reading-unit">$/40ft box</span>
+            <span class="chart-reading-label">composite WCI</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-drewry"></canvas></div>
+          <p class="chart-interpretation">The Drewry WCI tracks composite spot freight rates across 8 major container routes (Shanghai&#8211;Rotterdam, Shanghai&#8211;Los Angeles, etc.). Unlike BDI which tracks raw material bulk shipping, WCI tracks finished goods &#8212; the things consumers buy. This makes it the inflation transmission mechanism: elevated WCI feeds into consumer goods CPI with a 3&#8211;6 month lag. Pre-Red Sea disruption (late 2023) baseline was approximately $1,500/40ft container. The rerouting of Asia&#8211;Europe vessels around the Cape of Good Hope added 30&#8211;40% to transit distances, absorbing effective vessel capacity and supporting rates. Above $4,000: European importers of manufactured goods are facing significantly elevated landed costs, and the pass-through into goods CPI is building. The ECB had explicitly modelled goods disinflation as the mechanism to hit their 2% target &#8212; WCI persistence undermines that assumption.<span class="interp-live" id="interp-drewry"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Gold Price</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · GOLDAMGBD228NLBM</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-gold">--</span>
+            <span class="chart-reading-unit">$/oz</span>
+            <span class="chart-reading-label">London AM fix</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-gold"></canvas></div>
+          <p class="chart-interpretation">Gold has three distinct demand drivers that require different portfolio interpretations. (1) Monetary premium: when real yields fall, gold rises because the opportunity cost of holding a non-yielding asset falls &#8212; this is the textbook relationship. (2) Safe-haven demand: during systemic risk events (2008, 2020, 2022 Ukraine), gold rises as investors seek counterparty-free stores of value. (3) Central bank diversification: since 2022, China, India, Russia, and Gulf central banks have been buying gold at record rates, reducing USD reserve concentration &#8212; this structural flow is independent of real yields. The diagnostic: gold rising while real yields are also rising (as in 2023&#8211;2024) is the third regime &#8212; and it's historically unusual. It signals dollar-reserve de-dollarisation is outweighing the classical rate headwind. Do not fight this trend with the old yield-correlation model alone.<span class="interp-live" id="interp-gold"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">Copper Price</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · PCOPPUSDM</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-copper">--</span>
+            <span class="chart-reading-unit">$/MT</span>
+            <span class="chart-reading-label">monthly avg</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-copper"></canvas></div>
+          <p class="chart-interpretation">The second-most-economically-sensitive industrial metal after oil. The energy transition is creating a structural demand floor that makes the usual cyclical interpretation more complex. A single EV contains 3&#8211;4x the copper of an ICE vehicle. Offshore wind uses 10x the copper per MW of gas generation. Data centre buildout is copper-intensive. Grid modernisation programmes in the US, Europe, and India are decades-long capital programmes. This means: in future cyclical downturns, copper may fall less than historical bear market precedents would suggest &#8212; the structural floor absorbs some cyclical weakness. When interpreting a copper decline, separate the cyclical component (cross-check Chinese PMI and LME warehouse inventories &#8212; drawdown = real demand, build = speculative overhang) from the structural component (check EV sales trends and grid capex announcements).<span class="interp-live" id="interp-copper"></span></p>
+        </div>
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">US Industrial Production (YoY %)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · INDPRO (pc1)</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-indpro">--</span>
+            <span class="chart-reading-unit">% YoY</span>
+            <span class="chart-reading-label">latest reading</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-indpro"></canvas></div>
+          <p class="chart-interpretation">The Federal Reserve's monthly estimate of US manufacturing, mining, and utilities output. YoY negative = manufacturing recession &#8212; goods sector is contracting. The key cross-check: when IP goes negative while S&amp;P Industrials or Materials equities are pricing in forward earnings growth, a divergence exists that has historically resolved in IP's favour. Complementary signal: ISM Manufacturing PMI below 50 simultaneously with negative IP is a double-confirmation of goods-sector contraction. IP is not a service economy signal &#8212; the US is 70%+ services, so IP can contract while the overall economy grows. But it is an excellent leading indicator for industrial company earnings, capex cycles, and commodity demand.<span class="interp-live" id="interp-indpro"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04: INDIA -->
+    <section class="signal-section">
+      <div class="signal-section-head" data-num="04">
+        <span class="sig-section-num">04</span>
+        <span class="sig-section-title">India</span>
+        <p class="sig-section-desc">Three signals for India macro: domestic equity fund flows (AMFI), the rupee (USDINR), and the government bond yield (India 10Y). Together they tell you whether domestic capital is flowing into equities, whether the RBI is comfortable with the currency, and where monetary policy expectations are anchored.</p>
+      </div>
+      <div class="charts-grid">
+
+        <div class="chart-panel chart-panel-wide">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">AMFI Equity Fund Net Inflows</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-manual">MANUAL</span>
+              <span class="chart-panel-source">AMFI India · monthly</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-amfi">--</span>
+            <span class="chart-reading-unit">&#8377; Crore</span>
+            <span class="chart-reading-label">latest month net inflows</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-amfi"></canvas></div>
+          <p class="chart-interpretation">India's Systematic Investment Plan (SIP) machine: once investors set up a SIP, the default behaviour is continuation &#8212; they must actively cancel to stop investing. This asymmetry creates a near-constant monthly bid of ~&#8377;27,000 Cr into equity mutual funds regardless of market levels. The mechanical impact: Indian equity drawdowns since 2021 have been systematically shallower than fundamentals alone would predict, because fund managers deploying SIP inflows are buying during corrections. The valuation implication: Indian P/E ratios that would historically signal a top have persisted for longer &#8212; the structural bid supports elevated multiples. The risk reversal scenario: a sharp enough correction (&gt;25%) that triggers mass SIP cancellations would remove the structural floor simultaneously, potentially creating a self-reinforcing downside. Monitor the three-month rolling trend &#8212; three consecutive months of declining inflows is the first structural break signal.<span class="interp-live" id="interp-amfi"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">USD/INR &#8212; Rupee Rate</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · DEXINUS</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-usdinr">--</span>
+            <span class="chart-reading-unit">&#8377;/$</span>
+            <span class="chart-reading-label">latest spot</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-usdinr"></canvas></div>
+          <p class="chart-interpretation">The rupee/dollar rate is a direct indicator of India's external account health. The RBI actively manages the rupee through FX reserves intervention &#8212; India has $640bn+ in reserves (11+ months of import cover) giving substantially more ammunition than 2013 (when $280bn was insufficient to prevent a 20% depreciation). The key dynamics: rupee weakens when oil prices spike (higher import bill), when US rates rise sharply (capital outflow to USD), or when FPI outflows accelerate. The RBI typically allows slow, managed depreciation (consistent with the India-US inflation differential of ~3&#8211;4%) but intervenes to prevent disorderly moves. Above &#8377;87/$ signals either an oil shock, a significant FPI outflow episode, or RBI reserve management stress. The 2013 "taper tantrum" saw INR fall from &#8377;54 to &#8377;68 &#8212; the improved reserve position makes a repeat less likely but not impossible.<span class="interp-live" id="interp-usdinr"></span></p>
+        </div>
+
+        <div class="chart-panel">
+          <div class="chart-panel-header">
+            <span class="chart-panel-title">India 10Y Government Bond Yield</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-panel-badge badge-live">LIVE</span>
+              <span class="chart-panel-source">FRED · INDIRLTLT01STM</span>
+            </div>
+          </div>
+          <div class="chart-reading">
+            <span class="chart-reading-val" id="reading-india10y">--</span>
+            <span class="chart-reading-unit">% p.a.</span>
+            <span class="chart-reading-label">benchmark yield</span>
+          </div>
+          <div class="chart-canvas-wrap"><canvas id="chart-india10y"></canvas></div>
+          <p class="chart-interpretation">The benchmark government security yield reflects three things simultaneously: (1) RBI rate expectations &#8212; the G-sec market prices forward RBI moves, (2) Fiscal deficit expectations &#8212; wider fiscal deficits increase government borrowing, pushing yields higher, (3) Global risk appetite &#8212; foreign portfolio investors hold Indian G-secs and flee during global risk-off episodes. The India-US 10Y spread (approximately this yield minus US 10Y) determines FPI attractiveness &#8212; a narrowing spread reduces the carry incentive for foreign bond investors. The RBI's credibility zone has been approximately 6.5&#8211;7.2%. Below 6.5%: aggressive easing priced in. Above 7.5%: fiscal premium or inflation concern being priced &#8212; typically negative for equity multiples as higher bond yields compete with equities.<span class="interp-live" id="interp-india10y"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+    <div class="signals-method">
+      <h3 style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--text);margin-bottom:8px">How this dashboard works</h3>
+      <p style="font-size:13px;color:var(--dim);line-height:1.6;max-width:640px">All FRED data is fetched live from the St. Louis Fed API on every page load via corsproxy.io. Manual datasets (BDI, AMFI, Drewry WCI) are updated weekly. The regime composite scores five signals and updates automatically.</p>
+      <div class="method-grid">
+        <div class="method-item">
+          <span class="method-item-label">DATA SOURCE</span>
+          <span class="method-item-title">FRED API + Manual CSVs</span>
+          <span class="method-item-desc">18 series from FRED fetched in parallel via Promise.allSettled. 3 manual CSVs (BDI, AMFI, Drewry) updated weekly and committed to the repo.</span>
+        </div>
+        <div class="method-item">
+          <span class="method-item-label">REGIME MODEL</span>
+          <span class="method-item-title">5-Signal Composite</span>
+          <span class="method-item-desc">VIX, HY spreads, NFCI, yield curve, and copper-gold ratio each scored -1/0/+1. Sum >=+3 = RISK ON; <=-3 = RISK OFF; else CAUTIOUS.</span>
+        </div>
+        <div class="method-item">
+          <span class="method-item-label">STATUS MATRIX</span>
+          <span class="method-item-title">RAG Dot System</span>
+          <span class="method-item-desc">Green = benign / supportive. Amber = neutral / watch zone. Red = stress / risk-off. Thresholds calibrated to historical distributions for each series.</span>
+        </div>
+        <div class="method-item">
+          <span class="method-item-label">CHARTS</span>
+          <span class="method-item-title">Chart.js 4.4 + Annotation</span>
+          <span class="method-item-desc">21 charts rendered client-side with Chart.js. USDJPY uses chartjs-plugin-annotation for BOJ intervention reference lines at 150 and 160.</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html#projects" class="signals-back">&#8592; Back to portfolio</a>
+
+  </div>
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="footer-name">Dhruv Mandavkar</span>
+    <span class="footer-mono">mandavkar.uk · <span id="footer-year">2026</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  function log() { if (DEV) console.log.apply(console, arguments); }
+  function warn() { if (DEV) console.warn.apply(console, arguments); }
+  function err() { if (DEV) console.error.apply(console, arguments); }
+
+  var BLUE  = '#2F4858';
+  var TEAL  = '#005F73';
+  var RED   = '#AE2012';
+  var AMBER = '#B45309';
+  var DIM   = '#7A7672';
+  var GRID  = 'rgba(222,218,212,0.5)';
+  var FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations';
+  var API_KEY = window.FRED_API_KEY || '';
+
+  Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.color = DIM;
+
+  function el(id) { return document.getElementById(id); }
+  function last(arr) { return arr[arr.length - 1]; }
+  function fmt2(v) { return v.toFixed(2); }
+
+  function setVal(id, text, cls) {
+    var e = el(id); if (!e) return;
+    e.textContent = text;
+    if (cls !== undefined) e.className = cls;
+  }
+
+  function setSC(key, val, sub, rag) {
+    setVal('sc-' + key + '-val', val);
+    setVal('sc-' + key + '-sub', sub);
+    var dot = el('sc-' + key + '-dot');
+    if (dot) {
+      dot.className = 'sc-dot sc-dot--' + rag;
+      var cell = dot.closest('.status-cell');
+      if (cell) {
+        cell.classList.remove('sc-green', 'sc-amber', 'sc-red');
+        if (rag === 'green') cell.classList.add('sc-green');
+        else if (rag === 'amber') cell.classList.add('sc-amber');
+        else if (rag === 'red') cell.classList.add('sc-red');
+      }
+    }
+  }
+
+  function setInterp(id, html) {
+    var e = el(id); if (e) e.innerHTML = html;
+  }
+
+  function showChartError(canvasId, message) {
+    var canvas = el(canvasId); if (!canvas) return;
+    var wrap = canvas.parentElement;
+    canvas.style.display = 'none';
+    var err = document.createElement('div');
+    err.className = 'chart-error';
+    err.innerHTML = '<span style="font-size:22px;opacity:0.4">&#9888;</span><span>' + message + '</span>';
+    wrap.appendChild(err);
+  }
+
+  function setTimestamp() {
+    var ts = el('last-updated-ts');
+    if (ts) ts.textContent = new Date().toUTCString().replace(' GMT', ' UTC');
+  }
+
+  function thinLabels(dates, n) {
+    if (dates.length <= n) return dates.map(function(d){ return d.slice(0,7); });
+    var step = Math.floor(dates.length / n);
+    return dates.map(function(d,i){ return i % step === 0 ? d.slice(0,7) : ''; });
+  }
+
+  function baseOptions(yLabel, yFmt) {
+    return {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141414', titleColor: 'rgba(255,255,255,0.7)',
+          bodyColor: 'rgba(255,255,255,0.9)', padding: 10, displayColors: false,
+          titleFont: { family: "'JetBrains Mono',monospace", size: 10 },
+          bodyFont: { family: "'JetBrains Mono',monospace", size: 12, weight: '600' }
+        }
+      },
+      scales: {
+        x: { grid: { color: GRID, drawTicks: false }, border: { display: false },
+             ticks: { maxRotation: 0, maxTicksLimit: (window.innerWidth < 600 ? 4 : 8), font: { family: "'JetBrains Mono',monospace", size: 10 }, color: DIM } },
+        y: { grid: { color: GRID, drawTicks: false }, border: { display: false },
+             ticks: { font: { family: "'JetBrains Mono',monospace", size: 10 }, color: DIM, callback: yFmt || function(v){ return v; } },
+             title: yLabel ? { display: true, text: yLabel, color: DIM, font: { size: 10 } } : undefined }
+      }
+    };
+  }
+
+  function makeChart(canvasId, config) {
+    var canvas = el(canvasId); if (!canvas) return;
+    new Chart(canvas, config);
+    var panel = canvas.closest('.chart-panel');
+    if (panel) panel.classList.add('loaded');
+  }
+
+  async function fetchFRED(seriesId, units, startDate) {
+    if (!API_KEY) throw new Error('No API key — add to signals-config.js');
+    var params = new URLSearchParams({ series_id: seriesId, api_key: API_KEY, file_type: 'json', observation_start: startDate || '2019-01-01', sort_order: 'asc' });
+    if (units) params.set('units', units);
+    var proxied = 'https://corsproxy.io/?' + encodeURIComponent(FRED_BASE + '?' + params.toString());
+    var parse = function(json) {
+      if (json.error_message) throw new Error(json.error_message);
+      return json.observations.filter(function(o){ return o.value !== '.' && o.value !== ''; }).map(function(o){ return { date: o.date, value: parseFloat(o.value) }; });
+    };
+    // First attempt
+    var res = await fetch(proxied);
+    if (res.ok) return parse(await res.json());
+    // Retry once after 700ms (handles corsproxy transient rate-limiting)
+    await new Promise(function(r){ setTimeout(r, 700); });
+    var res2 = await fetch(proxied);
+    if (!res2.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res2.status + ' (after retry)');
+    return parse(await res2.json());
+  }
+
+  // Parse Yahoo Finance chart API into the same {date, value}[] format as fetchFRED
+  // ticker: Yahoo Finance symbol (URL-encoded), multiplier: optional scale factor applied to close prices
+  function parseYahooChart(json, multiplier) {
+    var result = json.chart && json.chart.result && json.chart.result[0];
+    if (!result) throw new Error('Yahoo: no chart result in response');
+    var timestamps = result.timestamp;
+    var closes = result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
+    if (!timestamps || !closes) throw new Error('Yahoo: missing timestamps or close prices');
+    var data = [];
+    for (var i = 0; i < timestamps.length; i++) {
+      if (closes[i] == null || isNaN(closes[i])) continue;
+      var d = new Date(timestamps[i] * 1000);
+      var dateStr = d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+      data.push({ date: dateStr, value: closes[i] * (multiplier || 1) });
+    }
+    if (data.length === 0) throw new Error('Yahoo: parsed data is empty');
+    return data;
+  }
+
+  async function fetchYahoo(ticker, multiplier) {
+    var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1mo&range=7y&includePrePost=false';
+    var res = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+    if (!res.ok) throw new Error('Yahoo Finance ' + ticker + ' HTTP ' + res.status);
+    return parseYahooChart(await res.json(), multiplier);
+  }
+
+  async function fetchGoldYahoo() {
+    return fetchYahoo('GC%3DF');  // Gold futures $/oz
+  }
+
+  async function fetchCopper() {
+    // Step 1: Yahoo Finance HG=F (copper futures, $/lb) — convert to $/MT (* 2204.62) to match PCOPPUSDM scale
+    try {
+      log('Copper [1/2]: trying Yahoo Finance HG=F (monthly, 7y)');
+      var d1 = await fetchYahoo('HG%3DF', 2204.62);
+      if (d1 && d1.length > 0) { log('Copper [1/2] OK: ' + d1.length + ' pts, last=' + d1[d1.length-1].value.toFixed(0) + ' $/MT'); return d1; }
+    } catch (e) { warn('Copper [1/2] Yahoo failed:', e.message); }
+    // Step 2: FRED PCOPPUSDM (monthly IMF series — sometimes returns HTTP 500)
+    try {
+      log('Copper [2/2]: trying FRED PCOPPUSDM');
+      var d2 = await fetchFRED('PCOPPUSDM', null, '2019-01-01');
+      if (d2 && d2.length > 0) { log('Copper [2/2] OK: ' + d2.length + ' pts'); return d2; }
+    } catch (e) { warn('Copper [2/2] FRED failed:', e.message); }
+    throw new Error('All copper fetch attempts failed');
+  }
+
+  async function fetchGold() {
+    // Step 1: Yahoo Finance GC=F (gold futures) — primary source, works without ICE license
+    try {
+      log('Gold [1/4]: trying Yahoo Finance GC=F (monthly, 7y)');
+      var d1 = await fetchGoldYahoo();
+      if (d1 && d1.length > 0) { log('Gold [1/4] OK: ' + d1.length + ' pts, first=' + d1[0].date + ', last=' + d1[d1.length-1].date); return d1; }
+      warn('Gold [1/4]: empty array after parse');
+    } catch (e) { warn('Gold [1/4] Yahoo failed:', e.message); }
+    // Step 2: FRED GOLDAMGBD228NLBM (daily AM fix — restricted by ICE, may not work)
+    try {
+      log('Gold [2/4]: trying FRED GOLDAMGBD228NLBM from 2019-01-01');
+      var d2 = await fetchFRED('GOLDAMGBD228NLBM', null, '2019-01-01');
+      if (d2 && d2.length > 0) { log('Gold [2/4] OK: ' + d2.length + ' pts, first=' + d2[0].date); return d2; }
+      warn('Gold [2/4]: empty array');
+    } catch (e) { warn('Gold [2/4] failed:', e.message); }
+    // Step 3: FRED GOLDPMGBD228NLBM (PM fix fallback)
+    try {
+      log('Gold [3/4]: trying FRED GOLDPMGBD228NLBM from 2019-01-01');
+      var d3 = await fetchFRED('GOLDPMGBD228NLBM', null, '2019-01-01');
+      if (d3 && d3.length > 0) { log('Gold [3/4] OK: ' + d3.length + ' pts, first=' + d3[0].date); return d3; }
+      warn('Gold [3/4]: empty array');
+    } catch (e) { warn('Gold [3/4] failed:', e.message); }
+    // Step 4: FRED AM fix with extended date range
+    try {
+      log('Gold [4/4]: trying FRED GOLDAMGBD228NLBM from 2015-01-01 (extended range)');
+      var d4 = await fetchFRED('GOLDAMGBD228NLBM', null, '2015-01-01');
+      if (d4 && d4.length > 0) { log('Gold [4/4] OK: ' + d4.length + ' pts, first=' + d4[0].date); return d4; }
+      warn('Gold [4/4]: empty array');
+    } catch (e) { warn('Gold [4/4] failed:', e.message); }
+    throw new Error('All 4 gold fetch attempts failed — check network and proxy');
+  }
+
+  async function fetchAllFRED() {
+    var specs = [
+      ['t10y2y','T10Y2Y',null,'2019-01-01'], ['t10y3m','T10Y3M',null,'2019-01-01'],
+      ['nfci','NFCI',null,'2019-01-01'],
+      ['breakeven','T10YIE',null,'2019-01-01'], ['hy','BAMLH0A0HYM2',null,'2019-01-01'],
+      ['ig','BAMLC0A0CM',null,'2019-01-01'], ['usdjpy','DEXJPUS',null,'2022-01-01'],
+      ['vix','VIXCLS',null,'2022-01-01'], ['dxy','DTWEXBGS',null,'2022-01-01'],
+      ['eurusd','DEXUSEU',null,'2022-01-01'], ['fedfunds','DFF',null,'2019-01-01'],
+      ['wti','DCOILWTICO',null,'2020-01-01'], ['indpro','INDPRO','pc1','2019-01-01'],
+      ['usdinr','DEXINUS',null,'2022-01-01'], ['india10y','IRSTCB01INM156N',null,'2020-01-01'],
+      ['jobless','ICSA',null,'2022-01-01'], ['corepce','PCEPILFE','pc1','2019-01-01'],
+    ];
+    // Fetch in chunks of 5 to avoid corsproxy rate-limiting on concurrent requests
+    var fred = {};
+    var CHUNK = 5;
+    for (var ci = 0; ci < specs.length; ci += CHUNK) {
+      var chunk = specs.slice(ci, ci + CHUNK);
+      var results = await Promise.allSettled(chunk.map(function(s){ return fetchFRED(s[1],s[2],s[3]); }));
+      chunk.forEach(function(s,i){ fred[s[0]] = results[i].status === 'fulfilled' ? results[i].value : null; });
+      if (ci + CHUNK < specs.length) await new Promise(function(r){ setTimeout(r, 250); });
+    }
+    // Real yield: DFII10 (daily) returns HTTP 500 — use WFII10 (weekly) as primary
+    try {
+      fred.realyield = await fetchFRED('WFII10', null, '2019-01-01');
+      if (!fred.realyield || !fred.realyield.length) throw new Error('WFII10 empty');
+      log('Real yield (WFII10) OK: ' + fred.realyield.length + ' pts, last=' + last(fred.realyield).value);
+    } catch(e) {
+      warn('WFII10 failed, trying DFII10:', e.message);
+      try { fred.realyield = await fetchFRED('DFII10', null, '2019-01-01'); }
+      catch(e2) { err('Real yield both series failed:', e2.message); fred.realyield = null; }
+    }
+    // DXY: Yahoo Finance DX=F primary (DTWEXBGS returns HTTP 500 intermittently)
+    try {
+      fred.dxy = await fetchYahoo('DX%3DF');
+      if (fred.dxy && fred.dxy.length) { log('DXY (Yahoo DX=F) OK: ' + fred.dxy.length + ' pts, last=' + last(fred.dxy).value.toFixed(2)); }
+      else throw new Error('DX=F empty');
+    } catch(e) {
+      warn('DXY Yahoo failed, trying FRED DTWEXBGS:', e.message);
+      try { fred.dxy = await fetchFRED('DTWEXBGS', null, '2022-01-01'); }
+      catch(e2) { err('DXY both sources failed:', e2.message); fred.dxy = null; }
+    }
+    // Gold: Yahoo Finance GC=F primary, FRED ICE series as fallbacks
+    try {
+      fred.gold = await fetchGold();
+      if (fred.gold && fred.gold.length) {
+        log('Gold fetch complete: ' + fred.gold.length + ' points. First=' + fred.gold[0].date + ', Last=' + fred.gold[fred.gold.length-1].date);
+      } else {
+        err('Gold fetch returned empty data — copper-gold ratio will fail');
+        fred.gold = null;
+      }
+    } catch(e) { err('Gold fetch failed entirely:', e.message); fred.gold = null; }
+    // Copper: Yahoo Finance HG=F primary, FRED PCOPPUSDM as fallback
+    try {
+      fred.copper = await fetchCopper();
+      if (fred.copper && fred.copper.length) {
+        log('Copper fetch complete: ' + fred.copper.length + ' points. Last=' + last(fred.copper).value.toFixed(0) + ' $/MT');
+      } else {
+        err('Copper fetch returned empty data — copper-gold ratio will fail');
+        fred.copper = null;
+      }
+    } catch(e) { err('Copper fetch failed entirely:', e.message); fred.copper = null; }
+    return fred;
+  }
+
+  function computeRegime(fred) {
+    var scores = [], drivers = [];
+    if (fred.vix && fred.vix.length) { var v = last(fred.vix).value; if (v<=18){scores.push(1);drivers.push('VIX benign');}else if(v>=25){scores.push(-1);drivers.push('VIX elevated');}else scores.push(0); }
+    if (fred.hy && fred.hy.length) { var h = last(fred.hy).value; if (h<=300){scores.push(1);drivers.push('credit compressed');}else if(h>=450){scores.push(-1);drivers.push('credit stressed');}else scores.push(0); }
+    if (fred.nfci && fred.nfci.length) { var n = last(fred.nfci).value; if (n<=-0.3){scores.push(1);drivers.push('conditions loose');}else if(n>=0.3){scores.push(-1);drivers.push('conditions tight');}else scores.push(0); }
+    if (fred.t10y2y && fred.t10y2y.length) { var c = last(fred.t10y2y).value; if (c>=0.3){scores.push(1);drivers.push('curve positive');}else if(c<=-0.3){scores.push(-1);drivers.push('curve inverted');}else scores.push(0); }
+    if (fred.copper && fred.gold && fred.copper.length && fred.gold.length) {
+      var gm = {}; fred.gold.forEach(function(d){ gm[d.date.slice(0,7)] = d.value; });
+      function gr(d){ var gv=gm[d.date.slice(0,7)]; return gv ? d.value/gv : null; }
+      var r1=gr(last(fred.copper)), r2=gr(fred.copper[Math.max(0,fred.copper.length-4)]);
+      if (r1&&r2){ var cgt=(r1-r2)/r2*100; if(cgt>2){scores.push(1);drivers.push('Cu/Au rising');}else if(cgt<-2){scores.push(-1);drivers.push('Cu/Au falling');}else scores.push(0); }
+    }
+    var total = scores.reduce(function(a,b){return a+b;},0);
+    var label = total>=3?'RISK ON':total<=-3?'RISK OFF':'CAUTIOUS';
+    var cls   = total>=3?'regime--on':total<=-3?'regime--off':'regime--cautious';
+    var ind = el('regime-indicator');
+    if (ind) {
+      ind.className = 'regime-indicator ' + cls;
+      setVal('regime-label', label);
+      setVal('regime-score', (total>0?'+':'')+total+' of '+scores.length);
+      setVal('regime-drivers', drivers.join(' · '));
+    }
+  }
+
+  async function loadCSV(url, dateCol, valCol) {
+    var res = await fetch(url);
+    if (!res.ok) throw new Error('CSV HTTP ' + res.status);
+    var text = await res.text();
+    var lines = text.trim().split('\n');
+    var headers = lines[0].split(',').map(function(h){ return h.trim(); });
+    var di = headers.indexOf(dateCol), vi = headers.indexOf(valCol);
+    if (di===-1||vi===-1) throw new Error('Column not found');
+    return lines.slice(1).map(function(line){ var c=line.split(','); return {date:(c[di]||'').trim(),value:parseFloat((c[vi]||'').trim())}; }).filter(function(d){ return d.date&&!isNaN(d.value); });
+  }
+
+  /* ── SECTION 01 ── */
+
+  function renderYieldCurve(data) {
+    var v=last(data).value, prev=data.length>=5?data[data.length-5].value:null;
+    var rag=v>=0.3?'green':v<=-0.3?'red':'amber';
+    setSC('yc',fmt2(v)+'%',v>=0?'uninverted':'inverted — recession watch',rag);
+    var rv=el('reading-yc'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val '+(v>=0?'positive':'inverted');}
+    if(prev!==null){ var mv=v-prev; setInterp('interp-yc',(mv>0?'Steepening ':'Flattening ')+Math.abs(mv).toFixed(2)+'% over 5 sessions. Current: '+fmt2(v)+'% — '+(v>=0?'curve uninverted.':'curve remains inverted.')); }
+    makeChart('chart-yc',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.13)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderYieldCurve3M(data) {
+    var v=last(data).value;
+    var rv=el('reading-yc3m'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val '+(v>=0?'positive':'inverted');}
+    setInterp('interp-yc3m','NY Fed preferred spread: '+fmt2(v)+'%. '+(v<0?'Inverted — recession probability model elevated.':'Positive — recession signal off.'));
+    makeChart('chart-yc3m',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.13)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderNFCI(data) {
+    var v=last(data).value;
+    var rag=v<=-0.3?'green':v>=0.3?'red':'amber';
+    setSC('nfci',v.toFixed(3),v<=-0.3?'loose conditions':v>=0.3?'tight conditions':'near average',rag);
+    var rv=el('reading-nfci'); if(rv){rv.textContent=v.toFixed(3);rv.className='chart-reading-val'+(v<=-0.3?' positive':v>=0.3?' inverted':'');}
+    setInterp('interp-nfci','NFCI = '+v.toFixed(3)+'. '+(v<0?'Looser than historical average — accommodative.':'Tighter than historical average — restrictive.'));
+    makeChart('chart-nfci',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.10)'},tension:0.35}]},options:baseOptions('NFCI',function(v){return v.toFixed(3);})});
+  }
+
+  function renderRealYield(data) {
+    var v=last(data).value;
+    var rag=v<=0.5?'green':v>=2.0?'red':'amber';
+    setSC('realyield',fmt2(v)+'%',v>=2?'historically restrictive':v<=0?'financial repression':'moderate real rate',rag);
+    var rv=el('reading-realyield'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val'+(v>=2?' inverted':v<=0?' positive':'');}
+    setInterp('interp-realyield','10Y TIPS = '+fmt2(v)+'%. '+(v>=2?'Historically restrictive.':v<=0?'Financial repression — supports risk assets.':'Moderate real yield.'));
+    makeChart('chart-realyield',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(174,32,18,0.08)',below:'rgba(0,95,115,0.08)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderBreakeven(data) {
+    var v=last(data).value;
+    var rag=v<=2.3?'green':v>=2.7?'red':'amber';
+    setSC('breakeven',fmt2(v)+'%',v<=2.0?'below target':v>=2.5?'above target — sticky inflation':'near Fed target',rag);
+    var rv=el('reading-breakeven'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val'+(v>=2.5?' inverted':' positive');}
+    setInterp('interp-breakeven','10Y breakeven = '+fmt2(v)+'%. '+(v>=2.5?'Persistent above-target inflation priced — constrains Fed cuts.':v<=2.0?'Sub-2% inflation priced — gives Fed room to ease.':'Near 2% target — rate path data-dependent.'));
+    makeChart('chart-breakeven',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderCreditSpreads(hy, ig) {
+    var lhy=last(hy).value, lig=last(ig).value;
+    var rag=lhy<=300?'green':lhy>=450?'red':'amber';
+    setSC('hy',Math.round(lhy*100)+'bps',lhy<=300?'compressed — risk on':lhy>=450?'stressed — risk off':'neutral watch zone',rag);
+    var rv=el('reading-hy'); if(rv){rv.textContent=Math.round(lhy*100);rv.className='chart-reading-val'+(lhy>=450?' inverted':lhy<=300?' positive':' amber');}
+    setVal('reading-ig',Math.round(lig*100));
+    setInterp('interp-credit','HY OAS = '+Math.round(lhy*100)+'bps · IG OAS = '+Math.round(lig*100)+'bps · HY/IG = '+(lhy/lig).toFixed(1)+'x. '+(lhy>=450?'Elevated — credit markets pricing rising default risk.':lhy<=300?'Compressed — strong risk appetite, search for yield active.':'Neutral territory.'));
+    var opts=baseOptions('OAS (%)'); opts.plugins.legend={display:true,labels:{color:DIM,font:{family:"'JetBrains Mono',monospace",size:10},boxWidth:12,padding:16}};
+    makeChart('chart-credit',{type:'line',data:{labels:thinLabels(hy.map(function(d){return d.date;}),8),datasets:[{label:'HY OAS',data:hy.map(function(d){return d.value;}),borderColor:RED,borderWidth:1.5,pointRadius:0,tension:0.35},{label:'IG OAS',data:ig.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:opts});
+  }
+
+  /* ── SECTION 02 ── */
+
+  function renderUSDJPY(data) {
+    var spot=last(data).value, older=data[Math.max(0,data.length-20)].value;
+    var vel=(spot/older-1)*100, vs=vel>=0?'+':'';
+    var rag=vel<=-3?'amber':vel>=3?'green':'neutral';
+    setSC('usdjpy',spot.toFixed(2),vs+vel.toFixed(1)+'% 4W',rag);
+    var rv=el('reading-usdjpy'); if(rv){rv.textContent=spot.toFixed(2);rv.className='chart-reading-val'+(vel<=-3?' amber':'');}
+    var velEl=el('usdjpy-velocity'); if(velEl){velEl.textContent=vs+vel.toFixed(1)+'%';velEl.className='vel-val '+(vel<-3?'vel-val--up':vel>3?'vel-val--down':'vel-val--neutral');}
+    var cEl=el('usdjpy-carry-signal'); if(cEl){cEl.textContent=vel<=-3?'UNWIND RISK':vel>=3?'CARRY BUILDING':'STABLE';cEl.className='vel-val '+(vel<=-3?'vel-val--up':vel>=3?'vel-val--down':'vel-val--neutral');}
+    var bEl=el('usdjpy-boj-zone'); if(bEl){bEl.textContent=spot>=155?'INTERVENTION RISK':spot>=150?'VOCAL ZONE':'COMFORTABLE';bEl.className='vel-val '+(spot>=155?'vel-val--up':spot>=150?'vel-val--neutral':'vel-val--down');}
+    setInterp('interp-usdjpy','Spot: '+spot.toFixed(2)+'. 4W: '+vs+vel.toFixed(1)+'%. '+(vel<=-3?'Yen strengthening — carry unwind risk elevated. Watch for cascade into EM and equity vol.':vel>=3?'Yen weakening — carry building. Risk-on signal, BOJ intervention risk rises above 150.':'Carry positioning broadly stable.'));
+    var opts=baseOptions('¥/$');
+    opts.plugins.annotation={annotations:{line150:{type:'line',yMin:150,yMax:150,borderColor:AMBER,borderWidth:1,borderDash:[4,4],label:{display:true,content:'BOJ vocal 150',position:'end',color:AMBER,font:{family:"'JetBrains Mono',monospace",size:9},backgroundColor:'transparent'}},line160:{type:'line',yMin:160,yMax:160,borderColor:RED,borderWidth:1,borderDash:[4,4],label:{display:true,content:'2024 intervention 160',position:'end',color:RED,font:{family:"'JetBrains Mono',monospace",size:9},backgroundColor:'transparent'}}}};
+    makeChart('chart-usdjpy',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:opts});
+  }
+
+  function renderVIX(data) {
+    var v=last(data).value;
+    var rag=v<=18?'green':v>=25?'red':'amber';
+    setSC('vix',v.toFixed(1),v<=15?'complacency':v<=20?'benign':v<=30?'elevated':'fear',rag);
+    var rv=el('reading-vix'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=25?' inverted':v<=18?' positive':'');}
+    setInterp('interp-vix','VIX = '+v.toFixed(1)+'. '+(v>=35?'Crisis territory — historically a strong contrarian buy signal.':v<=13?'Extreme complacency — tail risk underpriced.':v>=25?'Elevated stress — defensive positioning warranted.':'Normal range.'));
+    makeChart('chart-vix',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:RED,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(174,32,18,0.06)',fill:true,tension:0.35}]},options:baseOptions('VIX')});
+  }
+
+  function renderDXY(data) {
+    var v=last(data).value, old3m=data[Math.max(0,data.length-65)].value;
+    var chg=(v/old3m-1)*100;
+    var rag=chg>=3?'red':chg<=-3?'green':'amber';
+    setSC('dxy',v.toFixed(1),(chg>=0?'+':'')+chg.toFixed(1)+'% 3M',rag);
+    var rv=el('reading-dxy'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val';}
+    setInterp('interp-dxy','DXY = '+v.toFixed(1)+'. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(chg>=3?'USD strengthening — tightening global dollar liquidity, headwind for EM.':chg<=-3?'USD weakening — easing global liquidity, tailwind for EM assets.':'Dollar broadly stable.'));
+    makeChart('chart-dxy',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('index')});
+  }
+
+  function renderEURUSD(data) {
+    var v=last(data).value;
+    var rag=v>=1.08?'green':v<=1.02?'red':'amber';
+    setSC('eurusd',v.toFixed(4),v>=1.05?'EUR firm':v<=1.01?'near parity':'soft EUR',rag);
+    var rv=el('reading-eurusd'); if(rv){rv.textContent=v.toFixed(4);rv.className='chart-reading-val';}
+    setInterp('interp-eurusd','EUR/USD = '+v.toFixed(4)+'. '+(v<=1.02?'Near parity — USD safe-haven demand elevated.':v>=1.10?'EUR strong — European growth optimism or Fed dovish pivot priced.':'Normal trading range.'));
+    makeChart('chart-eurusd',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/EUR',function(v){return v.toFixed(4);})});
+  }
+
+  function renderFedFunds(data) {
+    var v=last(data).value;
+    var rv=el('reading-fedfunds'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val';}
+    setInterp('interp-fedfunds','Fed Funds = '+fmt2(v)+'%. '+(v>=5?'Historically restrictive — highest since 2007. Every asset class priced relative to 5%+ risk-free.':v<=1?'Near zero — maximum accommodation, risk assets supported.':'Mid-cycle rate — data-dependent.'));
+    makeChart('chart-fedfunds',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(47,72,88,0.06)',fill:true,tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderCopperGoldRatio(copper, gold) {
+    log('CGR: copper=' + copper.length + ' pts, gold=' + gold.length + ' pts');
+    log('CGR copper first 3 dates:', copper.slice(0,3).map(function(d){return d.date;}));
+    log('CGR gold first 3 dates:', gold.slice(0,3).map(function(d){return d.date;}));
+    var gm={}; gold.forEach(function(d){ gm[d.date.slice(0,7)]=d.value; });
+    log('CGR goldMap first 3 keys:', Object.keys(gm).slice(0,3));
+    var rd=copper.map(function(d){ var gv=gm[d.date.slice(0,7)]; return gv?{date:d.date,value:d.value/gv}:null; }).filter(Boolean);
+    if(rd.length < 3){showChartError('chart-cgr','Insufficient overlapping copper/gold dates — check console');return;}
+    var v=last(rd).value, old3m=rd[Math.max(0,rd.length-4)].value;
+    var trend=(v-old3m)/old3m*100;
+    var rag=trend>2?'green':trend<-2?'red':'amber';
+    setSC('cgr',v.toFixed(3),(trend>=0?'+':'')+trend.toFixed(1)+'% 3M',rag);
+    var rv=el('reading-cgr'); if(rv){rv.textContent=v.toFixed(3);rv.className='chart-reading-val'+(trend>2?' positive':trend<-2?' inverted':'');}
+    setVal('reading-cgr-trend',(trend>=0?'+':'')+trend.toFixed(1)+'%');
+    setInterp('interp-cgr','Cu/Au = '+v.toFixed(3)+'. 3M: '+(trend>=0?'+':'')+trend.toFixed(1)+'%. '+(trend>2?'Rising — copper outperforming gold, growth optimism winning.':trend<-2?'Falling — gold outperforming copper, fear dominating.':'Broadly stable — mixed signals on global growth.'));
+    makeChart('chart-cgr',{type:'line',data:{labels:thinLabels(rd.map(function(d){return d.date;}),8),datasets:[{data:rd.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.05)',fill:true,tension:0.35}]},options:baseOptions('Cu/Au',function(v){return v.toFixed(4);})});
+  }
+
+  /* ── SECTION 03 ── */
+
+  function renderBDI(data) {
+    var v=last(data).value;
+    var rag=v>=2000?'green':v<=1000?'red':'amber';
+    setSC('bdi',Math.round(v).toLocaleString(),v>=2000?'strong demand':v<=1000?'demand slump':'neutral range',rag);
+    var rv=el('reading-bdi'); if(rv){rv.textContent=Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=2000?' positive':v<=1000?' inverted':'');}
+    setInterp('interp-bdi','BDI = '+Math.round(v).toLocaleString()+'. '+(v>=2000?'Elevated — strong global bulk commodity demand.':v<=1000?'Depressed — industrial activity signal weak.':'Neutral — watch for sustained directional move.'));
+    makeChart('chart-bdi',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:2,pointBackgroundColor:TEAL,tension:0.35}]},options:baseOptions('index')});
+  }
+
+  function renderWTI(data) {
+    var v=last(data).value;
+    var rag=v<=75?'green':v>=95?'red':'amber';
+    setSC('wti','$'+v.toFixed(1),v<=70?'demand weak / OPEC stress':v>=90?'inflationary pressure':'moderate range',rag);
+    var rv=el('reading-wti'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=90?' inverted':'');}
+    setInterp('interp-wti','WTI = $'+v.toFixed(1)+'/bbl. '+(v>=90?'Above $90 — inflationary pressure, India CAD headwind.':v<=70?'Below $70 — demand concern or OPEC+ compliance breaking. India CAD tailwind.':'Moderate — manageable for India macro.'));
+    makeChart('chart-wti',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/bbl')});
+  }
+
+  function renderDrewry(data) {
+    var v=last(data).value;
+    var rag=v>=4000?'red':v<=2000?'green':'amber';
+    setSC('drewry','$'+Math.round(v).toLocaleString(),v>=4000?'elevated — disruption premium':v<=2000?'normalised':'moderate',rag);
+    var rv=el('reading-drewry'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=4000?' inverted':v<=2000?' positive':'');}
+    setInterp('interp-drewry','Drewry WCI = $'+Math.round(v).toLocaleString()+'/40ft. '+(v>=4000?'Elevated — likely Red Sea/Suez disruption premium. CPI transmission lag 3-6 months.':v<=2000?'Near post-COVID normal — container rate pressure on CPI easing.':'Moderate — monitor for directional shift.'));
+    makeChart('chart-drewry',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:2,pointBackgroundColor:BLUE,tension:0.35}]},options:baseOptions('$/40ft')});
+  }
+
+  function renderGold(data) {
+    var v=last(data).value;
+    var rv=el('reading-gold'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val';}
+    setInterp('interp-gold','Gold = $'+Math.round(v).toLocaleString()+'/oz. '+(v>=2500?'Record territory — geopolitical premium and central bank buying sustaining the rally despite high real yields.':v>=2000?'Strong — above $2,000 psychological level. Watch real yield correlation.':'Below $2,000 — risk appetite comfortable, USD demand limited.'));
+    makeChart('chart-gold',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('$/oz')});
+  }
+
+  function renderCopper(data) {
+    var v=last(data).value, old3m=data[Math.max(0,data.length-4)].value;
+    var chg=(v/old3m-1)*100;
+    var rv=el('reading-copper'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(chg>=3?' positive':chg<=-3?' inverted':'');}
+    setInterp('interp-copper','Copper = $'+Math.round(v).toLocaleString()+'/MT. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(v>=10000?'Elevated — strong industrial demand, energy transition premium.':v<=7000?'Weak — growth concerns, China demand disappointing.':'Moderate — watch China industrial activity.'));
+    makeChart('chart-copper',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/MT')});
+  }
+
+  function renderIndustrialProduction(data) {
+    var v=last(data).value;
+    var rv=el('reading-indpro'); if(rv){rv.textContent=(v>=0?'+':'')+fmt2(v);rv.className='chart-reading-val'+(v>=1?' positive':v<=-1?' inverted':'');}
+    setInterp('interp-indpro','US IP YoY = '+(v>=0?'+':'')+fmt2(v)+'%. '+(v<=-1?'Contraction — goods sector in recession territory. Coincident indicator for broader slowdown.':v>=2?'Expansion — manufacturing and mining growing above trend.':'Near zero — flat industrial activity, goods sector stagnation.'));
+    makeChart('chart-indpro',{type:'bar',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),backgroundColor:data.map(function(d){return d.value>=0?'rgba(0,95,115,0.5)':'rgba(174,32,18,0.5)';}),borderColor:data.map(function(d){return d.value>=0?TEAL:RED;}),borderWidth:1,borderRadius:2}]},options:baseOptions('%',function(v){return v.toFixed(1)+'%';})});
+  }
+
+  /* ── SECTION 04 ── */
+
+  function renderAMFI(data) {
+    var v=last(data).value, prev=data.length>=2?data[data.length-2].value:null;
+    var rag=v>=20000?'green':v<=10000?'red':'amber';
+    setSC('amfi','Rs'+(Math.round(v/100)/10)+'k Cr',v>=20000?'strong retail inflows':v<=10000?'inflow slowdown':'moderate inflows',rag);
+    var rv=el('reading-amfi'); if(rv){rv.textContent='Rs'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=20000?' positive':v<=10000?' inverted':'');}
+    if(prev!==null){ var mom=((v-prev)/prev*100).toFixed(1); setInterp('interp-amfi','Net inflows = Rs'+Math.round(v).toLocaleString()+' Cr. MoM: '+(mom>=0?'+':'')+mom+'%. '+(v>=25000?'SIP machine at full capacity — structural floor under Indian equities.':v>=15000?'Healthy inflows — domestic retail participation robust.':'Inflows weakening — retail sentiment deteriorating.')); }
+    makeChart('chart-amfi',{type:'bar',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),backgroundColor:data.map(function(d){return d.value>=20000?'rgba(0,95,115,0.55)':d.value>=10000?'rgba(180,83,9,0.45)':'rgba(174,32,18,0.5)';}),borderRadius:3,borderWidth:0}]},options:baseOptions('Cr')});
+  }
+
+  function renderUSDINR(data) {
+    var v=last(data).value;
+    var rag=v<=83?'green':v>=87?'red':'amber';
+    setSC('usdinr',v.toFixed(2),v<=83?'INR firm':v>=87?'depreciation pressure':'RBI managed range',rag);
+    var rv=el('reading-usdinr'); if(rv){rv.textContent=v.toFixed(2);rv.className='chart-reading-val'+(v>=87?' inverted':'');}
+    setInterp('interp-usdinr','USD/INR = '+v.toFixed(2)+'. '+(v>=87?'Above 87 — RBI defending rupee with FX reserves. CAD financing pressure elevated.':v<=82?'INR firm — export competitiveness concern, gives RBI room to accumulate reserves.':'Within RBI managed range — slow depreciation consistent with inflation differential.'));
+    makeChart('chart-usdinr',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('Rs/$',function(v){return v.toFixed(2);})});
+  }
+
+  function renderIndia10Y(data) {
+    var v=last(data).value;
+    var rag=v<=6.5?'green':v>=7.5?'red':'amber';
+    setSC('india10y',fmt2(v)+'%',v<=6.5?'easing — RBI dovish':v>=7.5?'elevated — inflation concern':'neutral',rag);
+    var rv=el('reading-india10y'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val';}
+    setInterp('interp-india10y','India 10Y = '+fmt2(v)+'%. India-US spread ~'+(v-4.3).toFixed(1)+'% est. '+(v<=6.5?'Falling — RBI easing cycle, FPI inflow tailwind.':v>=7.5?'Elevated — fiscal deficit or inflation concerns pressuring bonds.':'Normal range — RBI on hold or gradual easing.'));
+    makeChart('chart-india10y',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(0,95,115,0.06)',fill:true,tension:0.35}]},options:baseOptions('% p.a.',function(v){return v.toFixed(2)+'%';})});
+  }
+
+  function renderJoblessClaims(data) {
+    var v=last(data).value;
+    var rag=v<220000?'green':v>280000?'red':'amber';
+    var vk=(v/1000).toFixed(0)+'k';
+    setSC('jobless',vk,v<220000?'tight — labour market strong':v>280000?'rising — deterioration signal':'normal range',rag);
+    var rv=el('reading-jobless'); if(rv){rv.textContent=vk;rv.className='chart-reading-val'+(v>280000?' inverted':v<220000?' positive':'');}
+    setInterp('interp-jobless','Initial claims = '+Math.round(v/1000)+'k. '+(v>280000?'Above 280k — labour market softening. Leading indicator for unemployment rate.':v<220000?'Below 220k — historically tight. Wage inflation persistence likely. Fed constrained on cuts.':'Normal range — labour market broadly stable.'));
+    makeChart('chart-jobless',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(47,72,88,0.06)',fill:true,tension:0.35}]},options:baseOptions('claims',function(v){return (v/1000).toFixed(0)+'k';})});
+  }
+
+  function renderCorePCE(data) {
+    var v=last(data).value;
+    var rag=v<=2.3?'green':v>=3.0?'red':'amber';
+    setSC('corepce',v.toFixed(1)+'%',v<=2.3?'near target — room to cut':v>=3.0?'too hot — Fed on hold':'last mile — stuck above target',rag);
+    var rv=el('reading-corepce'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=3?' inverted':v<=2.3?' positive':' amber');}
+    setInterp('interp-corepce','Core PCE YoY = '+v.toFixed(1)+'%. Fed target: 2.0%. '+(v>=3.0?'Well above target — no cuts in sight. Restrictive policy necessary.':v>=2.5?'Stuck in last mile — disinflation stalled. Every meeting data-dependent.':v<=2.0?'At or below target — full easing path open.':'Within striking distance — Fed moving toward normalisation.'));
+    makeChart('chart-corepce',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('% YoY',function(v){return v.toFixed(1)+'%';})});
+  }
+
+  /* ── INIT ── */
+  async function init() {
+    setTimestamp();
+    var fred = {};
+    try { fred = await fetchAllFRED(); } catch(e) { err('FRED fetch failed:', e); }
+    try { computeRegime(fred); } catch(e) { warn('Regime compute failed:', e); }
+
+    var fns = {
+      renderYieldCurve:renderYieldCurve, renderYieldCurve3M:renderYieldCurve3M,
+      renderNFCI:renderNFCI, renderRealYield:renderRealYield, renderBreakeven:renderBreakeven,
+      renderUSDJPY:renderUSDJPY, renderVIX:renderVIX, renderDXY:renderDXY,
+      renderEURUSD:renderEURUSD, renderFedFunds:renderFedFunds,
+      renderWTI:renderWTI, renderGold:renderGold, renderCopper:renderCopper,
+      renderIndustrialProduction:renderIndustrialProduction,
+      renderUSDINR:renderUSDINR, renderIndia10Y:renderIndia10Y,
+      renderJoblessClaims:renderJoblessClaims, renderCorePCE:renderCorePCE
+    };
+
+    var fredMap = [
+      ['renderYieldCurve',fred.t10y2y,'chart-yc'], ['renderYieldCurve3M',fred.t10y3m,'chart-yc3m'],
+      ['renderNFCI',fred.nfci,'chart-nfci'], ['renderRealYield',fred.realyield,'chart-realyield'],
+      ['renderBreakeven',fred.breakeven,'chart-breakeven'], ['renderUSDJPY',fred.usdjpy,'chart-usdjpy'],
+      ['renderVIX',fred.vix,'chart-vix'], ['renderDXY',fred.dxy,'chart-dxy'],
+      ['renderEURUSD',fred.eurusd,'chart-eurusd'], ['renderFedFunds',fred.fedfunds,'chart-fedfunds'],
+      ['renderWTI',fred.wti,'chart-wti'], ['renderGold',fred.gold,'chart-gold'],
+      ['renderCopper',fred.copper,'chart-copper'], ['renderIndustrialProduction',fred.indpro,'chart-indpro'],
+      ['renderUSDINR',fred.usdinr,'chart-usdinr'], ['renderIndia10Y',fred.india10y,'chart-india10y'],
+      ['renderJoblessClaims',fred.jobless,'chart-jobless'], ['renderCorePCE',fred.corepce,'chart-corepce'],
+    ];
+
+    fredMap.forEach(function(e){
+      var fnName=e[0],data=e[1],cid=e[2];
+      if(!data||!data.length){showChartError(cid,'Data unavailable');return;}
+      try{fns[fnName](data);}catch(ex){showChartError(cid,ex.message);}
+    });
+
+    try{ if(fred.hy&&fred.hy.length&&fred.ig&&fred.ig.length) renderCreditSpreads(fred.hy,fred.ig); else showChartError('chart-credit','Credit spread data unavailable'); }catch(e){showChartError('chart-credit',e.message);}
+    try{ if(fred.copper&&fred.copper.length&&fred.gold&&fred.gold.length) renderCopperGoldRatio(fred.copper,fred.gold); else showChartError('chart-cgr','Copper or gold data unavailable'); }catch(e){showChartError('chart-cgr',e.message);}
+
+    var csvTasks=[
+      {fn:function(){return loadCSV('projects/macro-signal-tracker/data/bdi_manual.csv','date','bdi').then(renderBDI);},id:'chart-bdi'},
+      {fn:function(){return loadCSV('projects/macro-signal-tracker/data/amfi_inflows.csv','date','net_inflows_cr').then(renderAMFI);},id:'chart-amfi'},
+      {fn:function(){return loadCSV('projects/macro-signal-tracker/data/drewry_wci.csv','date','wci').then(renderDrewry);},id:'chart-drewry'},
+    ];
+    for(var i=0;i<csvTasks.length;i++){
+      try{await csvTasks[i].fn();}catch(e){showChartError(csvTasks[i].id,e.message);}
+    }
+  }
+
+  /* ── UI EVENTS ── */
+  window.addEventListener('scroll',function(){
+    var total=document.documentElement.scrollHeight-window.innerHeight;
+    if(!total)return;
+    var bar=el('reading-progress'); if(bar)bar.style.width=Math.min(100,window.scrollY/total*100)+'%';
+  },{passive:true});
+
+  window.addEventListener('scroll',function(){
+    var nav=el('nav'); if(nav)nav.classList.toggle('scrolled',window.scrollY>30);
+  },{passive:true});
+
+  var hamburger=el('hamburger'), mobileMenu=el('mobile-menu'), mobileClose=el('mobile-close');
+  if(hamburger)hamburger.addEventListener('click',function(){mobileMenu.classList.add('open');});
+  if(mobileClose)mobileClose.addEventListener('click',function(){mobileMenu.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mobileMenu)mobileMenu.classList.remove('open');});
+  if(mobileMenu)mobileMenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mobileMenu.classList.remove('open');});});
+
+  /* ── COLLAPSIBLE INTERPRETATION BLOCKS ── */
+  function setupCollapsible(p) {
+    var html = p.innerHTML;
+    // Find first sentence end: period followed by a space (captures "Sentence one. Sentence two...")
+    var idx = html.indexOf('. ');
+    if (idx === -1) return; // single sentence — nothing to collapse
+    var summary = html.slice(0, idx + 1); // up to and including the first period
+    var rest = html.slice(idx + 2);       // everything after ". " (including interp-live span)
+    // Rebuild: summary text + toggle button + collapsible body
+    p.innerHTML = summary
+      + '<span class="interp-toggle" role="button" aria-expanded="false">Read more ↓</span>'
+      + '<span class="interp-body">' + rest + '</span>';
+    var toggle = p.querySelector('.interp-toggle');
+    var body = p.querySelector('.interp-body');
+    toggle.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      this.textContent = expanded ? 'Read more ↓' : 'Close ↑';
+      body.classList.toggle('open', !expanded);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.chart-interpretation').forEach(setupCollapsible);
+    init();
+  });
+
+})();
+</script>
+<script>var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();</script>
+
+</body>
+</html>

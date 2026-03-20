@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon 2040 — Four Unpriced Structural Risks · Dhruv Mandavkar</title>
+  <meta name="description" content="Four macro theses the market prices at zero. Quantum computing, permanent storage, humanoid robots, and AI reflexivity — the measurement apparatus is failing before the technologies deploy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Horizon 2040 — The Instruments Are Failing" />
+  <meta property="og:description" content="Four structural risks. Eleven instruments compromised. The measurement window is closing." />
+  <meta property="og:url" content="https://mandavkar.uk/horizon2040.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <meta property="og:image" content="https://mandavkar.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Horizon 2040 — The Instruments Are Failing" />
+  <meta name="twitter:description" content="Four macro theses the market prices at zero. Quantum, storage, robots, AI reflexivity — the measurement apparatus is failing." />
+  <meta name="twitter:image" content="https://mandavkar.uk/og-image.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>dhruv</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="signals-config.js"></script>
+  <link rel="stylesheet" href="horizon2040.css" />
+</head>
+<body>
+<noscript>
+  <div style="background:#2F4858;color:rgba(255,255,255,0.85);font-family:monospace;font-size:12px;letter-spacing:0.08em;text-align:center;padding:12px 20px;">
+    JAVASCRIPT REQUIRED — Interactive charts and live data signals need JS enabled to render.
+  </div>
+</noscript>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">dhruv</a>
+    <ul class="nav-links">
+      <li><a href="signals.html">Signals</a></li>
+      <li><a href="horizon2040.html" class="nav-active">Research</a></li>
+      <li><a href="shipping.html">Shipping</a></li>
+      <li><a href="chokepoints.html">Chokepoints</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#10005;</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="signals.html">Signals</a></li>
+    <li><a href="horizon2040.html">Research</a></li>
+    <li><a href="shipping.html">Shipping</a></li>
+    <li><a href="chokepoints.html">Chokepoints</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — HERO
+══════════════════════════════════════════════ -->
+<section class="hz-hero">
+  <div class="hz-hero-inner">
+    <span class="hz-eyebrow">MACRO RESEARCH · HORIZON 2040 · MANDAVKAR.UK</span>
+    <h1 class="hz-hero-title">The instruments<br>are <em>failing.</em></h1>
+    <p class="hz-hero-sub">Four structural risks the market prices at zero. The measurement apparatus will fail before the technologies deploy.</p>
+
+    <div class="hz-impact-stats">
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">$2Q+</span>
+        <span class="hz-impact-label">Transactions Exposed<br>to Q-Day</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">$500B+</span>
+        <span class="hz-impact-label">Utility Cap Sized to<br>Stranded Demand</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">5.6</span>
+        <span class="hz-impact-label">Workers Displaced<br>Per Robot (Acemoglu)</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">60–75%</span>
+        <span class="hz-impact-label">US Equity Volume<br>Algorithmic</span>
+      </div>
+    </div>
+
+    <div class="hz-hero-quote">
+      <p>The 10–15 year measurement failure window is where the macro risk lives. Not the technologies themselves — the window in which the instruments we use to price the economy will stop working, before the economy has adjusted to the disruptions causing that breakdown. That is the trade.</p>
+    </div>
+
+    <div class="hz-hero-quote" style="border-left-color:rgba(255,255,255,0.15);background:transparent;margin-bottom:32px;">
+      <p style="font-size:15px;color:rgba(255,255,255,0.45);">"Two things fill the mind with ever increasing wonder and awe: the starry heavens above me and the moral law within me." <span style="font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;letter-spacing:0.06em;color:rgba(255,255,255,0.28);">— Immanuel Kant</span></p>
+    </div>
+
+    <a class="hz-hero-cta" onclick="document.getElementById('matrix').scrollIntoView({behavior:'smooth'})">↓ Read the research</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — SIGNAL INTEGRITY MATRIX
+══════════════════════════════════════════════ -->
+<section class="hz-matrix-section" id="matrix">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">THE META-THESIS</span>
+      <h2 class="hz-section-title hz-section-title--dark">Eleven instruments.<br>Seven compromised.</h2>
+      <p class="hz-section-body hz-section-body--dark">Every tool in this table was designed for an economy where labour is human, capital is tangible, data costs power, encryption holds, and prices are set by independent agents. None of these assumptions survive the next fifteen years.</p>
+    </div>
+
+    <div class="fade-up" style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Signal</th>
+            <th>Measures</th>
+            <th class="matrix-col-failure">Failure Mechanism</th>
+            <th>Status</th>
+            <th>Thesis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1: Jobless Claims — LIVE badge -->
+          <tr>
+            <td class="matrix-col-signal">
+              Jobless Claims
+              <a href="signals.html#chart-jobless" class="hz-live-badge">LIVE →</a>
+            </td>
+            <td class="matrix-col-measures">Human unemployment</td>
+            <td class="matrix-col-failure">Robots displace silently through attrition — no claim filed, no signal sent</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">AT RISK</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 2: JOLTS -->
+          <tr>
+            <td class="matrix-col-signal">JOLTS Job Openings</td>
+            <td class="matrix-col-measures">Job creation rate</td>
+            <td class="matrix-col-failure">Robot placements disappear without a hire event — openings vanish, not transition</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--compromised">COMPROMISED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 3: Wage Growth -->
+          <tr>
+            <td class="matrix-col-signal">Wage Growth</td>
+            <td class="matrix-col-measures">Labour market tightness</td>
+            <td class="matrix-col-failure">Composition effect: displaced low-wage workers exit, raising average wage even as market loosens</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--blind">BLIND</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 4: Phillips Curve -->
+          <tr>
+            <td class="matrix-col-signal">Phillips Curve</td>
+            <td class="matrix-col-measures">Inflation–unemployment tradeoff</td>
+            <td class="matrix-col-failure">Option value of automation flattens the curve — workers accept wage restraint rather than risk replacement</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--compromised">COMPROMISED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 5: PMI Employment — No PMI panel in signals.html — badge omitted -->
+          <tr>
+            <td class="matrix-col-signal">PMI Employment</td>
+            <td class="matrix-col-measures">Factory output conditions</td>
+            <td class="matrix-col-failure">Automated facilities suppress the employment sub-index permanently — the signal goes structurally negative</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">AT RISK</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 6: CPI — LIVE badge -->
+          <tr>
+            <td class="matrix-col-signal">
+              CPI / Core PCE
+              <a href="signals.html#chart-corepce" class="hz-live-badge">LIVE →</a>
+            </td>
+            <td class="matrix-col-measures">Price level</td>
+            <td class="matrix-col-failure">AI-driven deflation and quality-adjusted price gains uncaptured in hedonic methodology</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">AT RISK</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t04" data-target="thesis-04">T04</span></td>
+          </tr>
+          <!-- Row 7: Bond Settlement -->
+          <tr>
+            <td class="matrix-col-signal">Bond Settlement Risk</td>
+            <td class="matrix-col-measures">Counterparty / credit risk</td>
+            <td class="matrix-col-failure">Quantum cryptographic vulnerability entirely unpriced — RSA/ECC breakage converts systemic infrastructure risk to zero-premium credit event</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--unpriced">UNPRICED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t01" data-target="thesis-01">T01</span></td>
+          </tr>
+          <!-- Row 8: Utility Demand -->
+          <tr>
+            <td class="matrix-col-signal">Utility Demand Forecasts</td>
+            <td class="matrix-col-measures">Power consumption growth</td>
+            <td class="matrix-col-failure">Cold storage electricity demand absent — glass and DNA storage convert perpetual opex to one-time capex, stranding demand projections</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--overstated">OVERSTATED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t02" data-target="thesis-02">T02</span></td>
+          </tr>
+          <!-- Row 9: GDP / TFP -->
+          <tr>
+            <td class="matrix-col-signal">GDP / TFP</td>
+            <td class="matrix-col-measures">Productivity and output</td>
+            <td class="matrix-col-failure">$4.7T annual intangible investment invisible in national accounts — Brynjolfsson finds true TFP 15.9% above official measures</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--understated">UNDERSTATED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t04" data-target="thesis-04">T04</span></td>
+          </tr>
+          <!-- Row 10: EBITDA -->
+          <tr>
+            <td class="matrix-col-signal">EBITDA</td>
+            <td class="matrix-col-measures">Corporate profitability</td>
+            <td class="matrix-col-failure">Robot capex conversion distorts the multiple — labour opex disappears, capex spikes, D&A rises, EBITDA inflates even as true economics deteriorate</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--distorted">DISTORTED</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t03" data-target="thesis-03">T03</span></td>
+          </tr>
+          <!-- Row 11: Price Discovery -->
+          <tr>
+            <td class="matrix-col-signal">Price Discovery</td>
+            <td class="matrix-col-measures">Information aggregation</td>
+            <td class="matrix-col-failure">AI homogeneity degrades signal-to-noise — when 78% of institutions use similar models trained on similar data, prices stop discovering information</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--degrading">DEGRADING</span></td>
+            <td class="matrix-col-thesis"><span class="hz-thesis-tag hz-thesis-tag--t04" data-target="thesis-04">T04</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="matrix-footer fade-up">
+      Three of these signals are live in my macro dashboard. The data feeds are running. What they're measuring may not be.&nbsp;&nbsp;<a href="signals.html">View Live Dashboard →</a>
+    </p>
+  </div>
+</section>
+
+<!-- dark → cream -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — THESIS NAVIGATION
+══════════════════════════════════════════════ -->
+<section class="hz-thesis-nav-section">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label hz-section-label--light">FOUR THESES</span>
+      <h2 class="hz-section-title hz-section-title--light">Choose your entry point.</h2>
+    </div>
+    <div class="hz-thesis-nav-grid fade-up">
+
+      <div class="hz-thesis-nav-card" role="button" tabindex="0"
+           onclick="document.getElementById('thesis-01').scrollIntoView({behavior:'smooth'})"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('thesis-01').scrollIntoView({behavior:'smooth'});}">
+        <span class="hz-thesis-nav-num">01</span>
+        <span class="hz-thesis-nav-eyebrow">THESIS 01 — QUANTUM COMPUTING</span>
+        <div class="hz-thesis-nav-name">Every bond settlement runs on encryption quantum will break.</div>
+        <p class="hz-thesis-nav-claim">The migration window has already closed for most institutions. The market prices this risk at exactly zero basis points.</p>
+        <span class="hz-thesis-nav-key">Q-Day: ~2030 · 0 bps risk premium</span>
+      </div>
+
+      <div class="hz-thesis-nav-card" role="button" tabindex="0"
+           onclick="document.getElementById('thesis-02').scrollIntoView({behavior:'smooth'})"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('thesis-02').scrollIntoView({behavior:'smooth'});}">
+        <span class="hz-thesis-nav-num">02</span>
+        <span class="hz-thesis-nav-eyebrow">THESIS 02 — PERMANENT STORAGE</span>
+        <div class="hz-thesis-nav-name">Zero-power glass storage may strand $500B in utility valuation.</div>
+        <p class="hz-thesis-nav-claim">Data storage converting from power-hungry opex to one-time capex event. Goldman's +165% electricity demand projection is built on a false assumption.</p>
+        <span class="hz-thesis-nav-key">Deployment: 2027–30 · 30–40% cold tier decouples</span>
+      </div>
+
+      <div class="hz-thesis-nav-card" role="button" tabindex="0"
+           onclick="document.getElementById('thesis-03').scrollIntoView({behavior:'smooth'})"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('thesis-03').scrollIntoView({behavior:'smooth'});}">
+        <span class="hz-thesis-nav-num">03</span>
+        <span class="hz-thesis-nav-eyebrow">THESIS 03 — HUMANOID ROBOTS</span>
+        <div class="hz-thesis-nav-name">Robots render the Phillips Curve inoperable and blind central banks.</div>
+        <p class="hz-thesis-nav-claim">Cost parity has been crossed. Acemoglu documents 5.6 workers displaced per robot. The Fed's instruments are reading an economy that no longer exists.</p>
+        <span class="hz-thesis-nav-key">Cost Parity: Achieved 2024 · Unitree G1 at $16k</span>
+      </div>
+
+      <div class="hz-thesis-nav-card" role="button" tabindex="0"
+           onclick="document.getElementById('thesis-04').scrollIntoView({behavior:'smooth'})"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('thesis-04').scrollIntoView({behavior:'smooth'});}">
+        <span class="hz-thesis-nav-num">04</span>
+        <span class="hz-thesis-nav-eyebrow">THESIS 04 — AI REFLEXIVITY</span>
+        <div class="hz-thesis-nav-name">AI homogeneity is destroying the independence that makes price discovery work.</div>
+        <p class="hz-thesis-nav-claim">NBER Working Paper 34054: two AIs autonomously generated supra-competitive profits without any agreement or intent to collude. The market doesn't have a category for this.</p>
+        <span class="hz-thesis-nav-key">Algo Share: 60–75% · 240% more flash crashes</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — THESIS 01: QUANTUM COMPUTING
+══════════════════════════════════════════════ -->
+<section id="thesis-01" class="hz-thesis-section hz-thesis-section--cream">
+  <div class="hz-container">
+    <div class="hz-thesis-inner">
+      <span class="hz-thesis-num-bg">01</span>
+
+      <div class="hz-content-grid">
+        <!-- Left: content -->
+        <div class="fade-up">
+          <div class="hz-thesis-header">
+            <span class="hz-thesis-eyebrow">THESIS 01 · QUANTUM COMPUTING</span>
+            <span class="hz-status hz-status--unpriced">UNPRICED RISK</span>
+          </div>
+
+          <h3 class="hz-thesis-h3">Q-Day will be the largest unpriced repricing event in bond market history.</h3>
+
+          <p class="hz-thesis-body"><strong>What's at risk.</strong> Fedwire settles $4–5 trillion daily. SWIFT connects 11,000+ financial institutions across 200+ countries. TARGET2 is the backbone of the Eurozone. Every one of these systems runs on RSA or ECC encryption. Shor's algorithm breaks both. When sufficient qubits exist — and the timeline is accelerating — the cryptographic infrastructure underpinning global financial settlement becomes exploitable.</p>
+
+          <p class="hz-thesis-body"><strong>Harvest Now, Decrypt Later.</strong> Nation-state actors and sophisticated adversaries are already collecting encrypted financial data today with the intent to decrypt it once quantum capability arrives. This is not theoretical — CISA, NSA, and NIST have all issued formal warnings. The data being harvested today has a shelf life of 10–30 years. The decryption capability arrives in roughly 5–8.</p>
+
+          <p class="hz-thesis-body"><strong>Migration is nearly impossible at scale.</strong> BIS Project Leap documented that a TARGET2-equivalent system requires 5–10 years to migrate to post-quantum cryptography. The NIST mandate (IR 8547, November 2024) requires phase-out of RSA and ECC by 2030, complete elimination by 2035. The institutional investment community has not begun pricing the migration cost, the operational risk, or the systemic disruption.</p>
+
+          <p class="hz-thesis-body"><strong>Capex signatures confirm the thesis.</strong> IBM has committed $30B to quantum. PsiQuantum is raising $7B+ with TSMC partnership for silicon photonic chips. Quantinuum secured $10B in capital commitments from JP Morgan and Microsoft. These are not research budgets. These are commercial timelines.</p>
+
+          <div class="contrarian-claim">
+            <blockquote>"Every sovereign bond settled through classical cryptographic infrastructure carries a non-zero, unpriced credit risk premium. The market prices it at exactly zero."</blockquote>
+            <cite>— HORIZON 2040 · THESIS 01</cite>
+          </div>
+
+          <div class="hz-callout">
+            <span class="hz-callout-icon">⚑</span>
+            <p>NIST IR 8547 (November 2024): Begin phase-out of RSA/ECC by 2030. Complete elimination by 2035. This is a government mandate, not a suggestion — and most financial infrastructure hasn't started.</p>
+          </div>
+        </div>
+
+        <!-- Right: stats + Mosca -->
+        <div class="fade-up">
+          <div class="hz-stat-grid">
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--purple">~2030</span>
+              <span class="hz-stat-label">Revised Q-Day estimate (Marin Ivezic)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num">1M</span>
+              <span class="hz-stat-label">Qubits needed — down from 20M (new estimates)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--red">$2–3.3T</span>
+              <span class="hz-stat-label">Modeled GDP loss (Hudson Institute)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--teal">0 bps</span>
+              <span class="hz-stat-label">Current quantum risk premium in credit markets</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num">5–10y</span>
+              <span class="hz-stat-label">Financial infrastructure migration time (BIS Project Leap)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--amber">$47B</span>
+              <span class="hz-stat-label">Committed capex: IBM + PsiQuantum + Quantinuum</span>
+            </div>
+          </div>
+
+          <!-- Mosca's Theorem Visualization -->
+          <div class="mosca-wrap">
+            <span class="mosca-title">MOSCA'S THEOREM — MIGRATION GAP ANALYSIS</span>
+            <div class="mosca-viz">
+              <div class="mosca-row">
+                <span class="mosca-bar-label">Data Shelf Life</span>
+                <div class="mosca-bar-track">
+                  <div class="mosca-bar-fill mosca-bar-fill--shelf">
+                    <span class="mosca-bar-value">10–30 years</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mosca-row">
+                <span class="mosca-bar-label">Migration Time</span>
+                <div class="mosca-bar-track">
+                  <div class="mosca-bar-fill mosca-bar-fill--migrate">
+                    <span class="mosca-bar-value">5–10 years</span>
+                  </div>
+                  <div class="mosca-gap-zone"></div>
+                </div>
+              </div>
+              <div class="mosca-row">
+                <span class="mosca-bar-label">Time to Q-Day</span>
+                <div class="mosca-bar-track">
+                  <div class="mosca-bar-fill mosca-bar-fill--qday">
+                    <span class="mosca-bar-value">~5–8 years</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="mosca-gap-note">⚠ GAP HAS CLOSED — Mosca's Theorem states: if (migration time) + (time to Q-Day) &lt; (data shelf life), you are already exposed. For most long-dated financial data, the overlap is now. Migration must begin immediately.</p>
+          </div>
+        </div>
+      </div><!-- end content-grid -->
+    </div>
+  </div>
+</section>
+
+<!-- cream → sand -->
+<div class="sect-angle sect-angle--cream-sand sect-angle--type-b" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — THESIS 02: PERMANENT STORAGE
+══════════════════════════════════════════════ -->
+<section id="thesis-02" class="hz-thesis-section hz-thesis-section--sand">
+  <div class="hz-container">
+    <div class="hz-thesis-inner">
+      <span class="hz-thesis-num-bg">02</span>
+
+      <div class="fade-up">
+        <div class="hz-thesis-header">
+          <span class="hz-thesis-eyebrow">THESIS 02 · PERMANENT STORAGE</span>
+          <span class="hz-status hz-status--overstated">OVERSTATED DEMAND</span>
+        </div>
+
+        <h3 class="hz-thesis-h3">Zero-power storage converts electricity demand from a perpetual opex to a one-time capex event.</h3>
+
+        <p class="hz-thesis-body"><strong>The mechanism.</strong> Cold storage — archival data that is written once and rarely accessed — currently accounts for 30–40% of total data centre capacity. It requires continuous power to maintain. Glass storage (developed at Microsoft Research) can hold data for 10,000 years with zero power at rest. DNA storage offers similar permanence at declining cost ($0.06/MB trajectory). When these technologies reach commercial scale, the electricity demand for cold data permanently decouples from the grid.</p>
+
+        <p class="hz-thesis-body"><strong>The February 2026 breakthrough.</strong> Pyrex glass — a common material with established supply chains — was successfully demonstrated as a viable substrate for optical data storage at research scale. This resolves the primary supply chain objection to glass storage: exotic materials. Commercial deployment in the 2027–2030 window is now plausibly funded.</p>
+
+        <p class="hz-thesis-body"><strong>The accounting inversion.</strong> Today's data infrastructure is structured as recurring opex: lease the power, pay monthly. Glass storage converts that flow into a one-time capex event. Corporate CFOs understand this trade immediately. The rerating of hyperscaler power consumption forecasts will follow once pilot deployments are publicly announced.</p>
+
+        <p class="hz-thesis-body"><strong>The real estate distortion.</strong> Goldman Sachs projects data centre electricity demand rising 165% by 2030. That projection assumes all data requires power forever. Glass and DNA storage break that assumption. If 30–40% of storage demand permanently decouples from electricity, the demand wedge supporting utility re-ratings and data centre real estate valuations partially evaporates.</p>
+      </div>
+
+      <div class="fade-up">
+        <span class="hz-chart-title">THE UTILITY DEMAND WEDGE — COLD STORAGE DECOUPLING SCENARIO</span>
+        <div class="hz-chart-wrap">
+          <canvas id="chart-utility" role="img" aria-label="Chart: Data centre electricity demand wedge — cold storage decoupling scenario vs. official Goldman Sachs +165% projection"></canvas>
+        </div>
+        <span class="hz-chart-note">Illustrative projection indexed to 2023=100. Goldman Sachs projects +165% by 2033. If 30–40% of cold storage migrates to zero-power substrates (2027–30 deployment window), the delta represents demand assumptions not yet in consensus models. Not investment advice.</span>
+      </div>
+
+      <div class="hz-stat-grid fade-up" style="grid-template-columns:repeat(3,1fr);margin-top:32px;">
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">30–40%</span>
+          <span class="hz-stat-label">Cold storage share of data centre capacity</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--red">$500B+</span>
+          <span class="hz-stat-label">Utility market cap sized to stranded cold-tier demand</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--teal">10,000y</span>
+          <span class="hz-stat-label">Glass storage stability (Microsoft Research)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num">2027–30</span>
+          <span class="hz-stat-label">Commercial deployment target window</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--teal">$0.06/MB</span>
+          <span class="hz-stat-label">DNA storage cost trajectory (2024)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">+165%</span>
+          <span class="hz-stat-label">Goldman Sachs electricity demand projection — built on assumption this thesis breaks</span>
+        </div>
+      </div>
+
+      <div class="contrarian-claim fade-up">
+        <blockquote>"The utility re-rating was built on one assumption: all data requires power forever. Glass and DNA storage break that assumption. The market hasn't modelled a world where 30–40% of storage demand permanently decouples from electricity."</blockquote>
+        <cite>— HORIZON 2040 · THESIS 02</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- sand → dark -->
+<div class="sect-angle sect-angle--sand-dark sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — THESIS 03: HUMANOID ROBOTS
+══════════════════════════════════════════════ -->
+<section id="thesis-03" class="hz-thesis-section hz-thesis-section--dark">
+  <div class="hz-container">
+    <div class="hz-thesis-inner">
+      <span class="hz-thesis-num-bg">03</span>
+
+      <div class="fade-up">
+        <div class="hz-thesis-header">
+          <span class="hz-thesis-eyebrow">THESIS 03 · HUMANOID ROBOTS</span>
+          <span class="hz-status hz-status--blind">INSTRUMENTS BLIND</span>
+        </div>
+
+        <h3 class="hz-thesis-h3">Cost parity has already been crossed. The Phillips Curve is being destroyed in real time.</h3>
+
+        <p class="hz-thesis-body"><strong>The measurement problem.</strong> Jobless claims require a fired worker. Robots displacing through attrition never trigger a claim — the role simply goes unfilled. JOLTS job openings require a posted vacancy. Robot placements generate no posting. Wage data shows composition effects: as lower-wage displaced workers exit, average wages rise even as the true labour market weakens. The BLS acknowledged in a 2024 GAO report that redesigning labour market measurement for automation requires 10–15 years. The Fed is flying blind.</p>
+
+        <p class="hz-thesis-body"><strong>The empirical evidence is unambiguous.</strong> Acemoglu and Restrepo's landmark study found each additional robot displaces 5.6 workers and reduces area wages by 0.42%. Econometrica (2022) documented that automation accounts for 50–70% of the observed rise in wage inequality over the past 30 years. Bain & Co report a 40% decline in robot unit costs between 2022 and 2024 alone. The Unitree G1 — a commercially available humanoid — now retails at $16,000, below the fully-loaded annual cost of a minimum wage worker in most US states.</p>
+
+        <p class="hz-thesis-body"><strong>Basso &amp; Rachedi (JME, 2025)</strong> provide the most important recent theoretical contribution: the option value of automation flattens the Phillips Curve even before a single robot is deployed. Workers in sectors threatened by automation accept wage restraint rather than risk accelerating their own replacement. The curve doesn't just flatten after automation — it flattens in anticipation of it.</p>
+
+        <p class="hz-thesis-body"><strong>The Fed governor admission.</strong> Governor Lisa Cook warned in February 2026 that "our normal demand-side monetary policy may not be able to ameliorate an AI-caused unemployment spell without also increasing inflationary pressure." Governor Barr separately described a scenario where AI causes a "jobless boom" — rapid structural displacement that rate cuts cannot fix, because the unemployment is structural, not cyclical. This is the FOMC acknowledging, in public, that its existing toolkit may be inadequate for what is coming.</p>
+      </div>
+
+      <!-- Two charts side by side -->
+      <div class="hz-charts-duo fade-up">
+        <div>
+          <span class="hz-chart-title">THE WAGE CROSSING — HUMAN VS ROBOT HOURLY COST</span>
+          <div class="hz-chart-wrap">
+            <canvas id="chart-wages" role="img" aria-label="Chart: Robot-driven wage composition effect — median vs. average divergence as automation displaces lower-wage roles"></canvas>
+          </div>
+          <span class="hz-chart-note">Fully-loaded hourly cost including benefits, training, turnover. Robot cost = unit capex amortised + maintenance, per effective hour. Unitree G1 at $16k (2025) confirmed commercial threshold crossing.</span>
+        </div>
+        <div>
+          <span class="hz-chart-title">PHILLIPS CURVE FLATTENING — PRE vs POST AUTOMATION</span>
+          <div class="hz-chart-wrap">
+            <canvas id="chart-phillips" role="img" aria-label="Chart: Phillips Curve flattening — unemployment vs. wage growth slope declining as automation option value suppresses wage demands"></canvas>
+          </div>
+          <span class="hz-chart-note">Illustrative. Pre-automation: historical 1960–2010 slope. Post-automation: emerging regime 2020+. Basso &amp; Rachedi (JME 2025): "Workers don't ask for raises when robots are the alternative."</span>
+        </div>
+      </div>
+
+      <div class="hz-stat-grid fade-up" style="grid-template-columns:repeat(3,1fr);margin-top:32px;">
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--teal">$16,000</span>
+          <span class="hz-stat-label">Unitree G1 unit cost (2025) — below min-wage annual fully-loaded</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">5.6</span>
+          <span class="hz-stat-label">Workers displaced per robot (Acemoglu &amp; Restrepo)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--red">50–70%</span>
+          <span class="hz-stat-label">Wage inequality rise explained by automation (Acemoglu, Econometrica 2022)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num">40%</span>
+          <span class="hz-stat-label">Robot cost decline 2022–2024 (Bain &amp; Co)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">10–15y</span>
+          <span class="hz-stat-label">BLS measurement redesign lag (GAO documented)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--red">0.42%</span>
+          <span class="hz-stat-label">Area wage reduction per additional robot (Acemoglu &amp; Restrepo)</span>
+        </div>
+      </div>
+
+      <div class="contrarian-claim fade-up">
+        <blockquote>"The Fed will hold rates too high for too long because it interprets the labour market as tight when it is structurally loosening. The unemployment is invisible. The wages are a mirage. The instruments are reading the wrong economy."</blockquote>
+        <cite>— HORIZON 2040 · THESIS 03</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- dark → cream -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-b" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 — THESIS 04: AI REFLEXIVITY
+══════════════════════════════════════════════ -->
+<section id="thesis-04" class="hz-thesis-section hz-thesis-section--cream">
+  <div class="hz-container">
+    <div class="hz-thesis-inner">
+      <span class="hz-thesis-num-bg">04</span>
+
+      <div class="fade-up">
+        <div class="hz-thesis-header">
+          <span class="hz-thesis-eyebrow">THESIS 04 · AI REFLEXIVITY</span>
+          <span class="hz-status hz-status--degrading">SIGNAL DEGRADING</span>
+        </div>
+
+        <h3 class="hz-thesis-h3">Price discovery — the foundational function of capital markets — is degrading in real time.</h3>
+
+        <p class="hz-thesis-body"><strong>The NBER finding.</strong> Working Paper 34054 (Wharton + HKUST, July 2025) documented that two AI agents autonomously generated supra-competitive profits without any agreement, communication, or intent to collude. They were trained to maximise profit. They discovered, independently, that restraining competition was more profitable than competing. No human designed this. No human instructed it. The collusion emerged from the objective function alone. Traditional antitrust frameworks have no category for algorithmic tacit collusion.</p>
+
+        <p class="hz-thesis-body"><strong>The FSB concentration risk.</strong> The Financial Stability Board (2024) flagged that three or four model providers now underpin the majority of institutional AI trading infrastructure globally. A single model failure — whether from a training data error, a discovered exploit, or a regulatory forced shutdown — could cascade across asset classes simultaneously. The concentration risk is not in any single institution. It is in the shared cognitive architecture across all of them.</p>
+
+        <p class="hz-thesis-body"><strong>The Productivity Paradox and J-Curve.</strong> Official GDP accounts for approximately $4.7T in annual US intangible investment. Brynjolfsson (MIT) estimates true TFP is 15.9% above official statistics once correctly-adjusted quality improvements and digital goods are counted. The "Solow Productivity Paradox reloaded" — you can see the AI everywhere except in the productivity statistics — is resolving, but slowly. The J-curve implies the productivity gains are real but backloaded. The market is pricing the trough, not the inflection.</p>
+
+        <p class="hz-thesis-body"><strong>The mechanism of degradation.</strong> When 60–75% of US equity volume is algorithmic, and when 78% of institutions use AI for trading decisions, and when those AI systems are trained on similar historical datasets and optimise for similar objectives, the independence condition required for price discovery fails. Prices stop discovering information and start reflecting the shared biases of the models generating them. This is not speculation — flash crash frequency has increased 240% over the past decade.</p>
+      </div>
+
+      <!-- Chart: Algorithmic Volume -->
+      <div class="fade-up">
+        <span class="hz-chart-title">ALGORITHMIC SHARE OF US EQUITY VOLUME (2000–2025)</span>
+        <div class="hz-chart-wrap">
+          <canvas id="chart-algo" role="img" aria-label="Chart: Algorithmic and HFT share of US equity volume growing from 5% in 2000 to 72% in 2025, approaching the 75% homogeneity threshold"></canvas>
+        </div>
+        <span class="hz-chart-note">Illustrative based on TABB Group, Morgan Stanley, and SEC published estimates. At 75%+ algorithmic dominance, the independence condition for price discovery becomes structurally compromised.</span>
+      </div>
+
+      <!-- Reflexivity Loop SVG -->
+      <div class="fade-up">
+        <span class="hz-chart-title" style="margin-top:32px;display:block;">THE REFLEXIVITY LOOP — HOW AI DEGRADES ITS OWN SIGNAL</span>
+        <div class="hz-reflexivity-wrap">
+          <svg viewBox="0 0 600 360" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="hz-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#005F73"/>
+              </marker>
+            </defs>
+
+            <!-- Node A: Historical Prices (top center) -->
+            <rect x="185" y="14" width="230" height="52" fill="#1e1e1e" stroke="#005F73" stroke-width="1" rx="1"/>
+            <text x="300" y="35" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="rgba(255,255,255,0.88)">Historical Prices</text>
+            <text x="300" y="53" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">MARKET DATA</text>
+
+            <!-- Node B: AI Models (left) -->
+            <rect x="14" y="154" width="160" height="52" fill="#1e1e1e" stroke="#005F73" stroke-width="1" rx="1"/>
+            <text x="94" y="175" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="rgba(255,255,255,0.88)">AI Models</text>
+            <text x="94" y="193" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">78% of institutions</text>
+
+            <!-- Node C: New Prices (right) -->
+            <rect x="426" y="154" width="160" height="52" fill="#1e1e1e" stroke="#005F73" stroke-width="1" rx="1"/>
+            <text x="506" y="175" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="rgba(255,255,255,0.88)">New Prices</text>
+            <text x="506" y="193" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">PRICE DISCOVERY</text>
+
+            <!-- Node D: Training Data (bottom center) -->
+            <rect x="185" y="294" width="230" height="52" fill="#1e1e1e" stroke="#005F73" stroke-width="1" rx="1"/>
+            <text x="300" y="315" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="rgba(255,255,255,0.88)">Training Data</text>
+            <text x="300" y="333" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">NEXT CYCLE INPUT</text>
+
+            <!-- Arrow A → B: "trains" -->
+            <path d="M 218 66 Q 145 112 94 154" fill="none" stroke="#005F73" stroke-width="1.5" marker-end="url(#hz-arrow)"/>
+            <text x="135" y="103" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">trains</text>
+
+            <!-- Arrow B → C: "generates" -->
+            <path d="M 174 180 L 426 180" fill="none" stroke="#005F73" stroke-width="1.5" marker-end="url(#hz-arrow)"/>
+            <text x="300" y="172" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">generates</text>
+
+            <!-- Arrow C → D: "becomes" -->
+            <path d="M 506 206 Q 490 262 388 294" fill="none" stroke="#005F73" stroke-width="1.5" marker-end="url(#hz-arrow)"/>
+            <text x="474" y="262" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">becomes</text>
+
+            <!-- Arrow D → A: "learns from" (dashed, feedback loop) -->
+            <path d="M 300 294 L 300 66" fill="none" stroke="#005F73" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#hz-arrow)"/>
+            <text x="322" y="195" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,0.38)">learns from</text>
+
+            <!-- Center warning -->
+            <text x="300" y="226" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#F59E0B">⚠ Signal-to-noise</text>
+            <text x="300" y="242" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#F59E0B">degrading each cycle</text>
+          </svg>
+        </div>
+        <span class="hz-chart-note">Each iteration: AI models train on prices partly generated by previous AI models. The signal contains growing quantities of its own prior assumptions. Information content decays. Flash crash frequency increases.</span>
+      </div>
+
+      <div class="hz-stat-grid fade-up" style="grid-template-columns:repeat(3,1fr);margin-top:32px;">
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">60–75%</span>
+          <span class="hz-stat-label">US equity volume algorithmic (TABB Group / SEC)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num">78%</span>
+          <span class="hz-stat-label">Institutions using AI for trading decisions (FSB 2024)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--red">+240%</span>
+          <span class="hz-stat-label">Increase in flash crashes over past decade</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--teal">15.9%</span>
+          <span class="hz-stat-label">True TFP above official statistics (Brynjolfsson, MIT)</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num hz-stat-num--amber">$4.7T</span>
+          <span class="hz-stat-label">Annual US intangible investment invisible in official GDP accounts</span>
+        </div>
+        <div class="hz-stat">
+          <span class="hz-stat-num">3–4</span>
+          <span class="hz-stat-label">Model providers underpinning majority of institutional AI (FSB concentration risk)</span>
+        </div>
+      </div>
+
+      <div class="contrarian-claim fade-up">
+        <blockquote>"Price discovery — the foundational function of capital markets — is degrading. Not because of bad models, but because of systemic homogeneity: too much capital, making too similar decisions, from too similar training data, on too similar timescales."</blockquote>
+        <cite>— HORIZON 2040 · THESIS 04</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cream → dark -->
+<div class="sect-angle sect-angle--cream-dark sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 8 — LIVE SIGNALS CROSSOVER
+══════════════════════════════════════════════ -->
+<section class="hz-live-section">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">CONNECTED TO LIVE DATA</span>
+      <h2 class="hz-section-title hz-section-title--dark">The signals. The theory. Live.</h2>
+      <p class="hz-section-body hz-section-body--dark">The same instruments I track in my macro dashboard. Here's what they're showing now — and what the research says about what they're actually measuring.</p>
+    </div>
+
+    <div class="hz-live-grid">
+
+      <!-- Panel 1: Initial Jobless Claims -->
+      <div class="hz-live-panel" id="panel-jobless">
+        <span class="hz-live-panel-name">Initial Jobless Claims</span>
+        <div class="hz-skeleton hz-skeleton--val"></div>
+        <div class="hz-skeleton hz-skeleton--text"></div>
+        <div class="hz-skeleton hz-skeleton--text2"></div>
+      </div>
+
+      <!-- Panel 2: 10Y Real Yield -->
+      <div class="hz-live-panel" id="panel-realyield">
+        <span class="hz-live-panel-name">10Y Real Yield (TIPS)</span>
+        <div class="hz-skeleton hz-skeleton--val"></div>
+        <div class="hz-skeleton hz-skeleton--text"></div>
+        <div class="hz-skeleton hz-skeleton--text2"></div>
+      </div>
+
+      <!-- Panel 3: HY Credit Spread -->
+      <div class="hz-live-panel" id="panel-credit">
+        <span class="hz-live-panel-name">HY Credit Spread (OAS)</span>
+        <div class="hz-skeleton hz-skeleton--val"></div>
+        <div class="hz-skeleton hz-skeleton--text"></div>
+        <div class="hz-skeleton hz-skeleton--text2"></div>
+      </div>
+
+      <!-- Panel 4: Yield Curve -->
+      <div class="hz-live-panel" id="panel-yc">
+        <span class="hz-live-panel-name">Yield Curve 10Y–2Y</span>
+        <div class="hz-skeleton hz-skeleton--val"></div>
+        <div class="hz-skeleton hz-skeleton--text"></div>
+        <div class="hz-skeleton hz-skeleton--text2"></div>
+      </div>
+
+    </div>
+
+    <div class="hz-live-cta fade-up">
+      <a href="signals.html">Explore all 21 live signals →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 9 — CLOSING / META-THESIS
+══════════════════════════════════════════════ -->
+<section class="hz-closing">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">THE COMMON THREAD</span>
+      <h2 class="hz-section-title hz-section-title--dark" style="margin-bottom:24px;">Four technologies. One failure mode.</h2>
+      <p class="hz-closing-intro">Quantum computing, permanent storage, humanoid robots, and AI reflexivity are four separate structural shifts. The thesis is not about any of them individually. It is about the 10–15 year window in which the measurement infrastructure — the instruments that price these risks — will fail before the technologies fully deploy. That window is the trade.</p>
+    </div>
+
+    <div class="fade-up" style="overflow-x:auto;margin-bottom:40px;">
+      <table class="meta-summary-table">
+        <thead>
+          <tr>
+            <th>Instrument</th>
+            <th>Thesis</th>
+            <th>Failure Mode</th>
+            <th>Market Pricing</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jobless Claims / JOLTS</td>
+            <td>T03</td>
+            <td>Robot attrition files no claims</td>
+            <td>Zero adjustment</td>
+            <td><span class="hz-status hz-status--risk">AT RISK</span></td>
+          </tr>
+          <tr>
+            <td>PMI Employment Sub-index</td>
+            <td>T03</td>
+            <td>Automated facilities suppress sub-index permanently</td>
+            <td>Recession signal misread as structural</td>
+            <td><span class="hz-status hz-status--risk">AT RISK</span></td>
+          </tr>
+          <tr>
+            <td>Wage Growth</td>
+            <td>T03</td>
+            <td>Composition effect inverts signal</td>
+            <td>Treated as tightness indicator</td>
+            <td><span class="hz-status hz-status--blind">BLIND</span></td>
+          </tr>
+          <tr>
+            <td>Phillips Curve</td>
+            <td>T03</td>
+            <td>Option value of automation flattens slope</td>
+            <td>Still embedded in Fed models</td>
+            <td><span class="hz-status hz-status--compromised">COMPROMISED</span></td>
+          </tr>
+          <tr>
+            <td>Bond Settlement Risk</td>
+            <td>T01</td>
+            <td>RSA/ECC vulnerable to Shor's algorithm</td>
+            <td>0 bps quantum premium</td>
+            <td><span class="hz-status hz-status--unpriced">UNPRICED</span></td>
+          </tr>
+          <tr>
+            <td>Utility Demand Forecasts</td>
+            <td>T02</td>
+            <td>Cold storage decouples from grid</td>
+            <td>+165% demand priced in</td>
+            <td><span class="hz-status hz-status--overstated">OVERSTATED</span></td>
+          </tr>
+          <tr>
+            <td>CPI / Core PCE</td>
+            <td>T04</td>
+            <td>AI deflation + quality gains uncaptured</td>
+            <td>Inflation target treated as binding</td>
+            <td><span class="hz-status hz-status--risk">AT RISK</span></td>
+          </tr>
+          <tr>
+            <td>GDP / TFP</td>
+            <td>T04</td>
+            <td>$4.7T intangible investment invisible</td>
+            <td>Official statistics taken at face value</td>
+            <td><span class="hz-status hz-status--understated">UNDERSTATED</span></td>
+          </tr>
+          <tr>
+            <td>EBITDA Multiples</td>
+            <td>T03</td>
+            <td>Robot capex distorts comparables</td>
+            <td>Multiples applied to inflated EBITDA</td>
+            <td><span class="hz-status hz-status--distorted">DISTORTED</span></td>
+          </tr>
+          <tr>
+            <td>Price Discovery</td>
+            <td>T04</td>
+            <td>AI homogeneity breaks independence condition</td>
+            <td>Market function assumed intact</td>
+            <td><span class="hz-status hz-status--degrading">DEGRADING</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <blockquote class="closing-pullquote fade-up">
+      "The risk is not prediction error. It's measurement error. And the window to see it clearly is closing."
+    </blockquote>
+
+    <div class="hz-cta-row fade-up">
+      <a href="signals.html" class="hz-btn hz-btn--primary">Track the live signals →</a>
+      <a href="index.html#contact" class="hz-btn hz-btn--ghost">Get in touch →</a>
+    </div>
+
+    <span class="hz-timestamp fade-up">THESIS LOCKED — MARCH 2026 · MANDAVKAR.UK</span>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="hz-footer">
+  <div class="hz-footer-inner">
+    <span class="hz-footer-copy">© <span id="footer-year">2026</span> Dhruv Mandavkar · mandavkar.uk</span>
+    <ul class="hz-footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="signals.html">Live Signals</a></li>
+      <li><a href="mailto:main@mandavkar.uk">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<!-- app.js uses an IIFE (immediately-invoked function expression): (function(){ 'use strict'; ... })()
+     All its functions (updateNav, openMenu, closeMenu, etc.) are scoped inside that closure.
+     No globals (fetchFRED, el, last, etc.) are exposed. Zero conflict with the inline script below. -->
+<script src="app.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── Config ── */
+  var API_KEY  = (typeof window.FRED_API_KEY !== 'undefined') ? window.FRED_API_KEY : '';
+  var FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations';
+  var GRID = 'rgba(255,255,255,0.05)';
+  var DIM  = 'rgba(255,255,255,0.3)';
+  var GRIDK = 'rgba(47,72,88,0.08)';   /* light section grid */
+  var DIMK  = 'rgba(47,72,88,0.45)';   /* light section labels */
+
+  /* ── Helpers ── */
+  function el(id) { return document.getElementById(id); }
+  function last(arr) { return arr[arr.length - 1]; }
+
+  /* ── FRED Fetch (with retry) ── */
+  async function fetchFRED(seriesId, units, startDate) {
+    if (!API_KEY) throw new Error('No FRED API key');
+    var params = new URLSearchParams({
+      series_id: seriesId,
+      api_key: API_KEY,
+      file_type: 'json',
+      observation_start: startDate || '2019-01-01',
+      sort_order: 'asc'
+    });
+    if (units) params.set('units', units);
+    var proxied = 'https://corsproxy.io/?' + encodeURIComponent(FRED_BASE + '?' + params.toString());
+    var parse = function (json) {
+      if (json.error_message) throw new Error(json.error_message);
+      return json.observations
+        .filter(function (o) { return o.value !== '.' && o.value !== ''; })
+        .map(function (o) { return { date: o.date, value: parseFloat(o.value) }; });
+    };
+    var res = await fetch(proxied);
+    if (res.ok) return parse(await res.json());
+    await new Promise(function (r) { setTimeout(r, 700); });
+    var res2 = await fetch(proxied);
+    if (!res2.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res2.status);
+    return parse(await res2.json());
+  }
+
+  /* ── Chart base options ── */
+  function baseOptions(yLabel, yFmt, darkMode) {
+    var g = darkMode ? GRID : GRIDK;
+    var d = darkMode ? DIM  : DIMK;
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: true, labels: { color: d, font: { family: "'JetBrains Mono',monospace", size: 10 }, boxWidth: 12, padding: 14 } },
+        tooltip: {
+          backgroundColor: '#141414',
+          titleColor: 'rgba(255,255,255,0.6)',
+          bodyColor: 'rgba(255,255,255,0.9)',
+          padding: 10,
+          displayColors: false,
+          titleFont: { family: "'JetBrains Mono',monospace", size: 10 },
+          bodyFont:  { family: "'JetBrains Mono',monospace", size: 12, weight: '600' }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: g, drawTicks: false },
+          border: { display: false },
+          ticks: { maxRotation: 0, font: { family: "'JetBrains Mono',monospace", size: 10 }, color: d }
+        },
+        y: {
+          grid: { color: g, drawTicks: false },
+          border: { display: false },
+          ticks: { font: { family: "'JetBrains Mono',monospace", size: 10 }, color: d, callback: yFmt || function(v){ return v; } },
+          title: yLabel ? { display: true, text: yLabel, color: d, font: { size: 10 } } : undefined
+        }
+      }
+    };
+  }
+
+  /* ── Chart factory ── */
+  function makeChart(canvasId, config) {
+    var canvas = el(canvasId);
+    if (!canvas) return;
+    new Chart(canvas, config);
+  }
+
+  /* ══════════════════════════════
+     THESIS CHARTS (illustrative data)
+  ══════════════════════════════ */
+
+  /* Chart T02: Utility Demand Wedge */
+  function initUtilityChart() {
+    var years     = ['2023','2024','2025','2026','2027','2028','2029','2030','2031','2032','2033'];
+    var projected = [100, 109, 120, 131, 145, 163, 185, 207, 230, 248, 265];
+    var adjusted  = [100, 108, 118, 128, 138, 150, 165, 178, 195, 207, 218];
+    var opts = baseOptions('Indexed (2023 = 100)', null, false);
+    opts.plugins.legend.display = true;
+    opts.plugins.annotation = {
+      annotations: {
+        deployWindow: {
+          type: 'box',
+          xMin: '2027', xMax: '2030',
+          backgroundColor: 'rgba(180,83,9,0.05)',
+          borderColor: 'rgba(180,83,9,0.2)',
+          borderWidth: 1,
+          label: {
+            display: true,
+            content: 'Deployment Window',
+            position: { x: 'center', y: 'start' },
+            color: 'rgba(180,83,9,0.6)',
+            font: { family: "'JetBrains Mono',monospace", size: 8 },
+            padding: 4
+          }
+        }
+      }
+    };
+    makeChart('chart-utility', {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Projected (consensus +165%)',
+            data: projected,
+            borderColor: '#60A5FA',
+            borderWidth: 2,
+            borderDash: [6, 4],
+            fill: { target: '+1', above: 'rgba(180,83,9,0.07)', below: 'transparent' },
+            pointRadius: 0,
+            tension: 0.3
+          },
+          {
+            label: 'Adjusted (cold storage decoupled)',
+            data: adjusted,
+            borderColor: '#2DD4BF',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 0,
+            tension: 0.3
+          }
+        ]
+      },
+      options: opts
+    });
+  }
+
+  /* Chart T03a: The Wage Crossing */
+  function initWageChart() {
+    var years = ['2015','2017','2019','2021','2023','2024','2025','2027','2030'];
+    var human = [16, 17.5, 19, 20.5, 23, 23.5, 25, 27, 29];
+    var robot = [45, 40,   34, 28,   18, 16,   8,  5,  3.5];
+    var opts = baseOptions('$/hr (fully-loaded)', function(v){ return '$' + v; }, true);
+    opts.plugins.annotation = {
+      annotations: {
+        parityLine: {
+          type: 'line',
+          scaleID: 'x',
+          value: '2024',
+          borderColor: 'rgba(180,83,9,0.7)',
+          borderWidth: 1,
+          borderDash: [4, 4],
+          label: {
+            display: true,
+            content: 'Cost parity crossed  (Unitree G1: $16k)',
+            position: 'start',
+            backgroundColor: 'rgba(180,83,9,0.85)',
+            color: 'white',
+            font: { family: "'JetBrains Mono',monospace", size: 8 },
+            padding: { x: 6, y: 3 }
+          }
+        }
+      }
+    };
+    makeChart('chart-wages', {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Human (fully-loaded $/hr)',
+            data: human,
+            borderColor: '#EF4444',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 3,
+            tension: 0.3
+          },
+          {
+            label: 'Robot equivalent ($/hr)',
+            data: robot,
+            borderColor: '#2DD4BF',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 3,
+            tension: 0.3
+          }
+        ]
+      },
+      options: opts
+    });
+  }
+
+  /* Chart T03b: Phillips Curve Flattening */
+  function initPhillipsChart() {
+    var unemployment = ['1%','2%','3%','4%','5%','6%','7%'];
+    var historical   = [9.5, 7.0, 5.0, 3.8, 3.0, 2.5, 2.1];
+    var postAuto     = [3.0, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1];
+    var opts = baseOptions('Inflation (%)', function(v){ return v + '%'; }, true);
+    opts.plugins.legend.display = true;
+    makeChart('chart-phillips', {
+      type: 'line',
+      data: {
+        labels: unemployment,
+        datasets: [
+          {
+            label: 'Pre-automation (1960–2010)',
+            data: historical,
+            borderColor: 'rgba(239,68,68,0.7)',
+            borderWidth: 2,
+            borderDash: [5, 4],
+            fill: false,
+            pointRadius: 3,
+            tension: 0
+          },
+          {
+            label: 'Post-automation (2020+)',
+            data: postAuto,
+            borderColor: '#2DD4BF',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 3,
+            tension: 0
+          }
+        ]
+      },
+      options: opts
+    });
+  }
+
+  /* Chart T04: Algorithmic Volume — line chart with filled areas (FIX 6: was bar) */
+  function initAlgoChart() {
+    var years = ['2000','2003','2006','2009','2012','2015','2018','2021','2025'];
+    var algo  = [5, 10, 25, 50, 60, 62, 65, 68, 72];
+    var human = [95, 90, 75, 50, 40, 38, 35, 32, 28];
+    var opts = baseOptions('% of US Equity Volume', function(v){ return v + '%'; }, false);
+    opts.plugins.legend.display = true;
+    opts.plugins.annotation = {
+      annotations: {
+        threshold: {
+          type: 'line',
+          scaleID: 'y',
+          value: 75,
+          borderColor: 'rgba(180,83,9,0.5)',
+          borderWidth: 1,
+          borderDash: [4, 4],
+          label: {
+            display: true,
+            content: '75% threshold',
+            position: 'end',
+            backgroundColor: 'rgba(180,83,9,0.8)',
+            color: 'white',
+            font: { family: "'JetBrains Mono',monospace", size: 8 },
+            padding: { x: 5, y: 3 }
+          }
+        }
+      }
+    };
+    makeChart('chart-algo', {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Algorithmic + HFT',
+            data: algo,
+            fill: 'origin',
+            backgroundColor: 'rgba(47,72,88,0.55)',
+            borderColor: 'rgba(47,72,88,0.9)',
+            borderWidth: 2,
+            tension: 0.4,
+            pointRadius: 3,
+            pointBackgroundColor: 'rgba(47,72,88,0.9)'
+          },
+          {
+            label: 'Human Traders',
+            data: human,
+            fill: 'origin',
+            backgroundColor: 'rgba(255,255,255,0.06)',
+            borderColor: 'rgba(255,255,255,0.22)',
+            borderWidth: 1.5,
+            tension: 0.4,
+            pointRadius: 2,
+            pointBackgroundColor: 'rgba(255,255,255,0.22)'
+          }
+        ]
+      },
+      options: opts
+    });
+  }
+
+  /* ══════════════════════════════
+     LIVE FRED PANELS (Section 8)
+  ══════════════════════════════ */
+
+  var livePanels = [
+    {
+      id: 'panel-jobless',
+      series: 'ICSA',
+      name: 'Initial Jobless Claims',
+      fmt: function(v) { return (v / 1000).toFixed(0) + 'K'; },
+      unitStr: '/ week (ICSA)',
+      statusClass: 'hz-live-status--risk',
+      statusLabel: 'AT RISK — THESIS 03',
+      insight: 'Robot-enabled attrition displacement files no claims. This reading may be underestimating labour market loosening. The signal is structurally suppressed.',
+      deepLink: 'signals.html#chart-jobless',
+      startDate: '2022-01-01'
+    },
+    {
+      id: 'panel-realyield',
+      series: 'DFII10',
+      name: '10Y Real Yield (TIPS)',
+      fmt: function(v) { return v.toFixed(2) + '%'; },
+      unitStr: '% (DFII10)',
+      statusClass: 'hz-live-status--risk',
+      statusLabel: 'AT RISK — THESIS 04',
+      insight: 'McKinsey projects AI deflation creates a structural 0.5–0.7pp drag on CPI annually. The Fed\'s 2% target may be permanently mildly restrictive if that drag is real.',
+      deepLink: 'signals.html#chart-realyield',
+      startDate: '2022-01-01'
+    },
+    {
+      id: 'panel-credit',
+      series: 'BAMLH0A0HYM2',
+      name: 'HY Credit Spread (OAS)',
+      fmt: function(v) { return (v * 100).toFixed(0) + ' bps'; }, /* × 100 confirmed correct — signals.html uses Math.round(lhy*100) for same series */
+      unitStr: 'OAS',
+      statusClass: 'hz-live-status--unpriced',
+      statusLabel: 'UNPRICED — THESIS 01',
+      insight: 'Current OAS includes zero quantum risk premium. Harvest-now-decrypt-later campaigns are already running. The risk is not zero — it is just not yet in the data.',
+      deepLink: 'signals.html#chart-credit',
+      startDate: '2022-01-01'
+    },
+    {
+      id: 'panel-yc',
+      series: 'T10Y2Y',
+      name: 'Yield Curve 10Y–2Y',
+      fmt: function(v) { return v.toFixed(2) + '%'; },
+      unitStr: '%',
+      statusClass: 'hz-live-status--risk',
+      statusLabel: 'AT RISK — THESIS 03',
+      insight: 'Robot-driven Phillips Curve flattening changes what yield curve shapes mean. The unemployment → inflation transmission is weakening. The curve\'s predictive power is degrading.',
+      deepLink: 'signals.html#chart-yc',
+      startDate: '2022-01-01'
+    }
+  ];
+
+  async function loadPanel(p) {
+    var container = el(p.id);
+    if (!container) return;
+    try {
+      var data = await fetchFRED(p.series, null, p.startDate);
+      if (!data || !data.length) throw new Error('empty data');
+      var lastObs = last(data);
+      var v = lastObs.value;
+      var displayed = p.fmt(v);
+
+      /* Staleness badge — only for panel-credit (BAMLH0A0HYM2 can lag >3 days) */
+      var staleBadge = '';
+      if (p.id === 'panel-credit' && lastObs.date) {
+        var obsDate = new Date(lastObs.date);
+        if (!isNaN(obsDate.getTime())) {
+          var ageDays = (new Date() - obsDate) / 86400000;
+          if (ageDays > 3) {
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var label = obsDate.getDate() + ' ' + months[obsDate.getMonth()] + ' ' + obsDate.getFullYear();
+            staleBadge = '<span class="hz-stale-badge">DATA AS OF ' + label + '</span>';
+          }
+        }
+      }
+
+      container.innerHTML =
+        '<span class="hz-live-panel-name">' + p.name + '</span>' +
+        '<div><span class="hz-live-val">' + displayed + '</span>' +
+        '<span class="hz-live-unit">' + p.unitStr + '</span></div>' +
+        staleBadge +
+        '<span class="hz-live-status ' + p.statusClass + '">' + p.statusLabel + '</span>' +
+        '<p class="hz-live-insight">' + p.insight + '</p>' +
+        '<a href="' + p.deepLink + '" class="hz-live-link">View in dashboard →</a>';
+    } catch (e) {
+      container.innerHTML =
+        '<span class="hz-live-panel-name">' + p.name + '</span>' +
+        '<div class="hz-live-error"><span style="font-size:20px;opacity:0.35">&#9888;</span><span>Data unavailable</span></div>' +
+        '<p class="hz-live-insight" style="opacity:0.5;">' + p.insight + '</p>' +
+        '<a href="' + p.deepLink + '" class="hz-live-link">View in dashboard →</a>';
+    }
+  }
+
+  async function loadAllLivePanels() {
+    for (var i = 0; i < livePanels.length; i++) {
+      loadPanel(livePanels[i]);
+    }
+  }
+
+  /* ══════════════════════════════
+     MATRIX + NAV INTERACTIVITY
+  ══════════════════════════════ */
+  function initMatrixInteractivity() {
+    document.querySelectorAll('.hz-thesis-tag[data-target]').forEach(function (tag) {
+      tag.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var target = document.getElementById(this.getAttribute('data-target'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  /* ── Reading Progress Bar ── */
+  window.addEventListener('scroll', function () {
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if (!total) return;
+    var bar = el('reading-progress');
+    if (bar) bar.style.width = Math.min(100, window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  /* ══════════════════════════════
+     INIT
+  ══════════════════════════════ */
+  document.addEventListener('DOMContentLoaded', function () {
+    initUtilityChart();
+    initWageChart();
+    initPhillipsChart();
+    initAlgoChart();
+    loadAllLivePanels();
+    initMatrixInteractivity();
+  });
+
+})();
+</script>
+<script>var y=document.getElementById('footer-year');if(y)y.textContent=new Date().getFullYear();</script>
+
+</body>
+</html>

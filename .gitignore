@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Large docs (PDFs for internal reference only)
+docs/
+
+# Node
+node_modules/
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Claude Code
+.claude/
