@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel One — Equity Research | Dhruv Mandavkar</title>
+  <meta name="description" content="Institutional-grade 6-tab equity valuation model for Angel One Ltd (NSE: ANGELONE). Full 3-statement model, DCF, comparables, scenario analysis, sensitivity tables, and executive dashboard." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Angel One — Institutional Equity Research | Dhruv Mandavkar" />
+  <meta property="og:description" content="A full-stack equity valuation of India's fastest-growing discount broker. FCFF DCF, peer comparables, scenario analysis across FY21–FY29E." />
+  <meta property="og:url" content="https://mandavkar.uk/angel-one.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>d</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="angel-one.css?v=1" />
+</head>
+<body>
+
+  <!-- Reading progress -->
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">dhruv</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#currently">Status</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#blog">Writing</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#currently">Status</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#blog">Writing</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-hero">
+    <div class="ao-hero-inner">
+
+      <a href="equity-research.html" class="ao-back">← Back to Research</a>
+
+      <span class="ao-eyebrow">Equity Research · Valuation Modelling · India Broking</span>
+
+      <h1>Angel One — <em>India's</em><br>Discount Broker Thesis</h1>
+
+      <div class="ao-ticker">
+        <span class="ao-ticker-badge">NSE: ANGELONE</span>
+        <span class="ao-ticker-badge">BSE: 543235</span>
+        <span class="ao-ticker-badge">₹232.60</span>
+      </div>
+
+      <p class="ao-hero-sub">
+        A full institutional-grade equity model covering FY21–FY29E. The thesis centres on Angel One's structural position in India's rising retail participation cycle — and asks whether the market is pricing in enough of the SEBI headwind.
+      </p>
+
+      <!-- Key stats row -->
+      <div class="ao-stats-row">
+        <div class="ao-stat">
+          <span class="ao-stat-label">FY24 Revenue</span>
+          <span class="ao-stat-value">₹42.8B</span>
+          <span class="ao-stat-sub">+41.7% YoY</span>
+        </div>
+        <div class="ao-stat">
+          <span class="ao-stat-label">FY24 EBITDA</span>
+          <span class="ao-stat-value teal">₹17.0B</span>
+          <span class="ao-stat-sub">39.7% margin</span>
+        </div>
+        <div class="ao-stat">
+          <span class="ao-stat-label">FY24 PAT</span>
+          <span class="ao-stat-value positive">₹11.3B</span>
+          <span class="ao-stat-sub">26.3% net margin</span>
+        </div>
+        <div class="ao-stat">
+          <span class="ao-stat-label">FY25 PAT (Actual)</span>
+          <span class="ao-stat-value">₹11.7B</span>
+          <span class="ao-stat-sub">+4.1% YoY · margin compressed</span>
+        </div>
+        <div class="ao-stat">
+          <span class="ao-stat-label">Market Cap</span>
+          <span class="ao-stat-value">₹210B</span>
+          <span class="ao-stat-sub">Post-split · Mar 2026</span>
+        </div>
+        <div class="ao-stat">
+          <span class="ao-stat-label">Model Coverage</span>
+          <span class="ao-stat-value teal">6 Tabs</span>
+          <span class="ao-stat-sub">FY21A – FY29E</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       INVESTMENT THESIS
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section" style="background: #F7F6F3;">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Investment Thesis</span>
+      <h2>Four Structural Tailwinds,<br>One Cyclical Headwind</h2>
+      <p class="ao-lead">
+        Angel One is the second-largest listed discount broker in India by active clients. It sits at the intersection of three irreversible long-term trends: India's demographic dividend, the formalisation of household savings, and the shift from physical to digital financial services. The near-term overhang is regulatory — but the structural case remains intact.
+      </p>
+
+      <div class="ao-thesis-grid">
+
+        <div class="ao-thesis-card">
+          <span class="ao-card-icon">📈</span>
+          <h4>Retail Participation Inflection</h4>
+          <p>India's demat account base grew from 40M in FY21 to over 170M by FY25. Penetration as a share of the adult population remains below 15% — versus 55%+ in the US. Angel One's 7.3M active client base in FY24 represents a fraction of the addressable market.</p>
+        </div>
+
+        <div class="ao-thesis-card accent">
+          <span class="ao-card-icon">⚙️</span>
+          <h4>Technology-First Operating Leverage</h4>
+          <p>Angel One runs a fully digital onboarding, execution, and servicing stack. With near-zero marginal cost per client, incremental revenue falls to the bottom line at >40% conversion. Its cost-to-income ratio has structurally compressed from 71% in FY21 to 61% in FY24.</p>
+        </div>
+
+        <div class="ao-thesis-card">
+          <span class="ao-card-icon">💳</span>
+          <h4>MTF as a Sticky Revenue Engine</h4>
+          <p>Margin Trading Facility (MTF) book grew from ₹11.7B in FY21 to ₹25.4B in FY24, generating ₹7.9B in interest income — a 18.4% share of total revenue. Unlike brokerage, MTF income is recurring, credit-spread-driven, and highly margin-accretive.</p>
+        </div>
+
+        <div class="ao-thesis-card">
+          <span class="ao-card-icon">🌐</span>
+          <h4>Platform Diversification Beyond Brokerage</h4>
+          <p>Angel One has systematically built distribution revenue (mutual funds, insurance) and DP income. These non-brokerage streams now represent ~30% of revenue, reducing dependence on F&O volumes and providing a floor in low-volatility market environments.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       BUSINESS MODEL — REVENUE STREAMS
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section ao-section-dark">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Business Model</span>
+      <h2>Four Revenue Streams,<br>One Integrated Platform</h2>
+      <p class="ao-lead">
+        Unlike traditional full-service brokers, Angel One's model is engineered for scale. All four revenue streams share the same client acquisition funnel, the same technology stack, and the same digital touchpoint — the SuperApp.
+      </p>
+
+      <div class="ao-rev-strips">
+
+        <div class="ao-rev-strip">
+          <span class="ao-rev-strip-name">Brokerage Revenue</span>
+          <span class="ao-rev-strip-share">68%</span>
+          <p class="ao-rev-strip-desc">F&O flat-fee commission + equity delivery charges. Driven by order volume and F&O participation. Most sensitive to SEBI regulatory changes on STT and commission structure.</p>
+        </div>
+
+        <div class="ao-rev-strip">
+          <span class="ao-rev-strip-name">MTF Interest Income</span>
+          <span class="ao-rev-strip-share">18%</span>
+          <p class="ao-rev-strip-desc">Interest on Margin Trading Facility. Priced at 18–24% annualised. Sticky, recurring, and grows with both book size and rate environment. ₹7.9B in FY24.</p>
+        </div>
+
+        <div class="ao-rev-strip">
+          <span class="ao-rev-strip-name">DP & Ancillary</span>
+          <span class="ao-rev-strip-share">12%</span>
+          <p class="ao-rev-strip-desc">Depository Participant charges, account maintenance, pledge fees, and other ancillary income. Low-volatility, subscription-like revenue base that scales with the client book.</p>
+        </div>
+
+        <div class="ao-rev-strip">
+          <span class="ao-rev-strip-name">Distribution</span>
+          <span class="ao-rev-strip-share">2%</span>
+          <p class="ao-rev-strip-desc">MF and insurance distribution fees. Currently subscale but strategically important. Positions Angel One as a full-service wealth platform — the highest-LTV revenue category long-term.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       FINANCIAL PERFORMANCE
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section ao-section-sand">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Historical Financials</span>
+      <h2>Five-Year Track Record</h2>
+      <p class="ao-lead">
+        All figures from audited consolidated annual reports. FY21–FY24 sourced from published PDFs filed with BSE/NSE. FY25 preliminary figures confirmed from the 29th Annual Report (2024–25).
+      </p>
+
+      <div class="ao-table-wrap">
+        <table class="ao-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Metric (₹ Millions)</th>
+              <th>FY21A</th>
+              <th>FY22A</th>
+              <th>FY23A</th>
+              <th>FY24A</th>
+              <th>FY25A</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row-separator">
+              <td colspan="6"><span>Income Statement</span></td>
+            </tr>
+
+            <tr>
+              <td>Total Revenue</td>
+              <td>12,897</td>
+              <td>23,051</td>
+              <td>30,211</td>
+              <td>42,798</td>
+              <td class="row-fy25-td" style="color:#0891B2;font-weight:600;">52,477</td>
+            </tr>
+            <tr>
+              <td style="padding-left:32px;color:#5C5856;font-weight:400;">  YoY Growth</td>
+              <td>—</td>
+              <td class="positive-pct">+78.7%</td>
+              <td class="positive-pct">+31.1%</td>
+              <td class="positive-pct">+41.7%</td>
+              <td class="positive-pct">+22.6%</td>
+            </tr>
+            <tr>
+              <td>MTF Interest Income</td>
+              <td>1,692</td>
+              <td>3,328</td>
+              <td>5,195</td>
+              <td>7,859</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Employee Costs</td>
+              <td>1,644</td>
+              <td>2,809</td>
+              <td>3,979</td>
+              <td>5,585</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Finance Costs</td>
+              <td>596</td>
+              <td>721</td>
+              <td>895</td>
+              <td>1,359</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>D&A</td>
+              <td>174</td>
+              <td>188</td>
+              <td>303</td>
+              <td>493</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>PBT</td>
+              <td>3,982</td>
+              <td>8,367</td>
+              <td>11,918</td>
+              <td>15,137</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Tax</td>
+              <td>1,078</td>
+              <td>2,117</td>
+              <td>3,016</td>
+              <td>3,881</td>
+              <td>—</td>
+            </tr>
+
+            <tr class="row-bold">
+              <td>PAT</td>
+              <td>2,904</td>
+              <td>6,248</td>
+              <td>8,900</td>
+              <td>11,255</td>
+              <td style="color:#0891B2;">11,721</td>
+            </tr>
+            <tr>
+              <td style="padding-left:32px;color:#5C5856;font-weight:400;">  PAT Margin</td>
+              <td>22.5%</td>
+              <td>27.1%</td>
+              <td>29.5%</td>
+              <td>26.3%</td>
+              <td style="color:#DC2626;">22.3%</td>
+            </tr>
+
+            <tr class="row-bold">
+              <td>EBITDA</td>
+              <td>4,752</td>
+              <td>9,275</td>
+              <td>13,116</td>
+              <td>16,990</td>
+              <td style="color:#0891B2;">16,954</td>
+            </tr>
+            <tr>
+              <td style="padding-left:32px;color:#5C5856;font-weight:400;">  EBITDA Margin</td>
+              <td>36.8%</td>
+              <td>40.2%</td>
+              <td>43.4%</td>
+              <td>39.7%</td>
+              <td style="color:#DC2626;font-weight:600;">32.3%</td>
+            </tr>
+
+            <tr class="row-separator">
+              <td colspan="6"><span>Balance Sheet</span></td>
+            </tr>
+
+            <tr>
+              <td>Total Assets</td>
+              <td>47,822</td>
+              <td>72,199</td>
+              <td>74,777</td>
+              <td>132,537</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Borrowings (MTF)</td>
+              <td>11,714</td>
+              <td>12,577</td>
+              <td>7,872</td>
+              <td>25,411</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Total Equity</td>
+              <td>11,021</td>
+              <td>15,844</td>
+              <td>21,616</td>
+              <td>30,385</td>
+              <td>—</td>
+            </tr>
+
+            <tr class="row-separator">
+              <td colspan="6"><span>Per Share (Post-Split Adjusted, ₹)</span></td>
+            </tr>
+
+            <tr>
+              <td>Diluted Shares (M)</td>
+              <td>775.1</td>
+              <td>839.3</td>
+              <td>847.0</td>
+              <td>854.1</td>
+              <td>908.5</td>
+            </tr>
+            <tr class="row-bold">
+              <td>Diluted EPS</td>
+              <td>3.75</td>
+              <td>7.44</td>
+              <td>10.51</td>
+              <td>13.18</td>
+              <td style="color:#0891B2;">12.90</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ao-table-note">† EBITDA = PBT + Finance Costs + D&A. Excludes impairment for clean operating view. All figures audited consolidated (Ind AS). FY25 PAT and Revenue from 29th Annual Report. Per-share figures adjusted for 1:10 stock split effective Feb 26, 2026.</p>
+
+      <!-- SEBI callout -->
+      <div class="ao-callout">
+        <span class="ao-callout-label">Regulatory Headwind · Key Risk</span>
+        <h4>SEBI F&O Structural Changes — The Margin Compression Event</h4>
+        <p>
+          In August 2024, SEBI issued a circular restructuring the F&O fee framework — restricting volume-linked discounts between exchanges and brokers, reducing lot sizes, and tightening margin requirements for retail participants. This directly compressed Angel One's brokerage yield per order. The impact is visible in FY25: EBITDA margin fell 740 basis points from 39.7% to 32.3%, despite revenue growing 22.6%. PAT growth slowed to 4.1% from 26.5% in FY24. The model's base case assumes a gradual margin recovery to 38% by FY29E as F&O volumes re-normalise and distribution revenue scales.
+        </p>
+      </div>
+
+      <div class="ao-insight">
+        <span class="ao-insight-label">Analyst Observation</span>
+        <h4>PAT Nearly Flat Despite 23% Revenue Growth — the Operating Leverage Cut Both Ways</h4>
+        <p>
+          FY25 demonstrates a structural lesson: in a zero-marginal-cost digital business, regulatory yield compression hits EBITDA directly with no natural offset. Angel One could not pass through the fee reduction to clients (who actively benefited from lower charges). The FY25 PAT flatness (₹11,255M → ₹11,721M) despite double-digit revenue growth is the single most important data point in this model — it sets the base for the recovery thesis in FY26–FY29E.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       MODEL ARCHITECTURE
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section ao-section-dark">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Model Architecture</span>
+      <h2>Six-Tab Institutional<br>Valuation Framework</h2>
+      <p class="ao-lead">
+        The model is built to the same standard as a sell-side initiating coverage. Every forecast is formula-driven from a central assumptions sheet — no hardcoded cells in the output. Historical data sourced from five audited annual reports (FY21–FY25).
+      </p>
+
+      <div class="ao-model-grid">
+
+        <div class="ao-model-tab featured">
+          <span class="ao-tab-number">TAB 01</span>
+          <h4>3-Statement Model</h4>
+          <p>Integrated Income Statement, Balance Sheet, and Cash Flow. FY21–FY24 actuals from audited PDFs. FY25E–FY29E driven by top-down assumptions on revenue growth, EBITDA margin recovery, CapEx, and working capital. 82 rows across three statements.</p>
+        </div>
+
+        <div class="ao-model-tab featured">
+          <span class="ao-tab-number">TAB 02</span>
+          <h4>DCF Valuation</h4>
+          <p>FCFF-based discounted cash flow. WACC computed from CAPM (beta 1.2, risk-free 7%, ERP 6%). Terminal value via Gordon Growth (5% TV growth). Equity bridge: EV − Net Debt ÷ diluted shares. Implied price vs market price of ₹232.60.</p>
+        </div>
+
+        <div class="ao-model-tab">
+          <span class="ao-tab-number">TAB 03</span>
+          <h4>Comparables</h4>
+          <p>EV/EBITDA, EV/Revenue, and P/E multiples for Angel One vs. peers: MOFSL, 5Paisa, IIFL Securities, Anand Rathi Wealth, Nuvama. Implied price range from blended peer multiples.</p>
+        </div>
+
+        <div class="ao-model-tab">
+          <span class="ao-tab-number">TAB 04</span>
+          <h4>Scenario Analysis</h4>
+          <p>Bull / Base / Bear cases. Bull: SEBI reversal + F&O boom, 41% EBITDA margins by FY28. Bear: sustained regulatory compression, margin floor at 30%, PAT CAGR of 6%. Base: gradual recovery as modelled.</p>
+        </div>
+
+        <div class="ao-model-tab">
+          <span class="ao-tab-number">TAB 05</span>
+          <h4>Sensitivity Tables</h4>
+          <p>Two-dimensional sensitivity: DCF price across WACC (10–14%) vs terminal growth rate (3–7%). Second table: price vs EBITDA margin in terminal year. 25 price outputs per table.</p>
+        </div>
+
+        <div class="ao-model-tab">
+          <span class="ao-tab-number">TAB 06</span>
+          <h4>Executive Dashboard</h4>
+          <p>One-page summary pulling live values from all tabs. Key output: implied price, upside/downside, EBITDA margin trajectory chart, revenue waterfall by stream, and a valuation bridge chart.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       RISK FACTORS
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section" style="background:#F7F6F3;">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Risk Factors</span>
+      <h2>Where the Thesis Can Break</h2>
+      <p class="ao-lead">
+        A thesis is only as credible as its risk disclosure. These are the six material risks that can derail the base case — each is explicitly stress-tested in the Bear scenario.
+      </p>
+
+      <ul class="ao-risk-list">
+
+        <li>
+          <span class="ao-risk-icon">⚖️</span>
+          <div class="ao-risk-content">
+            <strong>Regulatory Risk — SEBI F&O Restrictions</strong>
+            <span>Further tightening on F&O lot sizes, margin requirements, or commission structures could extend margin compression beyond FY25. The Bear scenario models a permanent 300bps reduction in brokerage yield.</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="ao-risk-icon">🏁</span>
+          <div class="ao-risk-content">
+            <strong>Competitive Intensity — Zerodha & Groww</strong>
+            <span>Zerodha (unlisted) and Groww (pre-IPO) hold #1 and #3 positions by active clients. Angel One's #2 rank is contested. Any price war on brokerage fees would directly compress margins further.</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="ao-risk-icon">📉</span>
+          <div class="ao-risk-content">
+            <strong>Market Volume Sensitivity</strong>
+            <span>~68% of revenue is transactional brokerage — directly linked to market volumes, volatility, and F&O activity. A sustained equity market downturn or low-volatility period would hit revenue sharply without a corresponding cost reduction.</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="ao-risk-icon">💰</span>
+          <div class="ao-risk-content">
+            <strong>MTF Credit Risk</strong>
+            <span>The ₹25.4B MTF book is Angel One's largest interest-bearing asset. A sharp market correction could trigger forced liquidations and impairment losses. The FY24 borrowings jump (₹7.9B → ₹25.4B) warrants ongoing monitoring.</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="ao-risk-icon">🔐</span>
+          <div class="ao-risk-content">
+            <strong>Technology & Cybersecurity Risk</strong>
+            <span>Digital-only platforms have zero tolerance for outages during high-volatility sessions. A major platform failure or data breach would cause client churn, regulatory action, and reputational damage that would be difficult to quantify.</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="ao-risk-icon">🏦</span>
+          <div class="ao-risk-content">
+            <strong>Regulatory Capital & Liquidity Requirements</strong>
+            <span>SEBI periodically revises net worth requirements for stock brokers. Higher capital mandates could limit dividend payouts or require equity dilution — both are negative for per-share value.</span>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       DOWNLOAD / MODEL ACCESS
+  ════════════════════════════════════════════════════ -->
+  <section class="ao-section ao-section-dark">
+    <div class="ao-container">
+
+      <span class="ao-section-label">Model Access</span>
+      <h2>Download the Full<br>Valuation Model</h2>
+      <p class="ao-lead">
+        The complete 6-tab Excel model is available below. It includes all historical data populated from audited annual reports, a live DCF with adjustable assumptions, scenario toggles, and the executive dashboard.
+      </p>
+
+      <div class="ao-download-bar">
+        <div class="ao-download-meta">
+          <strong>Angel One — Institutional Equity Model (FY21–FY29E)</strong>
+          <span>XLSX · 6 TABS · BUILT WITH PYTHON / OPENPYXL · LAST UPDATED MAR 2026</span>
+        </div>
+        <div class="ao-download-tags">
+          <span class="ao-download-tag">3-Statement Model</span>
+          <span class="ao-download-tag">DCF Valuation</span>
+          <span class="ao-download-tag">Comparables</span>
+          <span class="ao-download-tag">Scenario Analysis</span>
+          <span class="ao-download-tag">Sensitivity</span>
+          <span class="ao-download-tag">Dashboard</span>
+        </div>
+        <a href="projects/angel-one/angel-one-model.xlsx" class="ao-btn ao-btn-primary" download>
+          ↓ Download Model
+        </a>
+      </div>
+
+      <div class="ao-download-bar" style="margin-top:16px;">
+        <div class="ao-download-meta">
+          <strong>Annual Reports — FY21 to FY25 (Source Data)</strong>
+          <span>5 PDF ANNUAL REPORTS · BSE/NSE FILINGS · AUDITED CONSOLIDATED</span>
+        </div>
+        <div class="ao-download-tags">
+          <span class="ao-download-tag">FY2021</span>
+          <span class="ao-download-tag">FY2022</span>
+          <span class="ao-download-tag">FY2023</span>
+          <span class="ao-download-tag">FY2024</span>
+          <span class="ao-download-tag">FY2025</span>
+        </div>
+        <a href="projects/angel-one/Annual Report/" class="ao-btn ao-btn-ghost">
+          View Source PDFs →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <footer class="ao-footer">
+    <div class="ao-footer-inner">
+      <div class="ao-footer-left">
+        <span style="display:block;">Dhruv Mandavkar · Equity Research</span>
+        <span>This model is for educational and portfolio demonstration purposes only. Not investment advice.</span>
+      </div>
+      <nav class="ao-footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/dhruvmandavkar" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://mandavkar.uk">mandavkar.uk</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════════════ -->
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (scrolled / total * 100) + '%';
+    }, { passive: true });
+
+    // Nav scroll behaviour (reuse from main site pattern)
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.ao-thesis-card, .ao-rev-strip, .ao-model-tab, .ao-risk-list li').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      observer.observe(el);
+    });
+
+    // Intersection → visible
+    const vis = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          vis.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.ao-thesis-card, .ao-rev-strip, .ao-model-tab, .ao-risk-list li').forEach(el => {
+      vis.observe(el);
+    });
+  </script>
+
+</body>
+</html>
