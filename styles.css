@@ -569,28 +569,35 @@ h2.light { color: var(--dark-text); }
 /* Photo panel — left column */
 .hero-photo {
   position: relative;
-  overflow: visible; /* allow name to bleed over */
+  overflow: hidden;
   pointer-events: none;
   z-index: 1;
+  display: flex;
+  justify-content: flex-end;  /* push photo to right edge */
+  align-items: stretch;
+  /* Sky-blue gradient fills the left gap where photo doesn't reach */
+  background: linear-gradient(to right, #141414 0%, #3a5570 20%, #587fa0 55%, #6a8fb2 100%);
 }
 
 .hero-photo img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+  position: relative;
   height: 100%;
+  width: auto;        /* natural width from aspect ratio */
+  max-width: 100%;    /* never exceed container */
   object-fit: cover;
-  object-position: 70% 65%; /* face toward right of panel, looking at name */
+  object-position: 50% 20%; /* center face, show more sky above */
   display: block;
-  filter: blur(0.4px);
-  /* Fade right edge AND bottom into dark background */
+  filter: blur(0.3px);
+  /* Fade right edge, bottom, AND left edge into background */
   -webkit-mask-image:
     linear-gradient(to left,  transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 32%, black 48%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 22%, black 48%);
+    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 22%, black 48%),
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 10%, black 28%);
   -webkit-mask-composite: source-in;
   mask-image:
     linear-gradient(to left,  transparent 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 32%, black 48%),
-    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 22%, black 48%);
+    linear-gradient(to top,   transparent 0%, rgba(0,0,0,0.6) 22%, black 48%),
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 10%, black 28%);
   mask-composite: intersect;
 }
 
