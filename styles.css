@@ -355,7 +355,7 @@ h2.light { color: var(--dark-text); }
 ═══════════════════════════════════════════════════ */
 #hero {
   background: var(--dark);
-  padding-top: 100px;
+  padding-top: 72px;
   padding-bottom: 0;
   position: relative;
   overflow: hidden;
@@ -410,12 +410,12 @@ h2.light { color: var(--dark-text); }
 /* Name */
 .hero-name {
   font-family: 'Fraunces', serif;
-  font-size: clamp(68px, 10.5vw, 124px);
+  font-size: clamp(56px, 7.5vw, 96px);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -4px;
   color: rgba(255, 255, 255, 0.93);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   animation: heroFadeUp 0.8s 0.08s ease both;
   /* Overlap left into the photo sky */
   position: relative;
@@ -432,7 +432,7 @@ h2.light { color: var(--dark-text); }
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   animation: heroFadeUp 0.8s 0.16s ease both;
 }
 .hero-role {
@@ -452,7 +452,7 @@ h2.light { color: var(--dark-text); }
   font-size: 17px;
   color: rgba(255, 255, 255, 0.66);
   max-width: 440px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   line-height: 1.78;
   padding-left: 18px;
   border-left: 1.5px solid rgba(0, 95, 115, 0.55);
@@ -465,7 +465,7 @@ h2.light { color: var(--dark-text); }
   gap: 20px;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 56px;
+  margin-bottom: 32px;
   animation: heroFadeUp 0.8s 0.32s ease both;
 }
 
@@ -494,7 +494,7 @@ h2.light { color: var(--dark-text); }
   animation: heroFadeUp 0.8s 0.44s ease both;
   position: relative;
   z-index: 1;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 .stat {
@@ -632,35 +632,107 @@ h2.light { color: var(--dark-text); }
 }
 
 /* ═══════════════════════════════════════════════════
-   ABOUT
+   ABOUT — Design C: Numbered Chapters
 ═══════════════════════════════════════════════════ */
-.about-grid {
+
+/* Header: headline left, label right */
+.about-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+  gap: 40px;
+}
+.about-header h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin: 0;
+  max-width: 580px;
+}
+
+/* Two-column: chapters | credentials */
+.about-chapters-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px;
+  gap: 0 60px;
   align-items: start;
-  margin-top: 56px;
 }
 
-.about-text h2 { margin-bottom: 28px; }
-.about-text p  { font-size: 16px; margin-bottom: 18px; line-height: 1.8; }
-.about-text p:last-of-type { margin-bottom: 0; }
-
-/* Magazine two-column paragraph layout */
-.about-body {
-  column-count: 2;
-  column-gap: 28px;
-  column-rule: 1px solid rgba(0, 0, 0, 0.08);
-  margin-bottom: 28px;
+/* Left: chapters */
+.about-chapters {
+  border-right: 1px solid var(--border);
+  padding-right: 60px;
 }
-.about-body p {
-  break-inside: avoid;
-  margin-bottom: 16px;
-}
-.about-body p:last-child { margin-bottom: 0; }
 
+.about-chapter {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 0 20px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  align-items: start;
+}
+.about-chapter:last-child { border-bottom: none; }
+
+.about-ch-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: rgba(8, 145, 178, 0.14);
+  line-height: 1;
+  letter-spacing: -2px;
+  padding-top: 4px;
+  user-select: none;
+}
+
+.about-ch-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.about-ch-body p {
+  font-size: 14px;
+  line-height: 1.82;
+  color: var(--dim);
+  margin: 0;
+  text-align: left;
+}
+
+/* Right: credentials */
+.about-cred-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 28px;
+}
+
+.about-cred-col-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+/* Mobile */
 @media (max-width: 900px) {
-  .about-body { column-count: 1; }
+  .about-header { flex-direction: column; gap: 8px; }
+  .about-chapters-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-chapters { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+  .about-cred-col { padding-top: 0; }
+  .about-ch-num { font-size: 36px; }
 }
 
 /* Tags */
