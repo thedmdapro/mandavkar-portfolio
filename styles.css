@@ -646,6 +646,23 @@ h2.light { color: var(--dark-text); }
 .about-text p  { font-size: 16px; margin-bottom: 18px; line-height: 1.8; }
 .about-text p:last-of-type { margin-bottom: 0; }
 
+/* Magazine two-column paragraph layout */
+.about-body {
+  column-count: 2;
+  column-gap: 28px;
+  column-rule: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 28px;
+}
+.about-body p {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+.about-body p:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .about-body { column-count: 1; }
+}
+
 /* Tags */
 .about-tags {
   display: flex;
