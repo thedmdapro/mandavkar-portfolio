@@ -356,7 +356,7 @@ h2.light { color: var(--dark-text); }
 #hero {
   background: var(--dark);
   padding-top: 100px;
-  padding-bottom: 60px;
+  padding-bottom: 0;
   position: relative;
   overflow: hidden;
 }
@@ -494,6 +494,7 @@ h2.light { color: var(--dark-text); }
   animation: heroFadeUp 0.8s 0.44s ease both;
   position: relative;
   z-index: 1;
+  margin-bottom: 100px;
 }
 
 .stat {
