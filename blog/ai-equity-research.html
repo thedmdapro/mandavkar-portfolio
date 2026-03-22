@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What AI actually automates in equity research — and what it can't. — Dhruv Mandavkar</title>
+  <meta name="description" content="LLMs can parse filings and normalise data. They cannot construct variant perception, read physical economy signals, or know when the model is wrong. Where AI helps, where it fails, and what that means for analysts." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What AI actually automates in equity research — and what it can't." />
+  <meta property="og:description" content="LLMs can parse filings and normalise data. They cannot construct variant perception. Where AI helps, where it fails, and what it means for analysts." />
+  <meta property="og:url" content="https://mandavkar.uk/blog/ai-equity-research.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <link rel="canonical" href="https://mandavkar.uk/blog/ai-equity-research.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>DM</text></svg>" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress"></div>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">D<span>.</span>M</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../signals.html">Signals</a></li>
+        <li><a href="../index.html#positions">Positions</a></li>
+        <li><a href="../index.html#blog">Writing</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#10005;</button>
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../signals.html">Signals</a></li>
+      <li><a href="../index.html#positions">Positions</a></li>
+      <li><a href="../index.html#blog">Writing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <main class="blog-page">
+    <div class="blog-layout">
+      <a href="../index.html#blog" class="back-link">Back to portfolio</a>
+      <header class="blog-header">
+        <span class="blog-category">AI · Equity Research · Markets</span>
+        <h1 class="blog-title">What AI actually automates in equity research — and what it can't.</h1>
+        <p class="blog-subtitle">LLMs can parse 10-Ks, normalise financial data, and summarise earnings calls in seconds. They cannot construct variant perception, read the physical economy, or know when the consensus is wrong. That distinction matters more than most people think.</p>
+        <div class="blog-meta">
+          <span class="blog-meta-item">Dhruv Mandavkar</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">March 2026</span>
+          <span class="blog-meta-divider"></span>
+          <span class="blog-meta-item">7 min read</span>
+        </div>
+      </header>
+      <article class="blog-body">
+
+        <p>The conversation about AI in equity research is being had at two extremes and almost nowhere in between. On one side: "AI will replace analysts." On the other: "AI is just a tool, nothing changes." Both are wrong, and the error in each case is the same — a failure to distinguish between the parts of equity research that are information processing and the parts that are judgement under uncertainty.</p>
+
+        <p>I spend my working hours at an equity research desk and my evenings building macro signal tracking infrastructure. I use AI tools daily. Not as an experiment, but as a practical component of the research workflow. This gives me a view on where AI is genuinely useful, where it is dangerous, and where the structural limitations connect to a larger problem about how markets process information.</p>
+
+        <h2>What AI automates well</h2>
+
+        <p>The parts of equity research that AI handles effectively are, broadly, the parts that involve structured information extraction from known document formats. These tasks were already being semi-automated by quant teams and data vendors. AI makes them faster, cheaper, and more accessible to smaller shops.</p>
+
+        <p><strong>Filing extraction and normalisation.</strong> A 10-K annual report is a structured document. The financial statements follow GAAP or IFRS presentation standards. Revenue breakdowns, segment reporting, risk factors, and management commentary all appear in predictable locations. An LLM can extract these data points, normalise them across companies, and populate a comparable company table in minutes rather than the hours it takes manually. I have used this for pulling Indian mutual fund factsheets — extracting portfolio holdings, sector allocations, and performance attribution from 200+ PDFs. The accuracy is high because the task is pattern-matching on structured data.</p>
+
+        <p><strong>Earnings call summarisation.</strong> A typical quarterly earnings call transcript runs 8,000-12,000 words. The CFO speaks for 15 minutes and says roughly four things that matter. An LLM can extract those four things, flag any change in management tone relative to previous quarters, and highlight the questions that analysts asked but management deflected on. This is genuinely useful. It compresses a 45-minute read into a 3-minute skim without losing the signal.</p>
+
+        <p><strong>Data pipeline construction.</strong> Building a screening model across 200+ equity mutual funds requires pulling data from multiple sources — AMFI monthly inflow data, NAV histories from AMC websites, SEBI filings, third-party analytics. AI can write the Python scripts that scrape, clean, and structure this data. It does not eliminate the need for someone to design the screening criteria — but it dramatically reduces the time from "I know what I need" to "I have it in a usable format."</p>
+
+        <div class="blog-data-box">
+          <strong>Where AI adds clear value in equity research</strong>
+          <p>
+            Filing extraction: 10-K, 10-Q, annual reports, fund factsheets &rarr; structured data<br>
+            Earnings call parsing: transcript &rarr; key changes, tone shifts, deflected questions<br>
+            Data normalisation: multi-source financial data &rarr; clean comparable format<br>
+            Screening at scale: large-universe filtering before human deep-dive<br>
+            Code generation: Python scripts for data pipelines, charting, backtesting
+          </p>
+        </div>
+
+        <h2>What AI cannot do — and why it matters</h2>
+
+        <p>The parts of equity research that AI handles poorly are the parts that generate alpha. This is not a coincidence. The reason these tasks are valuable is precisely that they require a form of reasoning that statistical pattern-matching does not replicate.</p>
+
+        <p><strong>Variant perception.</strong> The concept comes from Michael Steinhardt: a well-informed view that differs from the market consensus. The value of equity research is not knowing what everyone else knows — it is knowing something different, or interpreting the same information differently, in a way that turns out to be correct. An LLM trained on the corpus of all publicly available financial analysis is, by definition, an engine for reproducing the consensus. It can tell you what most analysts think. It cannot tell you where most analysts are wrong.</p>
+
+        <p>This is not a temporary limitation that more training data will fix. The consensus is embedded in the training data. An LLM that produces a DCF valuation for Angel One will generate assumptions that reflect the weighted average of publicly available analyst expectations — because that is what its training data contains. If the market is wrong about Angel One's growth trajectory because it is mispricing the structural shift in Indian retail trading, the LLM does not know that. It cannot know that, because the evidence for the mispricing exists in physical economy signals and regulatory data that are not well-represented in the text the model was trained on.</p>
+
+        <div class="blog-pullquote">
+          <p>An LLM trained on the corpus of all publicly available financial analysis is, by definition, an engine for reproducing the consensus. It can tell you what most analysts think. It cannot tell you where most analysts are wrong.</p>
+        </div>
+
+        <p><strong>Physical economy signal interpretation.</strong> When the Baltic Dry Index drops 40% in three months while equity markets make new highs, what does that mean? The answer depends on context that an LLM cannot reliably access: Is the BDI decline driven by new vessel supply depressing rates, or by genuine demand contraction? Is the decline concentrated in Capesize (iron ore, coal) or Panamax (grain, fertiliser)? What are Chinese port throughput numbers doing at the same time?</p>
+
+        <p>These questions require integrating real-time data that changes weekly with structural knowledge about how physical commodity markets work. An LLM can summarise what the BDI is. It cannot tell you whether today's BDI reading is a cyclical signal or a vessel supply artefact, because that distinction requires operational knowledge of the shipping market that is not well-documented in the text it was trained on. The people who know this are shipbrokers, freight traders, and commodity analysts who have spent years watching vessel order books and drydock schedules. That knowledge is experiential, not textual.</p>
+
+        <p><strong>Knowing when the model is wrong.</strong> This is the most important limitation and the most underappreciated. Every equity valuation model contains assumptions. The skill of an analyst is not building the model — it is knowing which assumptions are likely wrong and in which direction. A DCF for an Indian discount broker requires assumptions about trading volume growth, regulatory regime stability, and competitive dynamics. The model itself is arithmetic. The judgement is knowing that SEBI's F&amp;O restrictions will compress trading volumes for the next two years, and that the consensus assumption of 15% revenue growth is therefore too optimistic.</p>
+
+        <p>An LLM can build the DCF. It cannot reliably identify which assumption is the weakest link, because that requires understanding the regulatory environment, the competitive dynamics, and the management team's credibility — much of which exists in context that is not captured in financial filings.</p>
+
+        <h2>The convergence problem</h2>
+
+        <p>There is a deeper structural concern that connects to the <a href="../horizon2040.html">Horizon 2040 research</a> on AI reflexivity. If AI tools increasingly automate the information-processing layer of equity research, and if every firm uses similar models trained on similar data, the output of equity research converges. More analysts reach the same conclusions faster, from the same inputs, using the same methods.</p>
+
+        <p>In a market that operates on the principle that price discovery requires diverse opinions, convergence is not efficiency — it is a degradation of the mechanism. When every model reads the same 10-K, parses the same earnings call, and generates similar DCF assumptions, the resulting price reflects a narrow band of consensus opinion, not a robust aggregation of diverse analysis. The market becomes more confident and less accurate simultaneously.</p>
+
+        <p>This is not speculative. It is already observable. Algorithmic trading now accounts for roughly 60-70% of US equity volume. Quant strategies that parse the same alternative data sets — satellite imagery, credit card data, web scraping — are increasingly correlated. When a shock arrives that falls outside the training distribution — a novel geopolitical event, a structural policy change, a physical economy signal that contradicts the data the models were built on — the correlated positions unwind simultaneously. August 2024's carry trade blowup was partly this dynamic: models trained on the same inputs reached the same conclusions about yen stability, and all exited at the same time when the BOJ moved.</p>
+
+        <div class="blog-pullquote">
+          <p>When every model reads the same 10-K and generates similar DCF assumptions, the market becomes more confident and less accurate simultaneously. Convergence is not efficiency. It is a degradation of price discovery.</p>
+        </div>
+
+        <h2>Where the edge shifts</h2>
+
+        <p>If AI compresses the value of information processing to near-zero — and it is doing exactly that — then the remaining value in equity research concentrates in the inputs that AI cannot easily access and the judgement that AI cannot reliably replicate.</p>
+
+        <p>The inputs that are hardest for AI to process are physical economy signals. The BDI is a single number updated daily, but interpreting it requires understanding vessel supply dynamics, route-specific demand patterns, and seasonal effects that are poorly documented in text corpora. LNG forward curves are pricing signals from physical market participants, but reading them requires understanding liquefaction economics, shipping cost structures, and regasification capacity constraints. Copper inventory drawdowns at LME warehouses require understanding the difference between financial positioning and physical consumption. These signals are all public. They are not secret. But they require domain knowledge that resists automation because it is operational rather than textual.</p>
+
+        <p>The judgement that AI cannot replicate is, fundamentally, knowing when the consensus is wrong and why. That judgement is built through experience — seeing how markets misprice events, how management teams mislead, how macro signals transmit to earnings with a lag. It is the accumulated pattern recognition that comes from having been wrong enough times to recognise the feeling of being wrong before the market confirms it.</p>
+
+        <p>This is where I think the research framework I am building — <a href="../how-i-research.html">macro to micro</a>, physical signals first, geopolitical context second, sector implications third, security analysis last — becomes more valuable, not less, in an AI-saturated environment. The bottom-up analysis that starts with the 10-K is exactly the workflow that AI compresses most aggressively. The top-down analysis that starts with shipping rates, commodity flows, and policy shifts is the workflow that AI handles worst, because the inputs are non-textual, the interpretation is context-dependent, and the judgement required is experiential.</p>
+
+        <h2>How I use AI in practice</h2>
+
+        <p>I am not writing this from the position of someone who avoids AI tools. I use them extensively. The question is not whether to use them but where to trust them and where to override them.</p>
+
+        <p>I trust AI for data extraction. Pulling financial data from 200+ mutual fund factsheets, normalising it into a screening framework, and generating the initial quantitative rankings — AI does this well, and doing it manually would take weeks instead of hours.</p>
+
+        <p>I trust AI for first-pass document analysis. Summarising earnings call transcripts, flagging changes in management tone, and identifying the questions that analysts asked but management deflected on — these are pattern-recognition tasks where the model is operating within its training distribution.</p>
+
+        <p>I do not trust AI for thesis construction. When I am building the case for why a company is mispriced, the inputs that matter most are the ones the LLM has not seen or cannot contextualise — the macro signal that contradicts the consensus, the regulatory shift that changes the growth trajectory, the physical economy data point that the model treats as noise because it was not prominent in the training data.</p>
+
+        <p>I do not trust AI for risk assessment. An LLM asked to identify risks in a DCF model will list generic sensitivities — revenue growth, discount rate, terminal value. An analyst who has been tracking SEBI's regulatory posture for six months knows that the specific risk is a 30% decline in F&amp;O trading volumes, which flows directly through to Angel One's revenue line. That risk is not generic. It is specific, current, and derived from context that is not in the 10-K.</p>
+
+        <p>The analyst who can do both — use AI to compress the information-processing work and then apply judgement that AI cannot replicate — is more productive than either the pure-AI workflow or the pure-manual workflow. That combination is the edge, not the tool itself.</p>
+
+        <p>AI makes the commodity parts of equity research free. That leaves the question of what you can do that the commodity workflow cannot. The answer, as far as I can tell, is the same thing it has always been: see something the consensus does not, and be right about it.</p>
+
+      </article>
+    </div>
+  </main>
+  <div class="blog-footer-bar">
+    <div class="blog-footer-inner">
+      <a href="../index.html#blog" class="blog-footer-back">Back to portfolio</a>
+      <span class="blog-footer-sig">mandavkar.uk · 2026</span>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span class="footer-name">Dhruv Mandavkar</span>
+      <span class="footer-mono">mandavkar.uk · 2026</span>
+    </div>
+  </footer>
+  <script>
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) progressBar.style.width = Math.min((window.scrollY / total) * 100, 100) + '%';
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => mobileMenu.classList.remove('open')); });
+  </script>
+</body>
+</html>
