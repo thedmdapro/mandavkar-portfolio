@@ -84,9 +84,9 @@
 
   <url>
     <loc>https://mandavkar.uk/blog/lng-curve.html</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
@@ -115,6 +115,17 @@
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://mandavkar.uk/how-i-research.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mandavkar.uk/blog/ai-equity-research.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
