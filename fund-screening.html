@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Equity Fund Screening Model — Methodology & Findings | Dhruv Mandavkar</title>
-  <meta name="description" content="Systematic mutual fund screening framework covering 80 Indian equity funds across 4 SEBI categories. 3-layer scoring model: pass/fail gates, 5-factor quantitative engine, qualitative analyst overlay." />
+  <meta name="description" content="Systematic mutual fund screening framework covering 177 Indian equity funds across 8 SEBI categories. 3-layer scoring model: pass/fail gates, 5-factor quantitative engine, qualitative analyst overlay." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Equity Fund Screening Model | Dhruv Mandavkar" />
-  <meta property="og:description" content="Systematic screening of 80 Indian equity mutual funds. 3-layer methodology: pass/fail gates, 5-factor quantitative scoring, qualitative overlay." />
+  <meta property="og:description" content="Systematic screening of 177 Indian equity mutual funds across 8 SEBI categories. 3-layer methodology: pass/fail gates, 5-factor quantitative scoring, qualitative overlay." />
   <meta property="og:url" content="https://mandavkar.uk/fund-screening.html" />
   <meta property="og:site_name" content="Dhruv Mandavkar" />
 
@@ -68,34 +68,34 @@
 
       <a href="index.html#projects" class="fs-back">&larr; Back to Projects</a>
 
-      <span class="fs-eyebrow">Fund Screening &middot; Indian Equity Mutual Funds &middot; SEBI / AMFI Data</span>
+      <span class="fs-eyebrow">Fund Screening &middot; Indian Equity Mutual Funds &middot; SEBI / AMFI Data &middot; v2.0</span>
 
       <h1>Screening <em>Framework</em></h1>
 
       <p class="fs-hero-sub">
-        A 3-layer systematic screening model covering 80 Indian equity mutual funds across 4 SEBI categories. Pass/fail gates, 5-factor quantitative scoring, and qualitative analyst overlay. Built from ACE MF data sourced directly from AMC filings.
+        A 3-layer systematic screening model covering 177 Indian equity mutual funds across 8 SEBI categories. Pass/fail gates, 5-factor quantitative scoring, and qualitative analyst overlay. Built from ACE MF data sourced directly from AMC filings. Data: March 2026.
       </p>
 
       <div class="fs-stats-row">
         <div class="fs-stat">
-          <span class="fs-stat-label">Funds Screened</span>
-          <span class="fs-stat-value teal">80</span>
-          <span class="fs-stat-sub">Passed initial gate filters</span>
+          <span class="fs-stat-label">Funds Scored</span>
+          <span class="fs-stat-value teal">177</span>
+          <span class="fs-stat-sub">Passed all gate filters</span>
         </div>
         <div class="fs-stat">
           <span class="fs-stat-label">Starting Universe</span>
-          <span class="fs-stat-value">133</span>
-          <span class="fs-stat-sub">Deduplicated direct plans</span>
+          <span class="fs-stat-value">260</span>
+          <span class="fs-stat-sub">Regular Growth plans, deduplicated</span>
         </div>
         <div class="fs-stat">
           <span class="fs-stat-label">SEBI Categories</span>
-          <span class="fs-stat-value teal">4</span>
-          <span class="fs-stat-sub">Large, Flexi, Mid, Small Cap</span>
+          <span class="fs-stat-value teal">8</span>
+          <span class="fs-stat-sub">Full equity coverage</span>
         </div>
         <div class="fs-stat">
           <span class="fs-stat-label">Scoring Factors</span>
           <span class="fs-stat-value">5</span>
-          <span class="fs-stat-sub">Weighted composite (0-100)</span>
+          <span class="fs-stat-sub">Weighted composite (0&ndash;100)</span>
         </div>
       </div>
 
@@ -151,24 +151,20 @@
           <div class="fs-gate-list">
             <div class="fs-gate">
               <span class="fs-gate-name">AUM Floor</span>
-              <span class="fs-gate-val">&ge; ₹500 Cr</span>
-            </div>
-            <div class="fs-gate">
-              <span class="fs-gate-name">Fund Age</span>
-              <span class="fs-gate-val">&ge; 5 Years</span>
-            </div>
-            <div class="fs-gate">
-              <span class="fs-gate-name">Expense Ratio</span>
-              <span class="fs-gate-val">&le; 1.0% (Direct)</span>
+              <span class="fs-gate-val">&ge; &#8377;500 Cr &nbsp;<span style="font-size:0.8em;opacity:0.75;">(&#8377;300 Cr ELSS)</span></span>
             </div>
             <div class="fs-gate">
               <span class="fs-gate-name">Track Record</span>
-              <span class="fs-gate-val">5Y CAGR available</span>
+              <span class="fs-gate-val">&ge; 3 Years</span>
+            </div>
+            <div class="fs-gate">
+              <span class="fs-gate-name">Alpha Floor</span>
+              <span class="fs-gate-val">3Y Alpha &gt; &minus;5%</span>
             </div>
           </div>
           <div class="fs-layer-result">
             <span class="fs-layer-result-label">Result</span>
-            <span class="fs-layer-result-value">133 &rarr; 80 funds passed</span>
+            <span class="fs-layer-result-value">260 &rarr; 177 funds passed</span>
           </div>
         </div>
 
@@ -265,45 +261,45 @@
       <span class="fs-section-label">Findings</span>
       <h2>What the Data Shows</h2>
       <p class="fs-lead">
-        After running 80 funds through the full scoring engine, several patterns emerged that challenge conventional fund selection logic.
+        After running 177 funds through the full scoring engine across 8 SEBI categories, several patterns emerged that challenge conventional fund selection logic.
       </p>
 
       <div class="fs-findings-grid">
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">01</span>
-          <h4>Most Funds Destroy Alpha</h4>
-          <p>Only <strong>29%</strong> of funds generated positive 3-year alpha over their SEBI-mandated benchmark. Over 5 years, the number drops to <strong>25%</strong>. The majority of actively managed equity funds in India are not earning their fees on a risk-adjusted basis.</p>
+          <h4>Alpha Exists &mdash; But Quality Is What Matters</h4>
+          <p><strong>81%</strong> of the 177 scored funds generated positive 3-year alpha. But positive alpha alone is not the bar &mdash; only <strong>37%</strong> (66 funds) earned Strong Buy or Buy. Generating modest alpha in a rising market is not difficult. Doing it consistently, with strong downside protection and low volatility, is rare.</p>
         </div>
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">02</span>
-          <h4>Ratings Skew Heavily Negative</h4>
-          <p>Of 80 scored funds, only <strong>9 earned Strong Buy</strong> (11.3%) and <strong>12 earned Buy</strong> (15%). Meanwhile, <strong>21 funds scored Avoid</strong> and <strong>21 scored Underweight</strong>. The framework is deliberately harsh: genuine alpha generators are rare, and the model reflects that.</p>
+          <h4>The Top Is Genuinely Thin</h4>
+          <p>Of 177 scored funds, only <strong>41 earned Strong Buy</strong> (23%) and <strong>25 earned Buy</strong> (14%). The remaining 111 funds &mdash; 63% of the universe &mdash; scored Hold or below. The model is deliberately demanding: it separates genuine quality from noise, and most funds are noise.</p>
         </div>
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">03</span>
-          <h4>Downside Protection Differentiates</h4>
-          <p>The strongest predictor of top-quartile composite scores was not raw alpha but <strong>asymmetric capture ratios</strong>. Funds that captured less downside relative to their upside participation consistently ranked higher. Losing less matters more than gaining more.</p>
+          <h4>Downside Protection Remains the Differentiator</h4>
+          <p>Across all 8 categories, the strongest predictor of top-quartile composite scores was <strong>asymmetric capture ratios</strong>. Funds that captured less downside relative to their upside participation consistently ranked higher. Losing less in down markets compounds more powerfully over time than an equivalent gain in up markets.</p>
         </div>
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">04</span>
-          <h4>Category Matters for Interpretation</h4>
-          <p>Large-cap funds show the widest score dispersion (15.8 to 92.5), while small-cap funds cluster more tightly. This makes sense: the large-cap benchmark (Nifty 100 TRI) is harder to beat, so genuine outperformers stand out more starkly against the noise.</p>
+          <h4>Small Cap Has the Widest Score Spread</h4>
+          <p>Small Cap funds show the widest dispersion (11.3 to 97.1), while Mid Cap and Flexi Cap fund scores cluster more tightly. Small-cap alpha is highly manager-dependent: stock selection matters far more in illiquid segments where passive replication is expensive. The gap between the best and worst small-cap manager is the largest in the equity universe.</p>
         </div>
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">05</span>
-          <h4>Cost Is Not the Differentiator You Think</h4>
-          <p>Cost Efficiency carries only <strong>5% weight</strong> in the model, and for good reason. Among direct plans that already passed the ER gate, the cost spread between funds is narrow. What separates top from bottom is alpha generation and risk management, not a 10bps difference in expense ratios.</p>
+          <h4>ELSS: Lock-In Amplifies Consistency Importance</h4>
+          <p>ELSS funds carry a mandatory 3-year lock-in, which means investors cannot exit during a drawdown. The model raises the Consistency weight from 25% to 30% (and reduces Alpha to 20%) for ELSS. A fund that is highly volatile but occasionally generates strong alpha scores lower here than a fund that beats its benchmark steadily &mdash; because the investor has no exit if volatility turns negative.</p>
         </div>
 
         <div class="fs-finding-card">
           <span class="fs-finding-num">06</span>
           <h4>ER Spread Reveals Distribution Economics</h4>
-          <p>The gap between Regular and Direct plan expense ratios (ER Spread) is a proxy for distributor commissions. Funds with unusually high ER Spreads are spending heavily on distribution, which raises questions about whether AUM growth is organic or fee-driven.</p>
+          <p>The gap between Regular and Direct plan expense ratios (ER Spread) is a direct proxy for distributor commissions. Funds with unusually high ER Spreads are spending heavily on distribution. This raises a question that quantitative models can flag but not answer: is AUM growth organic or fee-driven?</p>
         </div>
 
       </div>
@@ -326,20 +322,20 @@
 
       <div class="fs-rating-strip">
         <div class="fs-rating-bar">
-          <div class="fs-rating-segment fs-rating-sb" style="flex-grow: 9;">
-            <span class="fs-rating-count">9</span>
+          <div class="fs-rating-segment fs-rating-sb" style="flex-grow: 41;">
+            <span class="fs-rating-count">41</span>
           </div>
-          <div class="fs-rating-segment fs-rating-buy" style="flex-grow: 12;">
-            <span class="fs-rating-count">12</span>
+          <div class="fs-rating-segment fs-rating-buy" style="flex-grow: 25;">
+            <span class="fs-rating-count">25</span>
           </div>
-          <div class="fs-rating-segment fs-rating-hold" style="flex-grow: 17;">
-            <span class="fs-rating-count">17</span>
+          <div class="fs-rating-segment fs-rating-hold" style="flex-grow: 40;">
+            <span class="fs-rating-count">40</span>
           </div>
-          <div class="fs-rating-segment fs-rating-uw" style="flex-grow: 21;">
-            <span class="fs-rating-count">21</span>
+          <div class="fs-rating-segment fs-rating-uw" style="flex-grow: 35;">
+            <span class="fs-rating-count">35</span>
           </div>
-          <div class="fs-rating-segment fs-rating-avoid" style="flex-grow: 21;">
-            <span class="fs-rating-count">21</span>
+          <div class="fs-rating-segment fs-rating-avoid" style="flex-grow: 36;">
+            <span class="fs-rating-count">36</span>
           </div>
         </div>
         <div class="fs-rating-labels">
@@ -387,7 +383,7 @@
       <span class="fs-section-label">Category View</span>
       <h2>Coverage by SEBI Category</h2>
       <p class="fs-lead">
-        The model covers all 4 major SEBI equity fund categories. Each fund is benchmarked against its category-specific SEBI-mandated primary index.
+        The model covers all 8 SEBI equity fund categories. Each fund is ranked against category peers using percentile scores, with the primary stated benchmark as the alpha reference.
       </p>
 
       <div class="fs-cat-grid">
@@ -395,20 +391,20 @@
         <div class="fs-cat-card">
           <div class="fs-cat-header">
             <span class="fs-cat-name">Large Cap</span>
-            <span class="fs-cat-count">16 funds</span>
+            <span class="fs-cat-count">17 funds</span>
           </div>
-          <span class="fs-cat-bench">Benchmark: NIFTY 100 TRI</span>
+          <span class="fs-cat-bench">Benchmark: Nifty 100 TRI</span>
           <div class="fs-cat-stats">
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Score Range</span>
-              <span class="fs-cat-stat-value">15.8 &ndash; 92.5</span>
+              <span class="fs-cat-stat-value">11.5 &ndash; 94.2</span>
             </div>
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Avg Score</span>
-              <span class="fs-cat-stat-value">50.0</span>
+              <span class="fs-cat-stat-value">52.9</span>
             </div>
           </div>
-          <p class="fs-cat-note">Widest score dispersion. The benchmark is efficient, so genuine alpha stands out sharply.</p>
+          <p class="fs-cat-note">The Nifty 100 is highly efficient. Genuine outperformers stand out starkly against significant underperformers in this category.</p>
         </div>
 
         <div class="fs-cat-card">
@@ -416,56 +412,132 @@
             <span class="fs-cat-name">Flexi Cap</span>
             <span class="fs-cat-count">27 funds</span>
           </div>
-          <span class="fs-cat-bench">Benchmark: NIFTY 500 TRI</span>
+          <span class="fs-cat-bench">Benchmark: Nifty 500 TRI</span>
           <div class="fs-cat-stats">
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Score Range</span>
-              <span class="fs-cat-stat-value">16.5 &ndash; 88.1</span>
+              <span class="fs-cat-stat-value">14.4 &ndash; 92.9</span>
             </div>
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Avg Score</span>
-              <span class="fs-cat-stat-value">50.0</span>
+              <span class="fs-cat-stat-value">51.9</span>
             </div>
           </div>
-          <p class="fs-cat-note">Largest category by fund count. Manager flexibility makes style drift analysis critical here.</p>
+          <p class="fs-cat-note">Largest category by fund count. No market-cap mandate means manager flexibility is high &mdash; and style drift risk is highest here.</p>
         </div>
 
         <div class="fs-cat-card">
           <div class="fs-cat-header">
             <span class="fs-cat-name">Mid Cap</span>
-            <span class="fs-cat-count">22 funds</span>
+            <span class="fs-cat-count">26 funds</span>
           </div>
           <span class="fs-cat-bench">Benchmark: Nifty Midcap 150 TRI</span>
           <div class="fs-cat-stats">
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Score Range</span>
-              <span class="fs-cat-stat-value">15.7 &ndash; 88.9</span>
+              <span class="fs-cat-stat-value">11.8 &ndash; 93.5</span>
             </div>
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Avg Score</span>
-              <span class="fs-cat-stat-value">49.8</span>
+              <span class="fs-cat-stat-value">51.9</span>
             </div>
           </div>
-          <p class="fs-cat-note">AUM capacity constraints become material here. Bigger mid-cap funds face liquidity drag.</p>
+          <p class="fs-cat-note">AUM capacity constraints become material in mid cap. Large funds face liquidity drag that compresses returns.</p>
         </div>
 
         <div class="fs-cat-card">
           <div class="fs-cat-header">
             <span class="fs-cat-name">Small Cap</span>
-            <span class="fs-cat-count">15 funds</span>
+            <span class="fs-cat-count">23 funds</span>
           </div>
           <span class="fs-cat-bench">Benchmark: Nifty Smallcap 250 TRI</span>
           <div class="fs-cat-stats">
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Score Range</span>
-              <span class="fs-cat-stat-value">14.7 &ndash; 84.9</span>
+              <span class="fs-cat-stat-value">11.3 &ndash; 97.1</span>
             </div>
             <div class="fs-cat-stat">
               <span class="fs-cat-stat-label">Avg Score</span>
-              <span class="fs-cat-stat-value">49.8</span>
+              <span class="fs-cat-stat-value">52.2</span>
             </div>
           </div>
-          <p class="fs-cat-note">Highest beta category. Downside protection and capture asymmetry matter most here.</p>
+          <p class="fs-cat-note">Widest composite score spread of any category. Highest beta. Downside protection and capture asymmetry are the critical differentiators.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">ELSS</span>
+            <span class="fs-cat-count">24 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: Nifty 500 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">11.8 &ndash; 92.9</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">52.1</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Tax-saving funds with mandatory 3-year lock-in. Consistency weighted at 30% (vs 25% default) to reflect locked-in investor exposure. AUM gate lowered to &#8377;300 Cr.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Multi Cap</span>
+            <span class="fs-cat-count">19 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: Nifty 500 Multicap 50:25:25 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">16.7 &ndash; 92.4</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">52.6</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">SEBI mandates minimum 25% each in large, mid, and small cap. The mandatory small-cap exposure introduces higher volatility than flexi cap funds with similar names.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Large &amp; Mid Cap</span>
+            <span class="fs-cat-count">22 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: NIFTY LargeMidcap 250 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">12.6 &ndash; 93.4</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">52.3</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Mandated 35% minimum in both large and mid cap. Less flexible than flexi cap but broader than pure large cap. Good risk/return profile for moderate risk tolerance.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Focused Fund</span>
+            <span class="fs-cat-count">19 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: S&amp;P BSE 500 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">10.2 &ndash; 92.1</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">52.6</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Pure equity funds with a maximum 30-stock mandate. High-conviction portfolios. Idiosyncratic risk is structurally higher &mdash; a wrong sector call is amplified by concentration.</p>
         </div>
 
       </div>
@@ -497,8 +569,8 @@
             </svg>
           </div>
           <div class="fs-download-text">
-            <span class="fs-download-title">Technical Methodology (PDF)</span>
-            <span class="fs-download-desc">Complete scoring formulas, gate definitions, data pipeline, and limitations</span>
+            <span class="fs-download-title">Technical Methodology v2.0 (PDF)</span>
+            <span class="fs-download-desc">Complete scoring formulas, gate definitions, data pipeline, and limitations — 8 categories, 177 funds</span>
           </div>
           <span class="fs-download-arrow">&rarr;</span>
         </a>
