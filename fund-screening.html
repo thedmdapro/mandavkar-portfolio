@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equity Fund Screening Model — Methodology & Findings | Dhruv Mandavkar</title>
+  <meta name="description" content="Systematic mutual fund screening framework covering 80 Indian equity funds across 4 SEBI categories. 3-layer scoring model: pass/fail gates, 5-factor quantitative engine, qualitative analyst overlay." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Equity Fund Screening Model | Dhruv Mandavkar" />
+  <meta property="og:description" content="Systematic screening of 80 Indian equity mutual funds. 3-layer methodology: pass/fail gates, 5-factor quantitative scoring, qualitative overlay." />
+  <meta property="og:url" content="https://mandavkar.uk/fund-screening.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>d</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="fund-screening.css?v=1" />
+</head>
+<body>
+
+  <!-- Reading progress -->
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">dhruv</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#currently">Status</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#blog">Writing</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#x2715;</button>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#currently">Status</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#blog">Writing</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-hero">
+    <div class="fs-inner">
+
+      <a href="index.html#projects" class="fs-back">&larr; Back to Projects</a>
+
+      <span class="fs-eyebrow">Fund Screening &middot; Indian Equity Mutual Funds &middot; SEBI / AMFI Data</span>
+
+      <h1>Screening <em>Framework</em></h1>
+
+      <p class="fs-hero-sub">
+        A 3-layer systematic screening model covering 80 Indian equity mutual funds across 4 SEBI categories. Pass/fail gates, 5-factor quantitative scoring, and qualitative analyst overlay. Built from ACE MF data sourced directly from AMC filings.
+      </p>
+
+      <div class="fs-stats-row">
+        <div class="fs-stat">
+          <span class="fs-stat-label">Funds Screened</span>
+          <span class="fs-stat-value teal">80</span>
+          <span class="fs-stat-sub">Passed initial gate filters</span>
+        </div>
+        <div class="fs-stat">
+          <span class="fs-stat-label">Starting Universe</span>
+          <span class="fs-stat-value">133</span>
+          <span class="fs-stat-sub">Deduplicated direct plans</span>
+        </div>
+        <div class="fs-stat">
+          <span class="fs-stat-label">SEBI Categories</span>
+          <span class="fs-stat-value teal">4</span>
+          <span class="fs-stat-sub">Large, Flexi, Mid, Small Cap</span>
+        </div>
+        <div class="fs-stat">
+          <span class="fs-stat-label">Scoring Factors</span>
+          <span class="fs-stat-value">5</span>
+          <span class="fs-stat-sub">Weighted composite (0-100)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       WHY THIS EXISTS
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section" style="background:#F7F6F3;">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Context</span>
+      <h2>Why Build a Screening Model</h2>
+
+      <div class="fs-prose">
+        <p>
+          India's mutual fund industry has <strong>~₹67 lakh crore</strong> in equity AUM across hundreds of schemes. Most retail investors pick funds based on trailing 1-year returns or star ratings from aggregators. The problem: trailing returns are backward-looking, and star ratings collapse multi-dimensional fund quality into a single number with opaque methodology.
+        </p>
+        <p>
+          This model was built during my time at <strong>Omega Portfolio Advisors / MoneyWorks4Me</strong> to power fund recommendations for Third Rock Wealth's (TRW) client-facing dossiers. The goal was a repeatable, auditable framework that separates genuine alpha generators from funds riding beta in a rising market.
+        </p>
+        <p>
+          The core design choice: score funds <em>within their own SEBI category</em> using percentile ranks, not absolute values. A large-cap fund generating 1.5% alpha is doing something meaningfully different from a small-cap fund generating 1.5% alpha. The benchmark difficulty, volatility profile, and capacity constraints are entirely different. Category-relative scoring is the only honest comparison.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       THE 3-LAYER FRAMEWORK
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section fs-section-dark">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Framework</span>
+      <h2>Three Layers of Filtration</h2>
+      <p class="fs-lead">
+        Every fund in the starting universe passes through three sequential layers. Each layer eliminates or scores, so that the final output is a ranked shortlist with both quantitative rigour and qualitative context.
+      </p>
+
+      <div class="fs-layers">
+
+        <div class="fs-layer-card">
+          <div class="fs-layer-badge">Layer 1</div>
+          <h3>Pass / Fail Gates</h3>
+          <p class="fs-layer-desc">
+            Binary filters that eliminate funds with structural disqualifiers. Funds must pass <em>all</em> gates to enter the scoring engine. The gates remove funds that are too small, too young, or too expensive to be taken seriously for long-term allocation.
+          </p>
+          <div class="fs-gate-list">
+            <div class="fs-gate">
+              <span class="fs-gate-name">AUM Floor</span>
+              <span class="fs-gate-val">&ge; ₹500 Cr</span>
+            </div>
+            <div class="fs-gate">
+              <span class="fs-gate-name">Fund Age</span>
+              <span class="fs-gate-val">&ge; 5 Years</span>
+            </div>
+            <div class="fs-gate">
+              <span class="fs-gate-name">Expense Ratio</span>
+              <span class="fs-gate-val">&le; 1.0% (Direct)</span>
+            </div>
+            <div class="fs-gate">
+              <span class="fs-gate-name">Track Record</span>
+              <span class="fs-gate-val">5Y CAGR available</span>
+            </div>
+          </div>
+          <div class="fs-layer-result">
+            <span class="fs-layer-result-label">Result</span>
+            <span class="fs-layer-result-value">133 &rarr; 80 funds passed</span>
+          </div>
+        </div>
+
+        <div class="fs-layer-card">
+          <div class="fs-layer-badge">Layer 2</div>
+          <h3>5-Factor Quantitative Scoring</h3>
+          <p class="fs-layer-desc">
+            Each surviving fund is scored on 5 weighted factors, producing a composite score from 0 to 100. All sub-metrics are converted to within-category percentile ranks before weighting, so the scoring is relative to peers in the same SEBI category.
+          </p>
+          <div class="fs-factor-table">
+            <div class="fs-factor-row fs-factor-header">
+              <span>Factor</span>
+              <span>Weight</span>
+              <span>Key Metrics</span>
+            </div>
+            <div class="fs-factor-row">
+              <span>Alpha Generation</span>
+              <span class="fs-factor-wt">25%</span>
+              <span>3Y alpha, 5Y alpha, rolling 3Y beat ratio</span>
+            </div>
+            <div class="fs-factor-row">
+              <span>Risk-Adjusted Returns</span>
+              <span class="fs-factor-wt">25%</span>
+              <span>Sharpe ratio, Sortino ratio, information ratio</span>
+            </div>
+            <div class="fs-factor-row">
+              <span>Return Consistency</span>
+              <span class="fs-factor-wt">25%</span>
+              <span>Capture spread, rolling consistency</span>
+            </div>
+            <div class="fs-factor-row">
+              <span>Downside Protection</span>
+              <span class="fs-factor-wt">20%</span>
+              <span>Down-capture ratio (inverted)</span>
+            </div>
+            <div class="fs-factor-row">
+              <span>Cost Efficiency</span>
+              <span class="fs-factor-wt">5%</span>
+              <span>Expense ratio (inverted percentile)</span>
+            </div>
+          </div>
+          <div class="fs-layer-result">
+            <span class="fs-layer-result-label">Output</span>
+            <span class="fs-layer-result-value">Composite score 0-100 + rating band</span>
+          </div>
+        </div>
+
+        <div class="fs-layer-card">
+          <div class="fs-layer-badge">Layer 3</div>
+          <h3>Qualitative Analyst Overlay</h3>
+          <p class="fs-layer-desc">
+            Numbers catch pattern, but they miss context. The qualitative layer adds a /10 analyst score based on dimensions that purely quantitative screens cannot capture. This overlay can upgrade or downgrade a fund's final rating.
+          </p>
+          <div class="fs-qual-grid">
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">FM Pedigree</span>
+              <span class="fs-qual-detail">Manager tenure, track record, team depth</span>
+            </div>
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">Key-Person Risk</span>
+              <span class="fs-qual-detail">H / M / L classification</span>
+            </div>
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">AUM Capacity</span>
+              <span class="fs-qual-detail">Size vs. strategy fit</span>
+            </div>
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">Style Drift</span>
+              <span class="fs-qual-detail">Mandate adherence over time</span>
+            </div>
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">ER Spread</span>
+              <span class="fs-qual-detail">Regular - Direct (distributor fee proxy)</span>
+            </div>
+            <div class="fs-qual-item">
+              <span class="fs-qual-tag">Client Suitability</span>
+              <span class="fs-qual-detail">Risk profile match</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       KEY FINDINGS
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section" style="background:#F7F6F3;">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Findings</span>
+      <h2>What the Data Shows</h2>
+      <p class="fs-lead">
+        After running 80 funds through the full scoring engine, several patterns emerged that challenge conventional fund selection logic.
+      </p>
+
+      <div class="fs-findings-grid">
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">01</span>
+          <h4>Most Funds Destroy Alpha</h4>
+          <p>Only <strong>29%</strong> of funds generated positive 3-year alpha over their SEBI-mandated benchmark. Over 5 years, the number drops to <strong>25%</strong>. The majority of actively managed equity funds in India are not earning their fees on a risk-adjusted basis.</p>
+        </div>
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">02</span>
+          <h4>Ratings Skew Heavily Negative</h4>
+          <p>Of 80 scored funds, only <strong>9 earned Strong Buy</strong> (11.3%) and <strong>12 earned Buy</strong> (15%). Meanwhile, <strong>21 funds scored Avoid</strong> and <strong>21 scored Underweight</strong>. The framework is deliberately harsh: genuine alpha generators are rare, and the model reflects that.</p>
+        </div>
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">03</span>
+          <h4>Downside Protection Differentiates</h4>
+          <p>The strongest predictor of top-quartile composite scores was not raw alpha but <strong>asymmetric capture ratios</strong>. Funds that captured less downside relative to their upside participation consistently ranked higher. Losing less matters more than gaining more.</p>
+        </div>
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">04</span>
+          <h4>Category Matters for Interpretation</h4>
+          <p>Large-cap funds show the widest score dispersion (15.8 to 92.5), while small-cap funds cluster more tightly. This makes sense: the large-cap benchmark (Nifty 100 TRI) is harder to beat, so genuine outperformers stand out more starkly against the noise.</p>
+        </div>
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">05</span>
+          <h4>Cost Is Not the Differentiator You Think</h4>
+          <p>Cost Efficiency carries only <strong>5% weight</strong> in the model, and for good reason. Among direct plans that already passed the ER gate, the cost spread between funds is narrow. What separates top from bottom is alpha generation and risk management, not a 10bps difference in expense ratios.</p>
+        </div>
+
+        <div class="fs-finding-card">
+          <span class="fs-finding-num">06</span>
+          <h4>ER Spread Reveals Distribution Economics</h4>
+          <p>The gap between Regular and Direct plan expense ratios (ER Spread) is a proxy for distributor commissions. Funds with unusually high ER Spreads are spending heavily on distribution, which raises questions about whether AUM growth is organic or fee-driven.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       RATING BANDS
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section fs-section-dark">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Output</span>
+      <h2>Rating Band Distribution</h2>
+      <p class="fs-lead">
+        Composite scores are mapped to 5 rating bands. The thresholds are calibrated to produce a demanding distribution where most funds fall below "Buy."
+      </p>
+
+      <div class="fs-rating-strip">
+        <div class="fs-rating-bar">
+          <div class="fs-rating-segment fs-rating-sb" style="flex-grow: 9;">
+            <span class="fs-rating-count">9</span>
+          </div>
+          <div class="fs-rating-segment fs-rating-buy" style="flex-grow: 12;">
+            <span class="fs-rating-count">12</span>
+          </div>
+          <div class="fs-rating-segment fs-rating-hold" style="flex-grow: 17;">
+            <span class="fs-rating-count">17</span>
+          </div>
+          <div class="fs-rating-segment fs-rating-uw" style="flex-grow: 21;">
+            <span class="fs-rating-count">21</span>
+          </div>
+          <div class="fs-rating-segment fs-rating-avoid" style="flex-grow: 21;">
+            <span class="fs-rating-count">21</span>
+          </div>
+        </div>
+        <div class="fs-rating-labels">
+          <span class="fs-rl-sb">Strong Buy</span>
+          <span class="fs-rl-buy">Buy</span>
+          <span class="fs-rl-hold">Hold</span>
+          <span class="fs-rl-uw">Underweight</span>
+          <span class="fs-rl-avoid">Avoid</span>
+        </div>
+      </div>
+
+      <div class="fs-rating-thresholds">
+        <div class="fs-threshold">
+          <span class="fs-threshold-band fs-th-sb">Strong Buy</span>
+          <span class="fs-threshold-range">&ge; 75</span>
+        </div>
+        <div class="fs-threshold">
+          <span class="fs-threshold-band fs-th-buy">Buy</span>
+          <span class="fs-threshold-range">60 &ndash; 74.9</span>
+        </div>
+        <div class="fs-threshold">
+          <span class="fs-threshold-band fs-th-hold">Hold</span>
+          <span class="fs-threshold-range">45 &ndash; 59.9</span>
+        </div>
+        <div class="fs-threshold">
+          <span class="fs-threshold-band fs-th-uw">Underweight</span>
+          <span class="fs-threshold-range">30 &ndash; 44.9</span>
+        </div>
+        <div class="fs-threshold">
+          <span class="fs-threshold-band fs-th-avoid">Avoid</span>
+          <span class="fs-threshold-range">&lt; 30</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       CATEGORY BREAKDOWN
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section" style="background:#F7F6F3;">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Category View</span>
+      <h2>Coverage by SEBI Category</h2>
+      <p class="fs-lead">
+        The model covers all 4 major SEBI equity fund categories. Each fund is benchmarked against its category-specific SEBI-mandated primary index.
+      </p>
+
+      <div class="fs-cat-grid">
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Large Cap</span>
+            <span class="fs-cat-count">16 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: NIFTY 100 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">15.8 &ndash; 92.5</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">50.0</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Widest score dispersion. The benchmark is efficient, so genuine alpha stands out sharply.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Flexi Cap</span>
+            <span class="fs-cat-count">27 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: NIFTY 500 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">16.5 &ndash; 88.1</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">50.0</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Largest category by fund count. Manager flexibility makes style drift analysis critical here.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Mid Cap</span>
+            <span class="fs-cat-count">22 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: Nifty Midcap 150 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">15.7 &ndash; 88.9</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">49.8</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">AUM capacity constraints become material here. Bigger mid-cap funds face liquidity drag.</p>
+        </div>
+
+        <div class="fs-cat-card">
+          <div class="fs-cat-header">
+            <span class="fs-cat-name">Small Cap</span>
+            <span class="fs-cat-count">15 funds</span>
+          </div>
+          <span class="fs-cat-bench">Benchmark: Nifty Smallcap 250 TRI</span>
+          <div class="fs-cat-stats">
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Score Range</span>
+              <span class="fs-cat-stat-value">14.7 &ndash; 84.9</span>
+            </div>
+            <div class="fs-cat-stat">
+              <span class="fs-cat-stat-label">Avg Score</span>
+              <span class="fs-cat-stat-value">49.8</span>
+            </div>
+          </div>
+          <p class="fs-cat-note">Highest beta category. Downside protection and capture asymmetry matter most here.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       DOWNLOADS
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section fs-section-dark">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Documentation</span>
+      <h2>Technical Appendix</h2>
+      <p class="fs-lead">
+        The full technical methodology is documented in the PDF appendix below. It covers every formula, gate threshold, scoring weight, percentile calculation, and data pipeline decision in detail.
+      </p>
+
+      <div class="fs-download-row">
+        <a href="projects/fund-screening/fund-screening-methodology.pdf" class="fs-download-card" target="_blank">
+          <div class="fs-download-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <polyline points="9,15 12,18 15,15"/>
+            </svg>
+          </div>
+          <div class="fs-download-text">
+            <span class="fs-download-title">Technical Methodology (PDF)</span>
+            <span class="fs-download-desc">Complete scoring formulas, gate definitions, data pipeline, and limitations</span>
+          </div>
+          <span class="fs-download-arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <p class="fs-disclaimer">
+        The underlying Excel model is not published. It contains proprietary scoring logic built during my work at Omega Portfolio Advisors and is used internally for TRW client recommendations. This page and the PDF appendix document the methodology and findings for portfolio demonstration purposes.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       DATA SOURCES
+  ════════════════════════════════════════════════════ -->
+  <section class="fs-section" style="background:#F7F6F3; padding-bottom: 60px;">
+    <div class="fs-container">
+
+      <span class="fs-section-label">Data</span>
+      <h2>Sources &amp; Limitations</h2>
+
+      <div class="fs-prose">
+        <p>
+          All fund data is sourced from <strong>ACE Mutual Fund</strong>, which aggregates data from AMC filings with SEBI and AMFI. The dataset contains 47 variables per fund across returns, risk ratios, portfolio composition, rolling returns, and benchmark data. Data is as of the most recent available filing period.
+        </p>
+        <p>
+          <strong>Key limitations:</strong> The model uses point-in-time snapshots, not time-series panels. Rolling return data is pre-computed by ACE MF at the 1-month frequency (1Y, 3Y, 5Y, 10Y windows). Alpha is calculated as fund CAGR minus benchmark CAGR, which is an arithmetic approximation, not a regression-based Jensen's alpha. Survivorship bias is partially present since the ACE MF universe only includes currently active schemes.
+        </p>
+        <p>
+          The model is designed for relative ranking within categories, not absolute return prediction. A "Strong Buy" rating means a fund scores well relative to peers on the chosen factors. It is not investment advice.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <footer class="fs-footer">
+    <div class="fs-footer-inner">
+      <div class="fs-footer-left">
+        <span style="display:block;">Dhruv Mandavkar &middot; Fund Screening Model</span>
+        <span>For educational and portfolio demonstration purposes. Not investment advice.</span>
+      </div>
+      <nav class="fs-footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="equity-research.html">Equity Research</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/dhruvmandavkar" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════════════ -->
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (scrolled / total * 100) + '%';
+    }, { passive: true });
+
+    // Nav scroll behaviour
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fs-layer-card, .fs-finding-card, .fs-cat-card, .fs-download-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(el);
+    });
+  </script>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -24,15 +24,15 @@
   background: rgba(17, 17, 17, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 7.000000000000001%, transparent);
   padding: 14px 0;
 }
 
 /* Keep text white against the dark scrolled background */
-#nav.scrolled .nav-logo          { color: rgba(255, 255, 255, 0.9); }
-#nav.scrolled .nav-links a       { color: rgba(255, 255, 255, 0.6); }
-#nav.scrolled .nav-links a:hover { color: rgba(255, 255, 255, 0.92); }
-#nav.scrolled .hamburger span    { background: rgba(255, 255, 255, 0.8); }
+#nav.scrolled .nav-logo          { color: color-mix(in srgb, var(--white) 90%, transparent); }
+#nav.scrolled .nav-links a       { color: color-mix(in srgb, var(--white) 60%, transparent); }
+#nav.scrolled .nav-links a:hover { color: color-mix(in srgb, var(--white) 92%, transparent); }
+#nav.scrolled .hamburger span    { background: color-mix(in srgb, var(--white) 80%, transparent); }
 
 /* ═══════════════════════════════════════════════════════════════════
    HERO
@@ -49,7 +49,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(8, 145, 178, 0.08) 0%, transparent 65%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgb(from var(--teal) r g b / 8%) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -66,7 +66,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.42);
+  color: color-mix(in srgb, var(--white) 42%, transparent);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11.5px;
   letter-spacing: 0.06em;
@@ -74,14 +74,14 @@
   transition: color 0.18s;
   margin-bottom: 36px;
 }
-.cm-back:hover { color: rgba(255, 255, 255, 0.75); }
+.cm-back:hover { color: color-mix(in srgb, var(--white) 75%, transparent); }
 
 /* Eyebrow label */
 .cm-eyebrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.42);
+  color: color-mix(in srgb, var(--white) 42%, transparent);
   text-transform: uppercase;
   display: block;
   margin-bottom: 24px;
@@ -130,7 +130,7 @@
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.125rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
+  color: color-mix(in srgb, var(--white) 65%, transparent);
   max-width: 640px;
   margin-bottom: 48px;
 }
@@ -140,25 +140,25 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: color-mix(in srgb, var(--white) 7.000000000000001%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 7.000000000000001%, transparent);
   border-radius: 10px;
   overflow: hidden;
   max-width: 900px;
 }
 
 .cm-stat {
-  background: rgba(255, 255, 255, 0.03);
+  background: color-mix(in srgb, var(--white) 3%, transparent);
   padding: 20px 22px;
-  transition: background 0.2s;
+  transition: background var(--duration-fast);
 }
-.cm-stat:hover { background: rgba(255, 255, 255, 0.06); }
+.cm-stat:hover { background: color-mix(in srgb, var(--white) 6%, transparent); }
 
 .cm-stat-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.38);
+  color: color-mix(in srgb, var(--white) 38%, transparent);
   text-transform: uppercase;
   display: block;
   margin-bottom: 6px;
@@ -175,7 +175,7 @@
 
 .cm-stat-sub {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+  color: color-mix(in srgb, var(--white) 40%, transparent);
   font-family: 'JetBrains Mono', monospace;
   margin-top: 4px;
   display: block;
@@ -192,7 +192,7 @@
 
 .cm-section-dark {
   background: #1a1a1a;
-  color: rgba(255, 255, 255, 0.88);
+  color: color-mix(in srgb, var(--white) 88%, transparent);
 }
 
 .cm-section-sand { background: #ECE9E4; }
@@ -222,7 +222,7 @@
   margin-bottom: 16px;
 }
 
-.cm-section-dark h2 { color: rgba(255, 255, 255, 0.95); }
+.cm-section-dark h2 { color: color-mix(in srgb, var(--white) 95%, transparent); }
 
 .cm-lead {
   font-size: 1.05rem;
@@ -232,7 +232,7 @@
   margin-bottom: 48px;
 }
 
-.cm-section-dark .cm-lead { color: rgba(255, 255, 255, 0.55); }
+.cm-section-dark .cm-lead { color: color-mix(in srgb, var(--white) 55.00000000000001%, transparent); }
 
 /* ═══════════════════════════════════════════════════════════════════
    INVESTMENT THESIS CARDS
@@ -272,7 +272,7 @@
 }
 
 .cm-thesis-card.accent h4 { color: #06B6D4; }
-.cm-thesis-card.accent p  { color: rgba(255, 255, 255, 0.7); }
+.cm-thesis-card.accent p  { color: color-mix(in srgb, var(--white) 70%, transparent); }
 
 .cm-card-icon {
   font-size: 1.4rem;
@@ -292,7 +292,7 @@
 
 .cm-rev-strip {
   background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid color-mix(in srgb, var(--white) 7.000000000000001%, transparent);
   border-radius: 10px;
   padding: 22px 20px;
 }
@@ -302,7 +302,7 @@
   font-size: 10.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: color-mix(in srgb, var(--white) 38%, transparent);
   display: block;
   margin-bottom: 8px;
 }
@@ -319,7 +319,7 @@
 
 .cm-rev-strip-desc {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: color-mix(in srgb, var(--white) 50%, transparent);
   line-height: 1.5;
 }
 
@@ -342,7 +342,7 @@
 
 .cm-table thead th {
   background: #1E3A4C;
-  color: rgba(255, 255, 255, 0.9);
+  color: color-mix(in srgb, var(--white) 90%, transparent);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -420,7 +420,7 @@
 .cm-callout {
   background: rgba(248, 113, 113, 0.06);
   border: 1px solid rgba(248, 113, 113, 0.2);
-  border-left: 3px solid #ef4444;
+  border-inline-start: 3px solid #ef4444;
   border-radius: 10px;
   padding: 24px 28px;
   margin: 32px 0;
@@ -454,7 +454,7 @@
 .cm-insight {
   background: rgba(6, 182, 212, 0.05);
   border: 1px solid rgba(6, 182, 212, 0.18);
-  border-left: 3px solid #06B6D4;
+  border-inline-start: 3px solid #06B6D4;
   border-radius: 10px;
   padding: 24px 28px;
   margin: 32px 0;
@@ -491,11 +491,11 @@
 }
 
 .cm-model-tab {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--white) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 8%, transparent);
   border-radius: 10px;
   padding: 22px 20px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color var(--duration-fast), background var(--duration-fast);
 }
 
 .cm-model-tab:hover {
@@ -516,14 +516,14 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
+  color: color-mix(in srgb, var(--white) 92%, transparent);
   margin-bottom: 8px;
 }
 
 .cm-model-tab p {
   font-size: 0.83rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.48);
+  color: color-mix(in srgb, var(--white) 48%, transparent);
 }
 
 .cm-model-tab.featured {
@@ -579,8 +579,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: color-mix(in srgb, var(--white) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 9%, transparent);
   border-radius: 12px;
   padding: 24px 28px;
   margin-top: 40px;
@@ -592,14 +592,14 @@
   display: block;
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.92);
+  color: color-mix(in srgb, var(--white) 92%, transparent);
   margin-bottom: 4px;
 }
 
 .cm-download-meta span {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.38);
+  color: color-mix(in srgb, var(--white) 38%, transparent);
   letter-spacing: 0.06em;
 }
 
@@ -614,9 +614,9 @@
   font-size: 10.5px;
   padding: 4px 10px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--white) 7.000000000000001%, transparent);
+  color: color-mix(in srgb, var(--white) 55.00000000000001%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 10%, transparent);
   letter-spacing: 0.05em;
 }
 
@@ -646,12 +646,12 @@
 
 .cm-btn-ghost {
   background: transparent;
-  color: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: color-mix(in srgb, var(--white) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 18%, transparent);
 }
 .cm-btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--white) 6%, transparent);
+  color: color-mix(in srgb, var(--white) 92%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -660,7 +660,7 @@
 .cm-footer {
   background: #111;
   padding: 48px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid color-mix(in srgb, var(--white) 6%, transparent);
 }
 
 .cm-footer-inner {
@@ -677,7 +677,7 @@
 .cm-footer-left {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.28);
+  color: color-mix(in srgb, var(--white) 28.000000000000004%, transparent);
   letter-spacing: 0.06em;
   line-height: 1.7;
 }
@@ -690,12 +690,12 @@
 .cm-footer-links a {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.38);
+  color: color-mix(in srgb, var(--white) 38%, transparent);
   text-decoration: none;
   letter-spacing: 0.06em;
   transition: color 0.18s;
 }
-.cm-footer-links a:hover { color: rgba(255, 255, 255, 0.7); }
+.cm-footer-links a:hover { color: color-mix(in srgb, var(--white) 70%, transparent); }
 
 /* ═══════════════════════════════════════════════════════════════════
    RESPONSIVE
