@@ -1,0 +1,11 @@
+{
+  "date": "2026-04-10",
+  "regime": "CAUTIOUS",
+  "regime_score": "+0 of 5",
+  "regime_drivers": "Initialized, awaiting first run",
+  "headline": "Commentary pipeline initialized",
+  "commentary": "This is a placeholder. The daily automated commentary will replace this on the next n8n run.",
+  "watch_next": "First automated update",
+  "updated_at": "2026-04-10T00:00:00Z",
+  "signals_snapshot": {}
+}
