@@ -88,6 +88,48 @@
   </div>
 </section>
 
+<!-- ─── DAILY COMMENTARY ─── -->
+<section id="signals-commentary" style="display:none;background:var(--bg);border-bottom:1px solid var(--border);">
+  <div style="max-width:var(--container,1120px);margin:0 auto;padding:40px max(24px,calc((100vw - 1120px)/2 + 24px));">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--subtle);" id="sc-date"></span>
+      <span id="sc-regime-badge" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:600;"></span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);" id="sc-score"></span>
+    </div>
+    <h2 id="sc-headline" style="font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,2.8vw,28px);font-weight:700;color:var(--text);line-height:1.25;margin:0 0 16px 0;max-width:720px;"></h2>
+    <p id="sc-commentary" style="font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.75;color:var(--dim);max-width:720px;margin:0 0 24px 0;text-align:left;"></p>
+    <div id="sc-watch" style="border-left:3px solid var(--accent,#1E3A4C);padding:12px 16px;background:var(--card,#F2F0ED);border-radius:0 6px 6px 0;max-width:680px;margin-bottom:20px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--subtle);display:block;margin-bottom:4px;">WATCH NEXT</span>
+      <span id="sc-watch-text" style="font-family:'Inter',system-ui,sans-serif;font-size:14px;color:var(--text);"></span>
+    </div>
+    <div id="sc-drivers" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--subtle);letter-spacing:0.03em;"></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  fetch('./signals-commentary.json?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!d || !d.headline || d.headline === 'Commentary pipeline initialized') return;
+      document.getElementById('sc-date').textContent = d.date || '';
+      document.getElementById('sc-score').textContent = d.regime_score || '';
+      document.getElementById('sc-headline').textContent = d.headline || '';
+      document.getElementById('sc-commentary').textContent = d.commentary || '';
+      document.getElementById('sc-watch-text').textContent = d.watch_next || '';
+      document.getElementById('sc-drivers').textContent = d.regime_drivers || '';
+      var badge = document.getElementById('sc-regime-badge');
+      var r = (d.regime || '').toUpperCase();
+      badge.textContent = r;
+      if (r === 'RISK ON') { badge.style.background='rgba(16,185,129,0.12)'; badge.style.color='#059669'; badge.style.border='1px solid rgba(16,185,129,0.25)'; }
+      else if (r === 'RISK OFF') { badge.style.background='rgba(239,68,68,0.10)'; badge.style.color='#DC2626'; badge.style.border='1px solid rgba(239,68,68,0.22)'; }
+      else { badge.style.background='rgba(245,158,11,0.10)'; badge.style.color='#D97706'; badge.style.border='1px solid rgba(245,158,11,0.22)'; }
+      document.getElementById('signals-commentary').style.display = 'block';
+    })
+    .catch(function() {});
+})();
+</script>
+
 <!-- dark → cream -->
 <div class="sect-angle sect-angle--dark-cream sect-angle--type-a" aria-hidden="true"></div>
 
