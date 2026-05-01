@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Shock 2026 — Demand Destruction &amp; the Hormuz Closure · Dhruv Mandavkar</title>
+  <meta name="description" content="The Strait of Hormuz closure cut 20% of global oil supply. The real story isn't the price spike — it's the demand destruction cascading through sectors and supply chains over the next 12 months." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Oil Shock 2026 — The Price Is the Headline. Demand Destruction Is the Story." />
+  <meta property="og:description" content="The Hormuz closure removed ~10 mb/d from global supply — the largest disruption in history. Eight transmission channels. One structural inflection point." />
+  <meta property="og:url" content="https://mandavkar.uk/oil-shock.html" />
+  <meta property="og:site_name" content="Dhruv Mandavkar" />
+  <meta property="og:image" content="https://mandavkar.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Oil Shock 2026 — The Price Is the Headline. Demand Destruction Is the Story." />
+  <meta name="twitter:description" content="Hormuz closure removed ~10 mb/d. Eight transmission channels. The SPR is a 40-day buffer. Then what?" />
+  <meta name="twitter:image" content="https://mandavkar.uk/og-image.png" />
+
+  <link rel="canonical" href="https://mandavkar.uk/oil-shock.html" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='55' font-family='serif'>dhruv</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="signals-config.js"></script>
+  <link rel="stylesheet" href="horizon2040.css" />
+
+  <style>
+    /* ═══════════════════════════════════════
+       OIL SHOCK — PAGE-SPECIFIC STYLES
+    ═══════════════════════════════════════ */
+
+    /* Live Brent price widget in hero */
+    .os-live-price {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: color-mix(in srgb, var(--white) 5%, transparent);
+      border: 1px solid var(--dark-border);
+      padding: 10px 18px;
+      margin-top: 24px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .os-live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #2DD4BF;
+      animation: os-pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes os-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .os-live-label {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dark-dim);
+    }
+    .os-live-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2DD4BF;
+      letter-spacing: -0.01em;
+    }
+    .os-live-date {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--dark-dim);
+    }
+
+    /* ─── Shockwave Timeline ─── */
+    .sw-section {
+      background: var(--bg);
+      padding: 80px 0 60px;
+      overflow: hidden;
+    }
+    .sw-header {
+      margin-bottom: 48px;
+    }
+    .sw-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .sw-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Timeline track */
+    .sw-timeline-wrap {
+      position: relative;
+      padding: 60px 0 20px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sw-track {
+      position: relative;
+      height: 4px;
+      background: var(--border);
+      min-width: 700px;
+      margin: 0 20px;
+    }
+    .sw-bar {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #EF4444 0%, #EF4444 65%, #F59E0B 65%, #F59E0B 80%, #0891B2 80%, #0891B2 100%);
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sw-bar.animated { width: 100%; }
+
+    /* Timeline nodes */
+    .sw-node {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .sw-node-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 2px currentColor;
+    }
+    .sw-node:hover .sw-node-dot {
+      transform: scale(1.3);
+    }
+    .sw-node-dot--active    { background: #EF4444; color: #EF4444; }
+    .sw-node-dot--emerging  { background: #F59E0B; color: #F59E0B; }
+    .sw-node-dot--projected { background: #0891B2; color: #0891B2; }
+
+    .sw-node-upper {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .sw-node-lower {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .sw-node-flag {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .sw-node-region {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .sw-node-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--subtle);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .sw-node-status-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 3px;
+      display: inline-block;
+    }
+    .sw-node-status-tag--active    { background: rgba(239,68,68,0.12); color: #EF4444; }
+    .sw-node-status-tag--emerging  { background: rgba(245,158,11,0.12); color: #F59E0B; }
+    .sw-node-status-tag--projected { background: rgba(8,145,178,0.12);  color: #0891B2; }
+
+    /* Detail panel below timeline */
+    .sw-detail-zone {
+      margin-top: 40px;
+      min-height: 200px;
+    }
+    .sw-detail-card {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      animation: sw-fade-in 0.3s ease;
+    }
+    .sw-detail-card.active { display: block; }
+    @keyframes sw-fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .sw-detail-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .sw-detail-flag { font-size: 28px; }
+    .sw-detail-region {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .sw-detail-body {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .sw-detail-metric {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+    }
+    .sw-detail-metric-val {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      display: block;
+      line-height: 1.1;
+    }
+    .sw-detail-metric-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      display: block;
+      margin-top: 3px;
+    }
+    .sw-detail-analysis {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+    .sw-detail-risk {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--amber);
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-br);
+      padding: 10px 14px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .sw-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--subtle);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* ─── Transmission Table (additional column classes) ─── */
+    .matrix-col-channel { min-width: 130px; }
+    .matrix-col-mechanism { max-width: 220px; line-height: 1.5; }
+    .matrix-col-who { max-width: 200px; line-height: 1.5; }
+    .matrix-col-timeline { min-width: 90px; white-space: nowrap; }
+
+    /* ─── Thesis prose subsection headers ─── */
+    .os-subsection-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark-text);
+      letter-spacing: -0.02em;
+      margin: 28px 0 10px;
+    }
+
+    /* ─── Watching indicators list ─── */
+    .os-watch-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .os-watch-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--dark-dim);
+      line-height: 1.55;
+      padding: 10px 14px;
+      background: color-mix(in srgb, var(--white) 4%, transparent);
+      border: 1px solid var(--dark-border);
+    }
+    .os-watch-list li::before {
+      content: '→';
+      color: #2DD4BF;
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* ─── Regional vulnerability cards ─── */
+    .vuln-section {
+      background: var(--bg2);
+      padding: 80px 0;
+    }
+    .vuln-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .vuln-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 28px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.22s, box-shadow 0.22s;
+    }
+    .vuln-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 6px 28px rgba(0,95,115,0.07);
+    }
+    .vuln-card-flag {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .vuln-card-region {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .vuln-card-dep {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .vuln-card-body {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .vuln-card-risk {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--amber);
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-br);
+      padding: 8px 12px;
+      line-height: 1.6;
+    }
+    .vuln-num-bg {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 100px;
+      font-weight: 900;
+      color: var(--border);
+      position: absolute;
+      bottom: -20px; right: 10px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    /* ─── Closing / cross-links section ─── */
+    .os-closing {
+      background: var(--bg);
+      padding: 80px 0;
+    }
+    .os-connections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .os-conn-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+      display: block;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .os-conn-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
+    .os-conn-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .os-conn-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .os-conn-desc {
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.5;
+    }
+
+    /* Sources */
+    .os-sources {
+      background: var(--dark);
+      padding: 60px 0;
+    }
+    .os-sources-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dark-dim);
+      margin-bottom: 20px;
+    }
+    .os-sources-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .os-sources-list a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #2DD4BF;
+      text-decoration: none;
+      line-height: 1.5;
+      transition: color 0.15s;
+    }
+    .os-sources-list a:hover { color: var(--teal-bright); text-decoration: underline; }
+    .os-sources-list span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--dark-dim);
+      line-height: 1.5;
+    }
+
+    /* Status tags (reusing hz-status colours) */
+    .hz-status--projected {
+      background: rgba(8,145,178,0.15);
+      color: #0891B2;
+      border: 1px solid rgba(8,145,178,0.3);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .vuln-grid { grid-template-columns: 1fr; }
+      .sw-detail-body { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .sw-detail-body { grid-template-columns: 1fr; }
+      .os-connections-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── SCENARIO BANNER ─── -->
+<div class="scenario-banner" role="note" style="position:relative;z-index:100;background:#7C2D12;color:#FED7AA;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;text-align:center;border-bottom:1px solid #9A3412;">
+  ⚠ SCENARIO ANALYSIS — Hypothetical event modelling, not current events
+</div>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">dhruv</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="signals.html">Signals</a></li>
+      <li><a href="horizon2040.html">Research</a></li>
+      <li><a href="index.html#positions">Positions</a></li>
+      <li><a href="index.html#blog">Writing</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#10005;</button>
+  <ul>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="signals.html">Signals</a></li>
+    <li><a href="horizon2040.html">Research</a></li>
+    <li><a href="index.html#positions">Positions</a></li>
+    <li><a href="index.html#blog">Writing</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — HERO
+══════════════════════════════════════════════ -->
+<section class="hz-hero">
+  <div class="hz-hero-inner">
+    <span class="hz-eyebrow">MACRO RESEARCH · OIL SHOCK · MANDAVKAR.UK</span>
+    <h1 class="hz-hero-title">The price is the headline.<br><em>Demand destruction</em> is the story.</h1>
+    <p class="hz-hero-sub">The Strait of Hormuz closure cut 20% of global oil supply. But the real economic damage isn't the price spike — it's the second-order effects cascading through sectors, supply chains, and sovereign budgets over the next 12 months.</p>
+
+    <div class="hz-impact-stats fade-up">
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">~10 mb/d</span>
+        <span class="hz-impact-label">Crude + Condensates<br>Shut In</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">$126/bbl</span>
+        <span class="hz-impact-label">Brent Crude<br>Peak (Mar 8)</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">400 mb</span>
+        <span class="hz-impact-label">IEA Emergency<br>Reserve Release</span>
+      </div>
+      <div class="hz-impact-stat">
+        <span class="hz-impact-num">20%</span>
+        <span class="hz-impact-label">Global Oil Supply<br>Through Hormuz</span>
+      </div>
+    </div>
+
+    <!-- Live Brent price from FRED -->
+    <div class="os-live-price fade-up">
+      <span class="os-live-dot"></span>
+      <span class="os-live-label">Brent Crude · Live · FRED</span>
+      <span class="os-live-value" id="brent-price">—</span>
+      <span class="os-live-date" id="brent-date"></span>
+    </div>
+
+    <div class="hz-hero-quote fade-up">
+      <blockquote>The 1973 Arab oil embargo removed ~4.4 mb/d from the market. The 1979 Iranian Revolution removed ~5.6 mb/d. The 2026 Hormuz closure removed ~10 mb/d. This is the largest supply disruption in the history of the global oil market.</blockquote>
+    </div>
+
+    <div class="hz-hero-cta fade-up">
+      <a href="#shockwave" class="hz-btn hz-btn--primary">See the shockwave timeline ↓</a>
+      <a href="signals.html" class="hz-btn hz-btn--ghost">Live Signals →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — SHOCKWAVE TIMELINE
+══════════════════════════════════════════════ -->
+<section id="shockwave" class="sw-section">
+  <div class="hz-container">
+    <div class="sw-header fade-up">
+      <span class="hz-section-label">THE SHOCKWAVE TIMELINE</span>
+      <h2 class="sw-title">When the barrel doesn't arrive.</h2>
+      <p class="sw-subtitle">Physical oil travels at ~15 knots. The shortage arrives in sequence — click each region to expand.</p>
+    </div>
+
+    <!-- Timeline track -->
+    <div class="sw-timeline-wrap fade-up">
+      <div class="sw-track" id="sw-track">
+        <div class="sw-bar" id="sw-bar"></div>
+
+        <!-- Node 1: Closure -->
+        <div class="sw-node" style="left:0%" data-node="closure" title="Hormuz Closure — Feb 28">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">🛑</span>
+            <span class="sw-node-region">CLOSURE</span>
+            <span class="sw-node-date">Feb 28</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--active"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--active">ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Node 2: Africa / South Asia -->
+        <div class="sw-node" style="left:16%" data-node="africa" title="Africa / South Asia — Mar 8–14">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">🌍</span>
+            <span class="sw-node-region">AFRICA / S.ASIA</span>
+            <span class="sw-node-date">Mar 8–14</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--active"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--active">ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Node 3: East Asia -->
+        <div class="sw-node" style="left:33%" data-node="eastasia" title="East Asia — Mar 18–25">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">🌏</span>
+            <span class="sw-node-region">EAST ASIA</span>
+            <span class="sw-node-date">Mar 18–25</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--active"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--active">ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Node 4: Europe -->
+        <div class="sw-node" style="left:52%" data-node="europe" title="Europe — Mar 25 – Apr 4">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">🌍</span>
+            <span class="sw-node-region">EUROPE</span>
+            <span class="sw-node-date">Mar 25 – Apr 4</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--active"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--active">ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Node 5: United States -->
+        <div class="sw-node" style="left:68%" data-node="us" title="United States — Apr 4–15">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">🇺🇸</span>
+            <span class="sw-node-region">UNITED STATES</span>
+            <span class="sw-node-date">Apr 4–15</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--emerging"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--emerging">EMERGING</span>
+          </div>
+        </div>
+
+        <!-- Node 6: Winter 2026 -->
+        <div class="sw-node" style="left:88%" data-node="winter" title="Winter 2026–27 — Oct onwards">
+          <div class="sw-node-upper">
+            <span class="sw-node-flag">❄️</span>
+            <span class="sw-node-region">WINTER 2026–27</span>
+            <span class="sw-node-date">Oct onwards</span>
+          </div>
+          <div class="sw-node-dot sw-node-dot--projected"></div>
+          <div class="sw-node-lower">
+            <span class="sw-node-status-tag sw-node-status-tag--projected">PROJECTED</span>
+          </div>
+        </div>
+
+      </div><!-- /.sw-track -->
+    </div><!-- /.sw-timeline-wrap -->
+
+    <p class="sw-hint">← scroll to view full timeline on mobile · click a node to expand regional detail →</p>
+
+    <!-- Detail cards -->
+    <div class="sw-detail-zone">
+
+      <div class="sw-detail-card" id="detail-closure">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">🛑</span>
+          <div>
+            <div class="sw-detail-region">Hormuz Closure — Feb 28, 2026</div>
+            <span class="hz-status hz-status--compromised" style="margin-top:6px;display:inline-block;">ACTIVE DISRUPTION</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">~10 mb/d</span>
+            <span class="sw-detail-metric-lbl">Supply shut in</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">$126/bbl</span>
+            <span class="sw-detail-metric-lbl">Brent peak (Mar 8)</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Day 0</span>
+            <span class="sw-detail-metric-lbl">Disruption origin</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">40 days</span>
+            <span class="sw-detail-metric-lbl">SPR buffer (400mb ÷ 10mb/d)</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">US-Israel launched Operation Epic Fury on Feb 28, 2026. Iran's IRGC closed the Strait of Hormuz to tanker traffic, removing approximately 10 mb/d of crude and condensates — roughly 20% of global seaborne oil supply. Brent crude spiked from $63 to $126/bbl peak on March 8. The IEA coordinated emergency reserve release of 400 mb on March 11. As of April 2026, the strait remains contested with tanker attacks ongoing.</p>
+        <div class="sw-detail-risk">STRUCTURAL GAP: The 400mb SPR release buys approximately 40 days against the lost volume. Once exhausted, there is no second act from strategic reserves. Infrastructure is damaged — Gulf production capacity will take years to rebuild.</div>
+      </div>
+
+      <div class="sw-detail-card" id="detail-africa">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">🌍</span>
+          <div>
+            <div class="sw-detail-region">Africa &amp; South Asia — Mar 8–14</div>
+            <span class="hz-status hz-status--compromised" style="margin-top:6px;display:inline-block;">ACTIVE</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">7–14 days</span>
+            <span class="sw-detail-metric-lbl">Tanker transit from Gulf</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">80–95%</span>
+            <span class="sw-detail-metric-lbl">Import dependency</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Thin</span>
+            <span class="sw-detail-metric-lbl">Strategic reserve buffer</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Kharif</span>
+            <span class="sw-detail-metric-lbl">Planting season at risk (Jun–Jul)</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">East African and South Asian nations were the first to feel the physical shortage. Shortest supply chains, thinnest strategic reserves, least fiscal space to absorb the shock. India imported 85% of its crude, with ~60% from Gulf states. The rupee came under immediate pressure. Pakistan and Bangladesh face acute import bill stress, with limited forex reserves. Sri Lanka, still recovering from its 2022 crisis, has near-zero buffer.</p>
+        <div class="sw-detail-risk">UNIQUE RISK: Fertiliser disruption threatens the June–July Kharif planting season across South Asia and East Africa. Natural gas feedstock for ammonia is compromised — next season's food security is a lagging indicator of this shock, not a leading one.</div>
+      </div>
+
+      <div class="sw-detail-card" id="detail-eastasia">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">🌏</span>
+          <div>
+            <div class="sw-detail-region">East Asia — Mar 18–25</div>
+            <span class="hz-status hz-status--compromised" style="margin-top:6px;display:inline-block;">ACTIVE</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">18–25 days</span>
+            <span class="sw-detail-metric-lbl">Tanker transit from Gulf</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">70–90%</span>
+            <span class="sw-detail-metric-lbl">Import dependency</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">~90 days</span>
+            <span class="sw-detail-metric-lbl">China SPR buffer (est.)</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Helium</span>
+            <span class="sw-detail-metric-lbl">Qatar byproduct at risk for chip fabs</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">China, Japan, and South Korea are drawing down strategic reserves while pursuing alternative supply routes at significant cost. Industrial slowdown is emerging across manufacturing-heavy economies. China's large SPR provides a longer buffer than most — but the long-term question is whether China uses this moment to accelerate non-dollar oil settlement mechanisms, fragmenting the market further.</p>
+        <div class="sw-detail-risk">UNIQUE RISK: Qatar's Ras Laffan LNG complex (hit Mar 18) produces helium as a byproduct. Helium is essential for semiconductor fabrication. TSMC, Samsung, and Intel fabs are monitoring supply. This is a secondary channel that has not been fully priced.</div>
+      </div>
+
+      <div class="sw-detail-card" id="detail-europe">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">🇪🇺</span>
+          <div>
+            <div class="sw-detail-region">Europe &amp; UK — Mar 25 – Apr 4</div>
+            <span class="hz-status hz-status--compromised" style="margin-top:6px;display:inline-block;">ACTIVE</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">25–35 days</span>
+            <span class="sw-detail-metric-lbl">Tanker transit via Suez/Cape</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">~55%</span>
+            <span class="sw-detail-metric-lbl">Import dependency</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">~0.5–0.7pp</span>
+            <span class="sw-detail-metric-lbl">Inflation add per $10 oil rise</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Winter</span>
+            <span class="sw-detail-metric-lbl">LNG heating exposure (Oct–Mar)</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">Europe is already weakened by flat growth. A persistent $30–50/bbl premium on crude adds 1.5–3.5pp to headline inflation when combined with shipping cost and insurance premium pass-through. The real risk isn't inflation — it's recession. Consumer spending and business investment contract when energy costs spike and confidence collapses simultaneously. Post-Nord Stream, Europe is now post-Hormuz LNG too: Qatar, its primary LNG alternative to Russian pipeline gas, has been hit.</p>
+        <div class="sw-detail-risk">UNIQUE RISK: If the Hormuz closure persists through summer, European gas storage fill rates will be critically low entering winter 2026–27. Alternative LNG supply from US and Australia is available at significantly higher cost — if volumes are even accessible at scale.</div>
+      </div>
+
+      <div class="sw-detail-card" id="detail-us">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">🇺🇸</span>
+          <div>
+            <div class="sw-detail-region">United States — Apr 4–15</div>
+            <span class="hz-status hz-status--risk" style="margin-top:6px;display:inline-block;">EMERGING</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">35–45 days</span>
+            <span class="sw-detail-metric-lbl">Transit time (East Coast)</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Lower</span>
+            <span class="sw-detail-metric-lbl">Direct exposure (domestic prod.)</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">6–9 months</span>
+            <span class="sw-detail-metric-lbl">Shale response timeline</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Refined</span>
+            <span class="sw-detail-metric-lbl">Products affected despite domestic oil</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">The US is less directly exposed due to domestic production — but refined products tell a different story. Jet fuel, diesel, and petrochemical feedstocks all have global price exposure. The shale response is real but slow: well permitting to first barrel takes 6–9 months minimum. US consumers are already seeing pump prices above the political threshold, generating domestic pressure to accelerate a diplomatic resolution.</p>
+        <div class="sw-detail-risk">SIGNAL TO WATCH: US rig count is the leading indicator for shale response. Watch for a significant jump in the Baker Hughes count — that signals market confidence in a 6–9 month supply bridge, which is itself a bet on conflict resolution.</div>
+      </div>
+
+      <div class="sw-detail-card" id="detail-winter">
+        <div class="sw-detail-header">
+          <span class="sw-detail-flag">❄️</span>
+          <div>
+            <div class="sw-detail-region">Winter 2026–27 — Oct onwards</div>
+            <span class="hz-status hz-status--projected" style="margin-top:6px;display:inline-block;">PROJECTED</span>
+          </div>
+        </div>
+        <div class="sw-detail-body">
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Oct–Mar</span>
+            <span class="sw-detail-metric-lbl">Exposure window</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Qatar</span>
+            <span class="sw-detail-metric-lbl">World's largest LNG exporter (damaged)</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Storage</span>
+            <span class="sw-detail-metric-lbl">European fill rates — critical metric</span>
+          </div>
+          <div class="sw-detail-metric">
+            <span class="sw-detail-metric-val">Tail risk</span>
+            <span class="sw-detail-metric-lbl">Not yet in pricing</span>
+          </div>
+        </div>
+        <p class="sw-detail-analysis">This is the scenario nobody is pricing. If the Strait of Hormuz remains contested through summer 2026, Europe faces a heating crisis the following winter. Post-Nord Stream, Europe's LNG dependency shifted heavily toward Qatar — the world's largest LNG exporter. Qatar's Ras Laffan complex has already been struck. European gas storage must be filled by October, and the alternative supply routes (US LNG, Australian LNG) are expensive and constrained by liquefaction capacity.</p>
+        <div class="sw-detail-risk">KEY METRIC: TTF European gas futures for Q4 2026 and Q1 2027 delivery. If these contracts start pricing a structural premium beyond summer spot, the market is beginning to price winter tail risk. They are not yet.</div>
+      </div>
+
+    </div><!-- /.sw-detail-zone -->
+  </div>
+</section>
+
+<!-- cream → dark angle -->
+<div class="sect-angle sect-angle--cream-dark sect-angle--type-a" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — TRANSMISSION MECHANISMS TABLE
+══════════════════════════════════════════════ -->
+<section class="hz-matrix-section">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">TRANSMISSION MECHANISMS</span>
+      <h2 class="hz-section-title">Eight channels. One structural shock.</h2>
+      <p style="font-size:15px;color:var(--dark-dim);font-family:'Inter',sans-serif;max-width:640px;line-height:1.7;margin-bottom:32px;">The oil shock doesn't transmit through one channel — it cascades across eight simultaneously. Each channel has a different timeline, different exposed actors, and a different regulatory or fiscal response. The headlines cover channel one. Channels two through eight are where the structural damage accumulates.</p>
+    </div>
+
+    <div class="fade-up" style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th class="matrix-col-channel">Channel</th>
+            <th class="matrix-col-mechanism">Mechanism</th>
+            <th class="matrix-col-who">Who Gets Hit</th>
+            <th class="matrix-col-timeline">Timeline</th>
+            <th class="matrix-col-status">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="matrix-col-signal">Transport Fuel</td>
+            <td class="matrix-col-failure">Direct pass-through to petrol and diesel prices at the pump.</td>
+            <td class="matrix-col-measures">Every economy — consumers first, then logistics costs compound.</td>
+            <td class="matrix-col-timeline">Weeks 1–4</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--compromised">ACTIVE</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Fertiliser &amp; Food</td>
+            <td class="matrix-col-failure">Natural gas → ammonia → fertiliser chain disrupted. Urea prices spiking.</td>
+            <td class="matrix-col-measures">Agricultural importers: India, Pakistan, sub-Saharan Africa. Threatens Kharif season.</td>
+            <td class="matrix-col-timeline">Months 1–3</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">EMERGING</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Semiconductors</td>
+            <td class="matrix-col-failure">Helium supply — a Qatar LNG byproduct — disrupted. Chip fabs require helium for cooling.</td>
+            <td class="matrix-col-measures">TSMC, Samsung, Intel fabrication plants. Months 2–4 lag.</td>
+            <td class="matrix-col-timeline">Months 2–4</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--blind">WATCH</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Aviation</td>
+            <td class="matrix-col-failure">Jet fuel is the tightest refined product globally. Middle East refineries supplied disproportionate share to Asian and African carriers.</td>
+            <td class="matrix-col-measures">Airlines globally. Tourism-dependent economies: Thailand, Maldives, Kenya.</td>
+            <td class="matrix-col-timeline">Weeks 2–6</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--compromised">ACTIVE</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Construction</td>
+            <td class="matrix-col-failure">Bitumen, plastics, and petrochemical feedstocks are oil derivatives. Price transmission into building materials.</td>
+            <td class="matrix-col-measures">Housing markets, infrastructure projects. Emerging market governments with large capex pipelines.</td>
+            <td class="matrix-col-timeline">Months 2–6</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">EMERGING</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Food Systems</td>
+            <td class="matrix-col-failure">Fertiliser + diesel + shipping costs compound simultaneously. Three separate oil-driven cost pressures on global food prices.</td>
+            <td class="matrix-col-measures">Net food importers, emerging markets. Countries with thin forex reserves most exposed.</td>
+            <td class="matrix-col-timeline">Months 3–8</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--risk">STRUCTURAL</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Sovereign Budgets</td>
+            <td class="matrix-col-failure">Import bill explosion for oil-dependent nations. Rupee, PKR, BDT, LKR all face simultaneous current account pressure.</td>
+            <td class="matrix-col-measures">India, Pakistan, Philippines, Bangladesh, Sri Lanka, East Africa. RBI trilemma: currency, inflation, or growth — pick two.</td>
+            <td class="matrix-col-timeline">Months 1–12</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--blind">CRITICAL</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-col-signal">Winter 2026–27</td>
+            <td class="matrix-col-failure">European LNG heating supply from Qatar damaged. Gas storage fill rates endangered. Post-Nord Stream + post-Hormuz compounding.</td>
+            <td class="matrix-col-measures">Europe and UK. Oxford Economics: global recession threshold at $140/bbl sustained.</td>
+            <td class="matrix-col-timeline">Oct 2026 – Mar 2027</td>
+            <td class="matrix-col-status"><span class="hz-status hz-status--unpriced">UNPRICED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="matrix-footer fade-up">
+      <span>Sources: IEA, EIA, Dallas Fed, AllianceBernstein, Economics Help — data as of April 2026.</span>
+    </div>
+  </div>
+</section>
+
+<!-- dark stays dark (no angle divider needed) -->
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — DEMAND DESTRUCTION THESIS
+══════════════════════════════════════════════ -->
+<section id="thesis" class="hz-thesis-section hz-thesis-section--dark">
+  <div class="hz-container">
+    <div class="hz-thesis-inner">
+      <span class="hz-thesis-num-bg">DD</span>
+
+      <div class="hz-content-grid">
+        <div class="fade-up">
+          <div class="hz-thesis-header">
+            <span class="hz-thesis-eyebrow">THE DEMAND DESTRUCTION THESIS</span>
+            <span class="hz-status hz-status--blind">STRUCTURAL</span>
+          </div>
+
+          <h3 class="hz-thesis-h3">When the barrel doesn't arrive — four phases of damage.</h3>
+
+          <p class="os-subsection-title">The Artificial Lull</p>
+          <p class="hz-thesis-body">The SPR release and speculator positioning created a temporary price reprieve. Prices fell from $126 to approximately $92/bbl. This is misleading. The IEA-coordinated 400mb release covers roughly 40 days of the lost supply volume — and that calculation assumes no further deterioration. Once depleted, there is no second act. The price lull is not resolution. It is the gap between the financial shock and the physical shortage. The barrel that left Ras Tanura on February 27 is still at sea. When the last pre-closure barrel clears its destination, the physical shortage begins in earnest.</p>
+
+          <p class="os-subsection-title">Sector-by-Sector Transmission</p>
+          <p class="hz-thesis-body"><strong>Fertiliser and food:</strong> Qatar's Ras Laffan LNG complex, struck March 18, produces helium as a byproduct — essential for semiconductor fabrication. But the larger food channel runs through natural gas, which is the primary feedstock for ammonia, which is the primary feedstock for urea fertiliser. Urea prices were already elevated before the Hormuz closure. The disruption breaks the ammonia chain for the next planting season across South Asia and Africa — a food security shock with a 6–9 month lag.</p>
+          <p class="hz-thesis-body"><strong>Aviation:</strong> Jet fuel is the tightest refined product globally. Middle Eastern refineries supplied a disproportionate share to Asian and African carriers. Route cuts, frequency reductions, and fare spikes are the immediate transmission vector. Tourism-dependent economies — Thailand, Maldives, Kenya — face a double impact: higher aviation costs and reduced visitor spending simultaneously.</p>
+          <p class="hz-thesis-body"><strong>India:</strong> India imported 85% of its crude, with approximately 60% from Gulf states. The rupee is under pressure. The current account deficit widens mechanically. The Reserve Bank of India faces a genuine trilemma: support the rupee, control inflation, or support growth. The policy trade-off is painful and visible — it will show up in Indian credit spreads, equity risk premium, and central bank rhetoric before the June CPI print.</p>
+
+          <p class="os-subsection-title">The UK and Europe</p>
+          <p class="hz-thesis-body">Europe entered this shock weakened by flat growth and residual post-Nord Stream gas cost elevation. A $10 permanent rise in crude adds approximately 0.5–0.7pp to headline inflation — but when combined with shipping and insurance cost pass-through, the total impact is closer to 1pp for Western Europe on a sustained $30+ shock. The real risk is not inflation — it is recession. Consumer spending and business investment contract when energy costs spike and confidence collapses simultaneously. The UK faces an additional dynamic: its disproportionately large financial sector is exposed to secondary effects through credit markets, not just direct energy costs.</p>
+
+          <div class="contrarian-claim">
+            <blockquote>"Everyone is watching the Brent price as the signal. The actual signal is the Brent term structure. When the forward curve flips from contango to backwardation, the market is telling you that physical barrels are genuinely scarce — not just speculatively priced. Watch the six-month versus spot spread, not the headline number."</blockquote>
+            <cite>— OIL SHOCK 2026 · DEMAND DESTRUCTION THESIS</cite>
+          </div>
+
+          <p class="os-subsection-title">The Winter Question</p>
+          <p class="hz-thesis-body">The tail risk that is not being priced: if the Strait of Hormuz remains contested through summer 2026, Europe faces a heating crisis in winter 2026–27. Post-Nord Stream, Europe pivoted toward LNG with Qatar as its primary supplier. Qatar's LNG infrastructure is damaged. European gas storage must reach approximately 90% capacity by October to safely navigate winter demand. The alternative supply sources — US LNG, Australian LNG — are more expensive and constrained by liquefaction capacity. This is a structural, long-lead-time risk. The window to solve it is closing between now and September.</p>
+        </div>
+
+        <div class="fade-up">
+          <div class="hz-stat-grid">
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--red">40 days</span>
+              <span class="hz-stat-label">SPR buffer life (400mb ÷ 10mb/d)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num">6–9 months</span>
+              <span class="hz-stat-label">Shale response timeline (well to barrel)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--amber">85%</span>
+              <span class="hz-stat-label">India's crude import dependency</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--teal">~60%</span>
+              <span class="hz-stat-label">India's Gulf crude share (pre-closure)</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num">$140/bbl</span>
+              <span class="hz-stat-label">Oxford Economics global recession threshold</span>
+            </div>
+            <div class="hz-stat">
+              <span class="hz-stat-num hz-stat-num--purple">~1pp</span>
+              <span class="hz-stat-label">Total inflation impact — Western Europe (sustained shock)</span>
+            </div>
+          </div>
+
+          <div class="hz-callout" style="margin-top:24px;">
+            <span class="hz-callout-icon">⚑</span>
+            <p><strong>What I am watching:</strong> Brent term structure (contango vs. backwardation signals physical tightness) · India CPI and rupee/USD (demand destruction canary) · European TTF Q4 2026 (winter pricing) · Urea/ammonia spot (food security leading indicator) · Airline load factor and route cuts · IEA monthly SPR drawdown rate · US rig count (shale response lag indicator)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- dark → cream angle -->
+<div class="sect-angle sect-angle--dark-cream sect-angle--type-b" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — REGIONAL VULNERABILITY CARDS
+══════════════════════════════════════════════ -->
+<section class="vuln-section" style="background:var(--bg)">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">REGIONAL VULNERABILITY</span>
+      <h2 class="hz-section-title hz-section-title--light">Four exposure profiles.</h2>
+      <p style="font-size:15px;color:var(--dim);font-family:'Inter',sans-serif;max-width:580px;line-height:1.7;margin-bottom:0;">Each region has a different import dependency, fiscal buffer, and unique vulnerability. The shock hits all four simultaneously — but via different mechanisms, at different speeds.</p>
+    </div>
+
+    <div class="vuln-grid">
+
+      <!-- Card 1: South Asia -->
+      <div class="vuln-card fade-up">
+        <span class="vuln-num-bg">01</span>
+        <span class="vuln-card-flag">🌏</span>
+        <div class="vuln-card-region">South Asia</div>
+        <span class="vuln-card-dep">India · Pakistan · Sri Lanka · Bangladesh · Import dependency: 80–95%</span>
+        <p class="vuln-card-body">India imported ~60% of its crude from Gulf states. The rupee/PKR are under immediate pressure, widening current account deficits. The RBI faces an impossible trilemma — support the currency, contain inflation, or protect growth. Pakistan and Bangladesh have thin forex reserves. Sri Lanka, still recovering from its 2022 crisis, has near-zero buffer capacity to absorb an import bill explosion of this magnitude.</p>
+        <div class="vuln-card-risk">UNIQUE RISK — Fertiliser disruption threatens the Kharif planting season (June–July). Next season's food prices are a lagging indicator of this shock — not yet in any inflation forecast.</div>
+      </div>
+
+      <!-- Card 2: Europe & UK -->
+      <div class="vuln-card fade-up">
+        <span class="vuln-num-bg">02</span>
+        <span class="vuln-card-flag">🇪🇺</span>
+        <div class="vuln-card-region">Europe &amp; UK</div>
+        <span class="vuln-card-dep">Post-Nord Stream · Post-Hormuz LNG · Import dependency: ~55%</span>
+        <p class="vuln-card-body">Europe entered this shock already weakened — flat growth, post-Nord Stream cost base, residual inflation. A sustained oil price premium of $30–50/bbl adds 1–1.5pp to headline inflation, pushing the ECB and BoE into a stagflation dilemma. The UK faces additional secondary exposure through its large financial sector. The winter 2026–27 LNG exposure is the structural risk that no policy instrument can solve in the time available.</p>
+        <div class="vuln-card-risk">UNIQUE RISK — LNG supply from Qatar (world's largest exporter) is damaged. No quick alternative at scale is available before October storage fill deadline.</div>
+      </div>
+
+      <!-- Card 3: East Asia -->
+      <div class="vuln-card fade-up">
+        <span class="vuln-num-bg">03</span>
+        <span class="vuln-card-flag">🌏</span>
+        <div class="vuln-card-region">East Asia</div>
+        <span class="vuln-card-dep">China · Japan · South Korea · Import dependency: 70–90%</span>
+        <p class="vuln-card-body">China, Japan, and South Korea are drawing down strategic reserves while sourcing alternative supply at significant cost premium. Industrial slowdown is visible in manufacturing output and PMI data. China's relatively large SPR provides a longer buffer — but Beijing may use this moment strategically, accelerating non-dollar oil settlement frameworks that fragment the global market long after the physical shortage resolves.</p>
+        <div class="vuln-card-risk">UNIQUE RISK — Helium supply from Qatar's damaged LNG complex threatens chip fabrication. TSMC, Samsung, and Intel are monitoring. This is a secondary channel not yet priced in semiconductor equities.</div>
+      </div>
+
+      <!-- Card 4: Africa -->
+      <div class="vuln-card fade-up">
+        <span class="vuln-num-bg">04</span>
+        <span class="vuln-card-flag">🌍</span>
+        <div class="vuln-card-region">Africa (Net Importers)</div>
+        <span class="vuln-card-dep">East + West Africa · Thin reserves · Least fiscal space</span>
+        <p class="vuln-card-body">African net oil importers were the first to feel the physical shortage — shortest supply chains, thinnest strategic reserves, least fiscal capacity to respond. Fuel rationing is already underway in several East African markets. Transport disruption cascades into food distribution chains. With limited foreign exchange capacity, the import bill shock threatens currency crises in countries already under debt distress. The IMF emergency facility is likely to be overwhelmed.</p>
+        <div class="vuln-card-risk">UNIQUE RISK — Fuel rationing + transport disruption + food price spikes compound simultaneously. Potential social unrest in countries with pre-existing political fragility.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — CROSS-LINKS
+══════════════════════════════════════════════ -->
+<section class="os-closing">
+  <div class="hz-container">
+    <div class="fade-up">
+      <span class="hz-section-label">CONNECTED RESEARCH</span>
+      <h2 class="hz-section-title hz-section-title--light">This page doesn't stand alone.</h2>
+      <p style="font-size:15px;color:var(--dim);font-family:'Inter',sans-serif;max-width:580px;line-height:1.7;margin-bottom:0;">The oil shock intersects with every research thread on this site. The energy order was already being rewritten before February 2026 — this is the acceleration.</p>
+    </div>
+
+    <div class="os-connections-grid fade-up">
+      <a href="energy.html" class="os-conn-card">
+        <span class="os-conn-tag">Energy Geopolitics</span>
+        <div class="os-conn-title">The Energy Order Is Being Rewritten</div>
+        <p class="os-conn-desc">LNG restructuring, maritime chokepoints, and sanctions architecture — the Hormuz closure is the acceleration of a trend already underway.</p>
+      </a>
+      <a href="chokepoints.html" class="os-conn-card">
+        <span class="os-conn-tag">Strategic Dossier</span>
+        <div class="os-conn-title">Maritime Chokepoints</div>
+        <p class="os-conn-desc">I mapped the world's 12 critical maritime passages. Hormuz was always rated Chokepoint #1 — the analysis is now live.</p>
+      </a>
+      <a href="supply-chains.html" class="os-conn-card">
+        <span class="os-conn-tag">Macro · Geopolitics</span>
+        <div class="os-conn-title">Macro Geopolitics</div>
+        <p class="os-conn-desc">Helium, ammonia, grain — the supply chains most exposed to the Hormuz closure and its secondary transmission channels.</p>
+      </a>
+      <a href="signals.html" class="os-conn-card">
+        <span class="os-conn-tag">Live Data</span>
+        <div class="os-conn-title">Live Macro Signals</div>
+        <p class="os-conn-desc">Brent crude spot, DXY, yield curves, credit spreads — the live indicators I'm watching to track demand destruction in real time.</p>
+      </a>
+    </div>
+
+    <div class="hz-cta-row fade-up" style="margin-top:48px;">
+      <a href="signals.html" class="hz-btn hz-btn--primary">Track live signals →</a>
+      <a href="energy.html" class="hz-btn hz-btn--ghost">Energy geopolitics →</a>
+    </div>
+
+    <span class="hz-timestamp fade-up" style="display:block;margin-top:32px;">ANALYSIS PUBLISHED — APRIL 2026 · MANDAVKAR.UK · UPDATED AS SITUATION DEVELOPS</span>
+  </div>
+</section>
+
+<!-- ─── SOURCES ─── -->
+<section class="os-sources">
+  <div class="hz-container">
+    <div class="os-sources-title">SOURCES &amp; REFERENCES</div>
+    <div class="os-sources-list">
+      <a href="https://www.iea.org/reports/oil-market-report-march-2026" target="_blank" rel="noopener">IEA — Oil Market Report, March 2026</a>
+      <a href="https://www.eia.gov/outlooks/steo/" target="_blank" rel="noopener">EIA — Short-Term Energy Outlook (Brent/WTI Forecasts)</a>
+      <span>Dallas Fed — Hormuz Strait Analysis (March 2026)</span>
+      <span>HBR — "The Oil Shock Is Here" (March 2026)</span>
+      <span>WEF — "The Global Price Tag of War in the Middle East" (March 2026)</span>
+      <span>AllianceBernstein — "From Oil Shock to Oil Spillover" (March 2026)</span>
+      <span>Oxford Economics — Global Recession Threshold Analysis</span>
+      <span>Kedia Advisory — "Oil Shock 2026: A Structural Turning Point"</span>
+      <span>Petroleum Economist — "The Next Oil Shock"</span>
+      <a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank" rel="noopener">FRED / St. Louis Fed — Brent Crude Spot Price (DCOILBRENTEU)</a>
+      <span>IMF — Emergency Facility Analysis, Q1 2026</span>
+      <span>Baker Hughes — North American Rig Count (weekly)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="hz-footer">
+  <div class="hz-footer-inner">
+    <span class="hz-footer-copy">&copy; <span id="footer-year">2026</span> Dhruv Mandavkar &middot; mandavkar.uk</span>
+    <ul class="hz-footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="signals.html">Live Signals</a></li>
+      <li><a href="horizon2040.html">Horizon 2040</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="chokepoints.html">Chokepoints</a></li>
+      <li><a href="mailto:jobs@mandavkar.uk">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ─── Reading progress bar ─── */
+  window.addEventListener('scroll', function () {
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if (!total) return;
+    var bar = document.getElementById('reading-progress');
+    if (bar) bar.style.width = Math.min(100, window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  /* ─── Footer year ─── */
+  var fy = document.getElementById('footer-year');
+  if (fy) fy.textContent = new Date().getFullYear();
+
+  /* ─── Shockwave timeline: progress bar animation on scroll ─── */
+  (function () {
+    var track = document.getElementById('sw-track');
+    var bar   = document.getElementById('sw-bar');
+    if (!track || !bar) return;
+
+    var animated = false;
+    function checkTimeline() {
+      if (animated) return;
+      var rect = track.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85) {
+        bar.classList.add('animated');
+        animated = true;
+        window.removeEventListener('scroll', checkTimeline, { passive: true });
+      }
+    }
+    window.addEventListener('scroll', checkTimeline, { passive: true });
+    checkTimeline(); // run on load too
+  })();
+
+  /* ─── Shockwave timeline: node click → detail card ─── */
+  (function () {
+    var nodes = document.querySelectorAll('.sw-node');
+    var cards = document.querySelectorAll('.sw-detail-card');
+    var detailZone = document.querySelector('.sw-detail-zone');
+
+    function hideAll() {
+      cards.forEach(function (c) { c.classList.remove('active'); });
+      nodes.forEach(function (n) { n.classList.remove('sw-node--selected'); });
+    }
+
+    nodes.forEach(function (node) {
+      node.addEventListener('click', function () {
+        var key   = node.getAttribute('data-node');
+        var card  = document.getElementById('detail-' + key);
+        var isOpen = card && card.classList.contains('active');
+
+        hideAll();
+
+        if (!isOpen && card) {
+          card.classList.add('active');
+          node.classList.add('sw-node--selected');
+          // Scroll detail zone into view smoothly
+          setTimeout(function () {
+            if (detailZone) {
+              detailZone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }, 80);
+        }
+      });
+    });
+
+    // Click outside to close
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.sw-node') && !e.target.closest('.sw-detail-card')) {
+        hideAll();
+      }
+    });
+  })();
+
+  /* ─── Live Brent price from FRED API ─── */
+  (function () {
+    var priceEl = document.getElementById('brent-price');
+    var dateEl  = document.getElementById('brent-date');
+    var FALLBACK_PRICE = '$121.88';
+    var FALLBACK_DATE  = 'Mar 30, 2026';
+
+    var apiKey = (typeof window.FRED_API_KEY !== 'undefined') ? window.FRED_API_KEY : '';
+    if (!apiKey) {
+      if (priceEl) priceEl.textContent = FALLBACK_PRICE;
+      if (dateEl)  dateEl.textContent  = FALLBACK_DATE + ' (cached)';
+      return;
+    }
+
+    var params = new URLSearchParams({
+      series_id: 'DCOILBRENTEU',
+      api_key: apiKey,
+      file_type: 'json',
+      sort_order: 'desc',
+      limit: '5',
+      observation_start: '2026-01-01'
+    });
+    var url = 'https://api.stlouisfed.org/fred/series/observations?' + params.toString();
+
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var obs = (data.observations || []).filter(function (o) {
+          return o.value && o.value !== '.';
+        });
+        if (!obs.length) throw new Error('No data');
+
+        var latest = obs[0]; // desc order, so first is newest
+        var price  = parseFloat(latest.value).toFixed(2);
+        var rawDate = latest.date; // YYYY-MM-DD
+        var parts  = rawDate.split('-');
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var friendly = months[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
+
+        if (priceEl) priceEl.textContent = '$' + price + '/bbl';
+        if (dateEl)  dateEl.textContent  = 'as of ' + friendly;
+      })
+      .catch(function () {
+        if (priceEl) priceEl.textContent = FALLBACK_PRICE + '/bbl';
+        if (dateEl)  dateEl.textContent  = FALLBACK_DATE + ' (cached)';
+      });
+  })();
+
+})();
+</script>
+
+</body>
+</html>
