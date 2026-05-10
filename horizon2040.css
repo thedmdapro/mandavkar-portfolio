@@ -73,7 +73,7 @@ strong { color: var(--text); font-weight: 600; }
   color: var(--dark-text);
   letter-spacing: -0.5px;
 }
-.nav-logo span { color: #2DD4BF; }
+.nav-logo span { color: var(--ochre); }
 .nav-links { display: flex; gap: 26px; list-style: none; align-items: center; }
 .nav-links a {
   font-size: 13px;
@@ -83,7 +83,7 @@ strong { color: var(--text); font-weight: 600; }
   transition: color var(--duration-fast);
 }
 .nav-links a:hover { color: var(--dark-text); }
-.nav-links a.nav-active { color: #2DD4BF; }
+.nav-links a.nav-active { color: var(--ochre); }
 .nav-cta {
   background: var(--teal) !important;
   color: white !important;
@@ -244,7 +244,7 @@ strong { color: var(--text); font-weight: 600; }
 }
 .hz-hero-title em {
   font-style: italic;
-  color: #2DD4BF;
+  color: var(--ochre);
 }
 .hz-hero-sub {
   font-size: 18px;
@@ -291,7 +291,7 @@ strong { color: var(--text); font-weight: 600; }
 /* Hero pullquote */
 .hz-hero-quote {
   max-width: 640px;
-  border-inline-start: 2px solid #2DD4BF;
+  border-inline-start: 2px solid var(--ochre);
   padding: 14px 20px;
   margin-bottom: 40px;
   background: rgba(45,212,191,0.04);
@@ -378,7 +378,7 @@ strong { color: var(--text); font-weight: 600; }
   align-items: center;
   gap: 4px;
   background: rgba(45,212,191,0.08);
-  color: #2DD4BF;
+  color: var(--ochre);
   border: 1px solid rgba(45,212,191,0.22);
   margin-inline-start: 6px;
   text-decoration: none;
@@ -460,7 +460,7 @@ strong { color: var(--text); font-weight: 600; }
   flex-wrap: wrap;
   line-height: 1.6;
 }
-.matrix-footer a { color: #2DD4BF; }
+.matrix-footer a { color: var(--ochre); }
 .matrix-footer a:hover { text-decoration: underline; }
 
 /* ═══════════════════════════════════════
@@ -658,7 +658,7 @@ strong { color: var(--text); font-weight: 600; }
 .contrarian-claim {
   padding: 26px 30px;
   margin: 20px 0;
-  border-inline-start: 3px solid #2DD4BF;
+  border-inline-start: 3px solid var(--ochre);
 }
 /* On cream / sand sections: use navy (--accent) so text is readable */
 .hz-thesis-section--cream .contrarian-claim,
@@ -935,7 +935,7 @@ strong { color: var(--text); font-weight: 600; }
   transition: color var(--duration-fast);
   display: inline-block;
 }
-.hz-live-link:hover { color: #2DD4BF; }
+.hz-live-link:hover { color: var(--ochre); }
 
 /* Skeleton loader */
 .hz-skeleton {
@@ -991,7 +991,7 @@ strong { color: var(--text); font-weight: 600; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.08em;
-  color: #2DD4BF;
+  color: var(--ochre);
   transition: color var(--duration-fast);
 }
 .hz-live-cta a:hover { color: white; }
@@ -1048,7 +1048,7 @@ strong { color: var(--text); font-weight: 600; }
   font-style: italic;
   font-size: clamp(28px, 4.5vw, 48px);
   font-weight: 800;
-  color: #2DD4BF;
+  color: var(--ochre);
   letter-spacing: -0.03em;
   line-height: 1.18;
   max-width: 820px;
@@ -1264,7 +1264,7 @@ strong { color: var(--text); font-weight: 600; }
 }
 .cp-tier-link:hover,
 .cp-tier-link.active {
-  color: #2DD4BF;
+  color: var(--ochre);
   background: rgba(45,212,191,0.08);
 }
 
@@ -1527,19 +1527,19 @@ strong { color: var(--text); font-weight: 600; }
 /* ── Historical Disruption Inset ── */
 .cp-historical {
   padding: 20px 24px;
-  border-inline-start: 3px solid #2DD4BF;
+  border-inline-start: 3px solid var(--ochre);
   margin: 24px 0;
 }
 .hz-thesis-section--dark .cp-historical {
   background: rgba(45,212,191,0.04);
   border: 1px solid rgba(45,212,191,0.12);
-  border-inline-start: 3px solid #2DD4BF;
+  border-inline-start: 3px solid var(--ochre);
 }
 .hz-thesis-section--cream .cp-historical,
 .hz-thesis-section--sand .cp-historical {
   background: rgba(45,212,191,0.04);
   border: 1px solid rgba(45,212,191,0.12);
-  border-inline-start: 3px solid #2DD4BF;
+  border-inline-start: 3px solid var(--ochre);
 }
 .cp-historical-label {
   font-family: 'JetBrains Mono', monospace;
@@ -1547,7 +1547,7 @@ strong { color: var(--text); font-weight: 600; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #2DD4BF;
+  color: var(--ochre);
   display: block;
   margin-bottom: 8px;
 }
@@ -1586,7 +1586,7 @@ strong { color: var(--text); font-weight: 600; }
   content: '\2022';
   position: absolute;
   left: 0;
-  color: #2DD4BF;
+  color: var(--ochre);
   font-weight: 700;
 }
 .hz-thesis-section--dark .cp-signals-label { color: color-mix(in srgb, var(--white) 45%, transparent); }
