@@ -31,7 +31,7 @@
 ═══════════════════════════════════════════════════════════════════ */
 .er-hero {
   background: #111111;
-  color: #fff;
+  color: var(--white);
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
@@ -68,7 +68,7 @@
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 300;
   line-height: 1.1;
-  color: #fff;
+  color: var(--white);
   letter-spacing: -0.02em;
   margin-bottom: 20px;
 }
@@ -120,7 +120,7 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.6rem;
   font-weight: 400;
-  color: #fff;
+  color: var(--white);
   line-height: 1;
   display: block;
 }
@@ -209,7 +209,7 @@
 }
 
 .er-company-card {
-  background: #fff;
+  background: var(--white);
   border: 1px solid #DEDAD4;
   border-radius: 14px;
   padding: 28px 28px 24px;
