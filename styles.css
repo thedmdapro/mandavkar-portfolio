@@ -1864,6 +1864,12 @@ footer {
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
+  will-change: opacity, transform;
+}
+/* drop the will-change once revealed so the GPU layer is released */
+.fade-up.visible,
+.fade-up[data-revealed="true"] {
+  will-change: auto;
 }
 /* Fallback when GSAP isn't loaded */
 .no-gsap .fade-up {
