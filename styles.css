@@ -164,7 +164,6 @@ strong { color: var(--text); font-weight: 600; }
 /* Dot grid texture on all dark sections — matches hero::before */
 .section-dark,
 .section-positions {
-  background-image: radial-gradient(color-mix(in srgb, var(--white) 2.5%, transparent) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
@@ -186,8 +185,6 @@ h2.light { color: var(--dark-text); }
 
 #nav.scrolled {
   background: rgba(249, 248, 246, 0.72);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border);
   padding: 14px 0;
 }
@@ -378,7 +375,6 @@ h2.light { color: var(--dark-text); }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(color-mix(in srgb, var(--white) 3.5000000000000004%, transparent) 1px, transparent 1px);
   background-size: 30px 30px;
   pointer-events: none;
 }
@@ -863,8 +859,6 @@ h2.light { color: var(--dark-text); }
 
 .cred-card {
   background: color-mix(in srgb, var(--white) 62%, transparent);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid color-mix(in srgb, var(--white) 92%, transparent);
   box-shadow: 0 2px 20px color-mix(in srgb, #000000 6%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 100%, transparent);
   padding: 20px 22px;
@@ -1011,8 +1005,6 @@ h2.light { color: var(--dark-text); }
 
 .bento-card {
   background: color-mix(in srgb, var(--white) 62%, transparent);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid color-mix(in srgb, var(--white) 92%, transparent);
   box-shadow: 0 2px 20px color-mix(in srgb, #000000 6%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 100%, transparent),
               inset 3px 0 0 transparent; /* teal left border on hover — no layout shift */
@@ -1213,8 +1205,6 @@ h2.light { color: var(--dark-text); }
   align-items: stretch;
   text-decoration: none;
   background: color-mix(in srgb, var(--white) 62%, transparent);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
@@ -1676,8 +1666,6 @@ a.now-book:hover { opacity: 0.7; }
 
 .blog-card {
   background: color-mix(in srgb, var(--white) 62%, transparent);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid color-mix(in srgb, var(--white) 92%, transparent);
   box-shadow: 0 2px 16px color-mix(in srgb, #000000 5%, transparent), inset 0 1px 0 color-mix(in srgb, var(--white) 100%, transparent),
               inset 3px 0 0 transparent;
@@ -1920,57 +1908,15 @@ footer {
 .about-credentials .cred-card:nth-child(4) { transition-delay: 0.24s; }
 
 
-/* ═══════════════════════════════════════════════════
-   SECTION ANGLE DIVIDERS
-   Usage: <div class="sect-angle sect-angle--{from-to} sect-angle--type-{a|b}"></div>
-   Type A: slants ↗ (next colour rises right-to-left)
-   Type B: slants ↘ (next colour rises left-to-right)
-═══════════════════════════════════════════════════ */
-.sect-angle {
-  position: relative;
-  height: 60px;
-  pointer-events: none;
-  z-index: 5;
-  overflow: hidden;
-}
-.sect-angle::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-}
 /* Type A — wave focal left */
-.sect-angle--type-a::after { clip-path: ellipse(75% 100% at 38% 100%); }
 /* Type B — wave focal right */
-.sect-angle--type-b::after { clip-path: ellipse(75% 100% at 62% 100%); }
-
 /* Colour pairs — bg = FROM, ::after fill = TO */
-.sect-angle--dark-cream          { background: transparent; }
-.sect-angle--dark-cream::after   { background: var(--bg); }
-
-.sect-angle--dark-sand           { background: var(--dark); }
-.sect-angle--dark-sand::after    { background: var(--bg2); }
-
-.sect-angle--cream-sand          { background: var(--bg); }
-.sect-angle--cream-sand::after   { background: var(--bg2); }
-
-.sect-angle--cream-dark          { background: var(--bg); }
-.sect-angle--cream-dark::after   { background: var(--dark); }
-
-.sect-angle--sand-cream          { background: var(--bg2); }
-.sect-angle--sand-cream::after   { background: var(--bg); }
-
-.sect-angle--sand-dark           { background: var(--bg2); }
-.sect-angle--sand-dark::after    { background: var(--dark); }
-
-
 /* ═══════════════════════════════════════════════════
    GLASSMORPHISM UTILITIES
 ═══════════════════════════════════════════════════ */
 /* Used on bento-card, cred-card (light sections) */
 .glass-light {
   background: color-mix(in srgb, var(--white) 62%, transparent) !important;
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid color-mix(in srgb, var(--white) 92%, transparent) !important;
   box-shadow: 0 2px 20px color-mix(in srgb, #000000 6%, transparent),
               inset 0 1px 0 color-mix(in srgb, var(--white) 100%, transparent);
@@ -2101,30 +2047,11 @@ button:focus-visible,
   .proj-badge, .now-build-status { min-height: 32px; display: inline-flex; align-items: center; }
 }
 
-/* ═══════════════════════════════════════════════════
-   CONSTELLATION PARTICLE CANVAS
-═══════════════════════════════════════════════════ */
-.constellation-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-.constellation-hero {
-  z-index: 0;
-  pointer-events: auto; /* allow mouse parallax */
-}
-.constellation-ambient {
-  opacity: 0.4;
-}
+/* (constellation canvas system removed in distill — 2026-05-05) */
 
-/* Ensure sections with canvases have position context */
 #positions,
 #contact {
   position: relative;
-  overflow: hidden;
 }
 
 /* ═══════════════════════════════════════════════════
