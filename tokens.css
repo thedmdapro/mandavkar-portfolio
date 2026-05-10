@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════════
+   tokens.css — single source of truth for design tokens
+   Loaded first by every page. Per-page CSS files inherit from here.
+   See DESIGN.md for the full visual system documentation.
+═══════════════════════════════════════════════════ */
+
+:root {
+  /* ── Editorial palette (4 named roles per DESIGN.md) ────────────── */
+  --paper:         oklch(0.972 0.006 75);   /* ground, warm cream */
+  --ink:           oklch(0.18 0.018 245);   /* body text, structure */
+  --oxblood:       oklch(0.42 0.155 28);    /* emphasis, brand mark */
+  --ochre:         oklch(0.72 0.135 78);    /* live-data accent */
+  --dark-ink:      oklch(0.155 0.014 245);  /* dark register ground */
+  --cream-on-dark: oklch(0.92 0.009 75);    /* body on dark register */
+
+  /* ── Supporting neutrals ────────────────────────────────────────── */
+  --bg:      var(--paper);
+  --bg2:     oklch(0.945 0.008 75);
+  --card:    oklch(0.955 0.007 75);
+  --white:   oklch(0.985 0.005 70);
+
+  --border:  oklch(0.85 0.012 75);
+  --border2: oklch(0.78 0.014 70);
+
+  /* ── Text aliases ───────────────────────────────────────────────── */
+  --text:    var(--ink);
+  --dim:     oklch(0.45 0.014 245);
+  --subtle:  oklch(0.58 0.012 245);
+
+  /* ── Brand emphasis (oxblood replaces the old Prussian Blue) ────── */
+  --accent:  var(--oxblood);
+  --accent2: oklch(0.36 0.15 28);
+
+  /* ── Live-data accent (ochre replaces the old teal) ─────────────── */
+  --teal:    var(--ochre);
+  --teal-bg: color-mix(in srgb, var(--ochre) 8%, transparent);
+  --teal-br: color-mix(in srgb, var(--ochre) 22%, transparent);
+  --teal-bright: oklch(0.78 0.14 78);
+
+  /* ── Soft accent (residual gradient use, deprecated) ───────────── */
+  --lavender: oklch(0.92 0.022 290);
+
+  /* ── Dark register ─────────────────────────────────────────────── */
+  --dark:         var(--dark-ink);
+  --dark-surface: oklch(0.205 0.012 245);
+  --dark-border:  color-mix(in srgb, var(--cream-on-dark) 12%, transparent);
+  --dark-dim:     color-mix(in srgb, var(--cream-on-dark) 70%, transparent);
+  --dark-text:    var(--cream-on-dark);
+
+  /* ── Spacing ───────────────────────────────────────────────────── */
+  --section-pad: 72px;
+  --container:   1120px;
+
+  /* ── Transitions ──────────────────────────────────────────────── */
+  --duration-fast:   0.2s;
+  --duration-normal: 0.3s;
+  --duration-slow:   0.8s;
+}

@@ -6,32 +6,13 @@
 
 /* ── CSS Variables ── */
 :root {
-  --bg:        #F7F6F3;
-  --bg2:       #ECE9E4;
-  --card:      #F2F0ED;
-  --white:     #FFFFFF;
-  --border:    #DEDAD4;
-  --border2:   #C8C4BE;
-  --text:      #161616;
-  --dim:       #5C5856;
-  --subtle:    #8A8580;
-  --accent:    #1E3A4C;
-  --accent2:   #1d3040;
-  --teal:      #0891B2;
-  --teal-bright: #06B6D4;
-  --teal-bg:   rgb(from var(--teal) r g b / 6%);
-  --teal-br:   rgb(from var(--teal) r g b / 18%);
-  --amber:     #B45309;
-  --amber-bg:  rgba(180, 83, 9, 0.06);
-  --amber-br:  rgba(180, 83, 9, 0.20);
-  --red:       #AE2012;
-  --red-bg:    rgba(174, 32, 18, 0.06);
-  --red-br:    rgba(174, 32, 18, 0.18);
-  --dark:          #111111;
-  --dark-surface:  #1e1e1e;
-  --dark-border:   color-mix(in srgb, var(--white) 9%, transparent);
-  --dark-dim:      color-mix(in srgb, var(--white) 75%, transparent);
-  --dark-text:     color-mix(in srgb, var(--white) 92%, transparent);
+  /* Page-specific status palette (semantic colors not in tokens.css) */
+  --amber:     oklch(0.62 0.13 60);
+  --amber-bg:  color-mix(in srgb, var(--amber) 8%, transparent);
+  --amber-br:  color-mix(in srgb, var(--amber) 22%, transparent);
+  --red:       oklch(0.45 0.16 25);
+  --red-bg:    color-mix(in srgb, var(--red) 8%, transparent);
+  --red-br:    color-mix(in srgb, var(--red) 22%, transparent);
 }
 
 /* ── Reset ── */
