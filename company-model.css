@@ -37,7 +37,7 @@
 ═══════════════════════════════════════════════════════════════════ */
 .cm-hero {
   background: #111111;
-  color: #fff;
+  color: var(--white);
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
@@ -91,7 +91,7 @@
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 300;
   line-height: 1.1;
-  color: #fff;
+  color: var(--white);
   letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
@@ -166,7 +166,7 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #fff;
+  color: var(--white);
   line-height: 1;
   display: block;
 }
