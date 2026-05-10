@@ -206,7 +206,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #0891B2;
+  color: var(--ochre);
   display: block;
   margin-bottom: 10px;
 }
@@ -243,7 +243,7 @@
 }
 
 .cm-thesis-card {
-  background: #F7F6F3;
+  background: var(--paper);
   border: 1px solid #DEDAD4;
   border-radius: 12px;
   padding: 28px 28px 24px;
@@ -253,7 +253,7 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.05rem;
   font-weight: 500;
-  color: #1E3A4C;
+  color: var(--oxblood);
   margin-bottom: 10px;
   letter-spacing: -0.01em;
 }
@@ -265,8 +265,8 @@
 }
 
 .cm-thesis-card.accent {
-  background: #1E3A4C;
-  border-color: #1E3A4C;
+  background: var(--oxblood);
+  border-color: var(--oxblood);
 }
 
 .cm-thesis-card.accent h4 { color: #06B6D4; }
@@ -339,7 +339,7 @@
 }
 
 .cm-table thead th {
-  background: #1E3A4C;
+  background: var(--oxblood);
   color: color-mix(in srgb, var(--white) 90%, transparent);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -374,7 +374,7 @@
 .cm-table tbody td:first-child {
   text-align: left;
   font-weight: 500;
-  color: #1E3A4C;
+  color: var(--oxblood);
   white-space: nowrap;
 }
 
@@ -543,7 +543,7 @@
 .cm-risk-list li {
   display: flex;
   gap: 14px;
-  background: #F7F6F3;
+  background: var(--paper);
   border: 1px solid #DEDAD4;
   border-radius: 10px;
   padding: 18px;
@@ -560,7 +560,7 @@
   display: block;
   font-size: 0.92rem;
   font-weight: 600;
-  color: #1E3A4C;
+  color: var(--oxblood);
   margin-bottom: 4px;
 }
 
