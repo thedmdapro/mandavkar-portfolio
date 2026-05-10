@@ -2165,7 +2165,60 @@ h2[data-splitting].split-visible .char {
   transform: translateY(0) rotateX(0);
 }
 
-/* Nav liquid glass on scroll — values set in main #nav.scrolled rule above */
+/* Nav liquid glass on scroll, values set in main #nav.scrolled rule above */
+
+/* ═══════════════════════════════════════════════════
+   HARDEN: a11y baselines (post-impeccable-harden, 2026-05-05)
+═══════════════════════════════════════════════════ */
+
+/* Focus-visible coverage for interactive controls that previously had none */
+.hamburger:focus-visible,
+.mobile-close:focus-visible,
+.hero-email:focus-visible,
+.btn:focus-visible,
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link for keyboard users (revealed on focus) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  z-index: 1000;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-to-content:focus {
+  top: 8px;
+}
+
+/* prefers-reduced-motion: blanket coverage for any animation/transition the
+   site has, including legacy GSAP-driven sections */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Force fade-up elements to their final state immediately */
+  .fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 /* ═══════════════════════════════════════════════════
    EDITORIAL HERO (post-bolder, replaces dark constellation hero)
