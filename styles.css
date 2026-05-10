@@ -1909,29 +1909,26 @@ footer {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* GSAP controls .fade-up animations — CSS transition is fallback only */
+/* fade-up scroll reveal — works with or without GSAP */
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
-  will-change: opacity, transform;
-}
-/* drop the will-change once revealed so the GPU layer is released */
-.fade-up.visible,
-.fade-up[data-revealed="true"] {
-  will-change: auto;
-}
-/* Fallback when GSAP isn't loaded */
-.no-gsap .fade-up {
   transition:
     opacity  0.72s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
-.no-gsap .fade-up[style*='--delay'] {
+.fade-up[style*='--delay'] {
   transition-delay: var(--delay, 0s);
 }
-.no-gsap .fade-up.visible {
+/* Visible state — applies regardless of whether GSAP is loaded.
+   Fixes a bug where deferred GSAP scripts weren't loaded by the time
+   app.js ran, so fade-up elements stayed at opacity:0 forever. */
+.fade-up.visible,
+.fade-up[data-revealed="true"] {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 /* Stagger credential cards */
