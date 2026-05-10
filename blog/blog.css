@@ -4,28 +4,8 @@
    editorial elements, improved reading experience.
 ═══════════════════════════════════════════════════ */
 
-/* ── Variables (match portfolio site) ── */
-:root {
-  --bg:      #F9F8F6;
-  --bg2:     #ECE9E4;
-  --card:    #F2F0ED;
-  --white:   #FFFFFF;
-  --border:  #DEDAD4;
-  --border2: #C8C4BE;
-  --text:    #1A1A1A;
-  --dim:     #7A7672;
-  --subtle:  #A8A49F;
-  --accent:  #2F4858;
-  --accent2: #1d3040;
-  --teal:    #0891B2;
-  --teal-bg: rgba(8, 145, 178, 0.06);
-  --teal-br: rgba(8, 145, 178, 0.18);
-  --dark:        #141414;
-  --dark-surface: #1e1e1e;
-  --dark-border:  rgba(255, 255, 255, 0.07);
-  --dark-dim:     rgba(255, 255, 255, 0.38);
-  --dark-text:    rgba(255, 255, 255, 0.88);
-}
+/* ── Variables — inherit from tokens.css; no local overrides ──
+   Drop cap uses --oxblood (per editorial system); body uses --ink/--dim. */
 
 /* ── Reset ── */
 *, *::before, *::after {
@@ -311,15 +291,16 @@ strong { color: var(--text); font-weight: 600; }
   color: #525050;
 }
 
-/* Drop cap on first letter */
+/* Drop cap on first letter — oxblood per editorial brand */
 .blog-body > p:first-of-type::first-letter {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 5.4em;
-  font-weight: 800;
+  font-weight: 400;
+  font-style: italic;
   line-height: 0.78;
   float: left;
   margin: 0.04em 0.1em -0.05em 0;
-  color: var(--teal);
+  color: var(--oxblood);
   letter-spacing: -2px;
 }
 
