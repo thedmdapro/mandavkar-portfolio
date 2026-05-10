@@ -1,43 +1,49 @@
 /* ═══════════════════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS — OKLCH editorial palette (post-/impeccable shape)
 ═══════════════════════════════════════════════════ */
 :root {
-  /* Backgrounds */
-  --bg:      #F7F6F3;
-  --bg2:     #ECE9E4;
-  --card:    #F2F0ED;
-  --white:   #FFFFFF;
+  /* Editorial palette: 4 named roles per the design brief */
+  --paper:         oklch(0.972 0.006 75);   /* ground — warm cream */
+  --ink:           oklch(0.18 0.018 245);   /* body, structure — warm near-black */
+  --oxblood:       oklch(0.42 0.155 28);    /* emphasis, signature, brand mark */
+  --ochre:         oklch(0.72 0.135 78);    /* live data, signal accent */
+  --dark-ink:      oklch(0.155 0.014 245);  /* alternate ground for live-data sections */
+  --cream-on-dark: oklch(0.92 0.009 75);    /* body on dark register */
 
-  /* Borders */
-  --border:  #DEDAD4;
-  --border2: #C8C4BE;
+  /* Backgrounds (legacy aliases mapped onto the new palette) */
+  --bg:      var(--paper);
+  --bg2:     oklch(0.945 0.008 75);
+  --card:    oklch(0.955 0.007 75);
+  --white:   oklch(0.985 0.005 70);
 
-  /* Text */
-  --text:    #161616;
-  --dim:     #5C5856;
-  --subtle:  #8A8580;
+  /* Borders — tinted ink */
+  --border:  oklch(0.85 0.012 75);
+  --border2: oklch(0.78 0.014 70);
 
-  /* Accent: Deep Prussian Blue */
-  --accent:  #1E3A4C;
-  --accent2: #152D3C;
+  /* Text — alias to ink so legacy uses inherit the new palette */
+  --text:    var(--ink);
+  --dim:     oklch(0.45 0.014 245);
+  --subtle:  oklch(0.58 0.012 245);
 
-  /* Teal */
-  --teal:    #0891B2;
-  --teal-bg: rgb(from var(--teal) r g b / 6%);
-  --teal-br: rgb(from var(--teal) r g b / 18%);
+  /* Brand emphasis — oxblood replaces the old Prussian Blue accent */
+  --accent:  var(--oxblood);
+  --accent2: oklch(0.36 0.15 28);
 
-  /* Bright accent for pop */
-  --teal-bright: #06B6D4;
+  /* Live-data accent — ochre replaces the old teal */
+  --teal:    var(--ochre);
+  --teal-bg: color-mix(in srgb, var(--ochre) 8%, transparent);
+  --teal-br: color-mix(in srgb, var(--ochre) 22%, transparent);
+  --teal-bright: oklch(0.78 0.14 78);
 
-  /* AI/Gradient accent */
-  --lavender: #E6E6FA;
+  /* Soft accent kept for residual gradient (will be removed later) */
+  --lavender: oklch(0.92 0.022 290);
 
-  /* Dark surfaces */
-  --dark:        #111111;
-  --dark-surface: #1a1a1a;
-  --dark-border:  color-mix(in srgb, var(--white) 9%, transparent);
-  --dark-dim:     color-mix(in srgb, var(--white) 75%, transparent);
-  --dark-text:    color-mix(in srgb, var(--white) 92%, transparent);
+  /* Dark register — for signals.html and live-data sections */
+  --dark:         var(--dark-ink);
+  --dark-surface: oklch(0.205 0.012 245);
+  --dark-border:  color-mix(in srgb, var(--cream-on-dark) 12%, transparent);
+  --dark-dim:     color-mix(in srgb, var(--cream-on-dark) 70%, transparent);
+  --dark-text:    var(--cream-on-dark);
 
   /* Spacing */
   --section-pad: 72px;
@@ -362,35 +368,7 @@ h2.light { color: var(--dark-text); }
 /* ═══════════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════════ */
-#hero {
-  background: var(--dark);
-  padding-top: 72px;
-  padding-bottom: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dot grid texture */
-#hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-size: 30px 30px;
-  pointer-events: none;
-}
-
-/* Ambient glow */
-#hero::after {
-  content: '';
-  position: absolute;
-  top: -15%;
-  right: -10%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(0, 95, 115, 0.1) 0%, transparent 65%);
-  pointer-events: none;
-}
-
+/* (legacy #hero dark/glow/dot-grid removed in bolder — replaced by .hero-editorial-section) */
 .hero-content { position: relative; z-index: 1; }
 
 /* Eyebrow */
@@ -2188,3 +2166,265 @@ h2[data-splitting].split-visible .char {
 }
 
 /* Nav liquid glass on scroll — values set in main #nav.scrolled rule above */
+
+/* ═══════════════════════════════════════════════════
+   EDITORIAL HERO (post-bolder, replaces dark constellation hero)
+═══════════════════════════════════════════════════ */
+.hero-editorial-section {
+  min-height: 88vh;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(96px, 18vh, 220px) clamp(24px, 6vw, 96px) clamp(48px, 10vh, 140px);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  position: relative;
+}
+.hero-editorial-section::before {
+  /* hairline rule with brand accent — replaces angle divider visual rhythm */
+  content: '';
+  position: absolute;
+  top: 0; left: clamp(24px, 6vw, 96px); right: clamp(24px, 6vw, 96px);
+  height: 1px;
+  background: var(--oxblood);
+  opacity: 0.6;
+}
+.hero-editorial {
+  max-width: 1280px;
+  width: 100%;
+}
+.hero-eyebrow {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 50%, transparent);
+  margin-bottom: clamp(20px, 4vh, 40px);
+}
+.hero-editorial-section .hero-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(64px, 13vw, 200px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 0 0 clamp(24px, 5vh, 48px);
+  margin-inline-start: 0;
+  font-variation-settings: "opsz" 144;
+  animation: none;
+  position: static;
+}
+.hero-editorial-section .hero-name em,
+.hero-editorial-section .hero-emphasis {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--oxblood);
+}
+.hero-editorial-section .hero-bio {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 0 clamp(16px, 2.5vh, 28px);
+  font-weight: 400;
+}
+.hero-editorial-section .hero-credentials {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  max-width: 75ch;
+  margin: 0 0 clamp(28px, 5vh, 56px);
+}
+.hero-editorial-section .hero-actions {
+  display: flex;
+  gap: clamp(20px, 4vw, 40px);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.link-underlined {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oxblood);
+  padding-bottom: 3px;
+  transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underlined:hover,
+.link-underlined:focus-visible {
+  color: var(--oxblood);
+}
+.link-underlined:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 6px;
+}
+/* Override the old .hero-email which now sits on paper, not dark */
+.hero-editorial-section .hero-email {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: transparent;
+  color: color-mix(in srgb, var(--ink) 60%, transparent);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.02em;
+}
+.hero-editorial-section .hero-email:hover {
+  color: var(--oxblood);
+}
+
+/* ═══════════════════════════════════════════════════
+   EDITORIAL PROJECTS INDEX (post-bolder, replaces .bento-grid)
+═══════════════════════════════════════════════════ */
+.editorial-projects {
+  list-style: none;
+  padding: 0;
+  margin: clamp(40px, 8vh, 80px) 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.editorial-project {
+  display: grid;
+  grid-template-columns: clamp(72px, 11vw, 140px) 1fr auto;
+  gap: clamp(20px, 4vw, 56px);
+  align-items: baseline;
+  padding: clamp(32px, 6vh, 56px) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  transition: background 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.editorial-project:hover {
+  background: color-mix(in srgb, var(--ochre) 6%, transparent);
+}
+.editorial-project__num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(40px, 7vw, 96px);
+  line-height: 0.9;
+  color: color-mix(in srgb, var(--ink) 28%, transparent);
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+.editorial-project--featured .editorial-project__num {
+  color: var(--oxblood);
+  font-weight: 400;
+  font-style: italic;
+}
+.editorial-project--archive .editorial-project__num {
+  color: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+.editorial-project__body {
+  min-width: 0;
+}
+.editorial-project__type {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 50%, transparent);
+  margin-bottom: 12px;
+}
+.editorial-project__title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.editorial-project__title em {
+  font-style: italic;
+  color: var(--oxblood);
+}
+.editorial-project__desc {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
+  max-width: 65ch;
+  margin: 0 0 18px;
+}
+.editorial-project__tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+.editorial-project__tags li {
+  display: inline-flex;
+  align-items: center;
+}
+.editorial-project__tags li::after {
+  content: '·';
+  margin-left: 14px;
+  color: color-mix(in srgb, var(--ink) 30%, transparent);
+}
+.editorial-project__tags li:last-child::after {
+  content: '';
+}
+.editorial-project__tags a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.editorial-project__tags a:hover,
+.editorial-project__tags a:focus-visible {
+  color: var(--oxblood);
+  border-color: var(--oxblood);
+}
+.editorial-project__link {
+  align-self: end;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oxblood);
+  padding-bottom: 3px;
+  transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+.editorial-project__link:hover,
+.editorial-project__link:focus-visible {
+  color: var(--oxblood);
+}
+.editorial-project__link:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+  .editorial-project {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 28px 0;
+  }
+  .editorial-project__num {
+    font-size: 36px;
+    margin-bottom: 4px;
+  }
+  .editorial-project__link {
+    margin-top: 16px;
+    align-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-project,
+  .link-underlined,
+  .editorial-project__link,
+  .editorial-project__tags a {
+    transition: none;
+  }
+}

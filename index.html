@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,55 +85,17 @@
   </div>
 
   <!-- ─── HERO ─── -->
-  <section id="hero">
-    <div class="hero-grid">
-
-      <!-- Hero photo — left column -->
-      <div class="hero-photo">
-        <img src="assets/images/hero-photo.jpg" alt="Dhruv Mandavkar" loading="eager">
+  <section id="hero" class="hero-editorial-section">
+    <div class="hero-editorial">
+      <span class="hero-eyebrow">Macro · Markets · Signals</span>
+      <h1 class="hero-name">Dhruv<br><em class="hero-emphasis">Mandavkar.</em></h1>
+      <p class="hero-bio">Equity research and macro analysis. Physical economy first, financial economy second. London-bound by 2027.</p>
+      <p class="hero-credentials">First Class Honours, Sussex 2024 · CFA Level 1 candidate, August 2026 · 11 published research pieces · Mannheim &amp; WU Vienna scholarships</p>
+      <div class="hero-actions">
+        <a href="#projects" class="link-underlined">View work</a>
+        <a href="#about" class="link-underlined">About</a>
+        <button class="hero-email" id="heroEmailReveal" aria-label="Reveal email address (jobs at...)">jobs@•••••••••• →</button>
       </div>
-
-      <div class="hero-left">
-        <div class="hero-content">
-          <span class="eyebrow">Macro · Markets · Signals</span>
-          <h1 class="hero-name">Dhruv<br><em>Mandavkar</em></h1>
-
-          <div class="hero-identity">
-            <span class="hero-role">Equity Research</span>
-            <span class="hero-role hero-role--teal">Macro Analysis</span>
-            <span class="hero-role hero-role--dim">CFA L1 Candidate</span>
-          </div>
-
-          <p class="hero-desc">I track physical economy signals and macro data that most equity analysts treat as noise — shipping rates, commodity flows, credit spreads — and write research connecting them to markets.</p>
-
-          <blockquote class="hero-desc" style="font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.50);margin-bottom:32px;padding-left:18px;border-left:1.5px solid rgba(0,95,115,0.35);">"He who lives by the crystal ball will eat shattered glass." <span style="font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;letter-spacing:0.06em;color:rgba(255,255,255,0.32);">— Ray Dalio</span></blockquote>
-
-          <div class="hero-ctas">
-            <a href="#projects" class="btn btn-primary">View Work</a>
-            <button class="hero-email" id="heroEmailReveal" aria-label="Reveal email address">jobs@•••••••••• →</button>
-          </div>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">1<sup>st</sup></span>
-            <span class="stat-label">Class Honours</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">CFA</span>
-            <span class="stat-label">L1 · Aug 2026</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">11</span>
-            <span class="stat-label">Published Articles</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">2</span>
-            <span class="stat-label">Mannheim · WU Vienna</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
   <!-- ─── ABOUT ─── -->
@@ -414,121 +376,75 @@
         <p class="section-sub">Independent research and analytical projects. Finance, data, and the tools I wish already existed.</p>
       </div>
 
-      <div class="bento-grid fade-up">
+      <ol class="editorial-projects fade-up">
 
-        <!-- Featured — Equity Research Hub -->
-        <div class="bento-card bento-featured">
-          <div class="bento-card-header">
-            <span class="proj-badge active">In Progress</span>
-            <span class="proj-type">Finance · Equity Research</span>
+        <li class="editorial-project editorial-project--featured">
+          <span class="editorial-project__num">01</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">Finance · Equity Research · In Progress</span>
+            <h3 class="editorial-project__title">Institutional equity research, <em>India markets.</em></h3>
+            <p class="editorial-project__desc">A systematic coverage universe of listed Indian equities. Each company, a full institutional model: 3-statement with 5 years of audited actuals, FCFF DCF, EV/EBITDA peer comparables, scenario analysis, sensitivity tables, executive dashboard. Currently covering Angel One Ltd (NSE: ANGELONE).</p>
+            <ul class="editorial-project__tags"><li>Excel</li><li>DCF</li><li>Financial modelling</li><li>Python</li><li>NSE / BSE</li></ul>
           </div>
-          <h3>Institutional Equity Research — India Markets</h3>
-          <p>Building a systematic coverage universe of listed Indian equities. Each company gets a full institutional-grade model: 3-statement model with 5 years of audited actuals, FCFF DCF, EV/EBITDA peer comparables, scenario analysis, sensitivity tables, and an executive dashboard. Currently covering Angel One Ltd (NSE: ANGELONE) — more in pipeline.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">Excel</span>
-            <span class="stack-tag">DCF</span>
-            <span class="stack-tag">Financial Modelling</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag stack-accent">NSE / BSE</span>
-            <span class="stack-tag stack-accent">India Markets</span>
-          </div>
-          <a href="equity-research.html" class="proj-link">View Coverage Universe →</a>
-        </div>
+          <a href="equity-research.html" class="editorial-project__link">Coverage universe &rarr;</a>
+        </li>
 
-        <!-- Macro Signal Tracker -->
-        <div class="bento-card">
-          <div class="bento-card-header">
-            <span class="proj-badge active">Live</span>
-            <span class="proj-type">Data · Macro</span>
+        <li class="editorial-project editorial-project--featured">
+          <span class="editorial-project__num">02</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">Data · Macro · Live</span>
+            <h3 class="editorial-project__title">Macro signal tracker, <em>live data.</em></h3>
+            <p class="editorial-project__desc">Live browser dashboard tracking 21 macro indicators across rates, credit, FX, commodities, and India flows. Yield curves, credit spreads, BDI, copper-gold ratio, VIX, DXY. FRED API pulls fresh data on every page load.</p>
+            <ul class="editorial-project__tags"><li>Python</li><li>Chart.js</li><li>FRED API</li><li>Cloudflare Workers</li></ul>
           </div>
-          <h3>Macro Signal Tracker</h3>
-          <p>Live browser dashboard tracking 21 macro indicators across rates, credit, FX, commodities, and India flows. Yield curves, credit spreads, BDI, copper-gold ratio, VIX, DXY, and more. FRED API pulls live data on every page load.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Chart.js</span>
-            <span class="stack-tag">FRED API</span>
-            <span class="stack-tag stack-accent">Live Data</span>
-          </div>
-          <a href="signals.html" class="proj-link">View Live Dashboard →</a>
-        </div>
+          <a href="signals.html" class="editorial-project__link">Live dashboard &rarr;</a>
+        </li>
 
-        <!-- Horizon 2040 Research -->
-        <div class="bento-card">
-          <div class="bento-card-header">
-            <span class="proj-badge active">Published</span>
-            <span class="proj-type">Macro · Research</span>
+        <li class="editorial-project">
+          <span class="editorial-project__num">03</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">Macro · Forecasts · Published</span>
+            <h3 class="editorial-project__title">Horizon 2040.</h3>
+            <p class="editorial-project__desc">Four forecasts the market prices at zero. Quantum cryptography migration, glass-substrate storage stranding utility demand, humanoid cost-parity timing, and AI reflexivity degrading price discovery. Marked as forecasts, with explicit falsifiability conditions per thesis.</p>
+            <ul class="editorial-project__tags"><li>Forecasts</li><li>Macro research</li><li>Live signal links</li></ul>
           </div>
-          <h3>Horizon 2040 — Four Unpriced Structural Risks</h3>
-          <p>Four macro theses the market prices at zero: quantum computing breaking bond settlement cryptography, permanent storage stranding utility demand, humanoid robots blinding central bank instruments, and AI reflexivity degrading price discovery. An interactive research dossier connecting thesis to live data signals.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">Macro Research</span>
-            <span class="stack-tag">Quantum Risk</span>
-            <span class="stack-tag">Labour Automation</span>
-            <span class="stack-tag stack-accent">FRED Live Data</span>
-          </div>
-          <a href="horizon2040.html" class="proj-link">Read the research →</a>
-        </div>
+          <a href="horizon2040.html" class="editorial-project__link">Read the research &rarr;</a>
+        </li>
 
-        <!-- Macro Geopolitics Research -->
-        <div class="bento-card">
-          <div class="bento-card-header">
-            <span class="proj-badge active">Published</span>
-            <span class="proj-type">Macro · Geopolitics</span>
+        <li class="editorial-project">
+          <span class="editorial-project__num">04</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">Macro · Geopolitics · 12 theses</span>
+            <h3 class="editorial-project__title">Macro geopolitics, <em>structural transmission.</em></h3>
+            <p class="editorial-project__desc">Four research verticals spanning supply chain chokepoints, energy regime change, demographic divergence, and military conflict transmission. Helium to semiconductors, LNG to shadow fleets, China's demographic cliff to Gulf SWF reallocation.</p>
+            <ul class="editorial-project__tags"><li><a href="supply-chains.html">Supply chains</a></li><li><a href="energy.html">Energy</a></li><li><a href="oil-shock.html">Oil shock scenario</a></li><li><a href="demographics.html">Demographics</a></li><li><a href="conflict.html">Conflict</a></li></ul>
           </div>
-          <h3>Macro Geopolitics — 12 Structural Theses</h3>
-          <p>Four research verticals spanning supply chain chokepoints, energy regime change, demographic divergence, and military conflict transmission. Helium to semiconductors, LNG to shadow fleets, China's demographic cliff to Gulf SWF reallocation. Each thesis includes India angle, contrarian claim, and live signal links.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">Supply Chains</span>
-            <span class="stack-tag">Energy</span>
-            <span class="stack-tag">Demographics</span>
-            <span class="stack-tag">Conflict</span>
-            <span class="stack-tag stack-accent">12 Theses</span>
-          </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
-            <a href="supply-chains.html" class="proj-link">Supply Chains →</a>
-            <a href="energy.html" class="proj-link">Energy →</a>
-            <a href="oil-shock.html" class="proj-link">Oil Shock 2026 →</a>
-            <a href="demographics.html" class="proj-link">Demographics →</a>
-            <a href="conflict.html" class="proj-link">Conflict →</a>
-          </div>
-        </div>
+          <a href="supply-chains.html" class="editorial-project__link">Start with supply chains &rarr;</a>
+        </li>
 
-        <!-- Fund Screener -->
-        <div class="bento-card">
-          <div class="bento-card-header">
-            <span class="proj-badge active">Published</span>
-            <span class="proj-type">Finance · Fund Analysis</span>
+        <li class="editorial-project">
+          <span class="editorial-project__num">05</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">Finance · Fund analysis · Published</span>
+            <h3 class="editorial-project__title">Fund screening model, <em>full SEBI universe.</em></h3>
+            <p class="editorial-project__desc">A 4-phase systematic framework covering the full Indian active mutual fund universe. Phase 1: 8 equity categories, 177 funds scored. Phase 2: 7 hybrid categories, 96 scored, with benchmark-distortion-aware frameworks. Phase 3: 20 sector and thematic themes, 134 comparison-ready. Phase 4: solution-oriented and FoFs, 64 funds across 4 special categories. Built at Omega to power TRW client recommendations. Data: March 2026.</p>
+            <ul class="editorial-project__tags"><li>Excel</li><li>Python</li><li>Full SEBI universe</li><li>AMFI data</li></ul>
           </div>
-          <h3>Fund Screening Model — Full SEBI Universe</h3>
-          <p>4-phase systematic framework covering the full Indian active mutual fund universe: Phase 1 (8 equity categories, 177 scored), Phase 2 (7 hybrid categories, 96 scored) with benchmark-distortion-aware frameworks, Phase 3 (20 sector &amp; thematic themes, 134 comparison-ready), Phase 4 (solution-oriented + FoFs — 64 funds across 4 special categories). Built at Omega to power TRW client recommendations. Data: March 2026.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">Excel</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Full SEBI Universe</span>
-            <span class="stack-tag stack-accent">SEBI / AMFI Data</span>
-          </div>
-          <a href="fund-screening.html" class="proj-link">View Methodology &amp; Findings &rarr;</a>
-        </div>
+          <a href="fund-screening.html" class="editorial-project__link">Methodology &amp; findings &rarr;</a>
+        </li>
 
-        <!-- Undergraduate Dissertation -->
-        <div class="bento-card">
-          <div class="bento-card-header">
-            <span class="proj-badge">Research</span>
-            <span class="proj-type">FinTech · Financial Econometrics</span>
+        <li class="editorial-project editorial-project--archive">
+          <span class="editorial-project__num">06</span>
+          <div class="editorial-project__body">
+            <span class="editorial-project__type">FinTech · Financial econometrics · 2024 dissertation</span>
+            <h3 class="editorial-project__title">Crypto volatility event study.</h3>
+            <p class="editorial-project__desc">Empirical study of how fraud events, regulatory interventions, and Reddit sentiment affect the price volatility of cryptocurrencies versus traditional securities, July 2010 to March 2025. Event study analysis, EGARCH(1,1) volatility modelling, Granger causality. 5,372 daily observations, 30 events. Sussex Business School, supervised by Dr. Malgorzata Sulimierska.</p>
+            <ul class="editorial-project__tags"><li>STATA 17</li><li>Bloomberg Terminal</li><li>Python · VADER · PRAW</li><li>EGARCH</li><li>First Class</li></ul>
           </div>
-          <h3>Crypto Volatility Event Study — Fraud, Regulation &amp; Sentiment</h3>
-          <p>Empirical study of how fraud events, regulatory interventions, and Reddit sentiment affect the price volatility of cryptocurrencies (Bitcoin, Ethereum, BGCI) versus traditional securities (S&amp;P 500, FTSE 100, Nikkei 225) from July 2010 to March 2025. Multi-method framework: event study analysis, EGARCH(1,1) volatility modelling, and Granger causality across 5,372 daily observations and 30 events. Key findings: the regulatory asymmetry paradox, market maturation hypothesis, and sentiment contagion waves. Supervised by Dr. Malgorzata Sulimierska, Sussex Business School.</p>
-          <div class="proj-stack">
-            <span class="stack-tag">STATA 17</span>
-            <span class="stack-tag">Bloomberg Terminal</span>
-            <span class="stack-tag">Python / VADER / PRAW</span>
-            <span class="stack-tag">EGARCH · Event Study</span>
-            <span class="stack-tag stack-accent">First Class</span>
-          </div>
-          <a href="assets/Mandavkar-Dissertation-CryptoVolatility-2024.pdf" target="_blank" rel="noopener" class="proj-link">Read Dissertation →</a>
-        </div>
+          <a href="assets/Mandavkar-Dissertation-CryptoVolatility-2024.pdf" target="_blank" rel="noopener" class="editorial-project__link">Read dissertation &rarr;</a>
+        </li>
 
-      </div>
+      </ol>
     </div>
   </section>
 
