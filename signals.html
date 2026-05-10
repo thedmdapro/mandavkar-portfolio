@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Macro Signal Tracker — Dhruv Mandavkar</title>
-  <meta name="description" content="Live macro signal dashboard — US yield curve, credit spreads, USDJPY carry, shipping rates, crude, copper-gold, and India equity signals. Updated on every page load." />
+  <title>Macro Signal Tracker, Dhruv Mandavkar</title>
+  <meta name="description" content="Live macro signal dashboard, US yield curve, credit spreads, USDJPY carry, shipping rates, crude, copper-gold, and India equity signals. Updated on every page load." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Macro Signal Tracker — Live Dashboard" />
+  <meta property="og:title" content="Macro Signal Tracker, Live Dashboard" />
   <meta property="og:description" content="21 live macro indicators across US rates, global risk sentiment, physical economy, and India. Regime composite, RAG status matrix, Chart.js." />
   <meta property="og:url" content="https://mandavkar.uk/signals.html" />
   <meta property="og:site_name" content="Dhruv Mandavkar" />
@@ -16,7 +16,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Macro Signal Tracker — Live Dashboard" />
+  <meta name="twitter:title" content="Macro Signal Tracker, Live Dashboard" />
   <meta name="twitter:description" content="21 live macro indicators. US rates, credit, global risk, shipping, India. Regime composite updated on every load." />
   <meta name="twitter:image" content="https://mandavkar.uk/og-image.jpg" />
 
@@ -453,7 +453,7 @@
 
         <div class="chart-panel chart-panel-wide">
           <div class="chart-panel-header">
-            <span class="chart-panel-title">Credit Spreads — HY &amp; IG OAS</span>
+            <span class="chart-panel-title">Credit Spreads, HY &amp; IG OAS</span>
             <div style="display:flex;align-items:center;gap:8px">
               <span class="chart-panel-badge badge-live">LIVE</span>
               <span class="chart-panel-source">FRED · BAMLH0A0HYM2 · BAMLC0A0CM</span>
@@ -921,7 +921,7 @@
   }
 
   async function fetchFRED(seriesId, units, startDate) {
-    if (!API_KEY) throw new Error('No API key — add to signals-config.js');
+    if (!API_KEY) throw new Error('No API key, add to signals-config.js');
     var params = new URLSearchParams({ series_id: seriesId, api_key: API_KEY, file_type: 'json', observation_start: startDate || '2019-01-01', sort_order: 'asc' });
     if (units) params.set('units', units);
     var url = FRED_BASE + '?' + params.toString();
@@ -1005,7 +1005,7 @@
       chunk.forEach(function(s,i){ fred[s[0]] = results[i].status === 'fulfilled' ? results[i].value : null; });
       if (ci + CHUNK < specs.length) await new Promise(function(r){ setTimeout(r, 250); });
     }
-    // Real yield: DFII10 (daily) returns HTTP 500 — use WFII10 (weekly) as primary
+    // Real yield: DFII10 (daily) returns HTTP 500, use WFII10 (weekly) as primary
     try {
       fred.realyield = await fetchFRED('WFII10', null, '2019-01-01');
       if (!fred.realyield || !fred.realyield.length) throw new Error('WFII10 empty');
@@ -1027,7 +1027,7 @@
       if (fred.gold && fred.gold.length) {
         log('Gold fetch complete: ' + fred.gold.length + ' points. First=' + fred.gold[0].date + ', Last=' + fred.gold[fred.gold.length-1].date);
       } else {
-        err('Gold fetch returned empty data — copper-gold ratio will fail');
+        err('Gold fetch returned empty data, copper-gold ratio will fail');
         fred.gold = null;
       }
     } catch(e) { err('Gold fetch failed entirely:', e.message); fred.gold = null; }
@@ -1037,7 +1037,7 @@
       if (fred.copper && fred.copper.length) {
         log('Copper fetch complete: ' + fred.copper.length + ' points. Last=' + last(fred.copper).value.toFixed(0) + ' $/MT');
       } else {
-        err('Copper fetch returned empty data — copper-gold ratio will fail');
+        err('Copper fetch returned empty data, copper-gold ratio will fail');
         fred.copper = null;
       }
     } catch(e) { err('Copper fetch failed entirely:', e.message); fred.copper = null; }
@@ -1084,16 +1084,16 @@
   function renderYieldCurve(data) {
     var v=last(data).value, prev=data.length>=5?data[data.length-5].value:null;
     var rag=v>=0.3?'green':v<=-0.3?'red':'amber';
-    setSC('yc',fmt2(v)+'%',v>=0?'uninverted':'inverted — recession watch',rag);
+    setSC('yc',fmt2(v)+'%',v>=0?'uninverted':'inverted, recession watch',rag);
     var rv=el('reading-yc'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val '+(v>=0?'positive':'inverted');}
-    if(prev!==null){ var mv=v-prev; setInterp('interp-yc',(mv>0?'Steepening ':'Flattening ')+Math.abs(mv).toFixed(2)+'% over 5 sessions. Current: '+fmt2(v)+'% — '+(v>=0?'curve uninverted.':'curve remains inverted.')); }
+    if(prev!==null){ var mv=v-prev; setInterp('interp-yc',(mv>0?'Steepening ':'Flattening ')+Math.abs(mv).toFixed(2)+'% over 5 sessions. Current: '+fmt2(v)+'%, '+(v>=0?'curve uninverted.':'curve remains inverted.')); }
     makeChart('chart-yc',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.13)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
   }
 
   function renderYieldCurve3M(data) {
     var v=last(data).value;
     var rv=el('reading-yc3m'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val '+(v>=0?'positive':'inverted');}
-    setInterp('interp-yc3m','NY Fed preferred spread: '+fmt2(v)+'%. '+(v<0?'Inverted — recession probability model elevated.':'Positive — recession signal off.'));
+    setInterp('interp-yc3m','NY Fed preferred spread: '+fmt2(v)+'%. '+(v<0?'Inverted, recession probability model elevated.':'Positive, recession signal off.'));
     makeChart('chart-yc3m',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.13)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
   }
 
@@ -1102,7 +1102,7 @@
     var rag=v<=-0.3?'green':v>=0.3?'red':'amber';
     setSC('nfci',v.toFixed(3),v<=-0.3?'loose conditions':v>=0.3?'tight conditions':'near average',rag);
     var rv=el('reading-nfci'); if(rv){rv.textContent=v.toFixed(3);rv.className='chart-reading-val'+(v<=-0.3?' positive':v>=0.3?' inverted':'');}
-    setInterp('interp-nfci','NFCI = '+v.toFixed(3)+'. '+(v<0?'Looser than historical average — accommodative.':'Tighter than historical average — restrictive.'));
+    setInterp('interp-nfci','NFCI = '+v.toFixed(3)+'. '+(v<0?'Looser than historical average, accommodative.':'Tighter than historical average, restrictive.'));
     makeChart('chart-nfci',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(0,95,115,0.08)',below:'rgba(174,32,18,0.10)'},tension:0.35}]},options:baseOptions('NFCI',function(v){return v.toFixed(3);})});
   }
 
@@ -1111,26 +1111,26 @@
     var rag=v<=0.5?'green':v>=2.0?'red':'amber';
     setSC('realyield',fmt2(v)+'%',v>=2?'historically restrictive':v<=0?'financial repression':'moderate real rate',rag);
     var rv=el('reading-realyield'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val'+(v>=2?' inverted':v<=0?' positive':'');}
-    setInterp('interp-realyield','10Y TIPS = '+fmt2(v)+'%. '+(v>=2?'Historically restrictive.':v<=0?'Financial repression — supports risk assets.':'Moderate real yield.'));
+    setInterp('interp-realyield','10Y TIPS = '+fmt2(v)+'%. '+(v>=2?'Historically restrictive.':v<=0?'Financial repression, supports risk assets.':'Moderate real yield.'));
     makeChart('chart-realyield',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,fill:{target:{value:0},above:'rgba(174,32,18,0.08)',below:'rgba(0,95,115,0.08)'},tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
   }
 
   function renderBreakeven(data) {
     var v=last(data).value;
     var rag=v<=2.3?'green':v>=2.7?'red':'amber';
-    setSC('breakeven',fmt2(v)+'%',v<=2.0?'below target':v>=2.5?'above target — sticky inflation':'near Fed target',rag);
+    setSC('breakeven',fmt2(v)+'%',v<=2.0?'below target':v>=2.5?'above target, sticky inflation':'near Fed target',rag);
     var rv=el('reading-breakeven'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val'+(v>=2.5?' inverted':' positive');}
-    setInterp('interp-breakeven','10Y breakeven = '+fmt2(v)+'%. '+(v>=2.5?'Persistent above-target inflation priced — constrains Fed cuts.':v<=2.0?'Sub-2% inflation priced — gives Fed room to ease.':'Near 2% target — rate path data-dependent.'));
+    setInterp('interp-breakeven','10Y breakeven = '+fmt2(v)+'%. '+(v>=2.5?'Persistent above-target inflation priced, constrains Fed cuts.':v<=2.0?'Sub-2% inflation priced, gives Fed room to ease.':'Near 2% target, rate path data-dependent.'));
     makeChart('chart-breakeven',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
   }
 
   function renderCreditSpreads(hy, ig) {
     var lhy=last(hy).value, lig=last(ig).value;
     var rag=lhy<=300?'green':lhy>=450?'red':'amber';
-    setSC('hy',Math.round(lhy*100)+'bps',lhy<=300?'compressed — risk on':lhy>=450?'stressed — risk off':'neutral watch zone',rag);
+    setSC('hy',Math.round(lhy*100)+'bps',lhy<=300?'compressed, risk on':lhy>=450?'stressed, risk off':'neutral watch zone',rag);
     var rv=el('reading-hy'); if(rv){rv.textContent=Math.round(lhy*100);rv.className='chart-reading-val'+(lhy>=450?' inverted':lhy<=300?' positive':' amber');}
     setVal('reading-ig',Math.round(lig*100));
-    setInterp('interp-credit','HY OAS = '+Math.round(lhy*100)+'bps · IG OAS = '+Math.round(lig*100)+'bps · HY/IG = '+(lhy/lig).toFixed(1)+'x. '+(lhy>=450?'Elevated — credit markets pricing rising default risk.':lhy<=300?'Compressed — strong risk appetite, search for yield active.':'Neutral territory.'));
+    setInterp('interp-credit','HY OAS = '+Math.round(lhy*100)+'bps · IG OAS = '+Math.round(lig*100)+'bps · HY/IG = '+(lhy/lig).toFixed(1)+'x. '+(lhy>=450?'Elevated, credit markets pricing rising default risk.':lhy<=300?'Compressed, strong risk appetite, search for yield active.':'Neutral territory.'));
     var opts=baseOptions('OAS (%)'); opts.plugins.legend={display:true,labels:{color:DIM,font:{family:"'JetBrains Mono',monospace",size:10},boxWidth:12,padding:16}};
     makeChart('chart-credit',{type:'line',data:{labels:thinLabels(hy.map(function(d){return d.date;}),8),datasets:[{label:'HY OAS',data:hy.map(function(d){return d.value;}),borderColor:RED,borderWidth:1.5,pointRadius:0,tension:0.35},{label:'IG OAS',data:ig.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:opts});
   }
@@ -1146,7 +1146,7 @@
     var velEl=el('usdjpy-velocity'); if(velEl){velEl.textContent=vs+vel.toFixed(1)+'%';velEl.className='vel-val '+(vel<-3?'vel-val--up':vel>3?'vel-val--down':'vel-val--neutral');}
     var cEl=el('usdjpy-carry-signal'); if(cEl){cEl.textContent=vel<=-3?'UNWIND RISK':vel>=3?'CARRY BUILDING':'STABLE';cEl.className='vel-val '+(vel<=-3?'vel-val--up':vel>=3?'vel-val--down':'vel-val--neutral');}
     var bEl=el('usdjpy-boj-zone'); if(bEl){bEl.textContent=spot>=155?'INTERVENTION RISK':spot>=150?'VOCAL ZONE':'COMFORTABLE';bEl.className='vel-val '+(spot>=155?'vel-val--up':spot>=150?'vel-val--neutral':'vel-val--down');}
-    setInterp('interp-usdjpy','Spot: '+spot.toFixed(2)+'. 4W: '+vs+vel.toFixed(1)+'%. '+(vel<=-3?'Yen strengthening — carry unwind risk elevated. Watch for cascade into EM and equity vol.':vel>=3?'Yen weakening — carry building. Risk-on signal, BOJ intervention risk rises above 150.':'Carry positioning broadly stable.'));
+    setInterp('interp-usdjpy','Spot: '+spot.toFixed(2)+'. 4W: '+vs+vel.toFixed(1)+'%. '+(vel<=-3?'Yen strengthening, carry unwind risk elevated. Watch for cascade into EM and equity vol.':vel>=3?'Yen weakening, carry building. Risk-on signal, BOJ intervention risk rises above 150.':'Carry positioning broadly stable.'));
     var opts=baseOptions('¥/$');
     opts.plugins.annotation={annotations:{line150:{type:'line',yMin:150,yMax:150,borderColor:AMBER,borderWidth:1,borderDash:[4,4],label:{display:true,content:'BOJ vocal 150',position:'end',color:AMBER,font:{family:"'JetBrains Mono',monospace",size:9},backgroundColor:'transparent'}},line160:{type:'line',yMin:160,yMax:160,borderColor:RED,borderWidth:1,borderDash:[4,4],label:{display:true,content:'2024 intervention 160',position:'end',color:RED,font:{family:"'JetBrains Mono',monospace",size:9},backgroundColor:'transparent'}}}};
     makeChart('chart-usdjpy',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:opts});
@@ -1157,7 +1157,7 @@
     var rag=v<=18?'green':v>=25?'red':'amber';
     setSC('vix',v.toFixed(1),v<=15?'complacency':v<=20?'benign':v<=30?'elevated':'fear',rag);
     var rv=el('reading-vix'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=25?' inverted':v<=18?' positive':'');}
-    setInterp('interp-vix','VIX = '+v.toFixed(1)+'. '+(v>=35?'Crisis territory — historically a strong contrarian buy signal.':v<=13?'Extreme complacency — tail risk underpriced.':v>=25?'Elevated stress — defensive positioning warranted.':'Normal range.'));
+    setInterp('interp-vix','VIX = '+v.toFixed(1)+'. '+(v>=35?'Crisis territory, historically a strong contrarian buy signal.':v<=13?'Extreme complacency, tail risk underpriced.':v>=25?'Elevated stress, defensive positioning warranted.':'Normal range.'));
     makeChart('chart-vix',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:RED,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(174,32,18,0.06)',fill:true,tension:0.35}]},options:baseOptions('VIX')});
   }
 
@@ -1167,7 +1167,7 @@
     var rag=chg>=3?'red':chg<=-3?'green':'amber';
     setSC('dxy',v.toFixed(1),(chg>=0?'+':'')+chg.toFixed(1)+'% 3M',rag);
     var rv=el('reading-dxy'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val';}
-    setInterp('interp-dxy','DXY = '+v.toFixed(1)+'. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(chg>=3?'USD strengthening — tightening global dollar liquidity, headwind for EM.':chg<=-3?'USD weakening — easing global liquidity, tailwind for EM assets.':'Dollar broadly stable.'));
+    setInterp('interp-dxy','DXY = '+v.toFixed(1)+'. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(chg>=3?'USD strengthening, tightening global dollar liquidity, headwind for EM.':chg<=-3?'USD weakening, easing global liquidity, tailwind for EM assets.':'Dollar broadly stable.'));
     makeChart('chart-dxy',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('index')});
   }
 
@@ -1176,14 +1176,14 @@
     var rag=v>=1.08?'green':v<=1.02?'red':'amber';
     setSC('eurusd',v.toFixed(4),v>=1.05?'EUR firm':v<=1.01?'near parity':'soft EUR',rag);
     var rv=el('reading-eurusd'); if(rv){rv.textContent=v.toFixed(4);rv.className='chart-reading-val';}
-    setInterp('interp-eurusd','EUR/USD = '+v.toFixed(4)+'. '+(v<=1.02?'Near parity — USD safe-haven demand elevated.':v>=1.10?'EUR strong — European growth optimism or Fed dovish pivot priced.':'Normal trading range.'));
+    setInterp('interp-eurusd','EUR/USD = '+v.toFixed(4)+'. '+(v<=1.02?'Near parity, USD safe-haven demand elevated.':v>=1.10?'EUR strong, European growth optimism or Fed dovish pivot priced.':'Normal trading range.'));
     makeChart('chart-eurusd',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/EUR',function(v){return v.toFixed(4);})});
   }
 
   function renderFedFunds(data) {
     var v=last(data).value;
     var rv=el('reading-fedfunds'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val';}
-    setInterp('interp-fedfunds','Fed Funds = '+fmt2(v)+'%. '+(v>=5?'Historically restrictive — highest since 2007. Every asset class priced relative to 5%+ risk-free.':v<=1?'Near zero — maximum accommodation, risk assets supported.':'Mid-cycle rate — data-dependent.'));
+    setInterp('interp-fedfunds','Fed Funds = '+fmt2(v)+'%. '+(v>=5?'Historically restrictive, highest since 2007. Every asset class priced relative to 5%+ risk-free.':v<=1?'Near zero, maximum accommodation, risk assets supported.':'Mid-cycle rate, data-dependent.'));
     makeChart('chart-fedfunds',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(47,72,88,0.06)',fill:true,tension:0.35}]},options:baseOptions('%',function(v){return v.toFixed(2)+'%';})});
   }
 
@@ -1194,14 +1194,14 @@
     var gm={}; gold.forEach(function(d){ gm[d.date.slice(0,7)]=d.value; });
     log('CGR goldMap first 3 keys:', Object.keys(gm).slice(0,3));
     var rd=copper.map(function(d){ var gv=gm[d.date.slice(0,7)]; return gv?{date:d.date,value:d.value/gv}:null; }).filter(Boolean);
-    if(rd.length < 3){showChartError('chart-cgr','Insufficient overlapping copper/gold dates — check console');return;}
+    if(rd.length < 3){showChartError('chart-cgr','Insufficient overlapping copper/gold dates, check console');return;}
     var v=last(rd).value, old3m=rd[Math.max(0,rd.length-4)].value;
     var trend=(v-old3m)/old3m*100;
     var rag=trend>2?'green':trend<-2?'red':'amber';
     setSC('cgr',v.toFixed(3),(trend>=0?'+':'')+trend.toFixed(1)+'% 3M',rag);
     var rv=el('reading-cgr'); if(rv){rv.textContent=v.toFixed(3);rv.className='chart-reading-val'+(trend>2?' positive':trend<-2?' inverted':'');}
     setVal('reading-cgr-trend',(trend>=0?'+':'')+trend.toFixed(1)+'%');
-    setInterp('interp-cgr','Cu/Au = '+v.toFixed(3)+'. 3M: '+(trend>=0?'+':'')+trend.toFixed(1)+'%. '+(trend>2?'Rising — copper outperforming gold, growth optimism winning.':trend<-2?'Falling — gold outperforming copper, fear dominating.':'Broadly stable — mixed signals on global growth.'));
+    setInterp('interp-cgr','Cu/Au = '+v.toFixed(3)+'. 3M: '+(trend>=0?'+':'')+trend.toFixed(1)+'%. '+(trend>2?'Rising, copper outperforming gold, growth optimism winning.':trend<-2?'Falling, gold outperforming copper, fear dominating.':'Broadly stable, mixed signals on global growth.'));
     makeChart('chart-cgr',{type:'line',data:{labels:thinLabels(rd.map(function(d){return d.date;}),8),datasets:[{data:rd.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.05)',fill:true,tension:0.35}]},options:baseOptions('Cu/Au',function(v){return v.toFixed(4);})});
   }
 
@@ -1212,7 +1212,7 @@
     var rag=v>=2000?'green':v<=1000?'red':'amber';
     setSC('bdi',Math.round(v).toLocaleString(),v>=2000?'strong demand':v<=1000?'demand slump':'neutral range',rag);
     var rv=el('reading-bdi'); if(rv){rv.textContent=Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=2000?' positive':v<=1000?' inverted':'');}
-    setInterp('interp-bdi','BDI = '+Math.round(v).toLocaleString()+'. '+(v>=2000?'Elevated — strong global bulk commodity demand.':v<=1000?'Depressed — industrial activity signal weak.':'Neutral — watch for sustained directional move.'));
+    setInterp('interp-bdi','BDI = '+Math.round(v).toLocaleString()+'. '+(v>=2000?'Elevated, strong global bulk commodity demand.':v<=1000?'Depressed, industrial activity signal weak.':'Neutral, watch for sustained directional move.'));
     makeChart('chart-bdi',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:2,pointBackgroundColor:TEAL,tension:0.35}]},options:baseOptions('index')});
   }
 
@@ -1221,23 +1221,23 @@
     var rag=v<=75?'green':v>=95?'red':'amber';
     setSC('wti','$'+v.toFixed(1),v<=70?'demand weak / OPEC stress':v>=90?'inflationary pressure':'moderate range',rag);
     var rv=el('reading-wti'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=90?' inverted':'');}
-    setInterp('interp-wti','WTI = $'+v.toFixed(1)+'/bbl. '+(v>=90?'Above $90 — inflationary pressure, India CAD headwind.':v<=70?'Below $70 — demand concern or OPEC+ compliance breaking. India CAD tailwind.':'Moderate — manageable for India macro.'));
+    setInterp('interp-wti','WTI = $'+v.toFixed(1)+'/bbl. '+(v>=90?'Above $90, inflationary pressure, India CAD headwind.':v<=70?'Below $70, demand concern or OPEC+ compliance breaking. India CAD tailwind.':'Moderate, manageable for India macro.'));
     makeChart('chart-wti',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/bbl')});
   }
 
   function renderDrewry(data) {
     var v=last(data).value;
     var rag=v>=4000?'red':v<=2000?'green':'amber';
-    setSC('drewry','$'+Math.round(v).toLocaleString(),v>=4000?'elevated — disruption premium':v<=2000?'normalised':'moderate',rag);
+    setSC('drewry','$'+Math.round(v).toLocaleString(),v>=4000?'elevated, disruption premium':v<=2000?'normalised':'moderate',rag);
     var rv=el('reading-drewry'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=4000?' inverted':v<=2000?' positive':'');}
-    setInterp('interp-drewry','Drewry WCI = $'+Math.round(v).toLocaleString()+'/40ft. '+(v>=4000?'Elevated — likely Red Sea/Suez disruption premium. CPI transmission lag 3-6 months.':v<=2000?'Near post-COVID normal — container rate pressure on CPI easing.':'Moderate — monitor for directional shift.'));
+    setInterp('interp-drewry','Drewry WCI = $'+Math.round(v).toLocaleString()+'/40ft. '+(v>=4000?'Elevated, likely Red Sea/Suez disruption premium. CPI transmission lag 3-6 months.':v<=2000?'Near post-COVID normal, container rate pressure on CPI easing.':'Moderate, monitor for directional shift.'));
     makeChart('chart-drewry',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:2,pointBackgroundColor:BLUE,tension:0.35}]},options:baseOptions('$/40ft')});
   }
 
   function renderGold(data) {
     var v=last(data).value;
     var rv=el('reading-gold'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val';}
-    setInterp('interp-gold','Gold = $'+Math.round(v).toLocaleString()+'/oz. '+(v>=2500?'Record territory — geopolitical premium and central bank buying sustaining the rally despite high real yields.':v>=2000?'Strong — above $2,000 psychological level. Watch real yield correlation.':'Below $2,000 — risk appetite comfortable, USD demand limited.'));
+    setInterp('interp-gold','Gold = $'+Math.round(v).toLocaleString()+'/oz. '+(v>=2500?'Record territory, geopolitical premium and central bank buying sustaining the rally despite high real yields.':v>=2000?'Strong, above $2,000 psychological level. Watch real yield correlation.':'Below $2,000, risk appetite comfortable, USD demand limited.'));
     makeChart('chart-gold',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('$/oz')});
   }
 
@@ -1245,14 +1245,14 @@
     var v=last(data).value, old3m=data[Math.max(0,data.length-4)].value;
     var chg=(v/old3m-1)*100;
     var rv=el('reading-copper'); if(rv){rv.textContent='$'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(chg>=3?' positive':chg<=-3?' inverted':'');}
-    setInterp('interp-copper','Copper = $'+Math.round(v).toLocaleString()+'/MT. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(v>=10000?'Elevated — strong industrial demand, energy transition premium.':v<=7000?'Weak — growth concerns, China demand disappointing.':'Moderate — watch China industrial activity.'));
+    setInterp('interp-copper','Copper = $'+Math.round(v).toLocaleString()+'/MT. 3M: '+(chg>=0?'+':'')+chg.toFixed(1)+'%. '+(v>=10000?'Elevated, strong industrial demand, energy transition premium.':v<=7000?'Weak, growth concerns, China demand disappointing.':'Moderate, watch China industrial activity.'));
     makeChart('chart-copper',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('$/MT')});
   }
 
   function renderIndustrialProduction(data) {
     var v=last(data).value;
     var rv=el('reading-indpro'); if(rv){rv.textContent=(v>=0?'+':'')+fmt2(v);rv.className='chart-reading-val'+(v>=1?' positive':v<=-1?' inverted':'');}
-    setInterp('interp-indpro','US IP YoY = '+(v>=0?'+':'')+fmt2(v)+'%. '+(v<=-1?'Contraction — goods sector in recession territory. Coincident indicator for broader slowdown.':v>=2?'Expansion — manufacturing and mining growing above trend.':'Near zero — flat industrial activity, goods sector stagnation.'));
+    setInterp('interp-indpro','US IP YoY = '+(v>=0?'+':'')+fmt2(v)+'%. '+(v<=-1?'Contraction, goods sector in recession territory. Coincident indicator for broader slowdown.':v>=2?'Expansion, manufacturing and mining growing above trend.':'Near zero, flat industrial activity, goods sector stagnation.'));
     makeChart('chart-indpro',{type:'bar',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),backgroundColor:data.map(function(d){return d.value>=0?'rgba(0,95,115,0.5)':'rgba(174,32,18,0.5)';}),borderColor:data.map(function(d){return d.value>=0?TEAL:RED;}),borderWidth:1,borderRadius:2}]},options:baseOptions('%',function(v){return v.toFixed(1)+'%';})});
   }
 
@@ -1263,7 +1263,7 @@
     var rag=v>=20000?'green':v<=10000?'red':'amber';
     setSC('amfi','Rs'+(Math.round(v/100)/10)+'k Cr',v>=20000?'strong retail inflows':v<=10000?'inflow slowdown':'moderate inflows',rag);
     var rv=el('reading-amfi'); if(rv){rv.textContent='Rs'+Math.round(v).toLocaleString();rv.className='chart-reading-val'+(v>=20000?' positive':v<=10000?' inverted':'');}
-    if(prev!==null){ var mom=((v-prev)/prev*100).toFixed(1); setInterp('interp-amfi','Net inflows = Rs'+Math.round(v).toLocaleString()+' Cr. MoM: '+(mom>=0?'+':'')+mom+'%. '+(v>=25000?'SIP machine at full capacity — structural floor under Indian equities.':v>=15000?'Healthy inflows — domestic retail participation robust.':'Inflows weakening — retail sentiment deteriorating.')); }
+    if(prev!==null){ var mom=((v-prev)/prev*100).toFixed(1); setInterp('interp-amfi','Net inflows = Rs'+Math.round(v).toLocaleString()+' Cr. MoM: '+(mom>=0?'+':'')+mom+'%. '+(v>=25000?'SIP machine at full capacity, structural floor under Indian equities.':v>=15000?'Healthy inflows, domestic retail participation robust.':'Inflows weakening, retail sentiment deteriorating.')); }
     makeChart('chart-amfi',{type:'bar',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),backgroundColor:data.map(function(d){return d.value>=20000?'rgba(0,95,115,0.55)':d.value>=10000?'rgba(180,83,9,0.45)':'rgba(174,32,18,0.5)';}),borderRadius:3,borderWidth:0}]},options:baseOptions('Cr')});
   }
 
@@ -1272,16 +1272,16 @@
     var rag=v<=83?'green':v>=87?'red':'amber';
     setSC('usdinr',v.toFixed(2),v<=83?'INR firm':v>=87?'depreciation pressure':'RBI managed range',rag);
     var rv=el('reading-usdinr'); if(rv){rv.textContent=v.toFixed(2);rv.className='chart-reading-val'+(v>=87?' inverted':'');}
-    setInterp('interp-usdinr','USD/INR = '+v.toFixed(2)+'. '+(v>=87?'Above 87 — RBI defending rupee with FX reserves. CAD financing pressure elevated.':v<=82?'INR firm — export competitiveness concern, gives RBI room to accumulate reserves.':'Within RBI managed range — slow depreciation consistent with inflation differential.'));
+    setInterp('interp-usdinr','USD/INR = '+v.toFixed(2)+'. '+(v>=87?'Above 87, RBI defending rupee with FX reserves. CAD financing pressure elevated.':v<=82?'INR firm, export competitiveness concern, gives RBI room to accumulate reserves.':'Within RBI managed range, slow depreciation consistent with inflation differential.'));
     makeChart('chart-usdinr',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,tension:0.35}]},options:baseOptions('Rs/$',function(v){return v.toFixed(2);})});
   }
 
   function renderIndia10Y(data) {
     var v=last(data).value;
     var rag=v<=6.5?'green':v>=7.5?'red':'amber';
-    setSC('india10y',fmt2(v)+'%',v<=6.5?'easing — RBI dovish':v>=7.5?'elevated — inflation concern':'neutral',rag);
+    setSC('india10y',fmt2(v)+'%',v<=6.5?'easing, RBI dovish':v>=7.5?'elevated, inflation concern':'neutral',rag);
     var rv=el('reading-india10y'); if(rv){rv.textContent=fmt2(v);rv.className='chart-reading-val';}
-    setInterp('interp-india10y','India 10Y = '+fmt2(v)+'%. India-US spread ~'+(v-4.3).toFixed(1)+'% est. '+(v<=6.5?'Falling — RBI easing cycle, FPI inflow tailwind.':v>=7.5?'Elevated — fiscal deficit or inflation concerns pressuring bonds.':'Normal range — RBI on hold or gradual easing.'));
+    setInterp('interp-india10y','India 10Y = '+fmt2(v)+'%. India-US spread ~'+(v-4.3).toFixed(1)+'% est. '+(v<=6.5?'Falling, RBI easing cycle, FPI inflow tailwind.':v>=7.5?'Elevated, fiscal deficit or inflation concerns pressuring bonds.':'Normal range, RBI on hold or gradual easing.'));
     makeChart('chart-india10y',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:TEAL,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(0,95,115,0.06)',fill:true,tension:0.35}]},options:baseOptions('% p.a.',function(v){return v.toFixed(2)+'%';})});
   }
 
@@ -1289,18 +1289,18 @@
     var v=last(data).value;
     var rag=v<220000?'green':v>280000?'red':'amber';
     var vk=(v/1000).toFixed(0)+'k';
-    setSC('jobless',vk,v<220000?'tight — labour market strong':v>280000?'rising — deterioration signal':'normal range',rag);
+    setSC('jobless',vk,v<220000?'tight, labour market strong':v>280000?'rising, deterioration signal':'normal range',rag);
     var rv=el('reading-jobless'); if(rv){rv.textContent=vk;rv.className='chart-reading-val'+(v>280000?' inverted':v<220000?' positive':'');}
-    setInterp('interp-jobless','Initial claims = '+Math.round(v/1000)+'k. '+(v>280000?'Above 280k — labour market softening. Leading indicator for unemployment rate.':v<220000?'Below 220k — historically tight. Wage inflation persistence likely. Fed constrained on cuts.':'Normal range — labour market broadly stable.'));
+    setInterp('interp-jobless','Initial claims = '+Math.round(v/1000)+'k. '+(v>280000?'Above 280k, labour market softening. Leading indicator for unemployment rate.':v<220000?'Below 220k, historically tight. Wage inflation persistence likely. Fed constrained on cuts.':'Normal range, labour market broadly stable.'));
     makeChart('chart-jobless',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:BLUE,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(47,72,88,0.06)',fill:true,tension:0.35}]},options:baseOptions('claims',function(v){return (v/1000).toFixed(0)+'k';})});
   }
 
   function renderCorePCE(data) {
     var v=last(data).value;
     var rag=v<=2.3?'green':v>=3.0?'red':'amber';
-    setSC('corepce',v.toFixed(1)+'%',v<=2.3?'near target — room to cut':v>=3.0?'too hot — Fed on hold':'last mile — stuck above target',rag);
+    setSC('corepce',v.toFixed(1)+'%',v<=2.3?'near target, room to cut':v>=3.0?'too hot, Fed on hold':'last mile, stuck above target',rag);
     var rv=el('reading-corepce'); if(rv){rv.textContent=v.toFixed(1);rv.className='chart-reading-val'+(v>=3?' inverted':v<=2.3?' positive':' amber');}
-    setInterp('interp-corepce','Core PCE YoY = '+v.toFixed(1)+'%. Fed target: 2.0%. '+(v>=3.0?'Well above target — no cuts in sight. Restrictive policy necessary.':v>=2.5?'Stuck in last mile — disinflation stalled. Every meeting data-dependent.':v<=2.0?'At or below target — full easing path open.':'Within striking distance — Fed moving toward normalisation.'));
+    setInterp('interp-corepce','Core PCE YoY = '+v.toFixed(1)+'%. Fed target: 2.0%. '+(v>=3.0?'Well above target, no cuts in sight. Restrictive policy necessary.':v>=2.5?'Stuck in last mile, disinflation stalled. Every meeting data-dependent.':v<=2.0?'At or below target, full easing path open.':'Within striking distance, Fed moving toward normalisation.'));
     makeChart('chart-corepce',{type:'line',data:{labels:thinLabels(data.map(function(d){return d.date;}),8),datasets:[{data:data.map(function(d){return d.value;}),borderColor:AMBER,borderWidth:1.5,pointRadius:0,backgroundColor:'rgba(180,83,9,0.06)',fill:true,tension:0.35}]},options:baseOptions('% YoY',function(v){return v.toFixed(1)+'%';})});
   }
 
@@ -1375,7 +1375,7 @@
     var html = p.innerHTML;
     // Find first sentence end: period followed by a space (captures "Sentence one. Sentence two...")
     var idx = html.indexOf('. ');
-    if (idx === -1) return; // single sentence — nothing to collapse
+    if (idx === -1) return; // single sentence, nothing to collapse
     var summary = html.slice(0, idx + 1); // up to and including the first period
     var rest = html.slice(idx + 2);       // everything after ". " (including interp-live span)
     // Rebuild: summary text + toggle button + collapsible body
