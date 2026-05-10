@@ -20,7 +20,6 @@
 #nav { background: transparent; }
 #nav.scrolled {
   background: rgba(17,17,17,0.95);
-  backdrop-filter: blur(16px);
   border-bottom: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
 }
 #nav.scrolled .nav-logo          { color: color-mix(in srgb, var(--white) 90%, transparent); }

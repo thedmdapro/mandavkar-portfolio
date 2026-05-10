@@ -73,8 +73,6 @@ strong { color: var(--text); font-weight: 600; }
   z-index: 200;
   padding: 22px 0;
   background: rgba(20, 20, 20, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--dark-border);
   transition: padding 0.35s ease, background 0.35s ease;
 }
@@ -224,7 +222,6 @@ strong { color: var(--text); font-weight: 600; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, color-mix(in srgb, var(--white) 6%, transparent) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
@@ -1161,49 +1158,14 @@ strong { color: var(--text); font-weight: 600; }
   transform: translateY(0);
 }
 
-/* ═══════════════════════════════════════
-   SECTION ANGLE DIVIDERS
-═══════════════════════════════════════ */
-.sect-angle {
-  position: relative;
-  height: 60px;
-  pointer-events: none;
-  z-index: 5;
-  overflow: hidden;
-}
-.sect-angle::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-}
-.sect-angle--type-a::after { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-.sect-angle--type-b::after { clip-path: polygon(0 0, 100% 100%, 0 100%); }
+/* (section angle dividers + glassmorphism layers removed in distill — 2026-05-05) */
 
-.sect-angle--dark-cream        { background: var(--dark); }
-.sect-angle--dark-cream::after { background: var(--bg); }
-
-.sect-angle--cream-sand        { background: var(--bg); }
-.sect-angle--cream-sand::after { background: var(--bg2); }
-
-.sect-angle--sand-dark         { background: var(--bg2); }
-.sect-angle--sand-dark::after  { background: var(--dark); }
-
-.sect-angle--cream-dark        { background: var(--bg); }
-.sect-angle--cream-dark::after { background: var(--dark); }
-
-/* ═══════════════════════════════════════
-   GLASSMORPHISM — Live panels & cards
-═══════════════════════════════════════ */
 /* Live signal panels (dark section) */
 .hz-live-panel {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
 
 /* Thesis nav cards (cream section) — upgrade to glass */
 .hz-thesis-nav-card {
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
   background: color-mix(in srgb, var(--white) 57.99999999999999%, transparent) !important;
   border: 1px solid color-mix(in srgb, var(--white) 90%, transparent) !important;
   box-shadow: 0 2px 20px color-mix(in srgb, #000000 6%, transparent),
@@ -1216,8 +1178,6 @@ strong { color: var(--text); font-weight: 600; }
 
 /* Contrarian claim — add blur to existing section-aware bg */
 .contrarian-claim {
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
 }
 
 /* ═══════════════════════════════════════
