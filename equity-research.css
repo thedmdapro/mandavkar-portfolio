@@ -10,7 +10,7 @@
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--teal-bright, #06B6D4);
+  background: var(--teal-bright, var(--ochre));
   z-index: 9999;
   transition: width 0.1s linear;
 }
@@ -75,7 +75,7 @@
 
 .er-hero h1 em {
   font-style: italic;
-  color: #06B6D4;
+  color: var(--ochre);
 }
 
 .er-hero-sub {
@@ -124,7 +124,7 @@
   line-height: 1;
   display: block;
 }
-.er-stat-value.teal { color: #06B6D4; }
+.er-stat-value.teal { color: var(--ochre); }
 
 .er-stat-sub {
   font-size: 11px;
@@ -340,7 +340,7 @@
 
 .er-company-card:hover .er-card-link {
   gap: 10px;
-  color: #06B6D4;
+  color: var(--ochre);
 }
 
 /* ═══════════════════════════════════════════════════════════════════

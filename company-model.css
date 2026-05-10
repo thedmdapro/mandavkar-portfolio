@@ -12,7 +12,7 @@
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--teal-bright, #06B6D4);
+  background: var(--teal-bright, var(--ochre));
   z-index: 9999;
   transition: width 0.1s linear;
 }
@@ -98,7 +98,7 @@
 
 .cm-hero h1 em {
   font-style: italic;
-  color: #06B6D4;
+  color: var(--ochre);
 }
 
 /* Ticker badges row */
@@ -115,7 +115,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   font-weight: 500;
-  color: #06B6D4;
+  color: var(--ochre);
   background: rgba(6, 182, 212, 0.1);
   border: 1px solid rgba(6, 182, 212, 0.25);
   padding: 4px 10px;
@@ -181,7 +181,7 @@
 
 .cm-stat-value.positive { color: #4ade80; }
 .cm-stat-value.negative { color: #f87171; }
-.cm-stat-value.teal     { color: #06B6D4; }
+.cm-stat-value.teal     { color: var(--ochre); }
 
 /* ═══════════════════════════════════════════════════════════════════
    SHARED SECTION STYLES
@@ -269,7 +269,7 @@
   border-color: var(--oxblood);
 }
 
-.cm-thesis-card.accent h4 { color: #06B6D4; }
+.cm-thesis-card.accent h4 { color: var(--ochre); }
 .cm-thesis-card.accent p  { color: color-mix(in srgb, var(--white) 70%, transparent); }
 
 .cm-card-icon {
@@ -309,7 +309,7 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.8rem;
   font-weight: 400;
-  color: #06B6D4;
+  color: var(--ochre);
   line-height: 1;
   display: block;
   margin-bottom: 4px;
@@ -452,7 +452,7 @@
 .cm-insight {
   background: rgba(6, 182, 212, 0.05);
   border: 1px solid rgba(6, 182, 212, 0.18);
-  border-inline-start: 3px solid #06B6D4;
+  border-inline-start: 3px solid var(--ochre);
   border-radius: 10px;
   padding: 24px 28px;
   margin: 32px 0;
@@ -463,7 +463,7 @@
   font-size: 10.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #06B6D4;
+  color: var(--ochre);
   display: block;
   margin-bottom: 8px;
 }
@@ -636,7 +636,7 @@
 }
 
 .cm-btn-primary {
-  background: #06B6D4;
+  background: var(--ochre);
   color: #111;
   border: none;
 }

@@ -222,9 +222,14 @@ h2.light { color: var(--dark-text); }
   transition: color var(--duration-normal);
 }
 .nav-logo span { color: var(--oxblood); }
-/* Dark-register pages (signals.html, horizon2040.html, etc) flip the nav */
+/* Dark-register pages (signals, horizon2040, equity-research, fund-screening,
+   angel-one, all hz-thesis sub-pages) flip the nav to cream-on-dark */
 body:has(.signals-hero) .nav-logo,
-body:has(.hz-hero) .nav-logo { color: var(--cream-on-dark); }
+body:has(.hz-hero) .nav-logo,
+body:has(.er-hero) .nav-logo,
+body:has(.fs-hero) .nav-logo,
+body:has(.cm-hero) .nav-logo,
+body:has(.os-hero) .nav-logo { color: var(--cream-on-dark); }
 #nav.scrolled .nav-logo { color: var(--ink); }
 
 /* Links */
@@ -247,15 +252,27 @@ body:has(.hz-hero) .nav-logo { color: var(--cream-on-dark); }
 .nav-links a.nav-spy-active,
 .nav-links a.nav-active { color: var(--oxblood) !important; }
 
-/* Dark-register pages (signals.html, horizon2040.html, etc) flip the nav links */
+/* Dark-register pages flip nav links to cream-on-dark */
 body:has(.signals-hero) .nav-links a,
-body:has(.hz-hero) .nav-links a {
+body:has(.hz-hero) .nav-links a,
+body:has(.er-hero) .nav-links a,
+body:has(.fs-hero) .nav-links a,
+body:has(.cm-hero) .nav-links a,
+body:has(.os-hero) .nav-links a {
   color: color-mix(in srgb, var(--cream-on-dark) 80%, transparent);
 }
 body:has(.signals-hero) .nav-links a:hover,
-body:has(.hz-hero) .nav-links a:hover { color: var(--ochre); }
+body:has(.hz-hero) .nav-links a:hover,
+body:has(.er-hero) .nav-links a:hover,
+body:has(.fs-hero) .nav-links a:hover,
+body:has(.cm-hero) .nav-links a:hover,
+body:has(.os-hero) .nav-links a:hover { color: var(--ochre); }
 body:has(.signals-hero) .nav-links a.nav-active,
-body:has(.hz-hero) .nav-links a.nav-active { color: var(--ochre) !important; }
+body:has(.hz-hero) .nav-links a.nav-active,
+body:has(.er-hero) .nav-links a.nav-active,
+body:has(.fs-hero) .nav-links a.nav-active,
+body:has(.cm-hero) .nav-links a.nav-active,
+body:has(.os-hero) .nav-links a.nav-active { color: var(--ochre) !important; }
 
 #nav.scrolled .nav-links a { color: color-mix(in srgb, var(--ink) 75%, transparent); }
 #nav.scrolled .nav-links a:hover { color: var(--oxblood); }

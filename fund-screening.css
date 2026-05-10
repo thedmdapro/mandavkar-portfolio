@@ -11,7 +11,7 @@
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--teal-bright, #06B6D4);
+  background: var(--teal-bright, var(--ochre));
   z-index: 9999;
   transition: width 0.1s linear;
 }
@@ -76,7 +76,7 @@
 
 .fs-hero h1 em {
   font-style: italic;
-  color: #06B6D4;
+  color: var(--ochre);
 }
 
 .fs-hero-sub {
@@ -125,7 +125,7 @@
   line-height: 1;
   display: block;
 }
-.fs-stat-value.teal { color: #06B6D4; }
+.fs-stat-value.teal { color: var(--ochre); }
 
 .fs-stat-sub {
   font-size: 11px;
@@ -246,7 +246,7 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #06B6D4;
+  color: var(--ochre);
   background: rgb(from var(--teal) r g b / 10%);
   border: 1px solid rgb(from var(--teal) r g b / 20%);
   padding: 4px 12px;
@@ -304,7 +304,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 500;
-  color: #06B6D4;
+  color: var(--ochre);
   letter-spacing: 0.04em;
 }
 
@@ -362,7 +362,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   font-weight: 500;
-  color: #06B6D4;
+  color: var(--ochre);
 }
 
 /* Qualitative grid */
@@ -660,7 +660,7 @@
 }
 
 .fs-download-icon {
-  color: #06B6D4;
+  color: var(--ochre);
   flex-shrink: 0;
 }
 
@@ -687,7 +687,7 @@
 
 .fs-download-arrow {
   font-size: 1.2rem;
-  color: #06B6D4;
+  color: var(--ochre);
   flex-shrink: 0;
   transition: transform 0.18s;
 }
