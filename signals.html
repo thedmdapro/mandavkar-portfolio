@@ -343,7 +343,7 @@
             <span class="chart-reading-unit">%</span>
             <span class="chart-reading-label">latest spread</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-yc"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-yc" role="img" aria-label="US Treasury yield curve, 10-year minus 2-year spread, daily, 2019 to today. Negative values indicate inversion (a recession leading indicator)."></canvas></div>
           <p class="chart-interpretation">When the spread goes negative, the curve is inverted &#8212; short-term rates exceed long-term rates. This happens when the Fed has raised rates faster than growth and inflation expectations can absorb. The mechanism is direct: banks borrow short and lend long, so inversion crushes net interest margins and forces credit tightening across the economy. The 2022&#8211;2024 inversion was the deepest since the early 1980s, reaching &#8722;108bps. Every US recession since 1970 has been preceded by an inversion. The critical and widely misunderstood point: the recession does not come at peak inversion. It comes when the curve steepens back positive &#8212; the "uninversion" &#8212; because that's when the Fed is cutting in response to actual deterioration. The 12 months after the spread crosses back through zero is the highest-risk window for portfolios.<span class="interp-live" id="interp-yc"></span></p>
         </div>
 
@@ -360,7 +360,7 @@
             <span class="chart-reading-unit">%</span>
             <span class="chart-reading-label">latest spread</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-yc3m"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-yc3m" role="img" aria-label="US Treasury yield curve, 10-year minus 3-month spread, daily, 2019 to today. The Fed-preferred recession indicator."></canvas></div>
           <p class="chart-interpretation">The NY Fed uses this spread &#8212; not 10Y&#8722;2Y &#8212; in its official recession probability model, published monthly. Estrella &amp; Mishkin (1996) demonstrated this spread has higher out-of-sample recession predictive accuracy. The practical difference: the 3-month yield tracks the Fed Funds rate much more tightly than the 2-year, making this spread a purer measure of policy restrictiveness vs long-term growth expectations. When both the 10Y&#8722;2Y and 10Y&#8722;3M are simultaneously inverted, the signal is substantially reinforced. When they diverge &#8212; 10Y&#8722;3M positive but 10Y&#8722;2Y negative &#8212; it usually reflects short-end term premium dynamics rather than genuine recession loading.<span class="interp-live" id="interp-yc3m"></span></p>
         </div>
 
@@ -377,7 +377,7 @@
             <span class="chart-reading-unit">index</span>
             <span class="chart-reading-label">financial conditions</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-nfci"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-nfci" role="img" aria-label="Chicago Fed National Financial Conditions Index, weekly. Negative readings indicate looser-than-historical-average financial conditions."></canvas></div>
           <p class="chart-interpretation">The Chicago Fed's NFCI is a composite of 105 indicators spanning money markets, debt and equity markets, and the traditional and shadow banking systems. A reading of zero means financial conditions are at their historical average. Negative = looser than average (credit is cheap and accessible, leverage is expanding, risk appetite is high). Positive = tighter than average (credit is expensive or scarce, leverage is contracting, risk appetite is falling). This index leads economic activity by 6&#8211;12 months. The sharp tightening in 2022&#8211;2023 is visible here and preceded the slowdown in credit-sensitive sectors. A rapid move from negative to positive territory &#8212; even a 0.5 point shift over 4 weeks &#8212; has historically been a forward warning of broader economic stress within one to two quarters.<span class="interp-live" id="interp-nfci"></span></p>
         </div>
 
@@ -395,7 +395,7 @@
             <span class="chart-reading-unit">000s</span>
             <span class="chart-reading-label">weekly filings</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-jobless"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-jobless" role="img" aria-label="US weekly initial jobless claims, 2022 to today. Filings above 250,000 historically signal labour market weakening."></canvas></div>
           <p class="chart-interpretation">The most timely labour market signal that exists &#8212; published every Thursday, no revision lag. New unemployment insurance claims lead the official unemployment rate by 4&#8211;8 weeks. A sustained move above 280,000 is historically the first hard data signal of labour market deterioration, preceding NBER recession calls. Below 220,000 is historically tight and adds to wage inflation persistence, constraining Fed cuts.<span class="interp-live" id="interp-jobless"></span></p>
         </div>
 
@@ -413,7 +413,7 @@
             <span class="chart-reading-unit">% YoY</span>
             <span class="chart-reading-label">Fed's target gauge</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-corepce"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-corepce" role="img" aria-label="US Core PCE inflation, year-over-year percent change, monthly. The Fed-preferred inflation gauge."></canvas></div>
           <p class="chart-interpretation">The Federal Reserve's actual inflation target gauge &#8212; not CPI, not headline PCE, but core PCE (Personal Consumption Expenditures excluding food and energy). The Fed targets 2% on this measure. At 2.0&#8211;2.3%: room to cut. At 2.5&#8211;3.0%: stuck in "last mile" disinflation &#8212; Fed on hold. Above 3.0%: every cut risks re-anchoring expectations higher. Unlike CPI, PCE captures substitution behaviour and reweights dynamically &#8212; it typically runs 20&#8211;30bps below CPI.<span class="interp-live" id="interp-corepce"></span></p>
         </div>
 
@@ -430,7 +430,7 @@
             <span class="chart-reading-unit">%</span>
             <span class="chart-reading-label">10Y TIPS yield</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-realyield"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-realyield" role="img" aria-label="US 10-year real yield (TIPS), daily, 2019 to today. Above 1 percent is restrictive for risk assets."></canvas></div>
           <p class="chart-interpretation">The single most important number for global asset allocation. Real yield = nominal 10Y Treasury yield minus 10Y inflation breakeven. It represents the actual inflation-adjusted return available from the risk-free asset. When real yields are negative, the Fed is effectively penalising cash holders and subsidising borrowing &#8212; the primary mechanism behind the 2020&#8211;2022 bull run in every risky asset class. Rising real yields in 2022 (from &#8722;1.0% to +2.5%) triggered simultaneous drawdowns in tech equities, gold, EM sovereign bonds, and crypto &#8212; because every discounted cash flow model saw its discount rate jump. Watch this number more than the nominal yield. Gold and tech growth stocks are the most inverse-correlated to real yields. EM assets with dollar-denominated debt are also highly sensitive &#8212; rising real yields strengthen the dollar simultaneously.<span class="interp-live" id="interp-realyield"></span></p>
         </div>
 
@@ -447,7 +447,7 @@
             <span class="chart-reading-unit">%</span>
             <span class="chart-reading-label">implied inflation</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-breakeven"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-breakeven" role="img" aria-label="US 10-year breakeven inflation rate, daily, 2019 to today. Difference between nominal and real yields, market-implied inflation expectations."></canvas></div>
           <p class="chart-interpretation">The market's implied forecast for average US CPI over the next decade, derived from the difference between nominal 10Y Treasury yields and TIPS yields. This is not a poll or a survey &#8212; it is the price that professional inflation-hedgers are willing to pay, making it the most market-credible inflation signal available in real time. Below 2.0%: the market is pricing disinflation or mild deflation risk &#8212; gives the Fed room to ease aggressively. 2.0&#8211;2.5%: well-anchored around target &#8212; the Fed can operate normally. Above 2.5%: inflation premium building, constrains the rate cut path even if growth slows. Above 3.0%: stagflation risk being priced &#8212; the historically most dangerous combination for a 60/40 portfolio, as bonds and equities can sell off simultaneously.<span class="interp-live" id="interp-breakeven"></span></p>
         </div>
 
@@ -464,7 +464,7 @@
             <span class="chart-reading-unit">bps HY</span>
             <span class="chart-reading-label" style="margin-left:16px">IG: <span id="reading-ig">--</span> bps</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-credit"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-credit" role="img" aria-label="US high yield credit spread (BAML HY OAS), daily, 2019 to today. Above 500 bps signals credit market stress."></canvas></div>
           <p class="chart-interpretation">Option-Adjusted Spread (OAS) measures how much more yield investors demand from corporate bonds over equivalent Treasuries. HY (High Yield) covers sub-investment-grade corporates &#8212; the most credit-sensitive part of the market. IG (Investment Grade) covers A-rated and above. When spreads widen, the bond market is pricing rising default risk or increased risk aversion &#8212; money flows out of corporate bonds into Treasuries (flight to quality). The HY/IG ratio tells you where the stress is concentrated: if HY widens sharply while IG holds steady, it's idiosyncratic corporate stress, not systemic. If both widen simultaneously, it's a systemic risk-off signal that tends to precede equity drawdowns by 2&#8211;4 weeks. HY above 500bps has preceded every significant equity market correction since 2000. HY below 280bps is historically ultra-tight &#8212; a sign of complacency, not fundamental strength.<span class="interp-live" id="interp-credit"></span></p>
         </div>
 
@@ -507,7 +507,7 @@
               <span class="vel-val vel-val--neutral" id="usdjpy-boj-zone">--</span>
             </div>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-usdjpy"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-usdjpy" role="img" aria-label="USD/JPY exchange rate, daily, 2022 to today. Carry trade health indicator, BOJ intervention risk above 160."></canvas></div>
           <p class="chart-interpretation">USDJPY is the carry trade's central nervous system. For two decades, Japan maintained near-zero rates while the rest of the world raised them &#8212; creating a structural "funding currency" for leveraged carry strategies. Investors borrowed cheap yen, converted to USD (or EM currencies), and invested in higher-yielding assets. The profit was the interest rate differential. August 2024 demonstrated the unwinding mechanism: a 15bp BOJ rate hike drove USDJPY from 160 to 142 in weeks, forcing simultaneous deleveraging across US equities, Indian equities, and EM FX &#8212; because they were all funded by the same yen borrowing. The 4-week velocity is more actionable than the spot level: a move of &gt;3% yen strengthening in 4 weeks is the carry unwind early warning signal, not the absolute rate.<span class="interp-live" id="interp-usdjpy"></span></p>
         </div>
 
@@ -524,7 +524,7 @@
             <span class="chart-reading-unit">index</span>
             <span class="chart-reading-label">implied vol</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-vix"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-vix" role="img" aria-label="CBOE VIX volatility index, daily, 2022 to today. Above 30 is elevated stress, above 40 is crisis-grade."></canvas></div>
           <p class="chart-interpretation">The VIX measures the market's 30-day implied volatility expectation for the S&amp;P 500, derived from options prices. It is not a directional forecast &#8212; it is a fear gauge. Below 15: extreme complacency, tail risk is underpriced (historically a contrarian warning signal). 15&#8211;20: normal operating range. 20&#8211;25: elevated uncertainty, institutional hedging increasing. Above 25: fear is dominant, defensive positioning warranted. Above 35: crisis conditions &#8212; historically, peak VIX readings have been strong contrarian buy signals because maximum fear often coincides with maximum selling pressure exhaustion. The most important diagnostic: a sharp VIX spike with no obvious US-domestic catalyst typically indicates either carry trade unwinding or a foreign-originated shock &#8212; the August 2024 spike to 65 intraday is the archetypal example.<span class="interp-live" id="interp-vix"></span></p>
         </div>
 
@@ -541,7 +541,7 @@
             <span class="chart-reading-unit">index</span>
             <span class="chart-reading-label">broad trade-weighted</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-dxy"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-dxy" role="img" aria-label="US Dollar Index (DXY), daily, 2022 to today. Above 105 is restrictive for emerging-market financial conditions."></canvas></div>
           <p class="chart-interpretation">The trade-weighted broad dollar index tracks USD against a basket of currencies weighted by trade flows. Dollar strength has two entirely different causes &#8212; the "dollar smile" framework (Stephen Jen, ex-Morgan Stanley) captures this: the dollar strengthens both at the left side of the smile (global risk-off, safe-haven demand) AND at the right side (US economic outperformance relative to the world). It weakens in the middle when US growth is moderate and global growth is healthy. The practical implication: when DXY rises on strong US data (right side), selective EM countries with strong fundamentals can hold up. When DXY rises on VIX spikes and global risk-off (left side), it hits everything in EM simultaneously. The 3-month rate of change tells you which side of the smile you're on better than the level alone.<span class="interp-live" id="interp-dxy"></span></p>
         </div>
 
@@ -558,7 +558,7 @@
             <span class="chart-reading-unit">$/&#8364;</span>
             <span class="chart-reading-label">latest spot</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-eurusd"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-eurusd" role="img" aria-label="EUR/USD exchange rate, daily, 2022 to today. Below 1.05 signals European weakness or US strength regime."></canvas></div>
           <p class="chart-interpretation">The world's most liquid currency pair &#8212; roughly $1.1 trillion in daily volume &#8212; and effectively the inverse of the dollar for developed market flows. Parity (1.00) is the key psychological level; it was breached in 2022 for the first time since 2002. Falling EUR/USD + rising DXY = broad dollar strength, consistent left-side-of-smile dynamic. Falling EUR/USD while DXY is flat or falling = Euro-specific weakness &#8212; likely driven by European growth concerns, ECB rate path, or energy shock. For the India portfolio: euro weakness often accompanies global growth pessimism, which correlates with EM outflows and rupee pressure. Distinguish the driver &#8212; it determines whether you're seeing a US story or a European story.<span class="interp-live" id="interp-eurusd"></span></p>
         </div>
 
@@ -575,7 +575,7 @@
             <span class="chart-reading-unit">%</span>
             <span class="chart-reading-label">effective rate</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-fedfunds"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-fedfunds" role="img" aria-label="Effective federal funds rate, daily, 2019 to today."></canvas></div>
           <p class="chart-interpretation">The overnight rate the Fed targets &#8212; the anchor of all risk-free pricing globally. Every discounted cash flow model, every bond duration calculation, every carry trade funding cost is priced relative to this rate. The 2022&#8211;2023 hiking cycle from 0.25% to 5.50% was the fastest in 40 years. The pace of future moves matters more than the level: gradual cuts = orderly easing cycle. Rapid consecutive cuts = the Fed has seen something alarming (August 2007&#8211;March 2008: 325bps cut in 7 months, followed by the financial crisis). Markets often celebrate rate cuts as bullish, but historically, the fastest cutting cycles have coincided with severe recessions. The Fed moves because of deterioration, not ahead of it.<span class="interp-live" id="interp-fedfunds"></span></p>
         </div>
 
@@ -592,7 +592,7 @@
             <span class="chart-reading-unit">Cu/Au ratio</span>
             <span class="chart-reading-label">3M trend: <span id="reading-cgr-trend">--</span></span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-cgr"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-cgr" role="img" aria-label="Copper-to-gold ratio, monthly. Falling ratio signals risk-off (gold demand up, industrial demand down)."></canvas></div>
           <p class="chart-interpretation">Copper = industrial metal, driven by construction, manufacturing, power infrastructure, and transportation. Its demand base is so broad &#8212; roughly 40% construction, 25% industry, 20% power grids, 10% transport &#8212; that it effectively tracks the entire physical economy. Gold = monetary metal and safe-haven asset, driven by fear, inflation hedging, and central bank reserve diversification. Their ratio cuts through the noise: when copper outperforms gold (rising ratio), the market is pricing a world that builds things. When gold outperforms copper (falling ratio), the market is pricing a world that hoards things. The ratio fell sharply 3&#8211;5 months ahead of both the 2008 GFC and the 2015 EM correction, while equity indices were still near highs. The structural complication: the EV and electrification buildout creates a demand floor for copper that didn't exist in previous cycles &#8212; which may mean the ratio falls less sharply in downturns than historical precedent suggests.<span class="interp-live" id="interp-cgr"></span></p>
         </div>
 
@@ -621,7 +621,7 @@
             <span class="chart-reading-unit">index pts</span>
             <span class="chart-reading-label">latest reading</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-bdi"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-bdi" role="img" aria-label="Baltic Dry Index (BDI), weekly. Global dry bulk shipping rates as a real-time physical-economy indicator."></canvas></div>
           <p class="chart-interpretation">The BDI tracks the daily cost of chartering dry bulk vessels &#8212; Capesize, Panamax, Supramax, Handysize &#8212; on the major global routes carrying iron ore, grain, and coal. It has no central bank, no futures market, and no PR department. When factories in China need iron ore to make steel, ships are booked. When they don't, ships sit idle. The rate is set by the laws of supply and demand, nothing else. Historical range: peak 11,793 (May 2008, pre-GFC commodity supercycle) to trough 663 (December 2008, a 94% collapse in 8 months). The signal: when BDI falls while industrial equities are pricing in earnings growth, one of them is wrong. February 2023: BDI printed 530 &#8212; levels last seen during early COVID &#8212; while sell-side research was declaring the soft landing achieved and equity markets were up 15% from their October 2022 lows. Physical economy was not confirming the narrative.<span class="interp-live" id="interp-bdi"></span></p>
         </div>
 
@@ -638,7 +638,7 @@
             <span class="chart-reading-unit">$/bbl</span>
             <span class="chart-reading-label">WTI spot</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-wti"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-wti" role="img" aria-label="WTI crude oil price, daily, 2020 to today."></canvas></div>
           <p class="chart-interpretation">WTI crude is simultaneously a global demand signal, an inflation input, and a geopolitical risk barometer. As a demand signal: oil demand is highly correlated with industrial activity and transportation, so sustained WTI weakness despite OPEC cuts signals genuine demand softness. As an inflation input: above $90/bbl, oil adds materially to headline CPI in most economies with a 1&#8211;3 month lag through petrol, diesel, and energy-intensive goods. For India specifically: 85% oil import dependency means every $10/bbl move in Brent shifts India's annual import bill by approximately $15bn &#8212; directly impacting the current account deficit, rupee stability, and fiscal deficit via fuel subsidies. WTI above $90 is where Indian policymakers begin facing the subsidy-versus-pass-through dilemma. Above $100 is rupee stress territory.<span class="interp-live" id="interp-wti"></span></p>
         </div>
 
@@ -655,7 +655,7 @@
             <span class="chart-reading-unit">$/40ft box</span>
             <span class="chart-reading-label">composite WCI</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-drewry"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-drewry" role="img" aria-label="Drewry World Container Index, weekly. Spot container shipping freight rates across major global routes."></canvas></div>
           <p class="chart-interpretation">The Drewry WCI tracks composite spot freight rates across 8 major container routes (Shanghai&#8211;Rotterdam, Shanghai&#8211;Los Angeles, etc.). Unlike BDI which tracks raw material bulk shipping, WCI tracks finished goods &#8212; the things consumers buy. This makes it the inflation transmission mechanism: elevated WCI feeds into consumer goods CPI with a 3&#8211;6 month lag. Pre-Red Sea disruption (late 2023) baseline was approximately $1,500/40ft container. The rerouting of Asia&#8211;Europe vessels around the Cape of Good Hope added 30&#8211;40% to transit distances, absorbing effective vessel capacity and supporting rates. Above $4,000: European importers of manufactured goods are facing significantly elevated landed costs, and the pass-through into goods CPI is building. The ECB had explicitly modelled goods disinflation as the mechanism to hit their 2% target &#8212; WCI persistence undermines that assumption.<span class="interp-live" id="interp-drewry"></span></p>
         </div>
 
@@ -672,7 +672,7 @@
             <span class="chart-reading-unit">$/oz</span>
             <span class="chart-reading-label">London AM fix</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-gold"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-gold" role="img" aria-label="Gold spot price, monthly, USD per troy ounce. Risk-off and inflation-hedge indicator."></canvas></div>
           <p class="chart-interpretation">Gold has three distinct demand drivers that require different portfolio interpretations. (1) Monetary premium: when real yields fall, gold rises because the opportunity cost of holding a non-yielding asset falls &#8212; this is the textbook relationship. (2) Safe-haven demand: during systemic risk events (2008, 2020, 2022 Ukraine), gold rises as investors seek counterparty-free stores of value. (3) Central bank diversification: since 2022, China, India, Russia, and Gulf central banks have been buying gold at record rates, reducing USD reserve concentration &#8212; this structural flow is independent of real yields. The diagnostic: gold rising while real yields are also rising (as in 2023&#8211;2024) is the third regime &#8212; and it's historically unusual. It signals dollar-reserve de-dollarisation is outweighing the classical rate headwind. Do not fight this trend with the old yield-correlation model alone.<span class="interp-live" id="interp-gold"></span></p>
         </div>
 
@@ -689,7 +689,7 @@
             <span class="chart-reading-unit">$/MT</span>
             <span class="chart-reading-label">monthly avg</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-copper"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-copper" role="img" aria-label="Copper spot price, monthly. Industrial demand indicator (Doctor Copper)."></canvas></div>
           <p class="chart-interpretation">The second-most-economically-sensitive industrial metal after oil. The energy transition is creating a structural demand floor that makes the usual cyclical interpretation more complex. A single EV contains 3&#8211;4x the copper of an ICE vehicle. Offshore wind uses 10x the copper per MW of gas generation. Data centre buildout is copper-intensive. Grid modernisation programmes in the US, Europe, and India are decades-long capital programmes. This means: in future cyclical downturns, copper may fall less than historical bear market precedents would suggest &#8212; the structural floor absorbs some cyclical weakness. When interpreting a copper decline, separate the cyclical component (cross-check Chinese PMI and LME warehouse inventories &#8212; drawdown = real demand, build = speculative overhang) from the structural component (check EV sales trends and grid capex announcements).<span class="interp-live" id="interp-copper"></span></p>
         </div>
 
@@ -706,7 +706,7 @@
             <span class="chart-reading-unit">% YoY</span>
             <span class="chart-reading-label">latest reading</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-indpro"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-indpro" role="img" aria-label="US Industrial Production index, year-over-year percent change, monthly. Real economy activity gauge."></canvas></div>
           <p class="chart-interpretation">The Federal Reserve's monthly estimate of US manufacturing, mining, and utilities output. YoY negative = manufacturing recession &#8212; goods sector is contracting. The key cross-check: when IP goes negative while S&amp;P Industrials or Materials equities are pricing in forward earnings growth, a divergence exists that has historically resolved in IP's favour. Complementary signal: ISM Manufacturing PMI below 50 simultaneously with negative IP is a double-confirmation of goods-sector contraction. IP is not a service economy signal &#8212; the US is 70%+ services, so IP can contract while the overall economy grows. But it is an excellent leading indicator for industrial company earnings, capex cycles, and commodity demand.<span class="interp-live" id="interp-indpro"></span></p>
         </div>
 
@@ -735,7 +735,7 @@
             <span class="chart-reading-unit">&#8377; Crore</span>
             <span class="chart-reading-label">latest month net inflows</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-amfi"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-amfi" role="img" aria-label="India AMFI mutual fund SIP inflows, monthly, in crores INR. Structural retail equity bid (the SIP machine)."></canvas></div>
           <p class="chart-interpretation">India's Systematic Investment Plan (SIP) machine: once investors set up a SIP, the default behaviour is continuation &#8212; they must actively cancel to stop investing. This asymmetry creates a near-constant monthly bid of &#8377;32,000+ Cr into equity mutual funds regardless of market levels (March 2026 record: &#8377;32,087 Cr). The mechanical impact: Indian equity drawdowns since 2021 have been systematically shallower than fundamentals alone would predict, because fund managers deploying SIP inflows are buying during corrections. The valuation implication: Indian P/E ratios that would historically signal a top have persisted for longer &#8212; the structural bid supports elevated multiples. The risk reversal scenario: a sharp enough correction (&gt;25%) that triggers mass SIP cancellations would remove the structural floor simultaneously, potentially creating a self-reinforcing downside. Monitor the three-month rolling trend &#8212; three consecutive months of declining inflows is the first structural break signal.<span class="interp-live" id="interp-amfi"></span></p>
         </div>
 
@@ -752,7 +752,7 @@
             <span class="chart-reading-unit">&#8377;/$</span>
             <span class="chart-reading-label">latest spot</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-usdinr"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-usdinr" role="img" aria-label="USD/INR exchange rate, daily, 2022 to today."></canvas></div>
           <p class="chart-interpretation">The rupee/dollar rate is a direct indicator of India's external account health. The RBI actively manages the rupee through FX reserves intervention &#8212; India has $640bn+ in reserves (11+ months of import cover) giving substantially more ammunition than 2013 (when $280bn was insufficient to prevent a 20% depreciation). The key dynamics: rupee weakens when oil prices spike (higher import bill), when US rates rise sharply (capital outflow to USD), or when FPI outflows accelerate. The RBI typically allows slow, managed depreciation (consistent with the India-US inflation differential of ~3&#8211;4%) but intervenes to prevent disorderly moves. Above &#8377;87/$ signals either an oil shock, a significant FPI outflow episode, or RBI reserve management stress. The 2013 "taper tantrum" saw INR fall from &#8377;54 to &#8377;68 &#8212; the improved reserve position makes a repeat less likely but not impossible.<span class="interp-live" id="interp-usdinr"></span></p>
         </div>
 
@@ -769,7 +769,7 @@
             <span class="chart-reading-unit">% p.a.</span>
             <span class="chart-reading-label">benchmark yield</span>
           </div>
-          <div class="chart-canvas-wrap"><canvas id="chart-india10y"></canvas></div>
+          <div class="chart-canvas-wrap"><canvas id="chart-india10y" role="img" aria-label="India 10-year government bond yield, monthly, 2020 to today."></canvas></div>
           <p class="chart-interpretation">The benchmark government security yield reflects three things simultaneously: (1) RBI rate expectations &#8212; the G-sec market prices forward RBI moves, (2) Fiscal deficit expectations &#8212; wider fiscal deficits increase government borrowing, pushing yields higher, (3) Global risk appetite &#8212; foreign portfolio investors hold Indian G-secs and flee during global risk-off episodes. The India-US 10Y spread (approximately this yield minus US 10Y) determines FPI attractiveness &#8212; a narrowing spread reduces the carry incentive for foreign bond investors. The RBI's credibility zone has been approximately 6.5&#8211;7.2%. Below 6.5%: aggressive easing priced in. Above 7.5%: fiscal premium or inflation concern being priced &#8212; typically negative for equity multiples as higher bond yields compete with equities.<span class="interp-live" id="interp-india10y"></span></p>
         </div>
 
@@ -920,18 +920,57 @@
     if (panel) panel.classList.add('loaded');
   }
 
+  // Fetch with timeout + 1 retry + localStorage cache fallback (24hr)
+  async function fetchWithReliability(url, cacheKey, timeoutMs) {
+    timeoutMs = timeoutMs || 8000;
+    var attempt = async function() {
+      var ctrl = new AbortController();
+      var timer = setTimeout(function(){ ctrl.abort(); }, timeoutMs);
+      try {
+        var res = await fetch(url, { signal: ctrl.signal });
+        clearTimeout(timer);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+    try {
+      var json = await attempt();
+      // Cache successful response (24hr TTL)
+      try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data: json })); } catch(e) {}
+      return json;
+    } catch (err1) {
+      // 1 retry on first failure
+      try {
+        var json = await attempt();
+        try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data: json })); } catch(e) {}
+        return json;
+      } catch (err2) {
+        // Both attempts failed, try localStorage cache (24hr TTL)
+        try {
+          var cached = localStorage.getItem(cacheKey);
+          if (cached) {
+            var parsed = JSON.parse(cached);
+            if (Date.now() - parsed.ts < 86400000) {
+              console.warn('[reliability] live fetch failed, serving cache for', cacheKey);
+              return parsed.data;
+            }
+          }
+        } catch(e) {}
+        throw err2;
+      }
+    }
+  }
+
   async function fetchFRED(seriesId, units, startDate) {
     if (!API_KEY) throw new Error('No API key, add to signals-config.js');
     var params = new URLSearchParams({ series_id: seriesId, api_key: API_KEY, file_type: 'json', observation_start: startDate || '2019-01-01', sort_order: 'asc' });
     if (units) params.set('units', units);
     var url = FRED_BASE + '?' + params.toString();
-    var parse = function(json) {
-      if (json.error_message) throw new Error(json.error_message);
-      return json.observations.filter(function(o){ return o.value !== '.' && o.value !== ''; }).map(function(o){ return { date: o.date, value: parseFloat(o.value) }; });
-    };
-    var res = await fetch(url);
-    if (!res.ok) throw new Error('FRED ' + seriesId + ' HTTP ' + res.status);
-    return parse(await res.json());
+    var json = await fetchWithReliability(url, 'fred:' + seriesId + ':' + (units || '') + ':' + (startDate || ''), 8000);
+    if (json.error_message) throw new Error(json.error_message);
+    return json.observations.filter(function(o){ return o.value !== '.' && o.value !== ''; }).map(function(o){ return { date: o.date, value: parseFloat(o.value) }; });
   }
 
   // Parse Yahoo Finance chart API into the same {date, value}[] format as fetchFRED
