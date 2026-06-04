@@ -31,9 +31,13 @@ async function proxy(upstreamUrl, fetchInit) {
     });
     // Buffer the body fully rather than streaming resp.body through.
     const text = await resp.text();
+    // Only cache SUCCESSFUL responses. Caching errors (the old behaviour)
+    // poisons the edge: a transient upstream failure gets cached for an
+    // hour and served to every visitor on that PoP.
+    const cache = resp.ok ? 'public, max-age=3600' : 'no-store';
     return new Response(text, {
       status: resp.ok ? 200 : resp.status,
-      headers: { ...CORS, 'Cache-Control': 'public, max-age=3600' },
+      headers: { ...CORS, 'Cache-Control': cache },
     });
   } catch (e) {
     return new Response(

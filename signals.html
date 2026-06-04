@@ -968,6 +968,10 @@
     if (!API_KEY) throw new Error('No API key, add to signals-config.js');
     var params = new URLSearchParams({ series_id: seriesId, api_key: API_KEY, file_type: 'json', observation_start: startDate || '2019-01-01', sort_order: 'asc' });
     if (units) params.set('units', units);
+    // Hourly cache-bust token. Rotates the edge cache key every hour so a
+    // poisoned key (e.g. a cached upstream error) is abandoned within the
+    // hour, while still letting Cloudflare cache the good response per-hour.
+    params.set('_h', String(Math.floor(Date.now() / 3600000)));
     var url = FRED_BASE + '?' + params.toString();
     var json = await fetchWithReliability(url, 'fred:' + seriesId + ':' + (units || '') + ':' + (startDate || ''), 8000);
     if (json.error_message) throw new Error(json.error_message);
