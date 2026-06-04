@@ -16,8 +16,19 @@ const CORS = {
 async function proxy(upstreamUrl, fetchInit) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 8000);
+  // Always send a browser-like User-Agent + Accept. Some upstreams (FRED's
+  // WAF in particular) reject header-less Worker subrequests, which surfaces
+  // as a Cloudflare 520. Yahoo already required a UA; FRED needs one too.
+  const baseHeaders = {
+    'User-Agent': 'Mozilla/5.0 (compatible; mandavkar.uk signal tracker)',
+    'Accept': 'application/json, text/plain, */*',
+  };
   try {
-    const resp = await fetch(upstreamUrl, { ...fetchInit, signal: ctrl.signal });
+    const resp = await fetch(upstreamUrl, {
+      ...fetchInit,
+      headers: { ...baseHeaders, ...(fetchInit && fetchInit.headers) },
+      signal: ctrl.signal,
+    });
     // Buffer the body fully rather than streaming resp.body through.
     const text = await resp.text();
     return new Response(text, {
