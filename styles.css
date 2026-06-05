@@ -2342,6 +2342,9 @@ a:focus-visible,
   height: 1px;
   background: var(--oxblood);
   opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: hero-rule-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
 }
 .hero-editorial {
   max-width: 1280px;
@@ -2415,6 +2418,61 @@ a:focus-visible,
 .link-underlined:focus-visible {
   outline: 2px solid var(--oxblood);
   outline-offset: 6px;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO ENTRANCE — Phase 1 (kinetic editorial, CSS-only, bulletproof)
+   Pure CSS so it can never blank the hero if JS fails. Reduced-motion
+   shows everything instantly via the override at the end of this block.
+═══════════════════════════════════════════════════ */
+@keyframes hero-rule-draw { to { transform: scaleX(1); } }
+@keyframes hero-line-in   { from { opacity: 0; transform: translateY(64px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-in        { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes hero-underline { to { transform: scaleX(1); } }
+
+.hero-editorial-section .hero-eyebrow {
+  opacity: 0;
+  animation: hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.hero-editorial-section .hero-name .hero-line {
+  display: block;
+  opacity: 0;
+  animation: hero-line-in 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-editorial-section .hero-name .hero-line:nth-child(1) { animation-delay: 0.32s; }
+.hero-editorial-section .hero-name .hero-line:nth-child(2) { animation-delay: 0.46s; }
+
+.hero-editorial-section .hero-emphasis {
+  position: relative;
+  display: inline-block;
+}
+.hero-editorial-section .hero-emphasis::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0.07em;
+  height: 3px;
+  background: var(--oxblood);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: hero-underline 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.35s forwards;
+}
+
+.hero-editorial-section .hero-bio         { opacity: 0; animation: hero-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.66s both; }
+.hero-editorial-section .hero-credentials { opacity: 0; animation: hero-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both; }
+.hero-editorial-section .hero-actions     { opacity: 0; animation: hero-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.90s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-editorial-section::before,
+  .hero-editorial-section .hero-eyebrow,
+  .hero-editorial-section .hero-name .hero-line,
+  .hero-editorial-section .hero-emphasis::after,
+  .hero-editorial-section .hero-bio,
+  .hero-editorial-section .hero-credentials,
+  .hero-editorial-section .hero-actions {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 /* Override the old .hero-email which now sits on paper, not dark */
 .hero-editorial-section .hero-email {
