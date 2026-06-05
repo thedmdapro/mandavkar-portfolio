@@ -2505,6 +2505,27 @@ html.lenis, html.lenis body { height: auto; }
 .hero-editorial-section.globe-hero .link-underlined::after { background: var(--oxblood-on-dark); }
 .hero-editorial-section.globe-hero .hero-email { color: color-mix(in srgb, var(--cream-on-dark) 75%, transparent); }
 .hero-editorial-section.globe-hero .hero-email:hover { color: var(--ochre); }
+
+/* Globe node hover label (created/positioned by globe.js; styled here) */
+.globe-node-label {
+  position: absolute;
+  z-index: 4;
+  transform: translate(-50%, -150%);
+  padding: 3px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  background: color-mix(in srgb, var(--dark-ink) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ochre) 40%, transparent);
+  border-radius: 3px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+.globe-node-label.visible { opacity: 1; }
 .hero-eyebrow {
   display: block;
   font-family: 'JetBrains Mono', monospace;

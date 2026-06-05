@@ -520,6 +520,75 @@
   }
 
 
+  /* ─── CHOKEPOINT GLOBE (lazy-loaded Three.js hero centrepiece) ───
+     Three.js is injected AFTER first paint so it never blocks LCP. Skipped
+     entirely under reduced-motion, save-data, or no-WebGL, the dark CSS hero
+     (and later the poster) is the fallback. globe.js owns all WebGL; this is
+     just the safe loader + colour bridge.                                    */
+  function initChokepointGlobe() {
+    var canvas = document.querySelector('.globe-canvas');
+    if (!canvas) return;
+    if (REDUCE) return;                                  // keep the dark hero / poster, no globe
+    var conn = navigator.connection || navigator.webkitConnection;
+    if (conn && conn.saveData) return;                   // respect data-saver
+    try {                                                // WebGL probe before any network cost
+      var probe = document.createElement('canvas');
+      if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
+    } catch (e) { return; }
+
+    function resolveColor(name, fallback) {
+      try {
+        var s = document.createElement('span');
+        s.style.color = 'var(' + name + ')';
+        document.body.appendChild(s);
+        var c = window.getComputedStyle(s).color;
+        document.body.removeChild(s);
+        return (c && c.indexOf('rgb') === 0) ? c : fallback;
+      } catch (e) { return fallback; }
+    }
+
+    function start() {
+      if (!window.THREE || !window.ChokepointGlobe) return;
+      safe(function () {
+        window.ChokepointGlobe.init(canvas, {
+          reduce: false,
+          finePtr: finePtr,
+          lowDetail: !finePtr || window.innerWidth <= 768,
+          colors: {
+            dark:      resolveColor('--dark-ink', 'rgb(20,22,30)'),
+            node:      resolveColor('--globe-node', 'rgb(212,170,70)'),
+            arc:       resolveColor('--oxblood-on-dark', 'rgb(170,70,66)'),
+            arcGlow:   resolveColor('--ochre', 'rgb(212,170,70)'),
+            land:      resolveColor('--globe-land', 'rgba(220,220,210,0.32)'),
+            graticule: resolveColor('--cream-on-dark', 'rgb(225,225,215)')
+          },
+          onReady: function () {
+            canvas.classList.add('ready');
+            var poster = document.querySelector('.globe-poster');
+            if (poster) poster.classList.add('hidden');
+          }
+        });
+      });
+    }
+
+    function loadThree() {
+      if (window.THREE) { start(); return; }
+      var s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+      s.integrity = 'sha384-qOkzR5Ke/XkQxuGVJ9hpFEpDlcoLtWwVYhnJf06cLIZa2vaIptSqaubivErzmD5O';
+      s.crossOrigin = 'anonymous';
+      s.async = true;
+      s.onload = function () { safe(start); };
+      s.onerror = function () { /* CDN fail: dark hero / poster stays */ };
+      document.head.appendChild(s);
+    }
+
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 200); };
+    if (document.readyState === 'complete') idle(loadThree);
+    else window.addEventListener('load', function () { idle(loadThree); });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -541,6 +610,7 @@
   safe(initExperienceSpine);
   safe(initMethodologyFunnel, revealAll);
   safe(initHeroLive);
+  safe(initChokepointGlobe);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {
