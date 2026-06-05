@@ -45,3 +45,6 @@ node_modules/
 
 # Claude Code
 .claude/
+
+# n8n workflow exports (local automation, not site data)
+signals-daily-commentary.json
