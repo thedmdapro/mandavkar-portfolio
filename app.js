@@ -154,23 +154,47 @@
   }
 
 
-  /* ─── SCROLL SPY (active nav link) ─── */
+  /* ─── SCROLL SPY (active nav link) + SLIDING INDICATOR ─── */
   function initScrollSpy() {
-    var sections   = document.querySelectorAll('section[id]');
-    var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-    if (!sections.length || !navAnchors.length || !('IntersectionObserver' in window)) return;
+    var navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+    var navAnchors = Array.prototype.slice.call(navLinks.querySelectorAll('a[href^="#"]'));
+    // only sections that have a matching nav link drive the active state
+    var named = Array.prototype.slice.call(document.querySelectorAll('section[id]')).filter(function (s) {
+      return navLinks.querySelector('a[href="#' + s.id + '"]');
+    });
+    if (!navAnchors.length || !named.length) return;
 
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.getAttribute('id');
-          navAnchors.forEach(function (link) {
-            link.classList.toggle('nav-spy-active', link.getAttribute('href') === '#' + id);
-          });
-        }
+    var indicator = document.createElement('span');
+    indicator.className = 'nav-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    navLinks.appendChild(indicator);
+
+    function moveIndicator() {
+      var active = navLinks.querySelector('a.nav-spy-active:not(.nav-cta)');
+      if (!active) { indicator.style.opacity = '0'; return; }
+      indicator.style.opacity = '1';
+      indicator.style.width = active.offsetWidth + 'px';
+      indicator.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+    }
+
+    function update() {
+      var line = window.innerHeight * 0.4;  // active once a section top passes 40% from the top
+      var current = null;
+      named.forEach(function (s) {
+        if (s.getBoundingClientRect().top <= line) current = s;
       });
-    }, { threshold: 0.35 });
-    sections.forEach(function (section) { spy.observe(section); });
+      var href = current ? '#' + current.id : null;
+      navAnchors.forEach(function (link) {
+        if (link.classList.contains('nav-cta')) return;  // never recolour the CTA button
+        link.classList.toggle('nav-spy-active', href != null && link.getAttribute('href') === href);
+      });
+      moveIndicator();
+    }
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
   }
 
 
