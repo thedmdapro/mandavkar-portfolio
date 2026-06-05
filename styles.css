@@ -274,6 +274,14 @@ body:has(.fs-hero) .nav-links a.nav-active,
 body:has(.cm-hero) .nav-links a.nav-active,
 body:has(.os-hero) .nav-links a.nav-active { color: var(--ochre) !important; }
 
+/* Globe hero (homepage): flip nav to dark register; reverts to ink via #nav.scrolled on scroll */
+body:has(.globe-hero) .nav-logo { color: var(--cream-on-dark); }
+body:has(.globe-hero) .nav-links a { color: color-mix(in srgb, var(--cream-on-dark) 80%, transparent); }
+body:has(.globe-hero) .nav-links a:hover { color: var(--ochre); }
+body:has(.globe-hero) .nav-links a.nav-active,
+body:has(.globe-hero) .nav-links a.nav-spy-active { color: var(--ochre) !important; }
+body:has(.globe-hero) .hamburger span { background: var(--cream-on-dark); }
+
 #nav.scrolled .nav-links a { color: color-mix(in srgb, var(--ink) 75%, transparent); }
 #nav.scrolled .nav-links a:hover { color: var(--oxblood); }
 #nav.scrolled .nav-links a.nav-spy-active,
@@ -2432,6 +2440,71 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .hero-live::before { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════
+   GLOBE HERO — dark register + globe slot (Globe Phase 1)
+   Scoped to .globe-hero so it is reversible and never affects other pages.
+   The name's legibility never depends on WebGL: the CSS hero is the floor.
+═══════════════════════════════════════════════════ */
+.hero-editorial-section.globe-hero {
+  background: var(--dark-ink);
+  color: var(--cream-on-dark);
+  overflow: hidden;            /* globe bleeds off the edges */
+}
+/* globe layers sit at z:0, beneath the legibility scrim (z:1) and content (z:2) */
+.globe-canvas,
+.globe-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.globe-canvas {
+  opacity: 0;                  /* fades in once the first WebGL frame renders */
+  transition: opacity 0.9s ease;
+}
+.globe-canvas.ready { opacity: 1; }
+.globe-poster {
+  object-fit: cover;
+  object-position: 72% 58%;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+.globe-poster.hidden { opacity: 0; }
+/* legibility scrim: darkest bottom-left (behind the name), clear top-right (globe glow) */
+.hero-editorial-section.globe-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(125% 115% at 12% 92%,
+    var(--dark-ink) 0%,
+    color-mix(in srgb, var(--dark-ink) 55%, transparent) 38%,
+    transparent 72%);
+}
+.hero-editorial-section.globe-hero .hero-editorial { z-index: 2; }
+.hero-editorial-section.globe-hero .hero-live { z-index: 3; }
+
+/* dark-register recolour (kinetic-entrance keyframes/structure untouched) */
+.hero-editorial-section.globe-hero .hero-eyebrow { color: color-mix(in srgb, var(--cream-on-dark) 55%, transparent); }
+.hero-editorial-section.globe-hero .hero-name {
+  color: var(--cream-on-dark);
+  text-shadow: 0 2px 30px var(--dark-ink), 0 0 70px color-mix(in srgb, var(--dark-ink) 85%, transparent);
+}
+.hero-editorial-section.globe-hero .hero-name em,
+.hero-editorial-section.globe-hero .hero-emphasis { color: var(--oxblood-on-dark); }
+.hero-editorial-section.globe-hero .hero-emphasis::after { background: var(--oxblood-on-dark); }
+.hero-editorial-section.globe-hero .hero-bio { color: var(--cream-on-dark); }
+.hero-editorial-section.globe-hero .hero-credentials { color: color-mix(in srgb, var(--cream-on-dark) 68%, transparent); }
+.hero-editorial-section.globe-hero .hero-live { color: color-mix(in srgb, var(--cream-on-dark) 60%, transparent); }
+.hero-editorial-section.globe-hero::before { background: var(--oxblood-on-dark); opacity: 0.7; }
+.hero-editorial-section.globe-hero .link-underlined { color: var(--cream-on-dark); border-bottom-color: var(--oxblood-on-dark); }
+.hero-editorial-section.globe-hero .link-underlined::after { background: var(--oxblood-on-dark); }
+.hero-editorial-section.globe-hero .hero-email { color: color-mix(in srgb, var(--cream-on-dark) 75%, transparent); }
+.hero-editorial-section.globe-hero .hero-email:hover { color: var(--ochre); }
 .hero-eyebrow {
   display: block;
   font-family: 'JetBrains Mono', monospace;

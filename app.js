@@ -540,7 +540,6 @@
   safe(initParallaxNumerals);
   safe(initExperienceSpine);
   safe(initMethodologyFunnel, revealAll);
-  safe(initHeroTape);
   safe(initHeroLive);
 
   // Recompute trigger start positions once webfonts settle.

@@ -47,6 +47,11 @@
   --dark-dim:     color-mix(in srgb, var(--cream-on-dark) 70%, transparent);
   --dark-text:    var(--cream-on-dark);
 
+  /* ── Globe hero (3D chokepoint globe) ──────────────────────────── */
+  --oxblood-on-dark: oklch(0.58 0.16 28);   /* brightened emphasis on the dark register */
+  --globe-node:      oklch(0.78 0.14 78);   /* glowing chokepoint node */
+  --globe-land:      color-mix(in srgb, var(--cream-on-dark) 32%, transparent);
+
   /* ── Spacing ───────────────────────────────────────────────────── */
   --section-pad: 72px;
   --container:   1120px;
