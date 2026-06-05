@@ -311,6 +311,32 @@
   }
 
 
+  /* ─── PARALLAX NUMERALS (depth on the big Fraunces numbers) ─── */
+  function initParallaxNumerals() {
+    if (REDUCE || !hasGSAP) return;
+    gsap.matchMedia().add('(min-width: 769px)', function () {
+      document.querySelectorAll('.about-ch-num, .editorial-project__num').forEach(function (num) {
+        gsap.fromTo(num, { y: 34 }, {
+          y: -34, ease: 'none',
+          scrollTrigger: { trigger: num, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+        });
+      });
+    });
+  }
+
+
+  /* ─── EXPERIENCE SPINE (timeline line draws down on scroll) ─── */
+  function initExperienceSpine() {
+    if (REDUCE || !hasGSAP) return;
+    var list = document.querySelector('.exp-list');
+    if (!list) return;
+    gsap.fromTo(list, { '--spine-scale': 0 }, {
+      '--spine-scale': 1, ease: 'none',
+      scrollTrigger: { trigger: list, start: 'top 78%', end: 'bottom 82%', scrub: 0.5 }
+    });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -327,6 +353,8 @@
   safe(initCursor);
   safe(initSplitting, forceReveal);  // on failure, force any half-hidden chars visible
   safe(initMagnetic);
+  safe(initParallaxNumerals);
+  safe(initExperienceSpine);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {

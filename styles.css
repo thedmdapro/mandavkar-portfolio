@@ -976,6 +976,24 @@ body:has(.os-hero) .nav-links a.nav-active { color: var(--ochre) !important; }
 ═══════════════════════════════════════════════════ */
 .exp-list {
   margin-top: 56px;
+  position: relative;
+}
+.exp-list::before {
+  /* timeline spine — draws down on scroll via --spine-scale (set by app.js) */
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--oxblood);
+  opacity: 0.4;
+  transform: scaleY(var(--spine-scale, 0));
+  transform-origin: top center;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .exp-list::before { transform: scaleY(1); }
 }
 
 .exp-item {
