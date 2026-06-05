@@ -404,6 +404,120 @@
   }
 
 
+  /* ─── HERO "LIVE TAPE" CANVAS (drifting signal lattice) ─── */
+  function initHeroTape() {
+    if (REDUCE) return;
+    var canvas = document.querySelector('.hero-tape');
+    if (!canvas) return;
+    var ctx = canvas.getContext && canvas.getContext('2d');
+    if (!ctx) return;
+    var section = canvas.closest('.hero-editorial-section') || canvas.parentElement;
+
+    function resolveColor(name, fallback) {
+      var s = document.createElement('span');
+      s.style.color = 'var(' + name + ')';
+      document.body.appendChild(s);
+      var c = window.getComputedStyle(s).color;
+      document.body.removeChild(s);
+      return (c && c.indexOf('rgb') === 0) ? c : fallback;
+    }
+    var oxblood = resolveColor('--oxblood', 'rgb(124,45,45)');
+    var ochre   = resolveColor('--ochre',   'rgb(177,131,47)');
+
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    var w = 0, h = 0;
+    function resize() {
+      var r = section.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width  = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width  = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    var count = (window.innerWidth < 700) ? 5 : 9;
+    var lines = [];
+    for (var i = 0; i < count; i++) {
+      lines.push({
+        base:  (i + 0.5) / count,
+        amp:   0.015 + Math.random() * 0.04,
+        freq:  1 + Math.random() * 2.2,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.12 + Math.random() * 0.18,
+        color: (i % 3 === 0) ? ochre : oxblood,
+        alpha: 0.07 + Math.random() * 0.08
+      });
+    }
+
+    var running = true, rafId;
+    function draw(t) {
+      if (!running) return;
+      var time = t * 0.001;
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1;
+      for (var i = 0; i < lines.length; i++) {
+        var ln = lines[i];
+        ctx.beginPath();
+        for (var x = 0; x <= w; x += 8) {
+          var nx = x / (w || 1);
+          var y = ln.base * h
+            + Math.sin(nx * ln.freq * 6.2832 + ln.phase + time * ln.speed) * ln.amp * h
+            + Math.sin(nx * ln.freq * 3.14 - time * ln.speed * 0.7) * ln.amp * h * 0.4;
+          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.globalAlpha = ln.alpha;
+        ctx.strokeStyle = ln.color;
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      rafId = requestAnimationFrame(draw);
+    }
+    rafId = requestAnimationFrame(draw);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !running) { running = true; rafId = requestAnimationFrame(draw); }
+          else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(rafId); }
+        });
+      }, { threshold: 0 }).observe(section);
+    }
+  }
+
+
+  /* ─── HERO LIVE NUMBER (one real FRED series, deploy-only, graceful) ─── */
+  function initHeroLive() {
+    var el = document.querySelector('.hero-live');
+    if (!el) return;
+    var valEl = el.querySelector('.hero-live-val');
+    if (!valEl || typeof fetch === 'undefined') return;
+    var KEY = '8926f04636561748f828c19645d2eef8';  // documented FRED public-data key
+    var url = '/api/fred/series/observations?series_id=DCOILWTICO&api_key=' + KEY +
+              '&file_type=json&sort_order=desc&limit=8';
+    fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
+      if (!data || !data.observations) return;
+      var obs = null;
+      for (var i = 0; i < data.observations.length; i++) {
+        if (data.observations[i].value && data.observations[i].value !== '.') { obs = data.observations[i]; break; }
+      }
+      if (!obs) return;
+      var val = parseFloat(obs.value);
+      if (isNaN(val)) return;
+      el.hidden = false;
+      if (window.gsap && !REDUCE) {
+        var o = { n: val * 0.9 };
+        gsap.to(o, { n: val, duration: 1.2, ease: 'power2.out',
+          onUpdate: function () { valEl.textContent = '$' + o.n.toFixed(2); } });
+      } else {
+        valEl.textContent = '$' + val.toFixed(2);
+      }
+    }).catch(function () { /* no live data (e.g. local preview): stay hidden */ });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -424,6 +538,8 @@
   safe(initParallaxNumerals);
   safe(initExperienceSpine);
   safe(initMethodologyFunnel, revealAll);
+  safe(initHeroTape);
+  safe(initHeroLive);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {

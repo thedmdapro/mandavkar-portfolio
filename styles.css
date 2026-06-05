@@ -2392,6 +2392,45 @@ html.lenis, html.lenis body { height: auto; }
 .hero-editorial {
   max-width: 1280px;
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Live Tape canvas + live readout (Phase 5) */
+.hero-tape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-live {
+  position: absolute;
+  top: clamp(78px, 12vh, 140px);
+  right: clamp(24px, 6vw, 96px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+.hero-live[hidden] { display: none; }
+.hero-live-label { text-transform: uppercase; }
+.hero-live-val { color: var(--ochre); font-weight: 500; }
+.hero-live::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ochre);
+  animation: hero-live-pulse 2.2s ease-in-out infinite;
+}
+@keyframes hero-live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-live::before { animation: none; }
 }
 .hero-eyebrow {
   display: block;

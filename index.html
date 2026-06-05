@@ -87,6 +87,8 @@
 
   <!-- ─── HERO ─── -->
   <section id="hero" class="hero-editorial-section">
+    <canvas class="hero-tape" aria-hidden="true"></canvas>
+    <div class="hero-live" aria-hidden="true" hidden><span class="hero-live-label">WTI Crude</span> <span class="hero-live-val"></span></div>
     <div class="hero-editorial">
       <span class="hero-eyebrow">Macro · Markets · Signals</span>
       <h1 class="hero-name">
@@ -966,7 +968,7 @@
   <!-- Lenis smooth scroll -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
   <script>
     var y = document.getElementById('footer-year');
     if (y) y.textContent = new Date().getFullYear();
