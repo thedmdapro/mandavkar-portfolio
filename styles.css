@@ -2361,6 +2361,12 @@ a:focus-visible,
 /* ═══════════════════════════════════════════════════
    EDITORIAL HERO (post-bolder, replaces dark constellation hero)
 ═══════════════════════════════════════════════════ */
+/* Lenis smooth scroll (Phase 4) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 .hero-editorial-section {
   min-height: 88vh;
   background: var(--paper);

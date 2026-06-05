@@ -24,6 +24,7 @@
   var canHover = window.matchMedia('(hover: hover)').matches;
   var finePtr  = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var EMAIL    = 'jobs@mandavkar.uk';
+  var lenis    = null;  // Lenis smooth-scroll instance (Phase 4), null when disabled
 
   // Run a module; if it throws, never let it break the rest, and optionally recover.
   function safe(fn, onErr) {
@@ -52,6 +53,24 @@
     });
   }
   function revealAll() { revealStuck(false); }
+
+
+  /* ─── SMOOTH SCROLL (Lenis, desktop + motion only) ─── */
+  function initSmoothScroll() {
+    if (REDUCE || typeof Lenis === 'undefined') return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;  // skip on touch / coarse pointers
+    lenis = new Lenis({
+      duration: 1.05,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }  // expo ease-out, no bounce
+    });
+    if (hasGSAP) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+    }
+  }
 
 
   /* ─── NAV SCROLL STATE ─── */
@@ -103,8 +122,12 @@
         if (!target) return;
         e.preventDefault();
         var offset = (nav ? nav.offsetHeight : 0) + 12;
-        var top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: top, behavior: REDUCE ? 'auto' : 'smooth' });
+        if (lenis) {
+          lenis.scrollTo(target, { offset: -offset });
+        } else {
+          var top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: top, behavior: REDUCE ? 'auto' : 'smooth' });
+        }
       });
     });
   }
@@ -386,6 +409,7 @@
   ═══════════════════════════════════════════════════ */
   if (hasGSAP) safe(function () { gsap.registerPlugin(ScrollTrigger); });
 
+  safe(initSmoothScroll);  // before initAnchors so anchor clicks route through Lenis
   safe(initNav);
   safe(initMobileMenu);
   safe(initAnchors);
