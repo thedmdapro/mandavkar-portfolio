@@ -5,6 +5,34 @@ Thumbs.db
 # Large docs (PDFs for internal reference only)
 docs/
 
+# Project working files — version history, source data, build scripts, large
+# reference PDFs. NOT linked from the site, must never be committed (the
+# Cloudflare build clones from git, so anything here simply never deploys).
+# The few linked deliverables (methodology.pdf, phase34-addendum.pdf,
+# methodology/fund-screening-methodology-v4.docx, angel-one-model.xlsx) are
+# force-added and tracked explicitly.
+projects/angel-one/Annual Report/
+projects/angel-one/scripts/
+projects/angel-one/build-model.py
+projects/angel-one/populate-data.py
+projects/fund-screening/Ace MF Data Sheets/
+projects/fund-screening/data/
+projects/fund-screening/models/
+projects/fund-screening/scripts/
+projects/fund-screening/methodology/
+projects/fund-screening/build-model.py
+projects/fund-screening/build_equity_v2.py
+projects/fund-screening/*.xlsx
+projects/fund-screening/v2.docx
+projects/fund-screening/~$*.docx
+projects/fund-screening/fund-screening-methodology-v2.pdf
+projects/fund-screening/fund-screening-methodology2.pdf
+projects/fund-screening/fund-screening-methodology-v4.pdf
+projects/fund-screening/Equity Mutual Fund Screening Methodology — v2.0.pdf
+assets/research dossiers/
+_claude-instructions/
+n8n-build-context.md
+
 # Node
 node_modules/
 
