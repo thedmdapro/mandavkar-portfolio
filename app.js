@@ -31,22 +31,27 @@
     catch (e) { if (onErr) { try { onErr(); } catch (_) {} } }
   }
 
-  // The blank-page failsafe: anything still hidden gets shown.
-  function forceReveal() {
-    document.querySelectorAll('.fade-up').forEach(function (el) {
-      if (parseFloat(window.getComputedStyle(el).opacity) < 0.99) {
-        el.classList.add('visible');
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      }
+  // The blank-page failsafe. inViewOnly=true reveals only elements in or above the
+  // viewport (genuinely stuck), preserving below-the-fold scroll reveals; the error
+  // paths pass false to reveal everything because their scroll triggers are dead.
+  function revealStuck(inViewOnly) {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    function show(el) {
+      if (parseFloat(window.getComputedStyle(el).opacity) >= 0.99) return;
+      el.classList.add('visible');
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }
+    document.querySelectorAll('.fade-up, .about-methodology-layer').forEach(function (el) {
+      if (inViewOnly && el.getBoundingClientRect().top > vh) return;
+      show(el);
     });
-    document.querySelectorAll('h2[data-splitting] .char').forEach(function (c) {
-      if (parseFloat(window.getComputedStyle(c).opacity) < 0.99) {
-        c.style.opacity = '1';
-        c.style.transform = 'none';
-      }
+    document.querySelectorAll('h2[data-splitting]').forEach(function (h2) {
+      if (inViewOnly && h2.getBoundingClientRect().top > vh) return;
+      h2.querySelectorAll('.char').forEach(show);
     });
   }
+  function revealAll() { revealStuck(false); }
 
 
   /* ─── NAV SCROLL STATE ─── */
@@ -337,6 +342,21 @@
   }
 
 
+  /* ─── METHODOLOGY FUNNEL (Macro->Micro layers reveal + connector draws) ─── */
+  function initMethodologyFunnel() {
+    if (REDUCE || !hasGSAP) return;
+    var block = document.querySelector('.about-methodology');
+    if (!block) return;
+    var layers = block.querySelectorAll('.about-methodology-layer');
+    if (!layers.length) return;
+    gsap.set(block, { '--funnel-scale': 0 });
+    gsap.set(layers, { opacity: 0, x: -16 });
+    gsap.timeline({ scrollTrigger: { trigger: block, start: 'top 74%', once: true } })
+      .to(block, { '--funnel-scale': 1, duration: 0.7, ease: 'power3.out' })
+      .to(layers, { opacity: 1, x: 0, duration: 0.5, stagger: 0.12, ease: 'power3.out' }, '-=0.45');
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -345,25 +365,27 @@
   safe(initNav);
   safe(initMobileMenu);
   safe(initAnchors);
-  safe(initReveals, forceReveal);    // on failure, never strand hidden content
+  safe(initReveals, revealAll);      // on failure, never strand hidden content
   safe(initScrollSpy);
   safe(initBentoTilt);
   safe(initHeadline);
   safe(initEmail);
   safe(initCursor);
-  safe(initSplitting, forceReveal);  // on failure, force any half-hidden chars visible
+  safe(initSplitting, revealAll);    // on failure, force any half-hidden chars visible
   safe(initMagnetic);
   safe(initParallaxNumerals);
   safe(initExperienceSpine);
+  safe(initMethodologyFunnel, revealAll);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () { safe(function () { ScrollTrigger.refresh(); }); });
   }
 
-  // Final backstop: 2.5s after load, anything still hidden is forced visible.
+  // Final backstop: 2.5s after load, reveal only elements that are in view but still
+  // hidden (stuck). Below-the-fold reveals stay with their scroll triggers.
   window.addEventListener('load', function () {
-    setTimeout(function () { safe(forceReveal); }, 2500);
+    setTimeout(function () { safe(function () { revealStuck(true); }); }, 2500);
   });
 
 })();

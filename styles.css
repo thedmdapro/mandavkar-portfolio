@@ -845,6 +845,25 @@ body:has(.os-hero) .nav-links a.nav-active { color: var(--ochre) !important; }
   flex-direction: column;
   gap: 8px;
   margin-bottom: 18px;
+  position: relative;
+}
+.about-methodology-layers::before {
+  /* funnel connector — draws down through the layer numbers on reveal */
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--teal);
+  opacity: 0.45;
+  transform: scaleY(var(--funnel-scale, 0));
+  transform-origin: top center;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-methodology-layers::before { transform: scaleY(1); }
+  .about-methodology-layer { opacity: 1 !important; transform: none !important; }
 }
 
 .about-methodology-layer {
