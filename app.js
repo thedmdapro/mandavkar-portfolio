@@ -43,7 +43,9 @@
       el.style.opacity = '1';
       el.style.transform = 'none';
     }
-    document.querySelectorAll('.fade-up, .about-methodology-layer').forEach(function (el) {
+    // .hero-* entrance elements are animated by CSS (opacity:0 -> 1). Include them
+    // so the hero can never be left blank if a CSS animation somehow doesn't run.
+    document.querySelectorAll('.fade-up, .about-methodology-layer, .hero-editorial-section .hero-line, .hero-editorial-section .hero-eyebrow, .hero-editorial-section .hero-bio, .hero-editorial-section .hero-credentials, .hero-editorial-section .hero-actions').forEach(function (el) {
       if (inViewOnly && el.getBoundingClientRect().top > vh) return;
       show(el);
     });
