@@ -339,9 +339,30 @@
         onEnter: function () {
           gsap.to(chars, { opacity: 1, y: 0, rotateX: 0, duration: 0.5, stagger: 0.02, ease: 'power2.out' });
           h2.classList.add('split-visible');
+          decodeChars(chars);
         }
       });
     });
+
+    // Terminal-style glyph decode layered onto the char flip-in: each char
+    // cycles through glyphs then settles to its real letter, aligned to the
+    // 0.02s stagger. setInterval (not rAF) so it always completes + restores.
+    function decodeChars(chars) {
+      var GLYPHS = '!<>-_\\/[]{}=+*?#01';
+      for (var i = 0; i < chars.length; i++) {
+        (function (ch, idx) {
+          var finalCh = ch.textContent;
+          if (!finalCh || !finalCh.trim()) return;   // skip spaces
+          var n = 0;
+          setTimeout(function () {
+            var iv = setInterval(function () {
+              ch.textContent = GLYPHS[(Math.random() * GLYPHS.length) | 0];
+              if (++n >= 5) { clearInterval(iv); ch.textContent = finalCh; }
+            }, 38);
+          }, idx * 20);
+        })(chars[i], i);
+      }
+    }
   }
 
 
@@ -589,6 +610,54 @@
   }
 
 
+  /* ─── COUNT-UP (display stat numbers animate on view) ───
+     Targets clean stat rows (.fs-stat-value, .cm-stat-value) + any
+     [data-countup]. Parses prefix/number/suffix so "₹42.8B" counts 0→42.8
+     keeping ₹ and B; skips years in date text; restores the exact original.   */
+  function initCounters() {
+    if (REDUCE || !('IntersectionObserver' in window)) return;
+    var els = document.querySelectorAll('.fs-stat-value, .cm-stat-value, [data-countup]');
+    if (!els.length) return;
+    function animate(el) {
+      if (el.dataset.counted) return;
+      var raw = el.textContent;
+      var m = raw.match(/^(\s*[^0-9-]*)(-?\d[\d,]*(?:\.\d+)?)(.*)$/);
+      if (!m) return;
+      var prefix = m[1], numStr = m[2], suffix = m[3];
+      if (/^\d{4}$/.test(numStr) && /[A-Za-z·]/.test(prefix + suffix)) return;  // skip years
+      var target = parseFloat(numStr.replace(/,/g, ''));
+      if (isNaN(target)) return;
+      el.dataset.counted = '1';
+      var hasComma = numStr.indexOf(',') >= 0;
+      var dec = (numStr.split('.')[1] || '').length;
+      var startT = 0, done = false;
+      function fmt(v) {
+        var s = hasComma
+          ? (+v.toFixed(dec)).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec })
+          : v.toFixed(dec);
+        return prefix + s + suffix;
+      }
+      function frame(t) {
+        if (done) return;
+        if (!startT) startT = t;
+        var p = Math.min(1, (t - startT) / 1100);
+        el.textContent = fmt(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(frame);
+        else { done = true; el.textContent = raw; }
+      }
+      requestAnimationFrame(frame);
+      // failsafe: a stat must NEVER be left on an intermediate value if rAF is
+      // throttled/backgrounded mid-count. Force the final value AND stop the
+      // loop (the done flag prevents later throttled frames from overwriting).
+      setTimeout(function () { if (!done) { done = true; el.textContent = raw; } }, 1600);
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { obs.observe(el); });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -611,6 +680,7 @@
   safe(initMethodologyFunnel, revealAll);
   safe(initHeroLive);
   safe(initChokepointGlobe);
+  safe(initCounters);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {
