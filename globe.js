@@ -238,7 +238,7 @@
         renderer = new THREE.WebGLRenderer({
           canvas: canvasEl,
           alpha: true,
-          antialias: finePtr,
+          antialias: false,   // perf: MSAA on a half-viewport canvas is costly; dpr + fresnel soften enough
           powerPreference: 'high-performance'
         });
       } catch (e) {
@@ -258,8 +258,8 @@
       }
       var rect = readRect();
 
-      var pixelRatio = Math.min(1.5, window.devicePixelRatio || 1);
-      if (lowDetail) pixelRatio = Math.min(1.25, pixelRatio); // lower internal res
+      var pixelRatio = Math.min(1.25, window.devicePixelRatio || 1);   // perf: large canvas
+      if (lowDetail) pixelRatio = Math.min(1.0, pixelRatio); // lower internal res
       renderer.setPixelRatio(pixelRatio);
       renderer.setSize(rect.w, rect.h, false);
       // Render colors AS AUTHORED. The host passes plain CSS rgb() (sRGB) strings
@@ -450,7 +450,7 @@
       var landSeed = []; // per-dot random seed for shimmer + size/brightness
       // grid resolution in degrees — finer = more points.
       // step 1.4 → ~5.3k desktop dots; step 2.6 → ~1.5k lowDetail dots.
-      var gridStep = lowDetail ? 2.6 : 1.4;
+      var gridStep = lowDetail ? 3.2 : 1.9;   // perf: fewer dots = less per-dot shader work
       var landR = R * 1.004;
       for (var glat = -78; glat <= 84; glat += gridStep) {
         // Equal-area-ish: widen lon step toward poles so dots don't bunch.
@@ -871,13 +871,20 @@
         if (clock) clock.stop();
       }
 
+      // perf: cap the globe to ~33fps. A slow auto-rotating sphere doesn't need
+      // 60, and this nearly halves GPU cost. Motion stays time-accurate because
+      // step() advances by the accumulated delta, not a fixed tick.
+      var frameAcc = 0, MIN_DT = 1 / 33;
       function loop() {
         if (!running) return;
         rafId = requestAnimationFrame(loop);
         var dt = clock ? clock.getDelta() : 0.016;
-        elapsed += dt;
-        step(dt);
+        frameAcc += dt;
+        if (frameAcc < MIN_DT) return;
+        elapsed += frameAcc;
+        step(frameAcc);
         render();
+        frameAcc = 0;
       }
 
       // per-frame simulation

@@ -558,7 +558,6 @@ strong { color: var(--text); font-weight: 600; }
   background:
     radial-gradient(38% 38% at 20% 26%, color-mix(in srgb, var(--oxblood) 20%, transparent), transparent 72%),
     radial-gradient(32% 34% at 82% 76%, color-mix(in srgb, var(--ochre) 12%, transparent), transparent 72%);
-  filter: blur(48px);
   opacity: 0.4;
   animation: aurora-drift-hz 26s ease-in-out infinite alternate;
 }
