@@ -2717,6 +2717,43 @@ html.lenis, html.lenis body { height: auto; }
 .editorial-project:hover {
   background: color-mix(in srgb, var(--ochre) 6%, transparent);
 }
+
+/* Interactive project rows: card-ify + cursor spotlight + tilt (Max 2) */
+@media (hover: hover) and (pointer: fine) {
+  .editorial-project {
+    position: relative;
+    border-radius: 14px;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, box-shadow 0.45s ease;
+  }
+  .editorial-project::after {           /* cursor-follow spotlight */
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--oxblood) 11%, transparent), transparent 55%);
+    z-index: 0;
+  }
+  .editorial-project:hover::after { opacity: 1; }
+  .editorial-project:hover {
+    background: color-mix(in srgb, var(--ochre) 7%, transparent);
+    box-shadow: 0 26px 60px color-mix(in srgb, var(--ink) 10%, transparent);
+  }
+  .editorial-project > * { position: relative; z-index: 1; }
+  .editorial-project__num { transition: color 0.3s ease; }
+  .editorial-project:hover .editorial-project__num { color: var(--oxblood); }
+  .editorial-project__link { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease; }
+  .editorial-project:hover .editorial-project__link { transform: translateX(8px); color: var(--oxblood); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial-project,
+  .editorial-project__num,
+  .editorial-project__link { transition: none; }
+}
 .editorial-project__num {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 300;

@@ -658,6 +658,30 @@
   }
 
 
+  /* ─── INTERACTIVE PROJECT ROWS (cursor spotlight + gentle tilt) ─── */
+  function initProjectCards() {
+    if (REDUCE || !finePtr) return;
+    var cards = document.querySelectorAll('.editorial-project');
+    if (!cards.length) return;
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', (px * 100) + '%');
+        card.style.setProperty('--my', (py * 100) + '%');
+        card.style.transitionDuration = '0s';   // no lag while tracking
+        card.style.transform = 'perspective(1200px) rotateX(' +
+          ((0.5 - py) * 3).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 2).toFixed(2) + 'deg)';
+      }, { passive: true });
+      card.addEventListener('mouseleave', function () {
+        card.style.transitionDuration = '';     // smooth ease back (CSS)
+        card.style.transform = '';
+      });
+    });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -681,6 +705,7 @@
   safe(initHeroLive);
   safe(initChokepointGlobe);
   safe(initCounters);
+  safe(initProjectCards);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {
