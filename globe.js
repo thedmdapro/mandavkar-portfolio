@@ -207,10 +207,28 @@
       var COL_LAND    = new THREE.Color(cLand.r, cLand.g, cLand.b);
       var COL_GRAT    = new THREE.Color(cGrat.r, cGrat.g, cGrat.b);
 
-      // Sphere VERY slightly lighter than dark so the limb reads. We keep it
-      // close to dark (subtle lerp) and additionally apply a hand-rolled "terminator"
-      // shade in the vertex colors below so it reads as a sphere, not a flat disc.
-      var COL_SPHERE = COL_DARK.clone().lerp(new THREE.Color(1, 1, 1), 0.035);
+      // LUMINOUS FLUX redesign: darken the sphere base so glowing elements pop,
+      // and derive a warm oxblood→ochre palette from the existing tokens for the
+      // atmosphere halo, the glowing land dots, and the flowing arc particles.
+      // We add NO required new color keys — everything is derived from
+      // dark / node(ochre) / arc(oxblood) / arcGlow(ochre) / land(cream).
+      // (Optional override keys `halo` and `landWarm` are honoured if supplied.)
+      var COL_SPHERE = COL_DARK.clone().lerp(new THREE.Color(0, 0, 0), 0.18);
+
+      // Halo / fresnel atmosphere colour: warm oxblood→ochre. Default derived by
+      // pushing the oxblood arc colour toward the ochre node colour.
+      var cHalo = colors.halo ? parseColor(colors.halo, null) : null;
+      var COL_HALO = cHalo
+        ? new THREE.Color(cHalo.r, cHalo.g, cHalo.b)
+        : COL_ARC.clone().lerp(COL_NODE, 0.45);
+
+      // Warm land glow: oxblood body lifted toward ochre. Derived from arc→node so
+      // dots read as luminous data, not flat cream. (Override key: `landWarm`.)
+      var cLandWarm = colors.landWarm ? parseColor(colors.landWarm, null) : null;
+      var COL_LAND_BODY = cLandWarm
+        ? new THREE.Color(cLandWarm.r, cLandWarm.g, cLandWarm.b)
+        : COL_ARC.clone().lerp(COL_NODE, 0.30);          // oxblood-leaning
+      var COL_LAND_HI = COL_NODE.clone().lerp(new THREE.Color(1, 1, 1), 0.30); // ochre highlight
 
       // -----------------------------------------------------------------------
       // RENDERER — guard WebGL context creation, never throw.
@@ -304,7 +322,7 @@
       var spv = sphereGeo.attributes.position;
       var sNrm = new THREE.Vector3();
       var litCol = COL_SPHERE.clone();
-      var shadowCol = COL_DARK.clone().multiplyScalar(0.82); // darker than dark for limb
+      var shadowCol = COL_DARK.clone().multiplyScalar(0.55); // deep limb so glow pops
       for (var sv = 0; sv < spv.count; sv++) {
         sNrm.set(spv.getX(sv), spv.getY(sv), spv.getZ(sv)).normalize();
         var ndl = sNrm.dot(sLightDir);            // -1..1
@@ -321,6 +339,67 @@
       });
       var sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
       spin.add(sphereMesh);
+
+      // -----------------------------------------------------------------------
+      // 1b) FRESNEL ATMOSPHERE HALO — a back-facing shell, slightly larger than
+      // the globe, lit by a fresnel falloff that is brightest at the limb/edge.
+      // Reads as a glowing warm atmosphere. Cheap: one ShaderMaterial, additive,
+      // back faces only, no depth write. Lives on `world` (not `spin`) so the
+      // halo stays oriented to the camera, not the rotating geometry.
+      // lowDetail → skipped entirely (perf).
+      // -----------------------------------------------------------------------
+      var atmoMesh = null, atmoMat = null, atmoGeo = null;
+      if (!lowDetail) {
+        atmoGeo = new THREE.SphereGeometry(R * 1.16, lowDetail ? 24 : 40, lowDetail ? 24 : 40);
+        atmoMat = new THREE.ShaderMaterial({
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+          side: THREE.BackSide,
+          depthWrite: false,
+          depthTest: false,
+          uniforms: {
+            uColor:     { value: COL_HALO.clone() },
+            uColorEdge: { value: COL_NODE.clone() },   // ochre toward the very rim
+            uIntensity: { value: 0.85 },
+            uPower:     { value: 3.2 },
+            uTime:      { value: 0.0 }
+          },
+          vertexShader: [
+            'varying vec3 vN;',
+            'varying vec3 vView;',
+            'void main() {',
+            '  vec4 wp = modelMatrix * vec4(position, 1.0);',
+            '  vN = normalize(mat3(modelMatrix) * normal);',
+            '  vView = normalize(cameraPosition - wp.xyz);',
+            '  gl_Position = projectionMatrix * viewMatrix * wp;',
+            '}'
+          ].join('\n'),
+          fragmentShader: [
+            'varying vec3 vN;',
+            'varying vec3 vView;',
+            'uniform vec3 uColor;',
+            'uniform vec3 uColorEdge;',
+            'uniform float uIntensity;',
+            'uniform float uPower;',
+            'uniform float uTime;',
+            'void main() {',
+            // back faces: flip normal so it points outward toward the camera.
+            '  vec3 n = normalize(-vN);',
+            '  float fres = 1.0 - max(dot(n, normalize(vView)), 0.0);',
+            '  float rim = pow(fres, uPower);',
+            // gentle breathing so the atmosphere feels alive (not strobing)
+            '  float pulse = 0.92 + 0.08 * sin(uTime * 0.6);',
+            // warmer (ochre) toward the extreme limb, oxblood-ochre inward
+            '  vec3 col = mix(uColor, uColorEdge, smoothstep(0.55, 1.0, rim));',
+            '  float a = rim * uIntensity * pulse;',
+            '  gl_FragColor = vec4(col * a, a);',
+            '}'
+          ].join('\n')
+        });
+        atmoMesh = new THREE.Mesh(atmoGeo, atmoMat);
+        atmoMesh.renderOrder = -1; // draw behind the dots/arcs
+        world.add(atmoMesh);
+      }
 
       // -----------------------------------------------------------------------
       // 2) FAINT GRATICULE (lat/long LineSegments, ~6% opacity)
@@ -367,6 +446,8 @@
       // hit ~5–6k desktop, ~1.5k lowDetail. A small round sprite gives soft dots.
       // -----------------------------------------------------------------------
       var landPos = [];
+      var landDir = []; // unit direction per dot (for limb-aware highlight)
+      var landSeed = []; // per-dot random seed for shimmer + size/brightness
       // grid resolution in degrees — finer = more points.
       // step 1.4 → ~5.3k desktop dots; step 2.6 → ~1.5k lowDetail dots.
       var gridStep = lowDetail ? 2.6 : 1.4;
@@ -382,25 +463,79 @@
           if (isLand(jLon, jLat)) {
             var lp = latLonToXYZ(jLat, jLon, landR);
             landPos.push(lp.x, lp.y, lp.z);
+            var lpn = 1 / Math.max(1e-6, Math.sqrt(lp.x * lp.x + lp.y * lp.y + lp.z * lp.z));
+            landDir.push(lp.x * lpn, lp.y * lpn, lp.z * lpn);
+            landSeed.push(Math.random());
           }
         }
       }
       var landGeo = new THREE.BufferGeometry();
       landGeo.setAttribute('position', new THREE.Float32BufferAttribute(landPos, 3));
+      landGeo.setAttribute('aDir', new THREE.Float32BufferAttribute(landDir, 3));
+      landGeo.setAttribute('aSeed', new THREE.Float32BufferAttribute(landSeed, 1));
 
       var landDotTex = makeDotTexture();
-      // Brighter cream so dots read clearly over the dark matte sphere.
-      var landDotCol = COL_LAND.clone().lerp(new THREE.Color(1, 1, 1), 0.25);
-      var landMat = new THREE.PointsMaterial({
-        color: landDotCol,
-        size: lowDetail ? 0.020 : 0.0155,
-        map: landDotTex,
+      // LUMINOUS land: a custom additive Points shader. Each dot is coloured by a
+      // warm oxblood→ochre gradient (oxblood in the body, ochre toward the limb /
+      // highlights), with per-dot size + brightness variation and a slow shimmer.
+      // The result reads as glowing data, not flat cream. lowDetail keeps the
+      // shader (it's cheap) but disables shimmer via uShimmer=0.
+      var landBaseSize = lowDetail ? 240.0 : 175.0; // px-space size factor (scaled by uPixelRatio)
+      var landMat = new THREE.ShaderMaterial({
         transparent: true,
-        opacity: 0.95,
-        alphaTest: 0.05,
+        blending: THREE.NormalBlending,   // NOT additive: dense continents would sum to white blowout
         depthWrite: false,
         depthTest: true,
-        sizeAttenuation: true
+        uniforms: {
+          uMap:       { value: landDotTex },
+          uBody:      { value: COL_LAND_BODY.clone() },
+          uHi:        { value: COL_LAND_HI.clone() },
+          uSize:      { value: landBaseSize },
+          uPixelRatio:{ value: pixelRatio },
+          uTime:      { value: 0.0 },
+          uShimmer:   { value: lowDetail ? 0.0 : 1.0 },
+          uOpacity:   { value: lowDetail ? 0.85 : 0.92 }
+        },
+        vertexShader: [
+          'attribute vec3 aDir;',
+          'attribute float aSeed;',
+          'uniform float uSize;',
+          'uniform float uPixelRatio;',
+          'uniform float uTime;',
+          'uniform float uShimmer;',
+          'varying float vLimb;',
+          'varying float vBright;',
+          'void main() {',
+          '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+          // limb factor: how edge-on this dot is to the camera (0 front → 1 limb)
+          '  vec3 wn = normalize(mat3(modelMatrix) * aDir);',
+          '  vec3 vd = normalize(cameraPosition - (modelMatrix * vec4(position,1.0)).xyz);',
+          '  vLimb = 1.0 - max(dot(wn, vd), 0.0);',
+          // slow per-dot shimmer in brightness
+          '  float sh = uShimmer * 0.22 * sin(uTime * 1.3 + aSeed * 6.2831);',
+          '  vBright = 0.78 + 0.22 * aSeed + sh;',
+          // per-dot size variation; attenuate with distance like sizeAttenuation
+          '  float sizeVar = 0.75 + 0.6 * aSeed;',
+          '  gl_PointSize = uSize * uPixelRatio * sizeVar / max(0.001, -mv.z);',
+          '  gl_Position = projectionMatrix * mv;',
+          '}'
+        ].join('\n'),
+        fragmentShader: [
+          'uniform sampler2D uMap;',
+          'uniform vec3 uBody;',
+          'uniform vec3 uHi;',
+          'uniform float uOpacity;',
+          'varying float vLimb;',
+          'varying float vBright;',
+          'void main() {',
+          '  vec4 tex = texture2D(uMap, gl_PointCoord);',
+          '  if (tex.a < 0.04) discard;',
+          // oxblood body → ochre highlight toward the limb
+          '  vec3 col = mix(uBody, uHi, smoothstep(0.15, 0.85, vLimb));',
+          '  float a = tex.a * uOpacity * clamp(vBright, 0.0, 1.4);',
+          '  gl_FragColor = vec4(col * vBright, a);',
+          '}'
+        ].join('\n')
       });
       var landPoints = new THREE.Points(landGeo, landMat);
       spin.add(landPoints);
@@ -410,36 +545,46 @@
       // Back-hemisphere nodes fade by depth so the globe reads solid.
       // -----------------------------------------------------------------------
       var glowTex = makeGlowTexture();
-      var nodeObjs = []; // { group, glow, core, dir(THREE.Vector3 unit), name, baseScale }
+      var ringTex = makeRingTexture();
+
+      // Which chokepoints are endpoints of a tier-1 arc → they get an expanding
+      // halo ring + extra brightness, marking the primary flow hubs.
+      var TIER1_NODES = {};
+      for (var ti = 0; ti < ARCS.length; ti++) {
+        if (ARCS[ti].tier === 1) { TIER1_NODES[IDX[ARCS[ti].a]] = true; TIER1_NODES[IDX[ARCS[ti].b]] = true; }
+      }
+
+      var nodeObjs = []; // { group, glow, core, ring?, dir, name, baseScale, tier1 }
       var nodeGroup = new THREE.Group();
       spin.add(nodeGroup);
 
       for (var n = 0; n < CHOKEPOINTS.length; n++) {
         var cp = CHOKEPOINTS[n];
+        var isT1 = !!TIER1_NODES[n];
         var pos = latLonToXYZ(cp.lat, cp.lon, R * 1.012);
         var dir = new THREE.Vector3(pos.x, pos.y, pos.z).normalize();
         var ndGroup = new THREE.Group();
         ndGroup.position.set(pos.x, pos.y, pos.z);
 
-        // soft additive glow halo
+        // soft additive glow halo — bigger + brighter than before
         var glowMat = new THREE.SpriteMaterial({
           map: glowTex,
           color: COL_NODE,
           transparent: true,
-          opacity: 0.9,
+          opacity: 0.95,
           blending: THREE.AdditiveBlending,
           depthWrite: false,
           depthTest: false
         });
         var glow = new THREE.Sprite(glowMat);
-        var gScale = 0.10;
+        var gScale = isT1 ? 0.155 : 0.125;
         glow.scale.set(gScale, gScale, gScale);
         ndGroup.add(glow);
 
-        // tiny solid bright core
+        // tiny solid bright core (near-white ochre)
         var coreMat = new THREE.SpriteMaterial({
           map: glowTex,
-          color: COL_NODE.clone().lerp(new THREE.Color(1, 1, 1), 0.55),
+          color: COL_NODE.clone().lerp(new THREE.Color(1, 1, 1), 0.7),
           transparent: true,
           opacity: 1.0,
           blending: THREE.AdditiveBlending,
@@ -447,14 +592,34 @@
           depthTest: false
         });
         var core = new THREE.Sprite(coreMat);
-        core.scale.set(0.028, 0.028, 0.028);
+        core.scale.set(0.034, 0.034, 0.034);
         ndGroup.add(core);
+
+        // expanding halo ring (tier-1 hubs only): a thin ring sprite that grows
+        // outward and fades on a loop, like a sonar ping over the flow hub.
+        var ring = null, ringMat = null;
+        if (isT1) {
+          ringMat = new THREE.SpriteMaterial({
+            map: ringTex,
+            color: COL_NODE,
+            transparent: true,
+            opacity: 0.0,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            depthTest: false
+          });
+          ring = new THREE.Sprite(ringMat);
+          ring.scale.set(0.06, 0.06, 0.06);
+          ndGroup.add(ring);
+        }
 
         nodeGroup.add(ndGroup);
         nodeObjs.push({
-          group: ndGroup, glow: glow, core: core, dir: dir,
-          name: cp.name, baseScale: gScale,
-          phase: Math.random() * Math.PI * 2  // breathing offset
+          group: ndGroup, glow: glow, core: core,
+          ring: ring, ringMat: ringMat, dir: dir,
+          name: cp.name, baseScale: gScale, tier1: isT1,
+          phase: Math.random() * Math.PI * 2,  // breathing offset
+          ringPhase: Math.random()             // ring loop offset (0..1)
         });
       }
 
@@ -494,9 +659,10 @@
           // chordal param keeps the pulse speed even along the bowed curve.
           var curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
 
-          // tier-based geometry weight
-          var tubeRadius = spec.tier === 1 ? 0.0075 : (spec.tier === 2 ? 0.0052 : 0.0036);
-          var tubeOpacity = spec.tier === 1 ? 0.95 : (spec.tier === 2 ? 0.7 : 0.5);
+          // tier-based geometry weight (brighter, slightly fatter than before so
+          // arcs read as luminous capital-flow conduits, not hairlines)
+          var tubeRadius = spec.tier === 1 ? 0.0085 : (spec.tier === 2 ? 0.0058 : 0.0040);
+          var tubeOpacity = spec.tier === 1 ? 0.85 : (spec.tier === 2 ? 0.62 : 0.42);
           var radialSeg = 6;
           var tubularSeg = lowDetail ? 48 : 96;
 
@@ -521,26 +687,42 @@
 
           spin.add(arcMesh);
 
-          // travelling pulse: a small bright sprite that rides the curve
-          var pulseMat = new THREE.SpriteMaterial({
-            map: glowTex,
-            color: COL_ARCGLOW,
-            transparent: true,
-            opacity: 0.0,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-            depthTest: false
-          });
-          var pulse = new THREE.Sprite(pulseMat);
-          var pScale = spec.tier === 1 ? 0.07 : (spec.tier === 2 ? 0.055 : 0.04);
-          pulse.scale.set(pScale, pScale, pScale);
-          pulse.visible = false;
-          spin.add(pulse);
+          // FLOWING CAPITAL-FLOW PARTICLES — a small POOLED handful of bright
+          // sprites continuously streaming origin→destination on a loop. Tier-1
+          // arcs carry more/brighter particles; tier-3 fewer/dimmer. Each particle
+          // has its own phase so they stagger along the conduit. Shared glowTex,
+          // shared loop — cheap. reduce → none (single static frame). lowDetail
+          // never reaches here (no arcs).
+          var nParticles = spec.tier === 1 ? 4 : (spec.tier === 2 ? 3 : 2);
+          var partScale = spec.tier === 1 ? 0.052 : (spec.tier === 2 ? 0.042 : 0.034);
+          var partPeak = spec.tier === 1 ? 1.0 : (spec.tier === 2 ? 0.78 : 0.55);
+          var flowSpeed = spec.tier === 1 ? 0.42 : (spec.tier === 2 ? 0.34 : 0.27); // laps/sec
+          var particles = [];
+          if (!reduce) {
+            for (var pp = 0; pp < nParticles; pp++) {
+              var fpMat = new THREE.SpriteMaterial({
+                map: glowTex,
+                // particles ride brightest near the ochre destination glow
+                color: COL_ARCGLOW.clone().lerp(new THREE.Color(1, 1, 1), 0.25),
+                transparent: true,
+                opacity: 0.0,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                depthTest: false
+              });
+              var fp = new THREE.Sprite(fpMat);
+              fp.scale.set(partScale, partScale, partScale);
+              fp.visible = false;
+              spin.add(fp);
+              particles.push({ spr: fp, mat: fpMat, t: pp / nParticles });
+            }
+          }
 
           arcObjs.push({
             mesh: arcMesh, mat: arcMat, geo: tubeGeo, total: totalIndex,
             curve: curve, tier: spec.tier, baseOpacity: tubeOpacity,
-            pulse: pulse, pulseMat: pulseMat, pulseT: 0, pulseActive: false,
+            particles: particles, partPeak: partPeak, flowSpeed: flowSpeed,
+            flowActive: false,
             drawn: reduce ? 1 : 0
           });
         }
@@ -714,10 +896,14 @@
         spin.rotation.y = yaw;
         spin.rotation.x = pitch;
 
+        // drive shader time uniforms (atmosphere breath + land shimmer)
+        if (atmoMat) atmoMat.uniforms.uTime.value = elapsed;
+        if (landMat && landMat.uniforms) landMat.uniforms.uTime.value = elapsed;
+
         // camera forward direction (for depth-based node fade)
         camera.getWorldDirection(camDir);
 
-        // node breathing + back-hemisphere fade
+        // node breathing + back-hemisphere fade + tier-1 expanding ring
         for (var i = 0; i < nodeObjs.length; i++) {
           var no = nodeObjs[i];
           // world-space node direction
@@ -726,12 +912,22 @@
           // scene, so a node facing the camera has dir·(-camDir) > 0.
           var facing = -tmpV.dot(camDir);
           var front = smoothstep(-0.15, 0.45, facing); // 0 back → 1 front
-          var breathe = 0.5 + 0.5 * Math.sin(elapsed * 1.6 + no.phase);
-          var s = no.baseScale * (0.9 + 0.18 * breathe);
+          // stronger breathing pulse than before
+          var breathe = 0.5 + 0.5 * Math.sin(elapsed * 1.7 + no.phase);
+          var s = no.baseScale * (0.82 + 0.30 * breathe);
           no.glow.scale.set(s, s, s);
-          no.glow.material.opacity = 0.85 * front * (0.7 + 0.3 * breathe);
-          no.core.material.opacity = front;
+          no.glow.material.opacity = 0.9 * front * (0.6 + 0.4 * breathe);
+          no.core.material.opacity = front * (0.85 + 0.15 * breathe);
           no.group.visible = front > 0.02;
+
+          // expanding halo ring on tier-1 hubs: grows + fades on a loop
+          if (no.ring) {
+            var rt = (elapsed * 0.5 + no.ringPhase) % 1; // 0..1 loop
+            var rScale = no.baseScale * (0.55 + 1.7 * rt);
+            no.ring.scale.set(rScale, rScale, rScale);
+            // fade in fast, out slow, gated by front-facing
+            no.ringMat.opacity = (1 - rt) * (1 - rt) * 0.55 * front;
+          }
         }
 
         // arc draw-in (fallback if gsap missing) + travelling pulse
@@ -745,20 +941,21 @@
           var count = Math.floor(ao.total * ao.drawn);
           ao.geo.setDrawRange(0, count);
 
-          // travelling pulse along the curve once drawn
-          if (ao.drawn >= 0.999) {
-            ao.pulseActive = true;
-          }
-          if (ao.pulseActive) {
-            // pulse period scales a bit by tier so they don't sync
-            var period = 2.6 + ao.tier * 0.5;
-            ao.pulseT = (ao.pulseT + dt / period) % 1;
-            var pt = ao.curve.getPointAt(ao.pulseT);
-            ao.pulse.position.copy(pt);
-            ao.pulse.visible = true;
-            // fade in/out at the ends so it doesn't pop
-            var edge = Math.sin(Math.PI * ao.pulseT);
-            ao.pulseMat.opacity = edge * (ao.tier === 1 ? 0.9 : ao.tier === 2 ? 0.65 : 0.45);
+          // flowing capital-flow particles, once the conduit is drawn in
+          if (ao.drawn >= 0.999) ao.flowActive = true;
+          if (ao.flowActive && ao.particles && ao.particles.length) {
+            for (var fp = 0; fp < ao.particles.length; fp++) {
+              var par = ao.particles[fp];
+              par.t = (par.t + dt * ao.flowSpeed) % 1;
+              var fpt = ao.curve.getPointAt(par.t);
+              par.spr.position.copy(fpt);
+              par.spr.visible = true;
+              // fade in/out at the ends so particles don't pop at origin/dest
+              var fade = Math.sin(Math.PI * par.t);
+              // brighten as it nears the destination (ochre glow) end
+              var arrive = 0.6 + 0.4 * par.t;
+              par.mat.opacity = fade * arrive * ao.partPeak;
+            }
           }
         }
 
@@ -855,7 +1052,16 @@
           rno.glow.material.opacity = 0.85 * rf;
           rno.core.material.opacity = rf;
           rno.group.visible = rf > 0.02;
+          // tier-1 ring shown at a pleasant static radius (no loop)
+          if (rno.ring) {
+            var rrScale = rno.baseScale * 1.1;
+            rno.ring.scale.set(rrScale, rrScale, rrScale);
+            rno.ringMat.opacity = 0.28 * rf;
+          }
         }
+        // atmosphere is static in reduce — set time once for a stable pulse value
+        if (atmoMat) atmoMat.uniforms.uTime.value = 0;
+        if (landMat && landMat.uniforms) landMat.uniforms.uTime.value = 0;
         render();           // single frame + fires onReady
       } else {
         startGSAP();
@@ -891,17 +1097,23 @@
 
           // dispose geometries / materials / textures
           safeDispose(sphereGeo); safeDispose(sphereMat);
+          safeDispose(atmoGeo); safeDispose(atmoMat);
           safeDispose(gratGeo); safeDispose(gratMat);
           safeDispose(landGeo); safeDispose(landMat);
-          safeDispose(landDotTex); safeDispose(glowTex);
+          safeDispose(landDotTex); safeDispose(glowTex); safeDispose(ringTex);
           for (var i = 0; i < nodeObjs.length; i++) {
             safeDispose(nodeObjs[i].glow.material);
             safeDispose(nodeObjs[i].core.material);
+            if (nodeObjs[i].ringMat) safeDispose(nodeObjs[i].ringMat);
           }
           for (var k = 0; k < arcObjs.length; k++) {
             safeDispose(arcObjs[k].geo);
             safeDispose(arcObjs[k].mat);
-            safeDispose(arcObjs[k].pulseMat);
+            if (arcObjs[k].particles) {
+              for (var pk = 0; pk < arcObjs[k].particles.length; pk++) {
+                safeDispose(arcObjs[k].particles[pk].mat);
+              }
+            }
           }
           // scene teardown
           try { scene.clear && scene.clear(); } catch (e) {}
@@ -980,6 +1192,28 @@
     g.addColorStop(0.0, 'rgba(255,255,255,1)');
     g.addColorStop(0.25, 'rgba(255,255,255,0.7)');
     g.addColorStop(0.55, 'rgba(255,255,255,0.22)');
+    g.addColorStop(1.0, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, size, size);
+    var tex = new THREE.Texture(c);
+    tex.needsUpdate = true;
+    if ('colorSpace' in tex) { try { tex.colorSpace = THREE.SRGBColorSpace; } catch (e) {} }
+    return tex;
+  }
+
+  // Thin soft ring sprite for the tier-1 node "sonar" halo. A bright annulus
+  // with feathered inner + outer edges so the expand/fade reads cleanly.
+  function makeRingTexture() {
+    var size = 128;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var ctx = c.getContext('2d');
+    var g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    // transparent center, bright thin ring near the rim, soft falloff to edge
+    g.addColorStop(0.0, 'rgba(255,255,255,0)');
+    g.addColorStop(0.62, 'rgba(255,255,255,0)');
+    g.addColorStop(0.78, 'rgba(255,255,255,0.9)');
+    g.addColorStop(0.88, 'rgba(255,255,255,0.5)');
     g.addColorStop(1.0, 'rgba(255,255,255,0)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, size, size);
