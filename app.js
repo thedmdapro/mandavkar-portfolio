@@ -682,6 +682,27 @@
   }
 
 
+  /* ─── MAGNETIC CTAs (subtle pull toward the cursor) ─── */
+  function initMagnetic() {
+    if (REDUCE || !finePtr) return;
+    var els = document.querySelectorAll('.nav-cta, .hero-email, .btn, .btn-primary, .cm-btn, .contact-link');
+    els.forEach(function (el) {
+      el.style.transition = 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)';
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var mx = (e.clientX - (r.left + r.width / 2)) * 0.28;
+        var my = (e.clientY - (r.top + r.height / 2)) * 0.28;
+        el.style.transitionDuration = '0s';
+        el.style.transform = 'translate(' + mx.toFixed(1) + 'px,' + my.toFixed(1) + 'px)';
+      }, { passive: true });
+      el.addEventListener('mouseleave', function () {
+        el.style.transitionDuration = '';
+        el.style.transform = '';
+      });
+    });
+  }
+
+
   /* ═══════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════ */
@@ -706,6 +727,7 @@
   safe(initChokepointGlobe);
   safe(initCounters);
   safe(initProjectCards);
+  safe(initMagnetic);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {

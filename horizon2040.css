@@ -546,6 +546,30 @@ strong { color: var(--text); font-weight: 600; }
 .hz-thesis-section--sand  { background: var(--bg2); }
 .hz-thesis-section--dark  { background: var(--dark); }
 
+/* Living atmosphere: drifting aurora on dark thesis sections (Max 3, CSS-only) */
+.hz-thesis-section--dark { position: relative; overflow: hidden; }
+.hz-thesis-section--dark > * { position: relative; z-index: 1; }
+.hz-thesis-section--dark::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 38% at 20% 26%, color-mix(in srgb, var(--oxblood) 20%, transparent), transparent 72%),
+    radial-gradient(32% 34% at 82% 76%, color-mix(in srgb, var(--ochre) 12%, transparent), transparent 72%);
+  filter: blur(48px);
+  opacity: 0.4;
+  animation: aurora-drift-hz 26s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift-hz {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1.06); }
+  100% { transform: translate3d(4%, 3%, 0)  scale(1.18); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hz-thesis-section--dark::before { animation: none; }
+}
+
 .hz-thesis-inner { position: relative; }
 
 /* Big faded background numeral */

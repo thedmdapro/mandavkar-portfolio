@@ -178,6 +178,30 @@ strong { color: var(--text); font-weight: 600; }
 .section-dark h2 { color: var(--dark-text); }
 .section-dark h4 { color: var(--dark-text); }
 
+/* Living atmosphere: drifting aurora on dark sections (Max 3, CSS-only for perf) */
+.section-dark { position: relative; overflow: hidden; }
+.section-dark > * { position: relative; z-index: 1; }
+.section-dark::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 38% at 22% 28%, color-mix(in srgb, var(--oxblood) 24%, transparent), transparent 72%),
+    radial-gradient(32% 34% at 80% 74%, color-mix(in srgb, var(--ochre) 14%, transparent), transparent 72%);
+  filter: blur(46px);
+  opacity: 0.5;
+  animation: aurora-drift 24s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1.05) rotate(0deg); }
+  100% { transform: translate3d(4%, 3%, 0)  scale(1.18) rotate(6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-dark::before { animation: none; }
+}
+
 /* Dot grid texture on all dark sections — matches hero::before */
 .section-dark,
 .section-positions {
