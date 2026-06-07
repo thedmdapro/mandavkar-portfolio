@@ -242,6 +242,15 @@
               <span class="hz-stat-label">Indian workers in informal employment</span>
             </div>
           </div>
+
+          <div class="fade-up" style="margin-top: 28px;">
+            <span class="hz-chart-title">India: Graduate vs Non-Graduate Unemployment</span>
+            <div class="hz-chart-wrap">
+              <canvas class="dataviz-canvas" data-chart="dm-grad-unemp" role="img"
+                aria-label="Bar chart comparing India graduate unemployment of 28 percent against non-graduate unemployment of 3.4 percent."></canvas>
+            </div>
+            <span class="hz-chart-note">The "Indian Paradox": graduates face 28% unemployment versus 3.4% for non-graduates (ILO 2024).</span>
+          </div>
         </div>
       </div>
     </div>
@@ -406,6 +415,32 @@
   var y = document.getElementById('footer-year');
   if (y) y.textContent = new Date().getFullYear();
 })();
+</script>
+
+<!-- Data visualisation (lazy Chart.js, IO-gated, reduced-motion safe) -->
+<script src="dataviz.js?v=1"></script>
+<script>
+  (function () {
+    if (typeof DataViz === 'undefined') return;
+    DataViz.register('dm-grad-unemp', function (ctx) {
+      var o = ctx.baseOptions({ dark: false, legend: false, yFmt: function (v) { return v + '%'; } });
+      o.scales.y.suggestedMax = 32;
+      o.plugins.tooltip.callbacks = { label: function (i) { return ' ' + i.parsed.y + '%'; } };
+      return {
+        type: 'bar',
+        data: {
+          labels: ['Graduates', 'Non-graduates'],
+          datasets: [{
+            data: [28, 3.4],
+            backgroundColor: [ctx.colors.oxblood, ctx.mix(ctx.colors.teal, 0.55)],
+            borderRadius: 4, barPercentage: 0.5
+          }]
+        },
+        options: o
+      };
+    });
+    DataViz.boot();
+  })();
 </script>
 
 </body>

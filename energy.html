@@ -257,6 +257,15 @@
               <span class="hz-stat-label">Germany's FSRU terminal utilization</span>
             </div>
           </div>
+
+          <div class="fade-up" style="margin-top: 28px;">
+            <span class="hz-chart-title">LNG Cost by Region ($/MMBtu)</span>
+            <div class="hz-chart-wrap">
+              <canvas class="dataviz-canvas" data-chart="en-lng-cost" role="img"
+                aria-label="Bar chart of LNG cost per MMBtu by region: North America 3 to 4 dollars, Europe and Asia 10 to 14 dollars, India target 6 to 7 dollars."></canvas>
+            </div>
+            <span class="hz-chart-note">North America $3–4 vs Europe/Asia $10–14. India needs $6–7 for demand growth. The structural two-tier cost regime.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -496,6 +505,33 @@
   var y = document.getElementById('footer-year');
   if (y) y.textContent = new Date().getFullYear();
 })();
+</script>
+
+<!-- Data visualisation (lazy Chart.js, IO-gated, reduced-motion safe) -->
+<script src="dataviz.js?v=1"></script>
+<script>
+  (function () {
+    if (typeof DataViz === 'undefined') return;
+    DataViz.register('en-lng-cost', function (ctx) {
+      var o = ctx.baseOptions({ dark: false, legend: false, yFmt: function (v) { return '$' + v; } });
+      o.scales.y.suggestedMax = 16;
+      o.scales.y.title = { display: true, text: '$/MMBtu', color: ctx.colors.dim, font: { family: "'JetBrains Mono', monospace", size: 10 } };
+      o.plugins.tooltip.callbacks = { label: function (i) { var d = i.raw; return Array.isArray(d) ? ' $' + d[0] + '–' + d[1] + '/MMBtu' : ' $' + d; } };
+      return {
+        type: 'bar',
+        data: {
+          labels: ['North America', 'Europe / Asia', 'India (target)'],
+          datasets: [{
+            data: [[3, 4], [10, 14], [6, 7]],
+            backgroundColor: [ctx.mix(ctx.colors.teal, 0.5), ctx.colors.oxblood, ctx.mix(ctx.colors.ochre, 0.7)],
+            borderRadius: 4, barPercentage: 0.55
+          }]
+        },
+        options: o
+      };
+    });
+    DataViz.boot();
+  })();
 </script>
 
 </body>
