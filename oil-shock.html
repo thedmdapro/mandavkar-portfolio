@@ -1281,7 +1281,7 @@
       limit: '5',
       observation_start: '2026-01-01'
     });
-    var url = 'https://api.stlouisfed.org/fred/series/observations?' + params.toString();
+    var url = '/api/fred/series/observations?' + params.toString();
 
     fetch(url)
       .then(function (res) {
