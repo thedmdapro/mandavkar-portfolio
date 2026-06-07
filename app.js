@@ -553,11 +553,12 @@
 
     function start() {
       if (!window.THREE || !window.ChokepointGlobe) return;
+      var ambient = canvas.hasAttribute('data-ambient');   // backdrop use (chokepoints): keep it light
       safe(function () {
         window.ChokepointGlobe.init(canvas, {
           reduce: false,
           finePtr: finePtr,
-          lowDetail: !finePtr || window.innerWidth <= 768,
+          lowDetail: ambient || !finePtr || window.innerWidth <= 768,
           colors: {
             dark:      resolveColor('--dark-ink', 'rgb(20,22,30)'),
             node:      resolveColor('--globe-node', 'rgb(212,170,70)'),

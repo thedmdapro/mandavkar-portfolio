@@ -847,6 +847,18 @@
       }
       document.addEventListener('visibilitychange', onVisibility);
 
+      // Pause the globe while the user is scrolling — a WebGL layer repainting
+      // during scroll contends with the compositor and causes choppiness. Resume
+      // shortly after scrolling stops. (Drag-to-spin is unaffected: it fires no
+      // scroll events.)
+      var scrollPauseT = null;
+      function onScrollPause() {
+        stopLoop();
+        if (scrollPauseT) clearTimeout(scrollPauseT);
+        scrollPauseT = setTimeout(function () { if (onScreen && !reduce) ensureRunning(); }, 180);
+      }
+      window.addEventListener('scroll', onScrollPause, { passive: true });
+
       // -----------------------------------------------------------------------
       // RENDER LOOP
       // -----------------------------------------------------------------------
@@ -1095,6 +1107,7 @@
           try { canvasEl.removeEventListener('pointerleave', onPointerLeave); } catch (e) {}
           try { window.removeEventListener('resize', onResize); } catch (e) {}
           try { document.removeEventListener('visibilitychange', onVisibility); } catch (e) {}
+          try { window.removeEventListener('scroll', onScrollPause); } catch (e) {}
           if (io) { try { io.disconnect(); } catch (e) {} }
 
           // remove label

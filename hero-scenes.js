@@ -55,26 +55,37 @@
     var ctx = canvas.getContext && canvas.getContext('2d');
     if (!ctx) return;
     var host = canvas.parentElement || canvas;
-    var dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    // Bounded resolution: an ambient backdrop does not need device pixels. Cap
+    // the backing buffer to ~1.3 megapixels so fill/compositing stays cheap on
+    // retina + 4K (the buffer is CSS-stretched to fill the hero; the soft scenes
+    // hide the upscale). This is the main fix for scroll choppiness.
+    var DPR = Math.min(1, window.devicePixelRatio || 1);
+    var MAXPX = 1.3e6;
     var w = 0, h = 0, state = null, draw = null;
 
     function resize() {
       var r = host.getBoundingClientRect();
       w = Math.max(1, r.width); h = Math.max(1, r.height);
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      var scale = 1, px = w * h * DPR * DPR;
+      if (px > MAXPX) scale = Math.sqrt(MAXPX / px);
+      var bw = Math.max(1, Math.round(w * DPR * scale));
+      var bh = Math.max(1, Math.round(h * DPR * scale));
+      canvas.width = bw; canvas.height = bh;
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var built = setup(w, h, PAL, SMALL);   // rebuild geometry for new size
+      ctx.setTransform(bw / w, 0, 0, bh / h, 0, 0);   // draw in CSS px; buffer may be downscaled
+      var built = setup(w, h, PAL, SMALL);            // rebuild geometry for new size
       state = built.state; draw = built.draw;
     }
     resize();
-    window.addEventListener('resize', resize, { passive: true });
+    var rzT = null;
+    window.addEventListener('resize', function () { clearTimeout(rzT); rzT = setTimeout(resize, 200); }, { passive: true });
 
     function frame1() { ctx.clearRect(0, 0, w, h); draw(ctx, 0, w, h, state); }
 
     if (REDUCE) { frame1(); canvas.classList.add('ready'); return; }  // static, no loop
 
-    var running = true, rafId = null, last = 0, elapsed = 0, lastDraw = -1, MIN_DT = 1 / 32;
+    var running = false, onScreen = true, scrolling = false, rafId = null,
+        last = 0, elapsed = 0, lastDraw = -1, MIN_DT = 1 / 24;
     function loop(ts) {
       if (!running) return;
       rafId = requestAnimationFrame(loop);
@@ -82,25 +93,33 @@
       var dt = (ts - last) / 1000; last = ts;
       if (dt > 0.1) dt = 0.1;                 // clamp after a tab pause
       elapsed += dt;
-      if (lastDraw >= 0 && elapsed - lastDraw < MIN_DT) return;  // frame cap, but always draw the first frame
+      if (lastDraw >= 0 && elapsed - lastDraw < MIN_DT) return;  // 24fps cap, but always draw the first frame
       lastDraw = elapsed;
       ctx.clearRect(0, 0, w, h);
       draw(ctx, elapsed, w, h, state);
     }
-    function start() { if (!running) { running = true; last = 0; lastDraw = -1; rafId = requestAnimationFrame(loop); } }
-    function stop()  { running = false; if (rafId) cancelAnimationFrame(rafId); }
+    function start() { if (!running && onScreen && !scrolling) { running = true; last = 0; lastDraw = -1; rafId = requestAnimationFrame(loop); } }
+    function stop()  { if (running) { running = false; if (rafId) cancelAnimationFrame(rafId); } }
 
     canvas.classList.add('ready');
-    rafId = requestAnimationFrame(loop);
+    start();
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); });
+        es.forEach(function (e) { onScreen = e.isIntersecting; if (onScreen) start(); else stop(); });
       }, { threshold: 0 }).observe(host);
     }
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) stop(); else start();
     });
+    // Pause repaint while the user scrolls — the backdrop competing with the
+    // compositor is the main cause of scroll jank. Resume shortly after it stops.
+    var scrollT = null;
+    window.addEventListener('scroll', function () {
+      scrolling = true; stop();
+      clearTimeout(scrollT);
+      scrollT = setTimeout(function () { scrolling = false; start(); }, 180);
+    }, { passive: true });
   }
 
   /* ─── SCENES ───────────────────────────────────────── */
