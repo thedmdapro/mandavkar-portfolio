@@ -123,7 +123,10 @@
         var target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
-        var offset = (nav ? nav.offsetHeight : 0) + 12;
+        // account for a sticky secondary nav (chokepoints tier-nav) so the
+        // target heading isn't hidden under it after the scroll settles
+        var subnav = document.querySelector('.cp-tier-nav');
+        var offset = (nav ? nav.offsetHeight : 0) + (subnav ? subnav.offsetHeight : 0) + 12;
         if (lenis) {
           lenis.scrollTo(target, { offset: -offset });
         } else {
@@ -616,7 +619,7 @@
      keeping ₹ and B; skips years in date text; restores the exact original.   */
   function initCounters() {
     if (REDUCE || !('IntersectionObserver' in window)) return;
-    var els = document.querySelectorAll('.fs-stat-value, .cm-stat-value, [data-countup]');
+    var els = document.querySelectorAll('.fs-stat-value, .cm-stat-value, .er-stat-value, .er-card-stat-value, .hz-impact-num, [data-countup]');
     if (!els.length) return;
     function animate(el) {
       if (el.dataset.counted) return;
@@ -661,7 +664,7 @@
   /* ─── INTERACTIVE PROJECT ROWS (cursor spotlight + gentle tilt) ─── */
   function initProjectCards() {
     if (REDUCE || !finePtr) return;
-    var cards = document.querySelectorAll('.editorial-project');
+    var cards = document.querySelectorAll('.editorial-project, .cm-thesis-card, .cm-model-tab, .fs-cat-card, .fs-finding-card, .fs-layer-card, .er-company-card, .er-coming-card');
     if (!cards.length) return;
     cards.forEach(function (card) {
       card.addEventListener('mousemove', function (e) {
@@ -685,7 +688,7 @@
   /* ─── MAGNETIC CTAs (subtle pull toward the cursor) ─── */
   function initMagnetic() {
     if (REDUCE || !finePtr) return;
-    var els = document.querySelectorAll('.nav-cta, .hero-email, .btn, .btn-primary, .cm-btn, .contact-link');
+    var els = document.querySelectorAll('.nav-cta, .hero-email, .btn, .btn-primary, .cm-btn, .contact-link, .fs-download-card, .er-card-link');
     els.forEach(function (el) {
       el.style.transition = 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)';
       el.addEventListener('mousemove', function (e) {

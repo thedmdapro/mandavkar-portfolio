@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="tokens.css?v=1" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="horizon2040.css?v=3" />
+  <link rel="stylesheet" href="horizon2040.css?v=4" />
 
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -2043,11 +2043,14 @@
   </div>
 </footer>
 
+<!-- Shared site behaviour: nav state, mobile menu, anchor scroll, reveals,
+     count-ups (hz-impact-num), magnetic CTAs. Bumped to v=10 (Phase 1). -->
+<script src="app.js?v=10"></script>
 <script>
 (function () {
   'use strict';
 
-  /* Reading progress bar */
+  /* Reading progress bar (page-specific; not in app.js) */
   var bar = document.getElementById('reading-progress');
   if (bar) {
     window.addEventListener('scroll', function () {
@@ -2060,43 +2063,9 @@
   var fy = document.getElementById('footer-year');
   if (fy) fy.textContent = new Date().getFullYear();
 
-  /* Nav scroll state */
-  var nav = document.getElementById('nav');
-  function updateNav() {
-    if (window.scrollY > 60) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  }
-  updateNav();
-  window.addEventListener('scroll', updateNav, { passive: true });
-
-  /* Mobile menu */
-  var hamburger = document.getElementById('hamburger');
-  var mobileMenu = document.getElementById('mobile-menu');
-  var mobileClose = document.getElementById('mobile-close');
-
-  function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-
-  hamburger.addEventListener('click', openMenu);
-  mobileClose.addEventListener('click', closeMenu);
-  mobileMenu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
-
-  /* Smooth scroll for anchor links */
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var id = this.getAttribute('href');
-      if (id === '#') return;
-      var target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      var offset = nav.offsetHeight + 60; /* account for tier nav */
-      var top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    });
-  });
-
-  /* Tier nav active state tracking */
+  /* Tier-nav active-state tracking (page-specific; not in app.js).
+     Nav state, mobile menu, anchor smooth-scroll and fade-up reveals are now
+     owned by app.js (anchor offset there accounts for the sticky .cp-tier-nav). */
   var tierLinks = document.querySelectorAll('.cp-tier-link');
   var profiles = document.querySelectorAll('.cp-profile[id]');
   var analysisSection = document.getElementById('analysis');
@@ -2113,20 +2082,6 @@
     }, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
     profiles.forEach(function (p) { observer.observe(p); });
     if (analysisSection) observer.observe(analysisSection);
-  }
-
-  /* Fade-up scroll reveal (lightweight, no GSAP dependency) */
-  var fadeEls = document.querySelectorAll('.fade-up');
-  if ('IntersectionObserver' in window && fadeEls.length) {
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    fadeEls.forEach(function (el) { revealObserver.observe(el); });
   }
 })();
 </script>

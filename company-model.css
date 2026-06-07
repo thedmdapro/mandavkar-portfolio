@@ -712,3 +712,83 @@
   .cm-model-grid { grid-template-columns: 1fr; }
   .cm-stats-row  { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── Interactive cards: cursor spotlight + gentle tilt (Phase 1 leveling) ──
+   JS (initProjectCards) sets --mx/--my + a subtle 3D transform on mousemove;
+   gated to fine-pointer, disabled under reduced-motion. */
+@media (hover: hover) and (pointer: fine) {
+  .cm-thesis-card,
+  .cm-model-tab {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color var(--duration-fast),
+                background var(--duration-fast),
+                box-shadow 0.45s ease;
+  }
+  .cm-thesis-card::after,
+  .cm-model-tab::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 0;
+  }
+  .cm-thesis-card::after {
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--oxblood) 10%, transparent), transparent 55%);
+  }
+  .cm-model-tab::after {
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(6, 182, 212, 0.12), transparent 55%);
+  }
+  .cm-thesis-card:hover::after,
+  .cm-model-tab:hover::after { opacity: 1; }
+  .cm-thesis-card:hover {
+    box-shadow: 0 22px 50px color-mix(in srgb, #000 14%, transparent);
+  }
+  .cm-thesis-card > *,
+  .cm-model-tab > * { position: relative; z-index: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cm-thesis-card, .cm-model-tab { transition: none; }
+}
+
+/* ── Data-viz chart blocks (Phase 2; canvases built by dataviz.js) ── */
+.cm-chart-block { margin: 44px 0 4px; }
+.cm-chart-title {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  margin-bottom: 18px;
+}
+.cm-chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 360px;
+}
+.cm-chart-wrap--donut {
+  height: 340px;
+  max-width: 440px;
+  margin-inline: auto;
+}
+.cm-chart-note {
+  display: block;
+  margin-top: 16px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--ink) 58%, transparent);
+}
+.cm-section-dark .cm-chart-note {
+  color: color-mix(in srgb, var(--white) 55%, transparent);
+}
+@media (max-width: 600px) {
+  .cm-chart-wrap { height: 300px; }
+  .cm-chart-wrap--donut { height: 300px; }
+}

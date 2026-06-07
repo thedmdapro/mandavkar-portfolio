@@ -509,3 +509,45 @@
   .er-coming-soon-grid { grid-template-columns: 1fr; }
   .er-stats-row        { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── Interactive cards: cursor spotlight + gentle tilt (Phase 1 leveling) ── */
+@media (hover: hover) and (pointer: fine) {
+  .er-company-card,
+  .er-coming-card {
+    transform-style: preserve-3d;
+  }
+  .er-coming-card { position: relative; }
+  .er-company-card {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color var(--duration-fast), box-shadow var(--duration-fast);
+  }
+  .er-coming-card {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color var(--duration-fast);
+  }
+  .er-company-card::after,
+  .er-coming-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 0;
+  }
+  .er-company-card::after {
+    background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--ochre) 10%, transparent), transparent 55%);
+  }
+  .er-coming-card::after {
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--white) 8%, transparent), transparent 55%);
+  }
+  .er-company-card:hover::after,
+  .er-coming-card:hover::after { opacity: 1; }
+  .er-company-card > *,
+  .er-coming-card > * { position: relative; z-index: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .er-company-card, .er-coming-card { transition: none; }
+}

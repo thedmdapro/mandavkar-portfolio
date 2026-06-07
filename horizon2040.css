@@ -127,6 +127,17 @@ strong { color: var(--text); font-weight: 600; }
   transition: transform 0.42s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .mobile-menu.open { transform: translateX(0); }
+/* Backdrop injected by app.js initMobileMenu (drawer is z-index 250) */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 240;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mobile-menu-backdrop.open { opacity: 1; pointer-events: auto; }
 .mobile-close {
   position: absolute;
   top: 28px; right: 32px;

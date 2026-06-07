@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css?v=13" />
-  <link rel="stylesheet" href="company-model.css?v=1" />
+  <link rel="stylesheet" href="company-model.css?v=2" />
 </head>
 <body>
 
@@ -202,6 +202,16 @@
           <p class="cm-rev-strip-desc">MF and insurance distribution fees. Currently subscale but strategically important. Positions Angel One as a full-service wealth platform, the highest-LTV revenue category long-term.</p>
         </div>
 
+      </div>
+
+      <!-- Revenue mix donut (visualises the four shares above; data from the strips) -->
+      <div class="cm-chart-block">
+        <span class="cm-chart-title">FY24 Revenue Mix, by Stream</span>
+        <div class="cm-chart-wrap cm-chart-wrap--donut">
+          <canvas class="dataviz-canvas" data-chart="cm-rev-mix" role="img"
+            aria-label="Doughnut chart of Angel One FY24 revenue mix: Brokerage 68 percent, MTF interest income 18 percent, DP and ancillary 12 percent, distribution 2 percent. Total FY24 revenue 42.8 billion rupees."></canvas>
+        </div>
+        <span class="cm-chart-note">Brokerage dominance is the core regulatory-sensitivity exposure; MTF interest (₹7.9B FY24) is the sticky, recurring offset that cushions F&O fee compression.</span>
       </div>
 
     </div>
@@ -392,6 +402,16 @@
       </div>
 
       <p class="cm-table-note">† EBITDA = PBT + Finance Costs + D&A. Excludes impairment for clean operating view. All figures audited consolidated (Ind AS). FY25 PAT and Revenue from 29th Annual Report. Per-share figures adjusted for 1:10 stock split effective Feb 26, 2026.</p>
+
+      <!-- EBITDA margin trajectory (visualises the EBITDA Margin row above) -->
+      <div class="cm-chart-block">
+        <span class="cm-chart-title">EBITDA Margin Trajectory, FY21A–FY29E</span>
+        <div class="cm-chart-wrap">
+          <canvas class="dataviz-canvas" data-chart="cm-ebitda-margin" role="img"
+            aria-label="Line chart of Angel One EBITDA margin by fiscal year: FY21 36.8 percent, FY22 40.2 percent, FY23 43.4 percent, FY24 39.7 percent, FY25 32.3 percent, with a dashed base-case recovery to 38 percent by FY29E."></canvas>
+        </div>
+        <span class="cm-chart-note">Actuals FY21A–FY25A from the table above. The 740bps FY25 drop follows SEBI's August 2024 F&O fee restructuring; the dashed line is the model's base-case recovery to 38% by FY29E. Not investment advice.</span>
+      </div>
 
       <!-- SEBI callout -->
       <div class="cm-callout">
@@ -658,7 +678,102 @@
 
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
+
+  <!-- Data visualisation (lazy Chart.js, IO-gated, reduced-motion safe) -->
+  <script src="dataviz.js?v=1"></script>
+  <script>
+    (function () {
+      if (typeof DataViz === 'undefined') return;
+
+      // Revenue mix donut — shares from the strips above, total from FY24 revenue.
+      DataViz.register('cm-rev-mix', function (ctx) {
+        var c = ctx.colors;
+        var center = {
+          id: 'cmCenterText',
+          afterDraw: function (chart) {
+            var a = chart.chartArea; if (!a) return;
+            var g = chart.ctx;
+            var x = (a.left + a.right) / 2, y = (a.top + a.bottom) / 2;
+            g.save();
+            g.textAlign = 'center'; g.textBaseline = 'middle';
+            g.fillStyle = c.cream;
+            g.font = "600 26px 'Fraunces', Georgia, serif";
+            g.fillText('₹42.8B', x, y - 8);
+            g.fillStyle = ctx.mix(c.cream, 0.55);
+            g.font = "500 10px 'JetBrains Mono', monospace";
+            g.fillText('FY24 REVENUE', x, y + 15);
+            g.restore();
+          }
+        };
+        var o = ctx.baseOptions({ dark: true, legend: true });
+        delete o.scales;
+        o.cutout = '64%';
+        o.plugins.legend.position = 'bottom';
+        o.plugins.tooltip.callbacks = { label: function (i) { return ' ' + i.label + ': ' + i.parsed + '%'; } };
+        return {
+          type: 'doughnut',
+          data: {
+            labels: ['Brokerage', 'MTF Interest', 'DP & Ancillary', 'Distribution'],
+            datasets: [{
+              data: [68, 18, 12, 2],
+              backgroundColor: [c.ochre, c.teal, ctx.mix(c.cream, 0.5), ctx.mix(c.oxblood, 0.92)],
+              borderColor: '#141414',
+              borderWidth: 2,
+              hoverOffset: 6
+            }]
+          },
+          options: o,
+          plugins: [center]
+        };
+      });
+
+      // EBITDA margin trajectory — actuals from the table, dashed base case to FY29E.
+      DataViz.register('cm-ebitda-margin', function (ctx) {
+        var c = ctx.colors;
+        var o = ctx.baseOptions({ dark: false, legend: true, beginAtZero: false,
+          yFmt: function (v) { return v + '%'; }, yLabel: 'EBITDA margin' });
+        o.scales.y.suggestedMin = 28;
+        o.scales.y.suggestedMax = 46;
+        o.plugins.annotation = {
+          annotations: {
+            sebiPoint: {
+              type: 'point', xValue: 'FY25A', yValue: 32.3,
+              radius: 5, backgroundColor: c.oxblood, borderColor: '#fff', borderWidth: 1.5
+            },
+            sebiLabel: {
+              type: 'label', xValue: 'FY25A', yValue: 32.3,
+              content: ['SEBI F&O · Aug 2024', '-740 bps'],
+              yAdjust: -30, color: c.oxblood,
+              font: { family: "'JetBrains Mono', monospace", size: 10, weight: '600' },
+              backgroundColor: 'rgba(247,246,243,0.88)', padding: 4
+            }
+          }
+        };
+        return {
+          type: 'line',
+          data: {
+            labels: ['FY21A', 'FY22A', 'FY23A', 'FY24A', 'FY25A', 'FY29E'],
+            datasets: [
+              {
+                label: 'Actual', data: [36.8, 40.2, 43.4, 39.7, 32.3, null],
+                borderColor: c.ink, backgroundColor: ctx.mix(c.ink, 0.06),
+                borderWidth: 2, tension: 0.3, pointRadius: 3, pointBackgroundColor: c.ink, fill: true
+              },
+              {
+                label: 'Base case (to FY29E)', data: [null, null, null, null, 32.3, 38.0],
+                borderColor: c.ochre, borderWidth: 2, borderDash: [5, 4], tension: 0,
+                pointRadius: [0, 0, 0, 0, 0, 4], pointBackgroundColor: c.ochre, fill: false, spanGaps: true
+              }
+            ]
+          },
+          options: o
+        };
+      });
+
+      DataViz.boot();
+    })();
+  </script>
 
 </body>
 </html>
