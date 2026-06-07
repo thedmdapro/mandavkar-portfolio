@@ -369,26 +369,6 @@
   }
 
 
-  /* ─── MAGNETIC HOVER ON BUTTONS (no bounce, DESIGN.md motion law) ─── */
-  function initMagnetic() {
-    if (REDUCE || !hasGSAP || !canHover) return;
-    document.querySelectorAll('.btn-primary, .btn-ghost, .nav-cta').forEach(function (el) {
-      el.addEventListener('mousemove', function (e) {
-        var rect = el.getBoundingClientRect();
-        gsap.to(el, {
-          x: (e.clientX - rect.left - rect.width  / 2) * 0.3,
-          y: (e.clientY - rect.top  - rect.height / 2) * 0.3,
-          duration: 0.3, ease: 'power2.out'
-        });
-      });
-      el.addEventListener('mouseleave', function () {
-        // Was elastic.out(1, 0.4) — replaced with exponential ease-out per DESIGN.md (no bounce).
-        gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'power3.out' });
-      });
-    });
-  }
-
-
   /* ─── PARALLAX NUMERALS (depth on the big Fraunces numbers) ─── */
   function initParallaxNumerals() {
     if (REDUCE || !hasGSAP) return;
@@ -730,7 +710,6 @@
   safe(initChokepointGlobe);
   safe(initCounters);
   safe(initProjectCards);
-  safe(initMagnetic);
 
   // Recompute trigger start positions once webfonts settle.
   if (hasGSAP && document.fonts && document.fonts.ready) {
