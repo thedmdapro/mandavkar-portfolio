@@ -1765,3 +1765,87 @@ strong { color: var(--text); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .hz-hero-scene.ready { opacity: 0.6; }
 }
+
+/* ─── RIPPLE EFFECTS: 2nd/3rd-order cascade per thesis ─── */
+.hz-ripple {
+  margin: 30px 0 8px;
+  padding: 26px 28px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+.hz-thesis-section--cream .hz-ripple,
+.hz-thesis-section--sand  .hz-ripple { background: var(--bg2); border-color: var(--border); }
+.hz-thesis-section--dark  .hz-ripple { background: color-mix(in srgb, var(--white) 3%, transparent); border-color: var(--dark-border); }
+
+.hz-ripple-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  display: block; margin-bottom: 18px;
+}
+.hz-thesis-section--cream .hz-ripple-title,
+.hz-thesis-section--sand  .hz-ripple-title { color: var(--subtle); }
+.hz-thesis-section--dark  .hz-ripple-title { color: var(--dark-dim); }
+
+.hz-ripple-stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.hz-ripple-stage {
+  padding: 16px 16px 16px 18px;
+  border-inline-start: 2px solid var(--ochre);
+}
+.hz-thesis-section--cream .hz-ripple-stage,
+.hz-thesis-section--sand  .hz-ripple-stage { background: var(--white); }
+.hz-thesis-section--dark  .hz-ripple-stage { background: color-mix(in srgb, var(--white) 4%, transparent); }
+.hz-ripple-stage--2 { border-inline-start-color: color-mix(in srgb, var(--ochre) 55%, var(--oxblood)); }
+.hz-ripple-stage--3 { border-inline-start-color: var(--oxblood); }
+/* keep the deepening ramp visible on the near-black dark register */
+.hz-thesis-section--dark .hz-ripple-stage--2 { border-inline-start-color: color-mix(in srgb, var(--ochre) 55%, #E8927F); }
+.hz-thesis-section--dark .hz-ripple-stage--3 { border-inline-start-color: #E8927F; }
+
+.hz-ripple-order {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 6px;
+  color: color-mix(in srgb, var(--ochre) 45%, var(--oxblood));   /* legible on light stage cards */
+}
+.hz-ripple-stage--2 .hz-ripple-order { color: color-mix(in srgb, var(--ochre) 25%, var(--oxblood)); }
+.hz-ripple-stage--3 .hz-ripple-order { color: var(--oxblood); }
+/* dark register: ochre is bright enough on near-black; lift only the third label */
+.hz-thesis-section--dark .hz-ripple-stage--1 .hz-ripple-order,
+.hz-thesis-section--dark .hz-ripple-stage--2 .hz-ripple-order { color: var(--ochre); }
+.hz-thesis-section--dark .hz-ripple-stage--3 .hz-ripple-order { color: #E8927F; }
+
+.hz-ripple-head {
+  font-family: 'Fraunces', Georgia, serif; font-size: 14px; font-weight: 700;
+  line-height: 1.25; display: block; margin-bottom: 6px;
+}
+.hz-thesis-section--cream .hz-ripple-head,
+.hz-thesis-section--sand  .hz-ripple-head { color: var(--text); }
+.hz-thesis-section--dark  .hz-ripple-head { color: var(--dark-text); }
+
+.hz-ripple-stage p { font-size: 12.5px; line-height: 1.55; margin: 0 0 8px; }
+.hz-thesis-section--cream .hz-ripple-stage p,
+.hz-thesis-section--sand  .hz-ripple-stage p { color: var(--dim); }
+.hz-thesis-section--dark  .hz-ripple-stage p { color: var(--dark-dim); }
+
+.hz-ripple-cases {
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.03em;
+  line-height: 1.5; display: block;
+}
+.hz-thesis-section--cream .hz-ripple-cases,
+.hz-thesis-section--sand  .hz-ripple-cases { color: var(--dim); }
+.hz-thesis-section--dark  .hz-ripple-cases { color: color-mix(in srgb, var(--white) 52%, transparent); }
+.hz-ripple-cases b { font-weight: 600; }
+
+.hz-ripple-loop {
+  margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--ochre);
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.55;
+}
+.hz-thesis-section--cream .hz-ripple-loop,
+.hz-thesis-section--sand  .hz-ripple-loop { color: var(--dim); }
+.hz-thesis-section--dark  .hz-ripple-loop { color: var(--dark-dim); }
+.hz-ripple-loop b { font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 9px; }
+.hz-thesis-section--cream .hz-ripple-loop b,
+.hz-thesis-section--sand  .hz-ripple-loop b { color: var(--oxblood); }
+.hz-thesis-section--dark  .hz-ripple-loop b { color: var(--ochre); }
+
+@media (max-width: 860px) {
+  .hz-ripple-stages { grid-template-columns: 1fr; gap: 10px; }
+}
