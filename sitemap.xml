@@ -164,6 +164,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://mandavkar.uk/blog/broad-dollar.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Blog stubs (coal-china, dcf-blind-spots, dollar-smile, india-cad) intentionally
        excluded: noindex meta tag set on those pages until fully written. -->
