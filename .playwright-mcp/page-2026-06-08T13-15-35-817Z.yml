@@ -1,0 +1,906 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "dhruv" [ref=e4]:
+        - /url: "#hero"
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "About" [ref=e7]:
+            - /url: "#about"
+        - listitem [ref=e8]:
+          - link "Projects" [ref=e9]:
+            - /url: "#projects"
+        - listitem [ref=e10]:
+          - link "Signals" [ref=e11]:
+            - /url: signals.html
+        - listitem [ref=e12]:
+          - link "How I Research" [ref=e13]:
+            - /url: how-i-research.html
+        - listitem [ref=e14]:
+          - link "Writing" [ref=e15]:
+            - /url: "#blog"
+        - listitem [ref=e16]:
+          - link "Subscribe" [ref=e17]:
+            - /url: https://thedmdapro.substack.com/subscribe
+        - listitem [ref=e18]:
+          - link "Get in Touch" [ref=e19]:
+            - /url: "#contact"
+  - generic [ref=e20]:
+    - button "Close menu" [ref=e21]: ✕
+    - list [ref=e22]:
+      - listitem [ref=e23]:
+        - link "About" [ref=e24]:
+          - /url: "#about"
+      - listitem [ref=e25]:
+        - link "Projects" [ref=e26]:
+          - /url: "#projects"
+      - listitem [ref=e27]:
+        - link "Signals" [ref=e28]:
+          - /url: signals.html
+      - listitem [ref=e29]:
+        - link "How I Research" [ref=e30]:
+          - /url: how-i-research.html
+      - listitem [ref=e31]:
+        - link "Writing" [ref=e32]:
+          - /url: "#blog"
+      - listitem [ref=e33]:
+        - link "Subscribe" [ref=e34]:
+          - /url: https://thedmdapro.substack.com/subscribe
+      - listitem [ref=e35]:
+        - link "Contact" [ref=e36]:
+          - /url: "#contact"
+  - generic [ref=e39]:
+    - generic [ref=e40]: Macro · Markets · Signals
+    - heading "Dhruv Mandavkar." [level=1] [ref=e41]:
+      - generic [ref=e42]: Dhruv
+      - emphasis [ref=e44]: Mandavkar.
+    - paragraph [ref=e45]: Equity research and macro analysis. Physical economy first, financial economy second. London-bound by 2027.
+    - paragraph [ref=e46]: First Class Honours, Sussex 2024 · CFA Level 1 candidate, August 2026 · 11 published research pieces · Mannheim & WU Vienna scholarships
+    - generic [ref=e47]:
+      - link "View work" [ref=e48]:
+        - /url: "#projects"
+      - link "About" [ref=e49]:
+        - /url: "#about"
+      - button "Reveal email address (jobs at...)" [ref=e50]: jobs@•••••••••• →
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - heading "I s t u d y w h a t m o v e s m a r k e t s b e f o r e i t s h o w s u p i n t h e d a t a ." [level=2] [ref=e54]:
+        - generic [ref=e56]: I
+        - generic [ref=e57]:
+          - generic [ref=e58]: s
+          - generic [ref=e59]: t
+          - generic [ref=e60]: u
+          - generic [ref=e61]: d
+          - generic [ref=e62]: "y"
+        - generic [ref=e63]:
+          - generic [ref=e64]: w
+          - generic [ref=e65]: h
+          - generic [ref=e66]: a
+          - generic [ref=e67]: t
+        - generic [ref=e68]:
+          - generic [ref=e69]: m
+          - generic [ref=e70]: o
+          - generic [ref=e71]: v
+          - generic [ref=e72]: e
+          - generic [ref=e73]: s
+        - generic [ref=e74]:
+          - generic [ref=e75]: m
+          - generic [ref=e76]: a
+          - generic [ref=e77]: r
+          - generic [ref=e78]: k
+          - generic [ref=e79]: e
+          - generic [ref=e80]: t
+          - generic [ref=e81]: s
+        - generic [ref=e82]:
+          - generic [ref=e83]: b
+          - generic [ref=e84]: e
+          - generic [ref=e85]: f
+          - generic [ref=e86]: o
+          - generic [ref=e87]: r
+          - generic [ref=e88]: e
+        - generic [ref=e89]:
+          - generic [ref=e90]: i
+          - generic [ref=e91]: t
+        - generic [ref=e92]:
+          - generic [ref=e93]: s
+          - generic [ref=e94]: h
+          - generic [ref=e95]: o
+          - generic [ref=e96]: w
+          - generic [ref=e97]: s
+        - generic [ref=e98]:
+          - generic [ref=e99]: u
+          - generic [ref=e100]: p
+        - generic [ref=e101]:
+          - generic [ref=e102]: i
+          - generic [ref=e103]: "n"
+        - generic [ref=e104]:
+          - generic [ref=e105]: t
+          - generic [ref=e106]: h
+          - generic [ref=e107]: e
+        - generic [ref=e108]:
+          - generic [ref=e109]: d
+          - generic [ref=e110]: a
+          - generic [ref=e111]: t
+          - generic [ref=e112]: a
+          - generic [ref=e113]: .
+      - generic [ref=e114]: About
+    - generic [ref=e115]:
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]: "01"
+          - generic [ref=e119]:
+            - generic [ref=e120]: Origin
+            - paragraph [ref=e121]: Financial behaviour doesn't generalise across borders. I learned that growing up across Saudi Arabia, South Korea, China, and India, four different relationships with money and risk. Most Western models assume Western financial psychology. The gaps between that assumption and how the rest of the world actually behaves are where the signals live.
+        - generic [ref=e122]:
+          - generic [ref=e123]: "02"
+          - generic [ref=e124]:
+            - generic [ref=e125]: Lens
+            - paragraph [ref=e126]: "The physical economy moves before the financial one prices it. So before I open an earnings report, I check upstream: Baltic Dry, LNG spot, commodity flows, shipping disruptions. Red Sea rerouting, Hormuz risk, rare earth concentration. The lag between physical disruption and financial adjustment is where the research questions are."
+        - generic [ref=e127]:
+          - generic [ref=e128]: "03"
+          - generic [ref=e129]:
+            - generic [ref=e130]: Method
+            - paragraph [ref=e131]: "Every piece follows the same path: start with a physical or macro signal, verify it across sources, trace it down to sectors and securities. The live dashboard pulls 21 FRED indicators on every load; the 12 structural theses connect supply-chain shifts to specific asset classes. The point isn't prediction. It's surfacing questions before they become consensus."
+        - generic [ref=e132]:
+          - generic [ref=e133]: "04"
+          - generic [ref=e134]:
+            - generic [ref=e135]: Maritime
+            - paragraph [ref=e136]: Maritime trade is my particular focus, the physical infrastructure most models treat as given. Chinese yards build over half the world's ships, run the largest merchant fleet, and have embedded military conversion requirements into civilian vessels by law since 2016. Beidou tracks the entire fleet in real time; Chinese waters went dark to global AIS in 2021. These are freight, energy-security, and capital-allocation stories, not defence ones.
+        - generic [ref=e137]:
+          - generic [ref=e138]: "05"
+          - generic [ref=e139]:
+            - generic [ref=e140]: Now
+            - paragraph [ref=e141]:
+              - text: Equity Research Intern at
+              - strong [ref=e142]: Omega Portfolio Advisors by MoneyWorks4Me
+              - text: in Pune, covering large-, mid-, and flexi-cap mutual funds. Before that,
+              - strong [ref=e143]: Junior Research Associate
+              - text: at Sussex Business School, under
+              - strong [ref=e144]: 0.1% of 5,500+ applicants
+              - text: . First-Class dissertation on fraud, regulation, and Reddit-sentiment effects on crypto volatility, event study, EGARCH(1,1), Bloomberg, STATA, Python. CFA Level 1, August 2026.
+      - generic [ref=e145]:
+        - generic [ref=e146]: Background
+        - generic [ref=e147]:
+          - generic [ref=e148]: 🎓
+          - generic [ref=e149]:
+            - generic [ref=e150]: Education
+            - generic [ref=e151]: BSc FinTech, First Class Honours
+            - generic [ref=e152]: University of Sussex · 2021–2024
+        - generic [ref=e153]:
+          - generic [ref=e154]: 🏆
+          - generic [ref=e155]:
+            - generic [ref=e156]: Recognition
+            - generic [ref=e157]: Junior Research Associate
+            - generic [ref=e158]: Sussex Business School · 2023–2024 · <0.1% from 5,500+ applicants
+        - generic [ref=e159]:
+          - generic [ref=e160]: 📝
+          - generic [ref=e161]:
+            - generic [ref=e162]: Dissertation · First Class
+            - generic [ref=e163]: Fraud, Regulation & Sentiment Effects on Crypto vs. Traditional Securities Volatility
+            - generic [ref=e164]: Event study · EGARCH(1,1) · Granger causality · Bloomberg Terminal · STATA · Python · Reddit NLP
+        - generic [ref=e165]:
+          - generic [ref=e166]: 📊
+          - generic [ref=e167]:
+            - generic [ref=e168]: Currently
+            - generic [ref=e169]: CFA Level 1 Candidate
+            - generic [ref=e170]: "Exam: August 2026"
+        - generic [ref=e171]:
+          - generic [ref=e172]: ✈
+          - generic [ref=e173]:
+            - generic [ref=e174]: International
+            - generic [ref=e175]: Mannheim Business School · WU Vienna
+            - generic [ref=e176]: 90% scholarship, competitive selection
+        - generic [ref=e177]:
+          - generic [ref=e178]: 🌍
+          - generic [ref=e179]:
+            - generic [ref=e180]: Languages
+            - generic [ref=e181]: English · Hindi · Marathi · Urdu · Mandarin
+            - generic [ref=e182]: Native & professional proficiency · Mandarin elementary
+        - generic [ref=e183]:
+          - generic [ref=e184]: Research Framework
+          - heading "Macro to Micro" [level=3] [ref=e185]
+          - paragraph [ref=e186]: I start with the physical economy and work down to individual securities. The signals that matter most arrive first at the physical layer and last at the financial one.
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - generic [ref=e189]: "01"
+              - generic [ref=e190]: Physical signals, BDI, copper, LNG, yield curve, credit spreads
+            - generic [ref=e191]:
+              - generic [ref=e192]: "02"
+              - generic [ref=e193]: Geopolitical overlay, chokepoints, supply chains, energy regime
+            - generic [ref=e194]:
+              - generic [ref=e195]: "03"
+              - generic [ref=e196]: Sector implications, who faces margin compression, repricing
+            - generic [ref=e197]:
+              - generic [ref=e198]: "04"
+              - generic [ref=e199]: Individual securities, only after the first three layers narrow the funnel
+          - link "Read the full framework →" [ref=e200]:
+            - /url: how-i-research.html
+  - generic [ref=e202]:
+    - generic [ref=e203]:
+      - generic [ref=e204]: Experience
+      - heading "W h e r e I ' v e w o r k e d ." [level=2] [ref=e205]:
+        - generic [ref=e206]:
+          - generic [ref=e207]: W
+          - generic [ref=e208]: h
+          - generic [ref=e209]: e
+          - generic [ref=e210]: r
+          - generic [ref=e211]: e
+        - generic [ref=e212]:
+          - generic [ref=e213]: I
+          - generic [ref=e214]: "'"
+          - generic [ref=e215]: v
+          - generic [ref=e216]: e
+        - generic [ref=e217]:
+          - generic [ref=e218]: w
+          - generic [ref=e219]: o
+          - generic [ref=e220]: r
+          - generic [ref=e221]: k
+          - generic [ref=e222]: e
+          - generic [ref=e223]: d
+          - generic [ref=e224]: .
+    - generic [ref=e225]:
+      - generic [ref=e226]:
+        - generic [ref=e227]:
+          - generic [ref=e228]: Feb 2026 – Present
+          - generic [ref=e229]: Pune, India
+        - generic [ref=e230]:
+          - generic [ref=e231]: Equity Research Intern
+          - generic [ref=e232]: Omega Portfolio Advisors by MoneyWorks4Me
+          - generic [ref=e233]: SEBI-Registered RIA Firm · Equity Mutual Fund Coverage
+          - paragraph [ref=e234]:
+            - text: Research and advisory layer of
+            - strong [ref=e235]: Third Rock Wealth (TRW)
+            - text: ", the firm's mutual fund distribution arm. Deep-dive equity fund research across large-, mid-, and flexi-cap, client-facing recommendation reports, and systematic fund-evaluation frameworks."
+          - list [ref=e236]:
+            - listitem [ref=e237]: "– Built a systematic screening model across the full SEBI active fund universe on a 3-layer method (pass/fail gates, category-adapted scoring, qualitative overlay): 177 equity funds across 8 categories, 96 hybrid (benchmark-distortion-aware), 134 sector and thematic, 64 solution-oriented and FoFs."
+            - listitem [ref=e238]: – Produced client-facing fund recommendation reports combining quantitative metrics (Sharpe, beta, rolling alpha) with qualitative manager and mandate assessment
+            - listitem [ref=e239]: "– Conducting coverage of Angel One Ltd (NSE: ANGELONE), 6-tab institutional valuation model including 3-statement model, DCF, EV/EBITDA comparables, scenario and sensitivity analysis"
+            - listitem [ref=e240]: – Analysing AUM trends, inflow/outflow dynamics, and category rotation across India's ₹73+ Lakh Cr mutual fund industry (March 2026)
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - generic [ref=e243]: 2023 – 2024
+          - generic [ref=e244]: Brighton, UK
+        - generic [ref=e245]:
+          - generic [ref=e246]: Junior Research Associate
+          - generic [ref=e247]: Sussex Business School
+          - generic [ref=e248]: <0.1% acceptance rate · 5,500+ applicants
+          - paragraph [ref=e249]: A competitive research post embedded in the faculty's active research agenda. Worked alongside academic researchers on empirical financial research using econometric methods.
+          - list [ref=e250]:
+            - listitem [ref=e251]: – Built a 15-year daily price dataset (5,372 observations) across BTC, ETH, S&P 500, FTSE 100, Nikkei 225, and crypto indices on Bloomberg Terminal, the foundation for my dissertation's event study and EGARCH analysis
+            - listitem [ref=e252]: – Applied EGARCH(1,1) volatility modelling, Granger causality testing, and event-study methodology under faculty supervision, directly in the dissertation that earned First Class
+            - listitem [ref=e253]: "– Produced two original findings: the regulatory asymmetry paradox (regulation stabilises traditional securities while amplifying crypto volatility) and the sentiment contagion mechanism (Reddit negativity Granger-causes crypto vol at a single lag)"
+            - listitem [ref=e254]: – Supervised by Dr. Malgorzata Sulimierska; direct faculty access shaped my approach to empirical research design
+      - generic [ref=e255]:
+        - generic [ref=e256]:
+          - generic [ref=e257]: 2023 – Present
+          - generic [ref=e258]: Personal
+        - generic [ref=e259]:
+          - generic [ref=e260]: Personal Investment Portfolio
+          - generic [ref=e261]: Self-Directed, UK & Global Equities
+          - generic [ref=e262]: 65% MWRR since 2019 · Discretionary L/S · Indian Equities
+          - paragraph [ref=e263]: Self-funded discretionary portfolio on a macro-first selection framework. 65% cumulative money-weighted return since inception (2019), ~45% annual profit on deployed capital. Concentrated long/short across Indian equities, sector and timing decisions driven by physical-economy signals before stock analysis.
+          - list [ref=e264]:
+            - listitem [ref=e265]: "– Benchmark context: the Nifty 50 returned ~95% over the same period. This is concentrated L/S, higher volatility and drawdown than a passive index, not a like-for-like comparison."
+            - listitem [ref=e266]: "– Selection framework: physical-economy signals (BDI, copper, credit spreads) drive sector and timing calls before individual stock analysis"
+            - listitem [ref=e267]: "– Risk management: position sizing tied to conviction × signal confirmation; trimmed into strength when macro regime indicators flipped"
+            - listitem [ref=e268]: – Currently building equity baskets across sectors surfaced by macro signal tracking and fundamental screening
+  - generic [ref=e270]:
+    - generic [ref=e271]:
+      - generic [ref=e272]: Skills
+      - heading "W h a t I w o r k w i t h ." [level=2] [ref=e273]:
+        - generic [ref=e274]:
+          - generic [ref=e275]: W
+          - generic [ref=e276]: h
+          - generic [ref=e277]: a
+          - generic [ref=e278]: t
+        - generic [ref=e280]: I
+        - generic [ref=e281]:
+          - generic [ref=e282]: w
+          - generic [ref=e283]: o
+          - generic [ref=e284]: r
+          - generic [ref=e285]: k
+        - generic [ref=e286]:
+          - generic [ref=e287]: w
+          - generic [ref=e288]: i
+          - generic [ref=e289]: t
+          - generic [ref=e290]: h
+          - generic [ref=e291]: .
+      - paragraph [ref=e292]: Technical tools and domain knowledge, built through research, internship work, and independent projects.
+    - generic [ref=e293]:
+      - generic [ref=e294]:
+        - generic [ref=e295]: Financial Modelling
+        - generic [ref=e296]:
+          - generic [ref=e297]: DCF Valuation
+          - generic [ref=e298]: 3-Statement Modelling
+          - generic [ref=e299]: Comparable Company Analysis
+          - generic [ref=e300]: Scenario & Sensitivity Analysis
+          - generic [ref=e301]: Fund Performance Attribution
+          - generic [ref=e302]: Equity Research Reports
+      - generic [ref=e303]:
+        - generic [ref=e304]: Quantitative & Data
+        - generic [ref=e305]:
+          - generic [ref=e306]: Python, pandas, matplotlib, openpyxl
+          - generic [ref=e307]: Excel, Advanced (formulas, VBA-ready)
+          - generic [ref=e308]: STATA, Econometrics, Panel Data
+          - generic [ref=e309]: R, Statistical Analysis
+          - generic [ref=e310]: FRED API · BSE / NSE Data
+          - generic [ref=e311]: Python, PRAW · VADER · Pandas
+          - generic [ref=e312]: Bloomberg Terminal
+      - generic [ref=e313]:
+        - generic [ref=e314]: Research Domains
+        - generic [ref=e315]:
+          - generic [ref=e316]: Macro Signal Analysis
+          - generic [ref=e317]: India Equity Markets
+          - generic [ref=e318]: Commodity Markets
+          - generic [ref=e319]: Mutual Fund Research
+          - generic [ref=e320]: Shipping & Trade Flows
+          - generic [ref=e321]: Geopolitical Risk Pricing
+      - generic [ref=e322]:
+        - generic [ref=e323]: Data Sources I Use
+        - generic [ref=e324]:
+          - generic [ref=e325]: FRED (St. Louis Fed)
+          - generic [ref=e326]: AMFI India, Monthly Inflow Data
+          - generic [ref=e327]: SEBI Filings & Disclosures
+          - generic [ref=e328]: BSE / NSE, Company Filings
+          - generic [ref=e329]: Baltic Exchange, BDI Weekly
+          - generic [ref=e330]: Screener.in · Tijori Finance
+  - generic [ref=e332]:
+    - generic [ref=e333]:
+      - generic [ref=e334]: Projects
+      - heading "W h a t I ' m b u i l d i n g ." [level=2] [ref=e335]:
+        - generic [ref=e336]:
+          - generic [ref=e337]: W
+          - generic [ref=e338]: h
+          - generic [ref=e339]: a
+          - generic [ref=e340]: t
+        - generic [ref=e341]:
+          - generic [ref=e342]: I
+          - generic [ref=e343]: "'"
+          - generic [ref=e344]: m
+        - generic [ref=e345]:
+          - generic [ref=e346]: b
+          - generic [ref=e347]: u
+          - generic [ref=e348]: i
+          - generic [ref=e349]: l
+          - generic [ref=e350]: d
+          - generic [ref=e351]: i
+          - generic [ref=e352]: "n"
+          - generic [ref=e353]: g
+          - generic [ref=e354]: .
+      - paragraph [ref=e355]: Independent research and analytical projects. Finance, data, and the tools I wish already existed.
+    - list [ref=e356]:
+      - listitem [ref=e357]:
+        - generic [ref=e358]: "01"
+        - generic [ref=e359]:
+          - generic [ref=e360]: Finance · Equity Research · In Progress
+          - heading "Institutional equity research, India markets." [level=3] [ref=e361]:
+            - text: Institutional equity research,
+            - emphasis [ref=e362]: India markets.
+          - paragraph [ref=e363]: "A systematic coverage universe of listed Indian equities. Each company, a full institutional model: 3-statement with 5 years of audited actuals, FCFF DCF, EV/EBITDA peer comparables, scenario analysis, sensitivity tables, executive dashboard. Currently covering Angel One Ltd (NSE: ANGELONE)."
+          - list [ref=e364]:
+            - listitem [ref=e365]: Excel ·
+            - listitem [ref=e366]: DCF ·
+            - listitem [ref=e367]: Financial modelling ·
+            - listitem [ref=e368]: Python ·
+            - listitem [ref=e369]: NSE / BSE
+        - link "Coverage universe →" [ref=e370]:
+          - /url: equity-research.html
+      - listitem [ref=e371]:
+        - generic [ref=e372]: "02"
+        - generic [ref=e373]:
+          - generic [ref=e374]: Data · Macro · Live
+          - heading "Macro signal tracker, live data." [level=3] [ref=e375]:
+            - text: Macro signal tracker,
+            - emphasis [ref=e376]: live data.
+          - paragraph [ref=e377]: Live browser dashboard tracking 21 macro indicators across rates, credit, FX, commodities, and India flows. Yield curves, credit spreads, BDI, copper-gold ratio, VIX, DXY. FRED API pulls fresh data on every page load.
+          - list [ref=e378]:
+            - listitem [ref=e379]: Python ·
+            - listitem [ref=e380]: Chart.js ·
+            - listitem [ref=e381]: FRED API ·
+            - listitem [ref=e382]: Cloudflare Workers
+        - link "Live dashboard →" [ref=e383]:
+          - /url: signals.html
+      - listitem [ref=e384]:
+        - generic [ref=e385]: "03"
+        - generic [ref=e386]:
+          - generic [ref=e387]: Macro · Forecasts · Published
+          - heading "Horizon 2040." [level=3] [ref=e388]
+          - paragraph [ref=e389]: Four forecasts the market prices at zero. Quantum cryptography migration, glass-substrate storage stranding utility demand, humanoid cost-parity timing, and AI reflexivity degrading price discovery. Marked as forecasts, with explicit falsifiability conditions per thesis.
+          - list [ref=e390]:
+            - listitem [ref=e391]: Forecasts ·
+            - listitem [ref=e392]: Macro research ·
+            - listitem [ref=e393]: Live signal links
+        - link "Read the research →" [ref=e394]:
+          - /url: horizon2040.html
+      - listitem [ref=e395]:
+        - generic [ref=e396]: "04"
+        - generic [ref=e397]:
+          - generic [ref=e398]: Macro · Geopolitics · 12 theses
+          - heading "Macro geopolitics, structural transmission." [level=3] [ref=e399]:
+            - text: Macro geopolitics,
+            - emphasis [ref=e400]: structural transmission.
+          - paragraph [ref=e401]: Four research verticals spanning supply chain chokepoints, energy regime change, demographic divergence, and military conflict transmission. Helium to semiconductors, LNG to shadow fleets, China's demographic cliff to Gulf SWF reallocation.
+          - list [ref=e402]:
+            - listitem [ref=e403]:
+              - link "Supply chains" [ref=e404]:
+                - /url: supply-chains.html
+              - text: ·
+            - listitem [ref=e405]:
+              - link "Energy" [ref=e406]:
+                - /url: energy.html
+              - text: ·
+            - listitem [ref=e407]:
+              - link "Oil shock scenario" [ref=e408]:
+                - /url: oil-shock.html
+              - text: ·
+            - listitem [ref=e409]:
+              - link "Demographics" [ref=e410]:
+                - /url: demographics.html
+              - text: ·
+            - listitem [ref=e411]:
+              - link "Conflict" [ref=e412]:
+                - /url: conflict.html
+        - link "Start with supply chains →" [ref=e413]:
+          - /url: supply-chains.html
+      - listitem [ref=e414]:
+        - generic [ref=e415]: "05"
+        - generic [ref=e416]:
+          - generic [ref=e417]: Finance · Fund analysis · Published
+          - heading "Fund screening model, full SEBI universe." [level=3] [ref=e418]:
+            - text: Fund screening model,
+            - emphasis [ref=e419]: full SEBI universe.
+          - paragraph [ref=e420]: "A 4-phase systematic framework covering the full Indian active mutual fund universe. Phase 1: 8 equity categories, 177 funds scored. Phase 2: 7 hybrid categories, 96 scored, with benchmark-distortion-aware frameworks. Phase 3: 20 sector and thematic themes, 134 comparison-ready. Phase 4: solution-oriented and FoFs, 64 funds across 4 special categories. Built at Omega to power TRW client recommendations. Data: March 2026."
+          - list [ref=e421]:
+            - listitem [ref=e422]: Excel ·
+            - listitem [ref=e423]: Python ·
+            - listitem [ref=e424]: Full SEBI universe ·
+            - listitem [ref=e425]: AMFI data
+        - link "Methodology & findings →" [ref=e426]:
+          - /url: fund-screening.html
+      - listitem [ref=e427]:
+        - generic [ref=e428]: "06"
+        - generic [ref=e429]:
+          - generic [ref=e430]: FinTech · Financial econometrics · 2024 dissertation
+          - heading "Crypto volatility event study." [level=3] [ref=e431]
+          - paragraph [ref=e432]: Empirical study of how fraud events, regulatory interventions, and Reddit sentiment affect the price volatility of cryptocurrencies versus traditional securities, July 2010 to March 2025. Event study analysis, EGARCH(1,1) volatility modelling, Granger causality. 5,372 daily observations, 30 events. Sussex Business School, supervised by Dr. Malgorzata Sulimierska.
+          - list [ref=e433]:
+            - listitem [ref=e434]: STATA 17 ·
+            - listitem [ref=e435]: Bloomberg Terminal ·
+            - listitem [ref=e436]: Python · VADER · PRAW ·
+            - listitem [ref=e437]: EGARCH ·
+            - listitem [ref=e438]: First Class
+        - link "Read dissertation →" [ref=e439]:
+          - /url: assets/Mandavkar-Dissertation-CryptoVolatility-2024.pdf
+  - generic [ref=e441]:
+    - generic [ref=e442]:
+      - generic [ref=e443]: Published Research
+      - heading "R e s e a r c h ." [level=2] [ref=e444]:
+        - generic [ref=e445]:
+          - generic [ref=e446]: R
+          - generic [ref=e447]: e
+          - generic [ref=e448]: s
+          - generic [ref=e449]: e
+          - generic [ref=e450]: a
+          - generic [ref=e451]: r
+          - generic [ref=e452]: c
+          - generic [ref=e453]: h
+          - generic [ref=e454]: .
+      - paragraph [ref=e455]: Long-form analysis, live signals, and strategic dossiers.
+    - generic [ref=e456]:
+      - link "Macro Research Horizon 2040 Long-form macro research. Structural shifts the market prices at zero. →" [ref=e457]:
+        - /url: horizon2040.html
+        - generic [ref=e459]:
+          - generic [ref=e460]: Macro Research
+          - heading "Horizon 2040" [level=3] [ref=e461]
+          - paragraph [ref=e462]: Long-form macro research. Structural shifts the market prices at zero.
+        - generic [ref=e463]: →
+      - link "Live Data Signals Live macro signal dashboard. 21 instruments across rates, credit, FX, and commodities. →" [ref=e464]:
+        - /url: signals.html
+        - generic [ref=e466]:
+          - generic [ref=e467]: Live Data
+          - heading "Signals" [level=3] [ref=e468]
+          - paragraph [ref=e469]: Live macro signal dashboard. 21 instruments across rates, credit, FX, and commodities.
+        - generic [ref=e470]: →
+      - link "Maritime · Geopolitics Shipping & Maritime Power Chinese shipbuilding dominance, Beidou fleet tracking, and the COSCO port network. →" [ref=e471]:
+        - /url: shipping.html
+        - generic [ref=e473]:
+          - generic [ref=e474]: Maritime · Geopolitics
+          - heading "Shipping & Maritime Power" [level=3] [ref=e475]
+          - paragraph [ref=e476]: Chinese shipbuilding dominance, Beidou fleet tracking, and the COSCO port network.
+        - generic [ref=e477]: →
+      - link "Strategic Dossier Maritime Chokepoints The world's 12 critical maritime passages. Geography, volumes, and financial transmission. →" [ref=e478]:
+        - /url: chokepoints.html
+        - generic [ref=e480]:
+          - generic [ref=e481]: Strategic Dossier
+          - heading "Maritime Chokepoints" [level=3] [ref=e482]
+          - paragraph [ref=e483]: The world's 12 critical maritime passages. Geography, volumes, and financial transmission.
+        - generic [ref=e484]: →
+      - link "Macro Signals · Live Oil Shock 2026 The price is the headline. Demand destruction is the story — eight transmission channels, one structural inflection point. →" [ref=e485]:
+        - /url: oil-shock.html
+        - generic [ref=e487]:
+          - generic [ref=e488]: Macro Signals · Live
+          - heading "Oil Shock 2026" [level=3] [ref=e489]
+          - paragraph [ref=e490]: The price is the headline. Demand destruction is the story — eight transmission channels, one structural inflection point.
+        - generic [ref=e491]: →
+      - link "Macro · Geopolitics Macro Geopolitics 12 structural theses across supply chains, energy, demographics, and conflict. →" [ref=e492]:
+        - /url: supply-chains.html
+        - generic [ref=e494]:
+          - generic [ref=e495]: Macro · Geopolitics
+          - heading "Macro Geopolitics" [level=3] [ref=e496]
+          - paragraph [ref=e497]: 12 structural theses across supply chains, energy, demographics, and conflict.
+        - generic [ref=e498]: →
+  - generic [ref=e500]:
+    - generic [ref=e501]:
+      - generic [ref=e502]: Where I Stand
+      - heading "F i v e p o s i t i o n s I ' l l d e f e n d ." [level=2] [ref=e503]:
+        - generic [ref=e504]:
+          - generic [ref=e505]: F
+          - generic [ref=e506]: i
+          - generic [ref=e507]: v
+          - generic [ref=e508]: e
+        - generic [ref=e509]:
+          - generic [ref=e510]: p
+          - generic [ref=e511]: o
+          - generic [ref=e512]: s
+          - generic [ref=e513]: i
+          - generic [ref=e514]: t
+          - generic [ref=e515]: i
+          - generic [ref=e516]: o
+          - generic [ref=e517]: "n"
+          - generic [ref=e518]: s
+        - generic [ref=e519]:
+          - generic [ref=e520]: I
+          - generic [ref=e521]: "'"
+          - generic [ref=e522]: l
+          - generic [ref=e523]: l
+        - generic [ref=e524]:
+          - generic [ref=e525]: d
+          - generic [ref=e526]: e
+          - generic [ref=e527]: f
+          - generic [ref=e528]: e
+          - generic [ref=e529]: "n"
+          - generic [ref=e530]: d
+          - generic [ref=e531]: .
+      - paragraph [ref=e532]: Opinions, not predictions. I'm willing to be wrong.
+    - generic [ref=e533]:
+      - article [ref=e534]:
+        - generic [ref=e535]:
+          - generic [ref=e536]: "01"
+          - generic [ref=e537]: Commodities
+        - generic [ref=e538]:
+          - blockquote [ref=e540]: "\"Physical signals are the only macro data that can't be managed.\""
+          - generic [ref=e541]:
+            - generic [ref=e542]: The evidence
+            - paragraph [ref=e543]: The Baltic Dry Index doesn't have an investor relations team. Corn doesn't have forward guidance. LNG spot prices don't get revised three months later. When physical commodity signals diverge from equity markets or central bank narratives, I trust the ships, the grain, and the gas. One of them is reflecting reality, and it's never the press release.
+      - article [ref=e544]:
+        - generic [ref=e545]:
+          - generic [ref=e546]: "02"
+          - generic [ref=e547]: India
+        - generic [ref=e548]:
+          - blockquote [ref=e550]: "\"India's retail investment boom is structurally underestimated.\""
+          - generic [ref=e551]:
+            - generic [ref=e552]: The evidence
+            - paragraph [ref=e553]: India went from 40 million to over 190 million demat accounts in six years. Global analysts model this as a cyclical trend. It isn't. It's a structural shift driven by smartphones, UPI infrastructure, and a generation that trusts markets over bank deposits. The wealth management industry hasn't priced the scale of what's coming, and the monthly SIP data is the cleanest signal of whether it continues.
+      - article [ref=e554]:
+        - generic [ref=e555]:
+          - generic [ref=e556]: "03"
+          - generic [ref=e557]: Energy
+        - generic [ref=e558]:
+          - blockquote [ref=e560]: "\"Nuclear energy is the most mispriced asset class in the world right now.\""
+          - generic [ref=e561]:
+            - generic [ref=e562]: The evidence
+            - paragraph [ref=e563]: AI data centres are repricing power demand faster than grids can respond, a single LLM training run draws as much electricity as a small city for weeks. Uranium supply is constrained, mine output lags reactor restarts, and enrichment is concentrated in Russia and China. New builds take a decade. Companies that own operating nuclear capacity today are priced for a low-growth utility world, not an AI power supercycle. The repricing has started, nowhere near done.
+      - article [ref=e564]:
+        - generic [ref=e565]:
+          - generic [ref=e566]: "04"
+          - generic [ref=e567]: Geopolitics
+        - generic [ref=e568]:
+          - blockquote [ref=e570]: "\"Geopolitical realignment creates pricing dislocations that DCF can't see.\""
+          - generic [ref=e571]:
+            - generic [ref=e572]: The evidence
+            - paragraph [ref=e573]: The Hormuz closure threatens one-third of global helium supply and 20% of LNG simultaneously. The Russia-Ukraine war rewired European energy infrastructure permanently. Standard valuation models don't price geopolitical risk, they can't, because the inputs don't appear in earnings forecasts or discount rates. Which means every dislocation it creates is, for a brief window, mispriced. That window is where the trade is.
+      - article [ref=e574]:
+        - generic [ref=e575]:
+          - generic [ref=e576]: "05"
+          - generic [ref=e577]: Market Microstructure
+        - generic [ref=e578]:
+          - blockquote [ref=e580]: "\"Crypto regulation creates more volatility than it suppresses, at least in the short run.\""
+          - generic [ref=e581]:
+            - generic [ref=e582]: The evidence
+            - paragraph [ref=e583]: "Not a political position, it's consistent with my dissertation findings on crypto volatility around regulatory events. In the data, regulation stabilised traditional securities (the S&P 500 barely moved) while amplifying crypto volatility. The mechanism is speculative: announcements reset participation expectations, triggering price discovery in a market with no institutional stabiliser. MiCA may change that over 5–10 years as the institutional base deepens. For now, regulation and crypto volatility move together, not against."
+  - generic [ref=e585]:
+    - generic [ref=e586]:
+      - generic [ref=e587]: Now
+      - heading "C u r r e n t l y ." [level=2] [ref=e588]:
+        - generic [ref=e589]:
+          - generic [ref=e590]: C
+          - generic [ref=e591]: u
+          - generic [ref=e592]: r
+          - generic [ref=e593]: r
+          - generic [ref=e594]: e
+          - generic [ref=e595]: "n"
+          - generic [ref=e596]: t
+          - generic [ref=e597]: l
+          - generic [ref=e598]: "y"
+          - generic [ref=e599]: .
+      - paragraph [ref=e600]: What I'm tracking, reading, and building right now.
+      - paragraph [ref=e601]: "Last updated: April 2026"
+    - generic [ref=e602]:
+      - generic [ref=e603]:
+        - generic [ref=e604]: Reading
+        - generic [ref=e605]:
+          - link "The Alchemy of Finance George Soros Reflexivity as a market framework, why equilibrium models miss the point Book" [ref=e606]:
+            - /url: https://www.goodreads.com/book/show/369708.The_Alchemy_of_Finance
+            - generic [ref=e607]: The Alchemy of Finance
+            - generic [ref=e608]: George Soros
+            - generic [ref=e609]: Reflexivity as a market framework, why equilibrium models miss the point
+            - generic [ref=e610]: Book
+          - link "The Volatility Machine Michael Pettis How capital flows and balance sheet structures cause EM crises Book" [ref=e611]:
+            - /url: https://www.goodreads.com/book/show/1733599.The_Volatility_Machine
+            - generic [ref=e612]: The Volatility Machine
+            - generic [ref=e613]: Michael Pettis
+            - generic [ref=e614]: How capital flows and balance sheet structures cause EM crises
+            - generic [ref=e615]: Book
+          - link "BIS Quarterly Review March 2026 Market recalibration, equity rotation from concentrated positions, commodity surges, and AI infrastructure financing Report" [ref=e616]:
+            - /url: https://www.bis.org/publ/qtrpdf/r_qt2603.htm
+            - generic [ref=e617]: BIS Quarterly Review
+            - generic [ref=e618]: March 2026
+            - generic [ref=e619]: Market recalibration, equity rotation from concentrated positions, commodity surges, and AI infrastructure financing
+            - generic [ref=e620]: Report
+          - link "Energy Transition and the Copper Bottleneck IEA World Energy Outlook Why critical mineral supply can't keep pace with decarbonisation demand Report" [ref=e621]:
+            - /url: https://www.iea.org/reports/world-energy-outlook-2024
+            - generic [ref=e622]: Energy Transition and the Copper Bottleneck
+            - generic [ref=e623]: IEA World Energy Outlook
+            - generic [ref=e624]: Why critical mineral supply can't keep pace with decarbonisation demand
+            - generic [ref=e625]: Report
+          - link "The Carry Trade Unwind of August 2024 Matt Levine · Bloomberg Anatomy of the yen carry trade blowup and what it revealed about hidden leverage Long Read" [ref=e626]:
+            - /url: https://www.bloomberg.com/opinion/newsletters/money-stuff
+            - generic [ref=e627]: The Carry Trade Unwind of August 2024
+            - generic [ref=e628]: Matt Levine · Bloomberg
+            - generic [ref=e629]: Anatomy of the yen carry trade blowup and what it revealed about hidden leverage
+            - generic [ref=e630]: Long Read
+          - link "Chinese Overcapacity and International Trade Joshua Meltzer & Margaret Pearson · Brookings How surplus manufacturing capacity in EVs, solar, and steel is flooding global markets with subsidised exports Long Read" [ref=e631]:
+            - /url: https://www.brookings.edu/articles/how-the-us-should-address-chinese-overcapacity-and-its-impact-on-international-trade/
+            - generic [ref=e632]: Chinese Overcapacity and International Trade
+            - generic [ref=e633]: Joshua Meltzer & Margaret Pearson · Brookings
+            - generic [ref=e634]: How surplus manufacturing capacity in EVs, solar, and steel is flooding global markets with subsidised exports
+            - generic [ref=e635]: Long Read
+      - generic [ref=e636]:
+        - generic [ref=e637]: Tracking
+        - list [ref=e638]:
+          - listitem [ref=e639]:
+            - generic [ref=e641]: US 2s10s yield curve and HY OAS, recession timing
+          - listitem [ref=e642]:
+            - generic [ref=e644]: USDJPY and VIX regime, carry trade and risk appetite
+          - listitem [ref=e645]:
+            - generic [ref=e647]: Baltic Dry Index and copper-gold ratio, physical economy
+          - listitem [ref=e648]:
+            - generic [ref=e650]: India AMFI monthly SIP flows, domestic equity appetite
+          - listitem [ref=e651]:
+            - generic [ref=e653]: DXY and EURUSD, global capital flow direction
+          - listitem [ref=e654]:
+            - generic [ref=e656]: Brent crude and USDINR, India current account pressure
+          - listitem [ref=e657]:
+            - generic [ref=e659]: Fed Funds rate and IG spreads, credit regime
+          - listitem [ref=e660]:
+            - generic [ref=e662]: India 10Y yield, RBI monetary policy expectations
+          - listitem [ref=e663]:
+            - generic [ref=e665]: FTSE 250 and EUR IG spreads, UK mid-cap and European credit conditions
+          - listitem [ref=e666]:
+            - generic [ref=e668]: UK gilts 10Y and GBP/EUR, fiscal policy transmission and sterling positioning
+        - link "View live dashboard →" [ref=e669]:
+          - /url: signals.html
+      - generic [ref=e670]:
+        - generic [ref=e671]: Building
+        - generic [ref=e672]:
+          - generic [ref=e673]:
+            - generic [ref=e674]:
+              - generic [ref=e675]: Angel One Ltd valuation model
+              - generic [ref=e676]: In Progress
+            - generic [ref=e677]: "6-tab institutional equity model (NSE: ANGELONE)"
+          - generic [ref=e680]:
+            - generic [ref=e681]:
+              - generic [ref=e682]: Macro Signal Tracker
+              - generic [ref=e683]: Live
+            - generic [ref=e684]: 21 indicators across rates, credit, FX, commodities, India
+          - generic [ref=e687]:
+            - generic [ref=e688]:
+              - generic [ref=e689]: Macro Geopolitics research
+              - generic [ref=e690]: Published
+            - generic [ref=e691]: 12 structural theses, supply chains, energy, demographics, conflict
+          - generic [ref=e694]:
+            - generic [ref=e695]:
+              - generic [ref=e696]: Horizon 2040
+              - generic [ref=e697]: Published
+            - generic [ref=e698]: Four unpriced structural risks the market prices at zero
+          - generic [ref=e701]:
+            - generic [ref=e702]:
+              - generic [ref=e703]: Fund Screening Model, Full SEBI Universe
+              - generic [ref=e704]: Complete
+            - generic [ref=e705]: 273 scored + 198 comparison-ready, 4 phases covering full SEBI active fund universe
+      - generic [ref=e708]:
+        - generic [ref=e709]: Thinking About
+        - generic [ref=e710]:
+          - paragraph [ref=e711]:
+            - text: "?"
+            - strong [ref=e712]: What happens when the yen carry trade fully unwinds?
+            - text: BOJ normalisation is unwinding the largest carry trade in history. If USDJPY breaks below 140, forced deleveraging cascades through every risk asset at once.
+            - emphasis [ref=e713]: "Where I lean:"
+            - text: most portfolios have zero hedging for this. The asymmetry favours owning volatility, the unwind will be non-linear, with a cross-asset correlation spike unlike anything since March 2020.
+          - paragraph [ref=e714]:
+            - text: "?"
+            - strong [ref=e715]: Can the green transition happen at current copper prices?
+            - text: Electrification, grid buildout, and data-centre cooling all need copper, but mining capex peaked a decade ago and new projects take 10+ years.
+            - emphasis [ref=e716]: "Where I lean:"
+            - text: no. The transition needs prices well above spot to pull in new supply, so either copper reprices up or the timeline slips. Either way, miners with permitted reserves are undervalued.
+          - paragraph [ref=e717]:
+            - text: "?"
+            - strong [ref=e718]: Who absorbs the margin compression from Chinese overcapacity?
+            - text: China is exporting deflation, overcapacity in EVs, solar, and steel dumping cheap goods globally. Tariffs slow it, not stop it.
+            - emphasis [ref=e719]: "Where I lean:"
+            - text: European industrials are most exposed, especially chemicals and basic materials already squeezed by energy costs. Indian manufacturers have partial tariff cover but stay vulnerable on inputs. Watch BASF, Thyssenkrupp, and Tata Steel Europe.
+          - paragraph [ref=e720]:
+            - text: "?"
+            - strong [ref=e721]: Who controls the uranium enrichment bottleneck?
+            - text: Even if the West restarts nuclear at scale, enrichment is the chokepoint. Russia's Rosatom controls ~40% of global enrichment; US and European centrifuge capacity takes years to build.
+            - emphasis [ref=e722]: "Where I lean:"
+            - text: enrichment is the real constraint, not reactor builds or even mining. Whoever secures it first sets the terms for the nuclear renaissance. An energy-security story disguised as a utility one.
+  - generic [ref=e724]:
+    - generic [ref=e725]:
+      - generic [ref=e726]: Writing
+      - heading "W r i t i n g ." [level=2] [ref=e727]:
+        - generic [ref=e728]:
+          - generic [ref=e729]: W
+          - generic [ref=e730]: r
+          - generic [ref=e731]: i
+          - generic [ref=e732]: t
+          - generic [ref=e733]: i
+          - generic [ref=e734]: "n"
+          - generic [ref=e735]: g
+          - generic [ref=e736]: .
+      - paragraph [ref=e737]: Thinking out loud about markets, signals, and ideas that keep me up at night. At mandavkar.uk/blog, also coming to Substack.
+    - generic [ref=e738]:
+      - link "January 2026 Read → Macro · Shipping · Signals Baltic Dry tells you what GDP won't What shipping data says about where the global economy actually is, versus where governments say it is." [ref=e739]:
+        - /url: blog/baltic-dry.html
+        - generic [ref=e740]: January 2026
+        - generic [ref=e741]: Read →
+        - generic [ref=e742]: Macro · Shipping · Signals
+        - heading "Baltic Dry tells you what GDP won't" [level=3] [ref=e743]
+        - paragraph [ref=e744]: What shipping data says about where the global economy actually is, versus where governments say it is.
+      - link "February 2026 Read → India · Markets · Wealth Management India's 100M demat account moment Structural shift or retail mania? Why global analysts are underestimating the most important wealth management story in emerging markets." [ref=e745]:
+        - /url: blog/india-demat.html
+        - generic [ref=e746]: February 2026
+        - generic [ref=e747]: Read →
+        - generic [ref=e748]: India · Markets · Wealth Management
+        - heading "India's 100M demat account moment" [level=3] [ref=e749]
+        - paragraph [ref=e750]: Structural shift or retail mania? Why global analysts are underestimating the most important wealth management story in emerging markets.
+      - link "January 2026 Read → Macro · Fixed Income · Signals The yield curve uninverts. That's when you should actually worry. Everyone watches the inversion. Almost nobody watches what happens next, and that's where the real signal is." [ref=e751]:
+        - /url: blog/yield-curve.html
+        - generic [ref=e752]: January 2026
+        - generic [ref=e753]: Read →
+        - generic [ref=e754]: Macro · Fixed Income · Signals
+        - heading "The yield curve uninverts. That's when you should actually worry." [level=3] [ref=e755]
+        - paragraph [ref=e756]: Everyone watches the inversion. Almost nobody watches what happens next, and that's where the real signal is.
+      - link "February 2026 Read → Geopolitics · Energy · Scenario Analysis What happens if the Strait of Hormuz closes, and for how long? Scenario analysis across 4 time horizons. 20% of global oil transit. Country-by-country impact on crude, inflation, and GDP." [ref=e757]:
+        - /url: blog/hormuz.html
+        - generic [ref=e758]: February 2026
+        - generic [ref=e759]: Read →
+        - generic [ref=e760]: Geopolitics · Energy · Scenario Analysis
+        - heading "What happens if the Strait of Hormuz closes, and for how long?" [level=3] [ref=e761]
+        - paragraph [ref=e762]: Scenario analysis across 4 time horizons. 20% of global oil transit. Country-by-country impact on crude, inflation, and GDP.
+      - link "February 2026 Read → Geopolitics · Shipping · Inflation The Red Sea rerouting is the most underpriced macro risk of 2026 30–40% longer routes. Container cost spikes. European inflationary tail risks. Why this doesn't show up in equity analyst models." [ref=e763]:
+        - /url: blog/red-sea.html
+        - generic [ref=e764]: February 2026
+        - generic [ref=e765]: Read →
+        - generic [ref=e766]: Geopolitics · Shipping · Inflation
+        - heading "The Red Sea rerouting is the most underpriced macro risk of 2026" [level=3] [ref=e767]
+        - paragraph [ref=e768]: 30–40% longer routes. Container cost spikes. European inflationary tail risks. Why this doesn't show up in equity analyst models.
+      - link "March 2026 Read → India · Regulation · Equity Research SEBI won. Now what happens to Indian discount brokers? F&O restrictions, 90% of retail traders losing money, and a regulator that actually used the data. What it means for Angel One, Zerodha, 5Paisa." [ref=e769]:
+        - /url: blog/sebi-fo.html
+        - generic [ref=e770]: March 2026
+        - generic [ref=e771]: Read →
+        - generic [ref=e772]: India · Regulation · Equity Research
+        - heading "SEBI won. Now what happens to Indian discount brokers?" [level=3] [ref=e773]
+        - paragraph [ref=e774]: F&O restrictions, 90% of retail traders losing money, and a regulator that actually used the data. What it means for Angel One, Zerodha, 5Paisa.
+      - link "January 2026 Read → Commodities · Macro · Signals Copper is not a commodity. It's a global IQ test. Dr. Copper as a leading indicator. Why copper-equity divergence tells you more than the Bloomberg headline ever will." [ref=e775]:
+        - /url: blog/copper-signal.html
+        - generic [ref=e776]: January 2026
+        - generic [ref=e777]: Read →
+        - generic [ref=e778]: Commodities · Macro · Signals
+        - heading "Copper is not a commodity. It's a global IQ test." [level=3] [ref=e779]
+        - paragraph [ref=e780]: Dr. Copper as a leading indicator. Why copper-equity divergence tells you more than the Bloomberg headline ever will.
+      - 'link "February 2026 Read → India · Markets · Retail Flows India''s SIP machine: how systematic investments changed equity market dynamics ₹32,000+ Cr a month, every month, regardless of market levels (March 2026 record: ₹32,087 Cr). What this floor effect means for Indian equity drawdowns, and what happens when it reverses." [ref=e781]':
+        - /url: blog/sip-machine.html
+        - generic [ref=e782]: February 2026
+        - generic [ref=e783]: Read →
+        - generic [ref=e784]: India · Markets · Retail Flows
+        - 'heading "India''s SIP machine: how systematic investments changed equity market dynamics" [level=3] [ref=e785]'
+        - paragraph [ref=e786]: "₹32,000+ Cr a month, every month, regardless of market levels (March 2026 record: ₹32,087 Cr). What this floor effect means for Indian equity drawdowns, and what happens when it reverses."
+      - link "January 2026 Read → FX · Macro · Risk The carry trade always works until it doesn't How the most consistent strategy in FX markets becomes the most dangerous, and what the unwind looks like before it happens." [ref=e787]:
+        - /url: blog/carry-trade.html
+        - generic [ref=e788]: January 2026
+        - generic [ref=e789]: Read →
+        - generic [ref=e790]: FX · Macro · Risk
+        - heading "The carry trade always works until it doesn't" [level=3] [ref=e791]
+        - paragraph [ref=e792]: How the most consistent strategy in FX markets becomes the most dangerous, and what the unwind looks like before it happens.
+      - link "March 2026 Read → Energy · Commodities · Signals What the LNG forward curve is pricing that equity markets aren't Reading the energy market's forward curve as a macro signal. The JKM-TTF-Henry Hub spread, what contango tells you, and why European industrial margins are at risk." [ref=e793]:
+        - /url: blog/lng-curve.html
+        - generic [ref=e794]: March 2026
+        - generic [ref=e795]: Read →
+        - generic [ref=e796]: Energy · Commodities · Signals
+        - heading "What the LNG forward curve is pricing that equity markets aren't" [level=3] [ref=e797]
+        - paragraph [ref=e798]: Reading the energy market's forward curve as a macro signal. The JKM-TTF-Henry Hub spread, what contango tells you, and why European industrial margins are at risk.
+      - link "March 2026 Read → AI · Equity Research · Markets What AI actually automates in equity research, and what it can't LLMs can parse filings and normalise data. They cannot construct variant perception. Where AI helps, where it fails, and what it means for the future of research." [ref=e799]:
+        - /url: blog/ai-equity-research.html
+        - generic [ref=e800]: March 2026
+        - generic [ref=e801]: Read →
+        - generic [ref=e802]: AI · Equity Research · Markets
+        - heading "What AI actually automates in equity research, and what it can't" [level=3] [ref=e803]
+        - paragraph [ref=e804]: LLMs can parse filings and normalise data. They cannot construct variant perception. Where AI helps, where it fails, and what it means for the future of research.
+      - generic [ref=e805]:
+        - generic [ref=e806]: Coming Soon
+        - generic [ref=e807]: China · Commodities · Signals
+        - heading "I track coal imports before calling China's industrial recovery" [level=3] [ref=e808]
+        - paragraph [ref=e809]: Why watching Chinese coal import data is the most honest read on whether Beijing's stimulus is actually working.
+      - generic [ref=e810]:
+        - generic [ref=e811]: Coming Soon
+        - generic [ref=e812]: Equity Research · Valuation · Markets
+        - heading "What building a valuation model actually teaches you" [level=3] [ref=e813]
+        - paragraph [ref=e814]: Three months into an institutional equity model for Angel One, and what it's shown me about how markets misprice structural growth stories.
+    - generic [ref=e815]:
+      - generic [ref=e816]:
+        - generic [ref=e817]: Newsletter
+        - heading "Get the next one in your inbox." [level=3] [ref=e818]
+        - paragraph [ref=e819]: Macro signals, India's financial plumbing, commodities, and where capital is actually moving. Roughly weekly, no noise.
+        - link "Subscribe on Substack →" [ref=e820]:
+          - /url: https://thedmdapro.substack.com/subscribe
+      - iframe [ref=e822]:
+        
+  - generic [ref=e825]:
+    - generic [ref=e826]: Contact
+    - heading "L e t ' s t a l k m a r k e t s ." [level=2] [ref=e827]:
+      - generic [ref=e828]:
+        - generic [ref=e829]: L
+        - generic [ref=e830]: e
+        - generic [ref=e831]: t
+        - generic [ref=e832]: "'"
+        - generic [ref=e833]: s
+      - generic [ref=e834]:
+        - generic [ref=e835]: t
+        - generic [ref=e836]: a
+        - generic [ref=e837]: l
+        - generic [ref=e838]: k
+      - generic [ref=e839]:
+        - generic [ref=e840]: m
+        - generic [ref=e841]: a
+        - generic [ref=e842]: r
+        - generic [ref=e843]: k
+        - generic [ref=e844]: e
+        - generic [ref=e845]: t
+        - generic [ref=e846]: s
+        - generic [ref=e847]: .
+    - paragraph [ref=e848]: I'm particularly interested in conversations about macro signals, India's financial infrastructure, commodity markets, and where global capital flows are heading. If you're working on any of that, or hiring for it, I'd like to hear from you.
+    - generic [ref=e849]:
+      - button "Reveal email address" [ref=e850]:
+        - generic [ref=e851]: ✉
+        - generic [ref=e852]: Click to reveal email
+      - link "in LinkedIn" [ref=e853]:
+        - /url: https://www.linkedin.com/in/dhruvmandavkar
+        - generic [ref=e854]: in
+        - generic [ref=e855]: LinkedIn
+      - link "S Substack" [ref=e856]:
+        - /url: https://thedmdapro.substack.com
+        - generic [ref=e857]: S
+        - generic [ref=e858]: Substack
+  - contentinfo [ref=e859]:
+    - generic [ref=e860]:
+      - generic [ref=e861]: Dhruv Mandavkar
+      - generic [ref=e862]:
+        - link "Subscribe" [ref=e863]:
+          - /url: https://thedmdapro.substack.com/subscribe
+        - link "RSS" [ref=e864]:
+          - /url: https://thedmdapro.substack.com/feed
+      - generic [ref=e865]: mandavkar.uk · 2026
+    - generic [ref=e866]: Privacy-friendly, cookieless analytics. No cookies, no personal data.
+  - generic:
+    - img

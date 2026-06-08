@@ -1,0 +1,2 @@
+[    2256ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3456/api/fred/series/observations?series_id=DCOILWTICO&api_key=8926f04636561748f828c19645d2eef8&file_type=json&sort_order=desc&limit=8:0
+[    2407ms] [WARNING] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation @ https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js:0

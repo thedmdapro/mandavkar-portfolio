@@ -49,6 +49,28 @@ async function proxy(upstreamUrl, fetchInit) {
   }
 }
 
+// ── Analytics injection ──────────────────────────────────────────────
+// Cookieless Umami + our engagement layer (analytics.js) + the Substack RSS
+// link, appended to <head> of every HTML response. One hook covers all pages
+// (root, dossiers, blog, and anything added later). Cookieless => no consent
+// banner. The Umami tag only injects once a real website id is set, so it is
+// safe to deploy with the placeholder.
+const UMAMI_WEBSITE_ID = '__UMAMI_WEBSITE_ID__'; // replace with the Umami Cloud website id (public UUID)
+const SUBSTACK_FEED = 'https://thedmdapro.substack.com/feed';
+
+class HeadInjector {
+  element(head) {
+    head.append(
+      '\n  <link rel="alternate" type="application/rss+xml" title="Dhruv Mandavkar — Writing" href="' + SUBSTACK_FEED + '">' +
+      '\n  <script defer src="/analytics.js?v=1"></script>' +
+      (UMAMI_WEBSITE_ID.indexOf('__') === 0
+        ? ''
+        : '\n  <script defer src="https://cloud.umami.is/script.js" data-website-id="' + UMAMI_WEBSITE_ID + '"></script>'),
+      { html: true }
+    );
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -70,6 +92,12 @@ export default {
       return proxy(yahooUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } });
     }
 
-    return env.ASSETS.fetch(request);
+    // Static assets — inject the analytics layer into HTML responses only.
+    const res = await env.ASSETS.fetch(request);
+    const ct = res.headers.get('content-type') || '';
+    if (ct.includes('text/html')) {
+      return new HTMLRewriter().on('head', new HeadInjector()).transform(res);
+    }
+    return res;
   },
 };

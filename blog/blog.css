@@ -580,3 +580,36 @@ strong { color: var(--text); font-weight: 600; }
   }
   .fade-up { opacity: 1; transform: none; }
 }
+
+/* ─── Newsletter subscribe (end of post) ─── */
+.post-subscribe {
+  max-width: 720px;
+  margin: 56px auto 8px;
+  padding: 32px 32px 34px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+.post-subscribe-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); display: block; margin-bottom: 10px;
+}
+.post-subscribe h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em;
+  color: var(--text); margin: 0 0 8px;
+}
+.post-subscribe p {
+  font-size: 1rem; line-height: 1.6; color: var(--dim);
+  margin: 0 0 20px; max-width: 52ch;
+}
+.post-subscribe-btn {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  letter-spacing: 0.02em;
+  background: var(--accent); color: #fff;
+  padding: 12px 22px; border-radius: 8px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.post-subscribe-btn:hover { opacity: 0.92; transform: translateY(-1px); }

@@ -2907,3 +2907,81 @@ html.lenis, html.lenis body { height: auto; }
     transition: none;
   }
 }
+
+/* ─── Newsletter subscribe block (Writing section) ─── */
+.blog-subscribe {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.blog-subscribe-copy h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 10px 0 12px;
+  color: var(--ink);
+}
+.blog-subscribe-copy p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
+  margin-bottom: 24px;
+  max-width: 42ch;
+}
+.blog-subscribe-copy a {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  background: var(--oxblood);
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--oxblood);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.blog-subscribe-copy a:hover { opacity: 0.92; transform: translateY(-1px); }
+.blog-subscribe-embed iframe {
+  width: 100%;
+  height: 320px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 14px;
+  background: #fff;
+  display: block;
+}
+@media (max-width: 760px) {
+  .blog-subscribe { grid-template-columns: 1fr; gap: 32px; }
+  .blog-subscribe-embed iframe { height: 300px; }
+}
+
+/* ─── Footer subscribe + RSS + privacy note ─── */
+.footer-links {
+  display: flex;
+  gap: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.footer-links a {
+  color: color-mix(in srgb, var(--white) 62%, transparent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-privacy {
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--white) 32%, transparent);
+}
+@media (max-width: 600px) {
+  .footer-links { justify-content: center; }
+  .footer-privacy { text-align: center; }
+}

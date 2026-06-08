@@ -1,0 +1,101 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "D.M" [ref=e4] [cursor=pointer]:
+        - /url: ../index.html
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "About" [ref=e7] [cursor=pointer]:
+            - /url: ../index.html#about
+        - listitem [ref=e8]:
+          - link "Projects" [ref=e9] [cursor=pointer]:
+            - /url: ../index.html#projects
+        - listitem [ref=e10]:
+          - link "Signals" [ref=e11] [cursor=pointer]:
+            - /url: ../signals.html
+        - listitem [ref=e12]:
+          - link "How I Research" [ref=e13] [cursor=pointer]:
+            - /url: ../how-i-research.html
+        - listitem [ref=e14]:
+          - link "Writing" [ref=e15] [cursor=pointer]:
+            - /url: ../index.html#blog
+        - listitem [ref=e16]:
+          - link "Get in Touch" [ref=e17] [cursor=pointer]:
+            - /url: ../index.html#contact
+  - generic [ref=e18]:
+    - button "Close menu" [ref=e19] [cursor=pointer]: ✕
+    - list [ref=e20]:
+      - listitem [ref=e21]:
+        - link "About" [ref=e22] [cursor=pointer]:
+          - /url: ../index.html#about
+      - listitem [ref=e23]:
+        - link "Projects" [ref=e24] [cursor=pointer]:
+          - /url: ../index.html#projects
+      - listitem [ref=e25]:
+        - link "Signals" [ref=e26] [cursor=pointer]:
+          - /url: ../signals.html
+      - listitem [ref=e27]:
+        - link "How I Research" [ref=e28] [cursor=pointer]:
+          - /url: ../how-i-research.html
+      - listitem [ref=e29]:
+        - link "Writing" [ref=e30] [cursor=pointer]:
+          - /url: ../index.html#blog
+      - listitem [ref=e31]:
+        - link "Contact" [ref=e32] [cursor=pointer]:
+          - /url: ../index.html#contact
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - link "← Back to portfolio" [ref=e35] [cursor=pointer]:
+        - /url: ../index.html#blog
+      - generic [ref=e36]:
+        - generic [ref=e37]: Macro · Shipping · Signals
+        - heading "Baltic Dry tells you what GDP won't" [level=1] [ref=e38]
+        - paragraph [ref=e39]: What shipping data says about where the global economy actually is, versus where governments say it is.
+        - generic [ref=e40]:
+          - generic [ref=e41]: Dhruv Mandavkar
+          - generic [ref=e43]: January 2026
+          - generic [ref=e45]: 5 min read
+      - article [ref=e46]:
+        - paragraph [ref=e47]: The Baltic Dry Index has no PR team. No quarterly guidance call. No central bank backstop. It is just the price of moving bulk dry cargo, iron ore, grain, coal, across the major ocean trade routes, updated daily. You cannot jawbone it. You cannot manage its expectations. It moves because ships are either full or empty, and right now those ships are telling a story worth paying attention to.
+        - paragraph [ref=e48]: As of late April 2026, the BDI sits around 2,633, recovering after a March 2026 trough at 2,028, the index's first monthly loss of 2026. That is a number with context. In October 2008, at the peak of the pre-crisis commodity supercycle, the index hit 11,793. By December of that same year, it had collapsed to 663, a fall of 94% in less than three months. The global financial system hadn't yet fully seized up, but the BDI already knew what was coming. Dry bulk shipping is priced on forward bookings, and those bookings were vanishing in real time.
+        - generic [ref=e49]:
+          - text: “
+          - paragraph [ref=e50]: The BDI cannot be managed. It moves because ships are either full or empty, and right now those ships are telling a story worth paying attention to.
+        - paragraph [ref=e51]: The more interesting data point isn't 2008, it's February 2023. While economists were debating whether the Fed had engineered a soft landing, while equity markets were posting double-digit gains off their October 2022 lows, and while sell-side research was declaring the inflation crisis over, the Baltic Dry was printing 530. A level last seen during the early weeks of Covid. The physical economy was saying something very different from what the financial economy was pricing.
+        - paragraph [ref=e52]: That divergence is the signal. When BDI and equity markets decouple, one of them is wrong, and historically, it is not the ships.
+        - heading "Why shipping rates are the most honest macro signal in the world" [level=2] [ref=e53]
+        - paragraph [ref=e54]: Gross Domestic Product is a constructed number. It arrives with a lag of two to three months, is subsequently revised multiple times, and is produced by government statistical agencies with methodologies that have been debated for decades. GDP does not tell you what the economy is doing right now. It tells you what an agency estimates it was doing last quarter.
+        - paragraph [ref=e55]: Shipping rates tell you what is moving through the world's arteries today. When factories in China need iron ore to make steel, they book ships. When grain traders in the US export to Asia, they book ships. When construction activity in India accelerates, the downstream demand shows up in BDI. It is supply chains rendered as price data, updated in real time, with no intermediary narrative.
+        - generic [ref=e56]:
+          - strong [ref=e57]: "BDI: Key Reference Points"
+          - paragraph [ref=e58]:
+            - text: "Peak (May 2008): 11,793, the pre-crisis commodity supercycle top"
+            - text: "Trough (Dec 2008): 663, 94% collapse in 8 months"
+            - text: "Feb 2023: 530, BDI's lowest point during the \"soft landing\" narrative"
+            - text: "Mar 2026: 2,028, first monthly loss of 2026 (the trough)"
+            - text: "Apr 2026: ~2,633, rebounding sharply on Capesize iron ore demand"
+        - paragraph [ref=e59]: The BDI is not a perfect leading indicator. It is distorted by vessel supply, shipbuilding cycles that take five to seven years to play out mean that a surge in new ships can suppress rates even when demand is strong. The Capesize sub-index (the largest vessels) is more volatile and can swing dramatically on single route disruptions. Route-specific data from Clarksons or Baltic Exchange provides more granularity than the headline index.
+        - paragraph [ref=e60]: But as a rough, unmanipulated read on global physical demand, specifically for industrial commodities, nothing beats it. And it is publicly available, updated daily, completely free to track.
+        - heading "The divergence that matters right now" [level=2] [ref=e61]
+        - paragraph [ref=e62]: The current reading near 2,633 puts the BDI in a zone I'd describe as cautious recovery, recovering from a March trough at 2,028. It is above the distress levels of early 2023, but well below the 3,000–4,000 range that characterised genuine global industrial expansion in 2021. The trajectory through Q1 2026 was choppy, from 1,600 in early January to a March trough of 2,028 (the first monthly decline of 2026) before April's rebound, which is at minimum consistent with stabilisation rather than a clean expansion.
+        - paragraph [ref=e63]: What I am watching is the relationship between the BDI and equity market valuations in industrials and materials. If BDI continues to recover while industrial equities are pricing in significant earnings growth, that is a confirmation. If BDI stagnates or rolls over while equity markets continue to price in expansion, that is the divergence signal that historically has preceded corrections.
+        - paragraph [ref=e64]: The Red Sea disruption has complicated the picture. Rerouting around Cape of Good Hope since late 2023 has increased shipping distances on Europe-Asia routes by 30–40%, which absorbs vessel capacity and can suppress the BDI even when underlying demand is reasonable. Analysts tracking BDI need to hold this context. The rate signal is noisier than usual.
+        - heading "How I use it" [level=2] [ref=e65]
+        - paragraph [ref=e66]: "I check the BDI weekly, every Friday when the Baltic Exchange publishes its update. I track it against three other things: the US ISM Manufacturing PMI, LNG spot prices on the Henry Hub to JKM spread, and copper futures (which are a reasonable proxy for industrial demand). When all four are aligned, the signal is strong. When they diverge, I get more cautious about macro calls in either direction."
+        - paragraph [ref=e67]: The BDI is not a trading signal on its own. It is one input in a set of physical-economy indicators that I think most equity analysts underweight because they are not financial instruments, there is no BDI futures market that generates analyst coverage, no BDI ETF with a ticker. It sits outside the standard Bloomberg workflow. Which is exactly why it is worth tracking.
+        - paragraph [ref=e68]: The macro signals that are hardest to access are usually the ones that are most honest.
+        - paragraph [ref=e69]: The ships do not care what the consensus says.
+    - complementary [ref=e70]:
+      - generic [ref=e71]: Newsletter
+      - heading "Liked this? Get the next one." [level=3] [ref=e72]
+      - paragraph [ref=e73]: Macro signals and market reads, roughly weekly. No noise.
+      - link "Subscribe on Substack →" [ref=e74] [cursor=pointer]:
+        - /url: https://thedmdapro.substack.com/subscribe
+  - generic [ref=e76]:
+    - link "← Back to portfolio" [ref=e77] [cursor=pointer]:
+      - /url: ../index.html#blog
+    - generic [ref=e78]: mandavkar.uk · 2026
+  - contentinfo [ref=e79]:
+    - generic [ref=e80]:
+      - generic [ref=e81]: Dhruv Mandavkar
+      - generic [ref=e82]: mandavkar.uk · 2026
