@@ -55,7 +55,7 @@ async function proxy(upstreamUrl, fetchInit) {
 // (root, dossiers, blog, and anything added later). Cookieless => no consent
 // banner. The Umami tag only injects once a real website id is set, so it is
 // safe to deploy with the placeholder.
-const UMAMI_WEBSITE_ID = '__UMAMI_WEBSITE_ID__'; // replace with the Umami Cloud website id (public UUID)
+const UMAMI_WEBSITE_ID = '06e63a6d-a11c-4020-b044-c10cd20f265f'; // Umami Cloud website id (public)
 const SUBSTACK_FEED = 'https://thedmdapro.substack.com/feed';
 
 class HeadInjector {
