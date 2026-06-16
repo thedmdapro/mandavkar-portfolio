@@ -245,7 +245,7 @@ h2.light { color: var(--dark-text); }
   transition: color var(--duration-normal);
 }
 .nav-logo span { color: var(--oxblood); }
-/* Dark-register pages (signals, horizon2040, equity-research, fund-screening,
+/* Dark-register pages (signals, horizon2040, equity-research,
    angel-one, all hz-thesis sub-pages) flip the nav to cream-on-dark */
 body:has(.signals-hero) .nav-logo,
 body:has(.hz-hero) .nav-logo,
